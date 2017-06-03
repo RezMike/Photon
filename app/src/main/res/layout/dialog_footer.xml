@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wrap_buttons"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/spacing_normal_24"
+    android:orientation="horizontal">
+
+<Button
+    android:id="@+id/ok_btn"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="@string/ok_btn"
+    style="@style/CustomButton"
+    android:theme="@style/FotonBtn"/>
+
+<Button
+    android:id="@+id/cancel_btn"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="@string/cancel_btn"
+    style="@style/CustomButton"
+    android:theme="@style/FotonBtn"/>
+</LinearLayout>

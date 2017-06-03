@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:orientation="vertical"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline4"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="115dp"/>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline5"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="269dp"/>
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/description_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/description_load"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/chose_photo_btn"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+        app:layout_constraintRight_toLeftOf="@+id/guideline5"/>
+
+    <Button
+        android:id="@+id/chose_photo_btn"
+        style="@style/CustomButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/chose_photo_btn"
+        android:theme="@style/FotonBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline4"
+        app:layout_constraintRight_toLeftOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="parent"/>
+</android.support.constraint.ConstraintLayout>

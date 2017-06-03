@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">Foton</string>
+
+    <!--splash-->
+    <string name="description_splash">Онлайн-галерея фуд-фотографий.\n Для вдохнавления и обучения.</string>
+
+
+    <!--auth-->
+    <string name="sign_up_btn">Регистрация</string>
+    <string name="sign_in_btn">Вход</string>
+    <string name="description_auth">Авторизуйтесь, чтобы посмотреть данные профиля</string>
+
+    <!--load-->
+    <string name="description_load">Выберите фотокарточку из галереи и добавьте к вашим альбомам</string>
+    <string name="chose_photo_btn">Выбрать фото</string>
+
+    <!--fonts-->
+    <string name="roboto_medium">sans-serif-medium</string>
+    <string name="roboto_regular">sans-serif</string>
+
+
+    <!--dialogs-->
+    <string name="title_sign_in">Вход в аккаунт</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="cancel_btn">Отмена</string>
+    <string name="ok_btn">@android:string/ok</string>
+    <string name="title_sign_up">Регистрация</string>
+    <string name="name">Имя</string>
+    <string name="login">Логин</string>
+    <string name="title_new_album">Новый альбом</string>
+    <string name="name_album">Название</string>
+    <string name="description">Описание</string>
+    <string name="title_splash_tx">Фотон</string>
 </resources>
