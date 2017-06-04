@@ -4,9 +4,7 @@ import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
-class AlbumRealm : RealmObject {
-
-    constructor() {}
+open class AlbumRealm() : RealmObject() {
 
     @PrimaryKey
     var id: String = ""
@@ -17,5 +15,4 @@ class AlbumRealm : RealmObject {
     var views: Int = 0
     var favorits: Int = 0
     var photoCards: RealmList<PhotoCardRealm> = RealmList()
-
 }

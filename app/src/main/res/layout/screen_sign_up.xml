@@ -26,29 +26,48 @@
             android:padding="@dimen/spacing_small_16">
 
             <TextView
-                android:id="@+id/title_new_album"
+                android:id="@+id/title_sign_up"
                 style="@style/title_text_view"
-                android:text="@string/title_new_album"/>
+                android:text="@string/sign_up_title"/>
 
             <EditText
-                android:id="@+id/name_album_et"
+                android:id="@+id/login_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal_24"
-                android:hint="@string/name_album"
-                android:inputType="text"/>
+                android:hint="@string/sign_up_login"
+                android:inputType="text"
+                android:lines="1"/>
 
             <EditText
-                android:id="@+id/description_et"
+                android:id="@+id/email_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small_16"
-                android:hint="@string/description"
-                android:inputType="text"/>
+                android:hint="@string/sign_up_email"
+                android:inputType="textEmailAddress"
+                android:lines="1"/>
+
+            <EditText
+                android:id="@+id/name_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small_16"
+                android:hint="@string/sign_up_name"
+                android:inputType="textPersonName"
+                android:lines="1"/>
+
+            <EditText
+                android:id="@+id/password_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small_16"
+                android:hint="@string/sign_up_password"
+                android:inputType="textPassword"
+                android:lines="1"/>
 
             <include layout="@layout/dialog_footer"/>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
-
 </FrameLayout>

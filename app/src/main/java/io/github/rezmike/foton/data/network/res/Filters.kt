@@ -1,5 +1,4 @@
-package io.github.rezmike.foton.data.network.res.photocard
-
+package io.github.rezmike.foton.data.network.res
 
 data class Filters(
         val dish: String,

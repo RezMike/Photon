@@ -1,8 +1,6 @@
-package io.github.rezmike.foton.data.network.res.photocard
-
+package io.github.rezmike.foton.data.network.res
 
 data class PhotoCardRes(
-
         val id: String,
         val owner: String,
         val title: String,
@@ -11,5 +9,4 @@ data class PhotoCardRes(
         val favorits: Int,
         val tags: List<String>,
         val filters: Filters
-
 )

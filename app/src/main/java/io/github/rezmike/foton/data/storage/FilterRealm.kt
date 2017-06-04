@@ -3,9 +3,7 @@ package io.github.rezmike.foton.data.storage
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
-class FilterRealm : RealmObject {
-    constructor() {}
-
+open class FilterRealm() : RealmObject() {
 
     @PrimaryKey
     var id: String = ""
@@ -16,7 +14,4 @@ class FilterRealm : RealmObject {
     var light: String = ""
     var lightDirection: String = ""
     var lightSource: String = ""
-
-
-
 }

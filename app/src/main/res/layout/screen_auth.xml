@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:orientation="vertical"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent"
-                                             tools:layout_editor_absoluteY="25dp"
-                                             tools:layout_editor_absoluteX="0dp">
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="25dp">
 
     <TextView
         android:id="@+id/description"
@@ -18,7 +19,7 @@
         android:layout_marginRight="8dp"
         android:fontFamily="sans-serif"
         android:lineSpacingExtra="4sp"
-        android:text="@string/description_auth"
+        android:text="@string/auth_description"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/sign_up_btn"
         app:layout_constraintHorizontal_bias="0.0"
@@ -32,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:text="@string/sign_up_btn"
+        android:text="@string/auth_sign_up"
         android:theme="@style/FotonBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -42,13 +43,13 @@
         app:layout_constraintVertical_bias="0.499"/>
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline3"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.32"
-        tools:layout_editor_absoluteY="181dp"
-        tools:layout_editor_absoluteX="0dp"/>
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="181dp"/>
 
     <Button
         android:id="@+id/sign_in_btn"
@@ -58,7 +59,7 @@
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginTop="8dp"
-        android:text="@string/sign_in_btn"
+        android:text="@string/auth_sign_in"
         android:theme="@style/FotonBtn"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/left_padding"
@@ -78,4 +79,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.7"/>
+
 </android.support.constraint.ConstraintLayout>

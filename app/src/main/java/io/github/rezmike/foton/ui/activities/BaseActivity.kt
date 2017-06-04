@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 
 import io.github.rezmike.foton.R
+import kotlinx.android.synthetic.main.progress_splash.*
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -46,9 +47,12 @@ open class BaseActivity : AppCompatActivity() {
         }
         progressDialog?.show()
         progressDialog?.setContentView(R.layout.progress_splash)
+        progress.show()
     }
 
     fun hideProgress() {
+        if (progressDialog == null) return
+        progress.hide()
         isDialogShowing = false;
         progressDialog?.dismiss()
     }

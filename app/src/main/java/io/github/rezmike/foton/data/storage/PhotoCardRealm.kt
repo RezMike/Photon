@@ -1,10 +1,10 @@
 package io.github.rezmike.foton.data.storage
 
+import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
-class PhotoCardRealm : RealmObject {
-    constructor() {}
+open class PhotoCardRealm() : RealmObject() {
 
     @PrimaryKey
     var id: String = ""
@@ -13,6 +13,6 @@ class PhotoCardRealm : RealmObject {
     var photo: String = ""
     var views: Int = 0
     var favorits: Int = 0
-    var tags: ArrayList<String> = ArrayList()
+    var tags: RealmList<TagRealm> = RealmList()
     var filters : FilterRealm = FilterRealm()
 }

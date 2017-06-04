@@ -1,6 +1,4 @@
-package io.github.rezmike.foton.data.network.res.user
-
-import io.github.rezmike.foton.data.network.res.album.AlbumRes
+package io.github.rezmike.foton.data.network.res
 
 data class UserRes(
         val id: String,

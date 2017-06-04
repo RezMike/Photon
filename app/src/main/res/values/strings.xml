@@ -1,35 +1,42 @@
 <resources>
     <string name="app_name">Foton</string>
 
-    <!--splash-->
-    <string name="description_splash">Онлайн-галерея фуд-фотографий.\n Для вдохнавления и обучения.</string>
-
-
-    <!--auth-->
-    <string name="sign_up_btn">Регистрация</string>
-    <string name="sign_in_btn">Вход</string>
-    <string name="description_auth">Авторизуйтесь, чтобы посмотреть данные профиля</string>
-
-    <!--load-->
-    <string name="description_load">Выберите фотокарточку из галереи и добавьте к вашим альбомам</string>
-    <string name="chose_photo_btn">Выбрать фото</string>
-
-    <!--fonts-->
+    <!--Fonts-->
     <string name="roboto_medium">sans-serif-medium</string>
     <string name="roboto_regular">sans-serif</string>
 
+    <!--Splash Screen-->
+    <string name="splash_title">Фотон</string>
+    <string name="splash_description">Онлайн-галерея фуд-фотографии.\nДля вдохновения и обучения.</string>
 
-    <!--dialogs-->
-    <string name="title_sign_in">Вход в аккаунт</string>
-    <string name="email">Email</string>
-    <string name="password">Пароль</string>
-    <string name="cancel_btn">Отмена</string>
-    <string name="ok_btn">@android:string/ok</string>
-    <string name="title_sign_up">Регистрация</string>
-    <string name="name">Имя</string>
-    <string name="login">Логин</string>
-    <string name="title_new_album">Новый альбом</string>
-    <string name="name_album">Название</string>
-    <string name="description">Описание</string>
-    <string name="title_splash_tx">Фотон</string>
+    <!--Auth Screen-->
+    <string name="auth_description">Авторизуйтесь, чтобы посмотреть данные профиля</string>
+    <string name="auth_sign_up">Регистрация</string>
+    <string name="auth_sign_in">Вход</string>
+
+    <!--Sign In Screen-->
+    <string name="sign_in_title">Вход в аккаунт</string>
+    <string name="sign_in_email">Email</string>
+    <string name="sign_in_password">Пароль</string>
+
+    <!--Sign Up Screen-->
+    <string name="sign_up_title">Регистрация</string>
+    <string name="sign_up_login">Логин</string>
+    <string name="sign_up_email">Email</string>
+    <string name="sign_up_name">Имя</string>
+    <string name="sign_up_password">Пароль</string>
+
+    <!--New album screen-->
+    <string name="new_album_title">Новый альбом</string>
+    <string name="new_album_name">Название</string>
+    <string name="new_album_description">Описание</string>
+
+    <!--Upload Screen-->
+    <string name="upload_description">Выберите фотокарточку из галереи и добавьте к вашим альбомам</string>
+    <string name="upload_choose_photo">Выбрать фото</string>
+
+    <!--Dialog Footer-->
+    <string name="dialog_footer_ok">@android:string/ok</string>
+    <string name="dialog_footer_cancel">Отмена</string>
+
 </resources>

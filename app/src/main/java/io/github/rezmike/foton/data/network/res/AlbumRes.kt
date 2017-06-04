@@ -1,9 +1,7 @@
-package io.github.rezmike.foton.data.network.res.album
-
-import io.github.rezmike.foton.data.network.res.photocard.PhotoCardRes
+package io.github.rezmike.foton.data.network.res
 
 data class AlbumRes(
-        val id: String ,
+        val id: String,
         val owner: String,
         val title: String,
         val preview: String,
