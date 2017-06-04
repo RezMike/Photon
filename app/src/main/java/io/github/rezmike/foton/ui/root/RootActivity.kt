@@ -1,12 +1,12 @@
-package io.github.rezmike.foton.ui.activities
+package io.github.rezmike.foton.ui.root
 
 import android.os.Bundle
 import com.squareup.picasso.Picasso
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.modules.PicassoCacheModule
-import io.github.rezmike.foton.di.modules.RootModule
 import io.github.rezmike.foton.di.scopes.RootScope
+import io.github.rezmike.foton.ui.abstracts.BaseActivity
 
 class RootActivity : BaseActivity() {
 
@@ -22,7 +22,7 @@ class RootActivity : BaseActivity() {
     interface RootComponent {
         fun inject(activity: RootActivity)
 
-        //fun inject(presenter: RootPresenter)
+        fun inject(presenter: RootPresenter)
 
         //val rootPresenter: RootPresenter
 
@@ -30,7 +30,7 @@ class RootActivity : BaseActivity() {
 
         //fun getRootPresenter() : RootPresenter
 
-        fun getPicasso() : Picasso
+        fun getPicasso(): Picasso
     }
 
     //endregion

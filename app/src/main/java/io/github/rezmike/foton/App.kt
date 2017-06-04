@@ -6,9 +6,9 @@ import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.components.DaggerAppComponent
 import io.github.rezmike.foton.di.modules.AppModule
 import io.github.rezmike.foton.di.modules.PicassoCacheModule
-import io.github.rezmike.foton.di.modules.RootModule
-import io.github.rezmike.foton.ui.activities.DaggerRootActivity_RootComponent
-import io.github.rezmike.foton.ui.activities.RootActivity
+import io.github.rezmike.foton.ui.root.DaggerRootActivity_RootComponent
+import io.github.rezmike.foton.ui.root.RootActivity
+import io.github.rezmike.foton.ui.root.RootModule
 import io.github.rezmike.foton.utils.DaggerService
 import io.github.rezmike.foton.utils.ScreenScoper
 import io.realm.Realm
@@ -18,8 +18,8 @@ import mortar.bundler.BundleServiceRunner
 class App : Application() {
 
     private var mRootScope: MortarScope? = null
-    private var mRootActivityScope: MortarScope? = null
-    private var mRootActivityRootComponent: RootActivity.RootComponent? = null
+    private lateinit var mRootActivityScope: MortarScope
+    private lateinit var mRootActivityRootComponent: RootActivity.RootComponent
 
     override fun onCreate() {
         super.onCreate()
@@ -49,7 +49,7 @@ class App : Application() {
                 .build(RootActivity::class.java.name)
 
         ScreenScoper.registerScope(mRootScope!!)
-        ScreenScoper.registerScope(mRootActivityScope!!)
+        ScreenScoper.registerScope(mRootActivityScope)
     }
 
     private fun createAppComponent() {
@@ -69,6 +69,6 @@ class App : Application() {
 
     companion object {
         lateinit var appComponent: AppComponent
-        lateinit var context : Context
+        lateinit var context: Context
     }
 }

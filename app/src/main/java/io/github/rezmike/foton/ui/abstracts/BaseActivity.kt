@@ -1,4 +1,4 @@
-package io.github.rezmike.foton.ui.activities
+package io.github.rezmike.foton.ui.abstracts
 
 import android.app.ProgressDialog
 import android.graphics.Color
