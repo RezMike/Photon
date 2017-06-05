@@ -6,8 +6,7 @@ import android.widget.FrameLayout
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
-abstract class AbstractView<P : AbstractPresenter<V, *, P>
-        , V : AbstractView<P, V>>(context: Context?, attrs: AttributeSet?) : FrameLayout(context, attrs) {
+abstract class AbstractView<P : AbstractPresenter<V, *, P>, V : AbstractView<P, V>>(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
     @Inject
     lateinit var presenter: P
@@ -17,7 +16,7 @@ abstract class AbstractView<P : AbstractPresenter<V, *, P>
         initDagger(context)
     }
 
-    abstract fun initDagger(context: Context?)
+    abstract fun initDagger(context: Context)
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()

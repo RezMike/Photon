@@ -5,15 +5,14 @@ import android.content.Context
 import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.components.DaggerAppComponent
 import io.github.rezmike.foton.di.modules.AppModule
-import io.github.rezmike.foton.ui.root.RootActivity
-import io.github.rezmike.foton.mortar.ScreenScoper
+import io.github.rezmike.foton.utils.ScreenScoper
 import io.realm.Realm
 import mortar.MortarScope
 
 
 class App : Application() {
 
-    private var mRootScope: MortarScope? = null
+    private var rootScope: MortarScope? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -21,30 +20,23 @@ class App : Application() {
     }
 
     override fun getSystemService(name: String): Any {
-        if (mRootScope == null) createScopes()
-        return if (mRootScope?.hasService(name) ?: false) {
-            mRootScope?.getService(name)
+        if (rootScope == null) createScope()
+        return if (rootScope!!.hasService(name)) {
+            rootScope!!.getService(name)
         } else {
             super.getSystemService(name)
         }
     }
 
-    private fun createScopes() {
-        createAppComponent()
-
-        mRootScope = MortarScope.buildRootScope()
-                .withService(ScreenScoper.SERVICE_NAME, appComponent)
-                .build("Root")
-
-    }
-
-    private fun createAppComponent() {
+    private fun createScope() {
         appComponent = DaggerAppComponent.builder()
                 .appModule(AppModule(applicationContext))
                 .build()
+        rootScope = MortarScope.buildRootScope()
+                .withService(ScreenScoper.SERVICE_NAME, appComponent)
+                .build("Root")
         context = appComponent.context()
     }
-
 
     companion object {
         lateinit var appComponent: AppComponent

@@ -20,7 +20,6 @@ abstract class AbstractModel {
     @Inject
     lateinit var mJobManager: JobManager
 
-
     @Suppress("LeakingThis")
     constructor() {
         DaggerModelComponent.builder()
@@ -28,7 +27,6 @@ abstract class AbstractModel {
                 .build()
                 .inject(this)
     }
-
 
     @VisibleForTesting(otherwise = NONE)
     constructor(dataManager: DataManager, jobManager: JobManager) {
