@@ -7,11 +7,7 @@ abstract class AbstractScreen<in T> {
 
     abstract fun createScreenComponent(parentComponent: T): Any
 
-    fun getLayoutResId(): Int {
+    abstract fun getLayoutResId(): Int
 
-        val layout = setLayoutResId() ?: throw IllegalStateException("Method setLayoutResId must is not null  " + getScopeName())
-        return layout
-    }
-
-    abstract fun setLayoutResId(): Int?
+    fun getLayout() : Int = getLayoutResId()
 }

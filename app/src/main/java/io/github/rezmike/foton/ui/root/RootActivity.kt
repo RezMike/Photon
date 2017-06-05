@@ -12,7 +12,7 @@ import io.github.rezmike.foton.di.scopes.RootScope
 import io.github.rezmike.foton.flow.TreeKeyDispatcher
 import io.github.rezmike.foton.mortar.ScreenScoper
 import io.github.rezmike.foton.ui.abstracts.BaseActivity
-import io.github.rezmike.foton.ui.screens.splash.SplashScreen
+import io.github.rezmike.foton.ui.screens.navigation.NavigationScreen
 import mortar.MortarScope
 import mortar.bundler.BundleServiceRunner
 
@@ -20,7 +20,7 @@ class RootActivity : BaseActivity() {
 
     override fun attachBaseContext(newBase: Context?) {
         val newContext = Flow.configure(newBase!!, this)
-                .defaultKey(SplashScreen())
+                .defaultKey(NavigationScreen())
                 .dispatcher(TreeKeyDispatcher(this))
                 .install()
         super.attachBaseContext(newContext)
