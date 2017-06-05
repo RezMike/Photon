@@ -29,8 +29,8 @@ class RestCallTransformer<R> : Observable.Transformer<Response<R>, R> {
                 .flatMap { rResponse ->
                     when (rResponse.code()) {
                         200 -> {
-                            val lastModified  = rResponse.headers().get(ConstantManager.LAST_MODIFIED_HEADER)
-                            if (lastModified != null) DataManager.instance.preferencesManager.saveLastProductUpdate(lastModified)
+                            val lastModified = rResponse.headers().get(ConstantManager.LAST_MODIFIED_HEADER)
+                            if (lastModified != null) DataManager.INSTANCE.preferencesManager.saveLastProductUpdate(lastModified)
                             Observable.just(rResponse.body())
                         }
                         304 -> Observable.empty()

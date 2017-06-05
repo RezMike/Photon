@@ -2,21 +2,19 @@ package io.github.rezmike.foton.di.modules
 
 import com.birbit.android.jobqueue.JobManager
 import com.birbit.android.jobqueue.config.Configuration
-
-import javax.inject.Singleton
-
 import dagger.Module
 import dagger.Provides
 import io.github.rezmike.foton.App
 import io.github.rezmike.foton.data.managers.DataManager
 import io.github.rezmike.foton.utils.AppConfig
+import javax.inject.Singleton
 
 @Module
 class ModelModule {
 
     @Provides
     @Singleton
-    fun provideDataManager(): DataManager = DataManager.instance
+    fun provideDataManager(): DataManager = DataManager.INSTANCE
 
     @Provides
     @Singleton

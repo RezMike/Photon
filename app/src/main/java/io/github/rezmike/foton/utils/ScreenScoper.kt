@@ -1,11 +1,9 @@
 package io.github.rezmike.foton.utils
 
 import android.util.Log
-
-import java.lang.reflect.ParameterizedType
-
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import mortar.MortarScope
+import java.lang.reflect.ParameterizedType
 
 object ScreenScoper {
 
@@ -67,8 +65,7 @@ object ScreenScoper {
     @JvmStatic
     private fun <T> createScreenScope(screen: AbstractScreen<T>): MortarScope? {
         Log.d(TAG, "createScreenScope: with name : " + screen.getScopeName())
-        val parentScope = sScopeMap[getParentScopeName(screen)]
-        if (parentScope == null) return null;
+        val parentScope = sScopeMap[getParentScopeName(screen)] ?: return null
         val screenComponent = screen.createScreenComponent(parentScope.getService(DaggerService.SERVICE_NAME))
         val newScope = parentScope.buildChild()
                 .withService(DaggerService.SERVICE_NAME, screenComponent)

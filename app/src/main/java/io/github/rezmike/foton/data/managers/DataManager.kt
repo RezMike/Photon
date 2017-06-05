@@ -8,7 +8,6 @@ import io.github.rezmike.foton.di.components.DataManagerComponent
 import io.github.rezmike.foton.di.modules.LocalModule
 import io.github.rezmike.foton.di.modules.NetworkModule
 import io.github.rezmike.foton.utils.DaggerService
-import io.realm.Realm.init
 import javax.inject.Inject
 
 class DataManager private constructor() {
@@ -23,13 +22,7 @@ class DataManager private constructor() {
     lateinit var restService: RestService
 
     companion object {
-        private var ourInstance: DataManager? = null
-
-        val instance: DataManager
-            get() {
-                if (ourInstance == null) ourInstance = DataManager()
-                return ourInstance as DataManager
-            }
+        val INSTANCE = DataManager()
     }
 
     init {
@@ -42,7 +35,7 @@ class DataManager private constructor() {
                     .build();
             DaggerService.registerComponent(DataManagerComponent::class, component);
         }
-        component?.inject(this)
+        component!!.inject(this)
         restCallTransformer = RestCallTransformer()
     }
 

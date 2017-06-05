@@ -1,7 +1,8 @@
 package io.github.rezmike.foton.utils
 
 import android.content.Context
-import java.util.HashMap
+import mortar.MortarScope
+import java.util.*
 import kotlin.reflect.KClass
 
 object DaggerService {
@@ -13,9 +14,10 @@ object DaggerService {
 
     @JvmStatic
     @Suppress("unchecked_cast")
-    fun <T> getDaggerComponent(context: Context): T {
-        return context.getSystemService(SERVICE_NAME) as T
-    }
+    fun <T> getDaggerComponent(context: Context): T = context.getSystemService(SERVICE_NAME) as T
+
+    @JvmStatic
+    fun <T> getDaggerComponent(scope: MortarScope): T = scope.getService(SERVICE_NAME)
 
     @JvmStatic
     fun registerComponent(componentClass: KClass<*>, daggerComponent: Any) {
