@@ -7,7 +7,7 @@
     tools:context="io.github.rezmike.foton.ui.root.RootActivity">
 
     <FrameLayout
-        android:id="@+id/container"
+        android:id="@+id/root_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

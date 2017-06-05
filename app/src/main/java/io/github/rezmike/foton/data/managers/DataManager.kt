@@ -4,10 +4,8 @@ import io.github.rezmike.foton.App
 import io.github.rezmike.foton.data.network.RestCallTransformer
 import io.github.rezmike.foton.data.network.RestService
 import io.github.rezmike.foton.di.components.DaggerDataManagerComponent
-import io.github.rezmike.foton.di.components.DataManagerComponent
 import io.github.rezmike.foton.di.modules.LocalModule
 import io.github.rezmike.foton.di.modules.NetworkModule
-import io.github.rezmike.foton.utils.DaggerService
 import javax.inject.Inject
 
 class DataManager private constructor() {
@@ -26,16 +24,12 @@ class DataManager private constructor() {
     }
 
     init {
-        var component = DaggerService.getComponent(DataManagerComponent::class)
-        if (component == null) {
-            component = DaggerDataManagerComponent.builder()
-                    .appComponent(App.appComponent)
-                    .localModule(LocalModule())
-                    .networkModule(NetworkModule())
-                    .build();
-            DaggerService.registerComponent(DataManagerComponent::class, component);
-        }
-        component!!.inject(this)
+        DaggerDataManagerComponent.builder()
+                .appComponent(App.appComponent)
+                .localModule(LocalModule())
+                .networkModule(NetworkModule())
+                .build().inject(this)
+
         restCallTransformer = RestCallTransformer()
     }
 

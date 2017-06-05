@@ -5,22 +5,14 @@ import android.content.Context
 import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.components.DaggerAppComponent
 import io.github.rezmike.foton.di.modules.AppModule
-import io.github.rezmike.foton.di.modules.PicassoCacheModule
-import io.github.rezmike.foton.ui.root.DaggerRootActivity_RootComponent
-import io.github.rezmike.foton.ui.root.RootActivity
-import io.github.rezmike.foton.ui.root.RootModule
-import io.github.rezmike.foton.utils.DaggerService
 import io.github.rezmike.foton.utils.ScreenScoper
 import io.realm.Realm
 import mortar.MortarScope
-import mortar.bundler.BundleServiceRunner
 
 
 class App : Application() {
 
-    private var mRootScope: MortarScope? = null
-    private lateinit var mRootActivityScope: MortarScope
-    private lateinit var mRootActivityRootComponent: RootActivity.RootComponent
+    private var rootScope: MortarScope? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -28,44 +20,22 @@ class App : Application() {
     }
 
     override fun getSystemService(name: String): Any {
-        if (mRootScope == null) createScopes()
-        return if (mRootScope?.hasService(name) ?: false) {
-            mRootScope?.getService(name)
+        if (rootScope == null) createScope()
+        return if (rootScope!!.hasService(name)) {
+            rootScope!!.getService(name)
         } else {
             super.getSystemService(name)
         }
     }
 
-    private fun createScopes() {
-        createAppComponent()
-        createRootActivityComponent()
-
-        mRootScope = MortarScope.buildRootScope()
-                .withService(DaggerService.SERVICE_NAME, appComponent)
-                .build("Root")
-
-        mRootActivityScope = mRootScope!!.buildChild()
-                .withService(DaggerService.SERVICE_NAME, mRootActivityRootComponent)
-                .withService(BundleServiceRunner.SERVICE_NAME, BundleServiceRunner())
-                .build(RootActivity::class.java.name)
-
-        ScreenScoper.registerScope(mRootScope!!)
-        ScreenScoper.registerScope(mRootActivityScope)
-    }
-
-    private fun createAppComponent() {
+    private fun createScope() {
         appComponent = DaggerAppComponent.builder()
                 .appModule(AppModule(applicationContext))
                 .build()
+        rootScope = MortarScope.buildRootScope()
+                .withService(ScreenScoper.SERVICE_NAME, appComponent)
+                .build("Root")
         context = appComponent.context()
-    }
-
-    private fun createRootActivityComponent() {
-        mRootActivityRootComponent = DaggerRootActivity_RootComponent.builder()
-                .appComponent(appComponent)
-                .rootModule(RootModule())
-                .picassoCacheModule(PicassoCacheModule())
-                .build()
     }
 
     companion object {
