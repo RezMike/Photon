@@ -7,7 +7,7 @@ import io.github.rezmike.foton.di.components.DaggerDataManagerComponent
 import io.github.rezmike.foton.di.components.DataManagerComponent
 import io.github.rezmike.foton.di.modules.LocalModule
 import io.github.rezmike.foton.di.modules.NetworkModule
-import io.github.rezmike.foton.utils.DaggerService
+import io.github.rezmike.foton.mortar.ScreenScoper
 import javax.inject.Inject
 
 class DataManager private constructor() {
@@ -26,16 +26,14 @@ class DataManager private constructor() {
     }
 
     init {
-        var component = DaggerService.getComponent(DataManagerComponent::class)
-        if (component == null) {
-            component = DaggerDataManagerComponent.builder()
-                    .appComponent(App.appComponent)
-                    .localModule(LocalModule())
-                    .networkModule(NetworkModule())
-                    .build();
-            DaggerService.registerComponent(DataManagerComponent::class, component);
-        }
-        component!!.inject(this)
+        //так сделал по тому что все равно он синглтон
+
+        DaggerDataManagerComponent.builder()
+                .appComponent(App.appComponent)
+                .localModule(LocalModule())
+                .networkModule(NetworkModule())
+                .build().inject(this)
+
         restCallTransformer = RestCallTransformer()
     }
 

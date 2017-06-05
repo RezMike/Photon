@@ -1,30 +1,14 @@
 package io.github.rezmike.foton.ui.screens.splash
 
-import dagger.Provides
-import io.github.rezmike.foton.di.scopes.DaggerScope
+import io.github.rezmike.foton.mortar.ScreenScoper
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
-import io.github.rezmike.foton.ui.root.RootActivity
+import mortar.MortarScope
 
-class SplashPresenter : AbstractPresenter<SplashView, SplashModel>() {
+class SplashPresenter : AbstractPresenter<SplashView, SplashModel, SplashPresenter>() {
 
-
-    @dagger.Module
-    class Module {
-
-        @Provides
-        @DaggerScope(SplashPresenter::class)
-        internal fun providePresenter() = SplashPresenter()
-
-        @Provides
-        @DaggerScope(SplashPresenter::class)
-        internal fun provideSplashModel() = SplashModel()
+    override fun initDagger(scope: MortarScope?) {
+        ScreenScoper.getDaggerComponent<SplashScreen.Component>(scope!!).inject(this)
     }
 
-    @dagger.Component(dependencies = arrayOf(RootActivity.RootComponent::class), modules = arrayOf(Module::class))
-    @DaggerScope(SplashPresenter::class)
-    interface Component {
-        fun inject(presenter: SplashPresenter)
 
-        fun inject(view: SplashView)
-    }
 }
