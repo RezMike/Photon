@@ -5,6 +5,7 @@ import android.content.Context
 import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.components.DaggerAppComponent
 import io.github.rezmike.foton.di.modules.AppModule
+import io.github.rezmike.foton.utils.DaggerService
 import io.github.rezmike.foton.utils.ScreenScoper
 import io.realm.Realm
 import mortar.MortarScope
@@ -33,7 +34,7 @@ class App : Application() {
                 .appModule(AppModule(applicationContext))
                 .build()
         rootScope = MortarScope.buildRootScope()
-                .withService(ScreenScoper.SERVICE_NAME, appComponent)
+                .withService(DaggerService.SERVICE_NAME, appComponent)
                 .build("Root")
         context = appComponent.context()
     }

@@ -4,7 +4,6 @@ import dagger.Provides
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.di.scopes.DaggerScope
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
-import io.github.rezmike.foton.ui.root.RootActivity
 import io.github.rezmike.foton.ui.screens.navigation.NavigationScreen
 
 class SplashScreen : AbstractScreen<NavigationScreen.Component>() {

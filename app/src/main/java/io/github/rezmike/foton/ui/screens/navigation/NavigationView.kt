@@ -9,9 +9,10 @@ import kotlinx.android.synthetic.main.screen_navigation.view.*
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import android.view.LayoutInflater
 import android.view.View
-import io.github.rezmike.foton.mortar.ScreenScoper
 import io.github.rezmike.foton.ui.screens.profile.ProfileScreen
 import io.github.rezmike.foton.ui.screens.splash.SplashScreen
+import io.github.rezmike.foton.utils.DaggerService
+import io.github.rezmike.foton.utils.ScreenScoper
 
 
 class NavigationView(context: Context, attrs: AttributeSet)
@@ -23,8 +24,8 @@ class NavigationView(context: Context, attrs: AttributeSet)
         val LOAD_SCREEN = 2
     }
 
-    override fun initDagger(context: Context?) {
-        ScreenScoper.getDaggerComponent<NavigationScreen.Component>(context!!).inject(this)
+    override fun initDagger(context: Context) {
+        DaggerService.getDaggerComponent<NavigationScreen.Component>(context).inject(this)
     }
 
     override fun onFinishInflate() {

@@ -10,6 +10,7 @@ import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.modules.PicassoCacheModule
 import io.github.rezmike.foton.di.scopes.RootScope
 import io.github.rezmike.foton.ui.abstracts.BaseActivity
+import io.github.rezmike.foton.ui.screens.navigation.NavigationScreen
 import io.github.rezmike.foton.ui.screens.splash.SplashScreen
 import io.github.rezmike.foton.utils.DaggerService
 import io.github.rezmike.foton.utils.ScreenScoper
@@ -21,7 +22,7 @@ class RootActivity : BaseActivity() {
 
     override fun attachBaseContext(newBase: Context) {
         val newContext = Flow.configure(newBase, this)
-                .defaultKey(SplashScreen())
+                .defaultKey(NavigationScreen())
                 .dispatcher(TreeKeyDispatcher(this))
                 .install()
         super.attachBaseContext(newContext)
@@ -42,7 +43,7 @@ class RootActivity : BaseActivity() {
     override fun getSystemService(name: String): Any {
         val activityScope = MortarScope.findChild(applicationContext, javaClass.name) ?:
                 MortarScope.buildChild(applicationContext)
-                        .withService(ScreenScoper.SERVICE_NAME, createComponent())
+                        .withService(DaggerService.SERVICE_NAME, createComponent())
                         .withService(BundleServiceRunner.SERVICE_NAME, BundleServiceRunner())
                         .build(javaClass.name)
 
