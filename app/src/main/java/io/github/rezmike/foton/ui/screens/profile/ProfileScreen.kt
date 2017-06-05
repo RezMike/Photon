@@ -9,10 +9,10 @@ import io.github.rezmike.foton.ui.screens.navigation.NavigationModel
 import io.github.rezmike.foton.ui.screens.navigation.NavigationPresenter
 import io.github.rezmike.foton.ui.screens.navigation.NavigationScreen
 
-class ProfileScreen : AbstractScreen<NavigationScreen.Component>() {
-    override fun createScreenComponent(parentComponent: NavigationScreen.Component): Any {
+class ProfileScreen : AbstractScreen<RootActivity.RootComponent>() {
+    override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
         return DaggerProfileScreen_Component.builder()
-                .component(parentComponent)
+                .rootComponent(parentComponent)
                 .module(Module())
                 .build()
     }
@@ -20,7 +20,7 @@ class ProfileScreen : AbstractScreen<NavigationScreen.Component>() {
     override fun getLayoutResId(): Int = R.layout.screen_profile
 
     //    region ======================== DI ========================
-    @dagger.Component(dependencies = arrayOf(NavigationScreen.Component::class), modules = arrayOf(Module::class))
+    @dagger.Component(dependencies = arrayOf(RootActivity.RootComponent::class), modules = arrayOf(Module::class))
     @DaggerScope(ProfileScreen::class)
     interface Component {
         fun inject(presenter: ProfilePresenter)

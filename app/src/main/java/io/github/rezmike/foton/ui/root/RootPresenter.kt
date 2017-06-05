@@ -7,6 +7,8 @@ import mortar.bundler.BundleService
 
 class RootPresenter : Presenter<RootActivity>() {
 
+    var currentItem : Int = RootActivity.MAIN_SCREEN
+
     override fun onEnterScope(scope: MortarScope) {
         super.onEnterScope(scope)
         DaggerService.getDaggerComponent<RootActivity.RootComponent>(scope).inject(this)
@@ -14,5 +16,22 @@ class RootPresenter : Presenter<RootActivity>() {
 
     override fun extractBundleService(view: RootActivity): BundleService {
         return BundleService.getBundleService(view)
+    }
+
+    fun onClickMain() {
+        saveItemSelected(RootActivity.MAIN_SCREEN)
+    }
+
+    fun onClickProfile() {
+        saveItemSelected(RootActivity.PROFILE_SCREEN)
+    }
+
+    fun onClickLoad() {
+        saveItemSelected(RootActivity.LOAD_SCREEN)
+    }
+
+    private fun saveItemSelected(item: Int) {
+        currentItem = item
+        view?.turnScreen(item)
     }
 }
