@@ -15,6 +15,7 @@ import io.realm.Realm
 import mortar.MortarScope
 import mortar.bundler.BundleServiceRunner
 
+
 class App : Application() {
 
     private var mRootScope: MortarScope? = null
