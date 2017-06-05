@@ -18,7 +18,7 @@ class TreeKeyDispatcher(val activity: Activity) : Dispatcher {
         val inKey: AbstractScreen<*> = inState.getKey()
         val outKey: AbstractScreen<*>? = outState?.getKey()
 
-        if (inKey == outKey) {
+        if (inKey.getLayout() == outKey?.getLayout()) {
             callback.onTraversalCompleted()
             return
         }

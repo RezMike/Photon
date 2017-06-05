@@ -105,7 +105,7 @@ class RootActivity : BaseActivity() {
 
     //region ======================== IRootView ========================
     fun turnScreen(item: Int) {
-        var screen: AbstractScreen<*>? = null
+        var screen: Any? = null
         when (item) {
             MAIN_SCREEN -> {
                 //TODO сюда нужно вставлять скрины
@@ -119,7 +119,9 @@ class RootActivity : BaseActivity() {
                 screen = SplashScreen()
             }
         }
-        Flow.get(this).set(screen!!)
+        if (screen != null) {
+            Flow.get(this).set(screen)
+        }
     }
     //endregion
 

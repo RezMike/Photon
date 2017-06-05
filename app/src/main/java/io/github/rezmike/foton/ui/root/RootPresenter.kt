@@ -7,7 +7,7 @@ import mortar.bundler.BundleService
 
 class RootPresenter : Presenter<RootActivity>() {
 
-    var currentItem : Int = RootActivity.MAIN_SCREEN
+    var currentItem: Int = RootActivity.MAIN_SCREEN
 
     override fun onEnterScope(scope: MortarScope) {
         super.onEnterScope(scope)
@@ -31,7 +31,9 @@ class RootPresenter : Presenter<RootActivity>() {
     }
 
     private fun saveItemSelected(item: Int) {
-        currentItem = item
-        view?.turnScreen(item)
+        if (currentItem != item) {
+            currentItem = item
+            view?.turnScreen(item)
+        }
     }
 }
