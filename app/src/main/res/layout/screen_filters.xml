@@ -93,7 +93,119 @@
         android:text="@string/filter_tone"/>
 
     <LinearLayout
-        style="@style/wrap_section">
+        style="@style/wrap_section"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/wrap_section"
+            android:layout_marginBottom="@dimen/spacing_very_small_8">
+
+            <FrameLayout
+                style="@style/wrap_checkbox_filters">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/red_cb"
+                    style="@style/checkbox.checkbox_filters"
+                    android:drawableTop="@drawable/selector_filter_red"
+                    android:text="@string/filter_red"/>
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/wrap_checkbox_filters">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/orange_cb"
+                    style="@style/checkbox.checkbox_filters"
+                    android:drawableTop="@drawable/selector_filter_orange"
+                    android:text="@string/filter_orange"/>
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/wrap_checkbox_filters">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/yellow_cb"
+                    style="@style/checkbox.checkbox_filters"
+                    android:drawableTop="@drawable/selector_filter_yellow"
+                    android:text="@string/filter_yellow"/>
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/wrap_checkbox_filters">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/green_cb"
+                    style="@style/checkbox.checkbox_filters"
+                    android:drawableTop="@drawable/selector_filter_green"
+                    android:text="@string/filter_green"/>
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/wrap_checkbox_filters">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/blue_cb"
+                    style="@style/checkbox.checkbox_filters"
+                    android:drawableTop="@drawable/selector_filter_blue"
+                    android:text="@string/filter_blue"/>
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/wrap_section"
+            android:layout_marginBottom="0dp">
+
+            <FrameLayout
+                style="@style/wrap_checkbox_filters">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/dark_blue_cb"
+                    style="@style/checkbox.checkbox_filters"
+                    android:drawableTop="@drawable/selector_filter_dark_blue"
+                    android:text="@string/filter_dark_blue"/>
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/wrap_checkbox_filters">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/purple_cb"
+                    style="@style/checkbox.checkbox_filters"
+                    android:drawableTop="@drawable/selector_filter_purple"
+                    android:text="@string/filter_purple"/>
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/wrap_checkbox_filters">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/brown_cb"
+                    style="@style/checkbox.checkbox_filters"
+                    android:drawableTop="@drawable/selector_filter_brown"
+                    android:text="@string/filter_brown"/>
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/wrap_checkbox_filters">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/black_cb"
+                    style="@style/checkbox.checkbox_filters"
+                    android:drawableTop="@drawable/selector_filter_black"
+                    android:text="@string/filter_black"/>
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/wrap_checkbox_filters">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/white_cb"
+                    style="@style/checkbox.checkbox_filters"
+                    android:drawableTop="@drawable/selector_filter_white"
+                    android:text="@string/filter_white"/>
+            </FrameLayout>
+        </LinearLayout>
+
 
     </LinearLayout>
 

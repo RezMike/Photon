@@ -23,5 +23,16 @@
 
 
     <!--filters-->
-    <color name="color_filter_text">#FF8B8B8B</color>
+    <color name="color_filter_not_accent">#FF8B8B8B</color>
+    <color name="color_filter_accent">@color/color_accent</color>
+    <color name="color_filter_black">#000000</color>
+    <color name="color_filter_blue">#44a6f4</color>
+    <color name="color_filter_dark_blue">#5d6cc0</color>
+    <color name="color_filter_white">#ffffff</color>
+    <color name="color_filter_brown">#4c3026</color>
+    <color name="color_filter_green">#68bb6b</color>
+    <color name="color_filter_red">#f66156</color>
+    <color name="color_filter_orange">#fea829</color>
+    <color name="color_filter_yellow">#feca2e</color>
+    <color name="color_filter_purple">#ab49bc</color>
 </resources>
