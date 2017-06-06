@@ -3,18 +3,18 @@
 
     <item
         android:id="@+id/navigation_main"
-        android:icon="@drawable/ic_home_black"
+        android:icon="@drawable/ic_custom_home_black_24dp"
         android:title="@string/navigation_main"/>
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_profile_black"
+        android:icon="@drawable/ic_custom_profile_black_24dp"
         android:title="@string/navigation_profile"/>
 
     <item
         android:id="@+id/navigation_load"
 
-        android:icon="@drawable/ic_photos_black"
+        android:icon="@drawable/ic_custom_upload_black_24dp"
         android:title="@string/navigation_load"/>
 
 </menu>

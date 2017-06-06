@@ -3,6 +3,7 @@
     <color name="color_primary">#3F51B5</color>
     <color name="color_primary_dark">#131313</color>
     <color name="color_accent">#00aaff</color>
+    <color name="color_transparent">#00ffffff</color>
 
     <color name="black">#000</color>
     <color name="white">#fff</color>
@@ -13,9 +14,14 @@
 
     <!--dialog-->
     <color name="dialog_background">#88000000</color>
+    <color name="dialog_borders_et">#939393</color>
 
     <!--gradient-->
     <color name="color_start_gradient">#88000000</color>
     <color name="color_center_gradient">#7b6c6c6c</color>
     <color name="color_end_gradient">#00ffffff</color>
+
+
+    <!--filters-->
+    <color name="color_filter_text">#FF8B8B8B</color>
 </resources>

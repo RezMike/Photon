@@ -9,8 +9,289 @@
 
     <TextView
         style="@style/title_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Блюдо"/>
+        android:text="@string/filters_food"/>
+
+    <LinearLayout
+        style="@style/wrap_section">
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/meat_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_meat"
+                android:text="@string/filter_meat"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/fish_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_fish"
+                android:text="@string/filter_fish"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/vegetable_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_vegetable"
+                android:text="@string/filter_vegetable"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/fruit_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_fruit"
+                android:text="@string/filter_fruit"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/cheese_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_cheese"
+                android:text="@string/filter_cheese"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/candy_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_cheese"
+                android:text="@string/filter_candy"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/drink_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_drink"
+                android:text="@string/filter_drink"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        style="@style/title_text_view"
+        android:text="@string/filter_tone"/>
+
+    <LinearLayout
+        style="@style/wrap_section">
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/title_text_view"
+        android:text="@string/filter_decor"/>
+
+    <LinearLayout
+        style="@style/wrap_section">
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/common_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_common"
+                android:text="@string/filter_common"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/party_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_party"
+                android:text="@string/filter_party"/>
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/title_text_view"
+        android:text="@string/filter_temperature"/>
+
+    <LinearLayout
+        style="@style/wrap_section">
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/hot_temp_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_hot_temp"
+                android:text="@string/filter_hot_temp"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/comfort_temp_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_comfort_temp"
+                android:text="@string/filter_comfort_temp"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/cold_temp_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_cold_temp"
+                android:text="@string/filter_cold_temp"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/title_text_view"
+        android:text="@string/filter_light"/>
+
+    <LinearLayout
+        style="@style/wrap_section">
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/light_natural_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_light_natural"
+                android:text="@string/filter_light_natural"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/light_synthetic_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_light_synthetic"
+                android:text="@string/filter_light_synthetic"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/light_mix_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_light_mix"
+                android:text="@string/filter_light_mix"/>
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/title_text_view"
+        android:text="@string/filter_direction_light"/>
+
+    <LinearLayout
+        style="@style/wrap_section">
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/light_dir_front_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_light_dir_front"
+                android:text="@string/filter_light_dir_front"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/light_dir_back_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_light_dir_back"
+                android:text="@string/filter_light_dir_back"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/light_dir_side_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_light_dir_side"
+                android:text="@string/filter_light_dir_side"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/light_dir_mix_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_light_dir_mix"
+                android:text="@string/filter_light_dir_mix"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/title_text_view"
+        android:text="@string/filter_source_light"/>
+
+    <LinearLayout
+        style="@style/wrap_section">
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/light_count_1_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_light_count_1"
+                android:text="@string/filter_light_count_one"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/light_count_2_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_light_count_2"
+                android:text="@string/filter_light_count_two"/>
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/wrap_checkbox_filters">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/light_count_3_cb"
+                style="@style/checkbox.checkbox_filters"
+                android:drawableTop="@drawable/selector_light_count_3"
+                android:text="@string/filter_light_count_three"/>
+        </FrameLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

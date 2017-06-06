@@ -27,7 +27,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginRight="16dp"
-            app:srcCompat="@drawable/ic_star_border_white_24dp"/>
+            app:srcCompat="@drawable/ic_custom_favorites_white_24dp"/>
 
         <TextView
             android:id="@+id/favorite"
@@ -44,7 +44,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginRight="16dp"
-            app:srcCompat="@drawable/ic_visibility_white_24dp"/>
+            app:srcCompat="@drawable/ic_custom_views_white_24dp"/>
 
         <TextView
             android:id="@+id/watcher"

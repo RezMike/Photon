@@ -16,7 +16,7 @@ class SplashScreen : AbstractScreen<RootActivity.RootComponent>() {
                 .build()
     }
 
-    override fun getLayoutResId(): Int = R.layout.screen_splash
+    override fun getLayoutResId(): Int = R.layout.screen_filters
 
     //region ======================== DI ========================
 

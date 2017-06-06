@@ -32,19 +32,24 @@
 
             <EditText
                 android:id="@+id/name_album_et"
+                style="@style/edit_text_borders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal_24"
                 android:hint="@string/new_album_name"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:lines="1"/>
 
             <EditText
                 android:id="@+id/description_et"
+                style="@style/edit_text_borders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small_16"
                 android:hint="@string/new_album_description"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:minHeight="@dimen/spacing_very_large_72"
+                android:gravity="top"/>
 
             <include layout="@layout/dialog_footer"/>
 

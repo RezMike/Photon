@@ -32,20 +32,24 @@
 
             <EditText
                 android:id="@+id/email_et"
+                style="@style/edit_text_borders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal_24"
                 android:hint="@string/sign_in_email"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:lines="1"/>
 
 
             <EditText
                 android:id="@+id/password_et"
+                style="@style/edit_text_borders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small_16"
                 android:hint="@string/sign_in_password"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:lines="1"/>
 
             <include layout="@layout/dialog_footer"/>
         </LinearLayout>

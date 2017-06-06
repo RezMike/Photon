@@ -48,5 +48,36 @@
     <string name="dialog_footer_ok">@android:string/ok</string>
     <string name="dialog_footer_cancel">Отмена</string>
 
+    <!--Screen Filters-->
+    <string name="filters_food">Блюдо</string>
+    <string name="filter_meat">Мясо</string>
+    <string name="filter_fish">Рыба</string>
+    <string name="filter_vegetable">Овощи</string>
+    <string name="filter_fruit">Фрукты</string>
+    <string name="filter_cheese">Сыр</string>
+    <string name="filter_candy">Десерты</string>
+    <string name="filter_drink">Напитки</string>
+    <string name="filter_tone">Оттенки</string>
+    <string name="filter_decor">Оформление</string>
+    <string name="filter_temperature">Температура</string>
+    <string name="filter_light">Свет</string>
+    <string name="filter_direction_light">Направление света</string>
+    <string name="filter_source_light">Источник света</string>
+    <string name="filter_common">Обычное</string>
+    <string name="filter_party">Праздничное</string>
+    <string name="filter_light_natural">Естественный</string>
+    <string name="filter_light_synthetic">Искуственный</string>
+    <string name="filter_light_mix">Смешанный</string>
+    <string name="filter_cold_temp">Холодная</string>
+    <string name="filter_hot_temp">Горячая</string>
+    <string name="filter_comfort_temp">Комнатная</string>
+    <string name="filter_light_dir_front">Прямой</string>
+    <string name="filter_light_dir_back">Контровой</string>
+    <string name="filter_light_dir_side">Боковой</string>
+    <string name="filter_light_dir_mix">Смешанный</string>
+    <string name="filter_light_count_one">Один</string>
+    <string name="filter_light_count_two">Два</string>
+    <string name="filter_light_count_three">Три</string>
+
 
 </resources>

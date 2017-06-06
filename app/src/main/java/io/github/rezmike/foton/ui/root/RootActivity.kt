@@ -47,6 +47,7 @@ class RootActivity : BaseActivity() {
         DaggerService.getDaggerComponent<RootComponent>(this).inject(this)
         presenter.takeView(this)
         initBottomNavigation()
+        initToolbar()
     }
 
     override fun onDestroy() {
@@ -101,6 +102,9 @@ class RootActivity : BaseActivity() {
         }
     }
 
+    private fun initToolbar() {
+        setSupportActionBar(toolbar)
+    }
     //endregion
 
     //region ======================== IRootView ========================
