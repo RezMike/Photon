@@ -64,8 +64,8 @@
     </style>
 
     <style name="checkbox.checkbox_filters">
-        <!--<item name="android:layout_weight">1</item>-->
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:background">@color/color_transparent</item>
         <item name="android:gravity">center</item>
@@ -79,16 +79,8 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:layout_marginTop">@dimen/spacing_very_small_8</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small_16</item>
         <item name="android:layout_marginBottom">@dimen/spacing_small_16</item>
     </style>
-    <style name="wrap_checkbox_filters">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
-
-    </style>
-
-
 
 </resources>
