@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import flow.*
 import io.github.rezmike.foton.R
-import io.github.rezmike.foton.utils.ScreenScoper
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import mortar.MortarScope
 

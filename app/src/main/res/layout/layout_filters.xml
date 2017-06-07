@@ -13,7 +13,6 @@
     <LinearLayout
         style="@style/wrap_section">
 
-
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/meat_cb"
             style="@style/checkbox.checkbox_filters"
@@ -56,8 +55,8 @@
             style="@style/checkbox.checkbox_filters"
             android:drawableTop="@drawable/selector_drink"
             android:text="@string/filter_drink"/>
-    </LinearLayout>
 
+    </LinearLayout>
 
     <TextView
         style="@style/title_text_view"
@@ -71,7 +70,6 @@
             style="@style/wrap_section"
             android:layout_marginBottom="@dimen/spacing_very_small_8"
             android:layout_marginTop="0dp">
-
 
             <android.support.v7.widget.AppCompatCheckBox
                 android:id="@+id/red_cb"
@@ -102,13 +100,13 @@
                 style="@style/checkbox.checkbox_filters"
                 android:drawableTop="@drawable/selector_filter_blue"
                 android:text="@string/filter_blue"/>
+
         </LinearLayout>
 
         <LinearLayout
             style="@style/wrap_section"
             android:layout_marginBottom="0dp"
             android:layout_marginTop="8dp">
-
 
             <android.support.v7.widget.AppCompatCheckBox
                 android:id="@+id/dark_blue_cb"
@@ -139,9 +137,8 @@
                 style="@style/checkbox.checkbox_filters"
                 android:drawableTop="@drawable/selector_filter_white"
                 android:text="@string/filter_white"/>
+
         </LinearLayout>
-
-
     </LinearLayout>
 
     <TextView
@@ -150,7 +147,6 @@
 
     <LinearLayout
         style="@style/wrap_section">
-
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/common_cb"
@@ -173,7 +169,6 @@
     <LinearLayout
         style="@style/wrap_section">
 
-
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/hot_temp_cb"
             style="@style/checkbox.checkbox_filters"
@@ -191,6 +186,7 @@
             style="@style/checkbox.checkbox_filters"
             android:drawableTop="@drawable/selector_cold_temp"
             android:text="@string/filter_cold_temp"/>
+
     </LinearLayout>
 
     <TextView
@@ -228,7 +224,6 @@
     <LinearLayout
         style="@style/wrap_section">
 
-
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/light_dir_front_cb"
             style="@style/checkbox.checkbox_filters"
@@ -252,6 +247,7 @@
             style="@style/checkbox.checkbox_filters"
             android:drawableTop="@drawable/selector_light_dir_mix"
             android:text="@string/filter_light_dir_mix"/>
+
     </LinearLayout>
 
     <TextView
@@ -260,7 +256,6 @@
 
     <LinearLayout
         style="@style/wrap_section">
-
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/light_count_1_cb"
@@ -279,6 +274,6 @@
             style="@style/checkbox.checkbox_filters"
             android:drawableTop="@drawable/selector_light_count_3"
             android:text="@string/filter_light_count_three"/>
-    </LinearLayout>
 
+    </LinearLayout>
 </LinearLayout>

@@ -5,7 +5,8 @@ import android.util.AttributeSet
 import io.github.rezmike.foton.ui.abstracts.AbstractView
 import io.github.rezmike.foton.utils.DaggerService
 
-class ProfileView(context: Context, attrs: AttributeSet) : AbstractView<ProfilePresenter, ProfileView>(context,attrs){
+class ProfileView(context: Context, attrs: AttributeSet) : AbstractView<ProfilePresenter, ProfileView>(context, attrs) {
+
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<ProfileScreen.Component>(context).inject(this)
     }

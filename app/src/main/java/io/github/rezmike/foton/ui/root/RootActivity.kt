@@ -11,14 +11,13 @@ import io.github.rezmike.foton.di.modules.PicassoCacheModule
 import io.github.rezmike.foton.di.scopes.RootScope
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import io.github.rezmike.foton.ui.abstracts.BaseActivity
-import io.github.rezmike.foton.ui.screens.navigation.NavigationScreen
 import io.github.rezmike.foton.ui.screens.profile.ProfileScreen
 import io.github.rezmike.foton.ui.screens.splash.SplashScreen
 import io.github.rezmike.foton.utils.DaggerService
 import io.github.rezmike.foton.utils.TreeKeyDispatcher
+import kotlinx.android.synthetic.main.activity_root.*
 import mortar.MortarScope
 import mortar.bundler.BundleServiceRunner
-import kotlinx.android.synthetic.main.activity_root.*
 import javax.inject.Inject
 
 class RootActivity : BaseActivity() {
@@ -47,12 +46,11 @@ class RootActivity : BaseActivity() {
         DaggerService.getDaggerComponent<RootComponent>(this).inject(this)
         presenter.takeView(this)
         initBottomNavigation()
-        initToolbar()
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         presenter.dropView(this)
+        super.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -81,52 +79,42 @@ class RootActivity : BaseActivity() {
             .build()
 
     //region ======================== Initiation ========================
+
     private fun initBottomNavigation() {
         navigation.setOnNavigationItemSelectedListener { item ->
-
             when (item.itemId) {
                 R.id.navigation_main -> {
                     presenter.onClickMain()
-                    return@setOnNavigationItemSelectedListener true
+                    true
                 }
                 R.id.navigation_profile -> {
                     presenter.onClickProfile()
-                    return@setOnNavigationItemSelectedListener true
+                    true
                 }
                 R.id.navigation_load -> {
                     presenter.onClickLoad()
-                    return@setOnNavigationItemSelectedListener true
+                    true
                 }
-                else -> return@setOnNavigationItemSelectedListener false
+                else -> false
             }
         }
     }
 
-    private fun initToolbar() {
-        setSupportActionBar(toolbar)
-    }
     //endregion
 
     //region ======================== IRootView ========================
+
     fun turnScreen(item: Int) {
-        var screen: Any? = null
+        val screen: AbstractScreen<*>
         when (item) {
-            MAIN_SCREEN -> {
-                //TODO сюда нужно вставлять скрины
-                screen = SplashScreen()
-            }
-            PROFILE_SCREEN -> {
-                screen = ProfileScreen()//TODO сюда нужно вставлять скрины
-            }
-            LOAD_SCREEN -> {
-                //TODO сюда нужно вставлять скрины
-                screen = SplashScreen()
-            }
+            MAIN_SCREEN -> screen = SplashScreen()
+            PROFILE_SCREEN -> screen = ProfileScreen()
+            LOAD_SCREEN -> screen = SplashScreen()
+            else -> return
         }
-        if (screen != null) {
-            Flow.get(this).set(screen)
-        }
+        Flow.get(this).set(screen)
     }
+
     //endregion
 
     //region ======================== DI ========================
@@ -146,7 +134,6 @@ class RootActivity : BaseActivity() {
 
         fun getPicasso(): Picasso
     }
-
 
     //endregion
 }

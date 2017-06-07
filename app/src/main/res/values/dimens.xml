@@ -11,7 +11,6 @@
     <dimen name="spacing_very_small_8">8dp</dimen>
     <dimen name="spacing_140dp">140dp</dimen>
 
-
     <!-- font size-->
     <dimen name="font_size_mini_4">4sp</dimen>
     <dimen name="font_size_normal_10">10sp</dimen>
@@ -21,4 +20,5 @@
     <dimen name="font_size_normal_20">20sp</dimen>
     <dimen name="font_size_normal_24">24sp</dimen>
     <dimen name="font_size_medium_40">40sp</dimen>
+
 </resources>

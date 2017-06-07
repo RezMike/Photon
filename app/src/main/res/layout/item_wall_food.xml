@@ -2,7 +2,6 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -23,7 +22,6 @@
         android:paddingTop="16dp">
 
         <ImageView
-
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginRight="16dp"
@@ -38,7 +36,6 @@
             android:text="@string/item_info_count_empty"
             android:textColor="@color/white"
             android:textSize="16sp"/>
-
 
         <ImageView
             android:layout_width="24dp"
@@ -56,5 +53,4 @@
             android:textSize="16sp"/>
 
     </LinearLayout>
-
 </RelativeLayout>

@@ -48,7 +48,7 @@
     <string name="dialog_footer_ok">@android:string/ok</string>
     <string name="dialog_footer_cancel">Отмена</string>
 
-    <!--Screen Filters-->
+    <!--Filters-->
     <string name="filters_food">Блюдо</string>
     <string name="filter_meat">Мясо</string>
     <string name="filter_fish">Рыба</string>
@@ -88,6 +88,5 @@
     <string name="filter_black">Черный</string>
     <string name="filter_brown">Коричневый</string>
     <string name="filter_purple">Фиолетовый</string>
-
 
 </resources>
