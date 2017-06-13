@@ -126,11 +126,9 @@ class RootActivity : BaseActivity() {
 
         fun inject(presenter: RootPresenter)
 
-        //val rootPresenter: RootPresenter
+        fun getRootPresenter(): RootPresenter
 
         //fun getAccountModel() : AccountModel
-
-        //fun getRootPresenter() : RootPresenter
 
         fun getPicasso(): Picasso
     }

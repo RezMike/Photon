@@ -9,4 +9,11 @@ class SplashPresenter : AbstractPresenter<SplashView, SplashModel, SplashPresent
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<SplashScreen.Component>(scope).inject(this)
     }
+
+    fun init() {
+        model.updateLocalDataObs()
+                .subscribe({ view?.showMainScreen() }, {
+                    // TODO: 14.06.2017 show error in RootActivity
+                })
+    }
 }

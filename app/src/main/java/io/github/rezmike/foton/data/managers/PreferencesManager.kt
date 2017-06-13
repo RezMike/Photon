@@ -25,4 +25,6 @@ class PreferencesManager(context: Context) {
         editor.putString(PRODUCT_LAST_UPDATE_KEY, lastModified)
         editor.apply()
     }
+
+    fun getLastProductUpdate(): String = sharedPreferences.getString(PRODUCT_LAST_UPDATE_KEY, DEFAULT_LAST_UPDATE)
 }

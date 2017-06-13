@@ -36,4 +36,8 @@ class RootPresenter : Presenter<RootActivity>() {
             view?.turnScreen(item)
         }
     }
+
+    fun getRootView(): RootActivity? {
+        return view
+    }
 }

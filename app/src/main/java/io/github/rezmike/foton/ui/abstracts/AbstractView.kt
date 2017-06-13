@@ -13,7 +13,7 @@ abstract class AbstractView<P : AbstractPresenter<V, *, P>, V : AbstractView<P, 
 
     init {
         @Suppress("LeakingThis")
-        initDagger(context)
+        if (!isInEditMode) initDagger(context)
     }
 
     abstract fun initDagger(context: Context)
