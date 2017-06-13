@@ -9,4 +9,10 @@ class ProfilePresenter : AbstractPresenter<ProfileView, ProfileModel, ProfilePre
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<ProfileScreen.Component>(scope).inject(this)
     }
+
+    override fun initActionBar() {
+        rootPresenter.newActionBarBuilder()
+                .setTitle("Профиль")
+                .build()
+    }
 }

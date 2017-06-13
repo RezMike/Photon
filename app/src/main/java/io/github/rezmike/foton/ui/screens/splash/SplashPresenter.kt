@@ -9,4 +9,10 @@ class SplashPresenter : AbstractPresenter<SplashView, SplashModel, SplashPresent
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<SplashScreen.Component>(scope).inject(this)
     }
+
+    override fun initActionBar() {
+        rootPresenter.newActionBarBuilder()
+                .setVisible(false)
+                .build()
+    }
 }

@@ -9,4 +9,8 @@ class AuthPresenter : AbstractPresenter<AuthView, AuthModel, AuthPresenter>() {
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<AuthScreen.Component>(scope).inject(this)
     }
+
+    override fun initActionBar() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

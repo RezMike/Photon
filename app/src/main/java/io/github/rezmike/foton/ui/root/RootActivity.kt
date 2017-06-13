@@ -2,6 +2,9 @@ package io.github.rezmike.foton.ui.root
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.view.ViewPager
+import android.view.Menu
+import android.view.View
 import com.squareup.picasso.Picasso
 import flow.Flow
 import io.github.rezmike.foton.App
@@ -11,6 +14,7 @@ import io.github.rezmike.foton.di.modules.PicassoCacheModule
 import io.github.rezmike.foton.di.scopes.RootScope
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import io.github.rezmike.foton.ui.abstracts.BaseActivity
+import io.github.rezmike.foton.ui.screens.main.MainScreen
 import io.github.rezmike.foton.ui.screens.profile.ProfileScreen
 import io.github.rezmike.foton.ui.screens.splash.SplashScreen
 import io.github.rezmike.foton.utils.DaggerService
@@ -20,7 +24,9 @@ import mortar.MortarScope
 import mortar.bundler.BundleServiceRunner
 import javax.inject.Inject
 
-class RootActivity : BaseActivity() {
+class RootActivity : BaseActivity(), IActionBar {
+
+    var mActionBarMenuItems: ArrayList<MenuItemHolder> = ArrayList()
 
     companion object {
         val MAIN_SCREEN = 0
@@ -33,7 +39,7 @@ class RootActivity : BaseActivity() {
 
     override fun attachBaseContext(newBase: Context) {
         val newContext = Flow.configure(newBase, this)
-                .defaultKey(SplashScreen())
+                .defaultKey(MainScreen())
                 .dispatcher(TreeKeyDispatcher(this))
                 .install()
         super.attachBaseContext(newContext)
@@ -46,6 +52,7 @@ class RootActivity : BaseActivity() {
         DaggerService.getDaggerComponent<RootComponent>(this).inject(this)
         presenter.takeView(this)
         initBottomNavigation()
+        setSupportActionBar(toolbar)
     }
 
     override fun onDestroy() {
@@ -107,7 +114,7 @@ class RootActivity : BaseActivity() {
     fun turnScreen(item: Int) {
         val screen: AbstractScreen<*>
         when (item) {
-            MAIN_SCREEN -> screen = SplashScreen()
+            MAIN_SCREEN -> screen = MainScreen()
             PROFILE_SCREEN -> screen = ProfileScreen()
             LOAD_SCREEN -> screen = SplashScreen()
             else -> return
@@ -116,6 +123,50 @@ class RootActivity : BaseActivity() {
     }
 
     //endregion
+
+    //region ======================== IActionBar ========================
+
+    override fun setTitleBar(title: CharSequence) {
+        supportActionBar?.title = title
+    }
+
+    override fun setVisibleBar(enable: Boolean) {
+        if (supportActionBar != null) {
+            if (enable) toolbar.visibility = View.VISIBLE
+            else toolbar.visibility = View.GONE
+        }
+    }
+
+    override fun setBackArrow(enable: Boolean) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(enable)
+    }
+
+    override fun setMenuItem(items: ArrayList<MenuItemHolder>) {
+        mActionBarMenuItems = items
+        supportInvalidateOptionsMenu()
+    }
+
+    override fun setTabLayout(pager: ViewPager) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun removeTabLayout() {
+
+    }
+
+    //endregion
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        if (mActionBarMenuItems.isNotEmpty()) {
+            mActionBarMenuItems.forEach {
+                menu?.add(it.itemTitle)
+                        ?.setIcon(it.iconRes)
+                        ?.setOnMenuItemClickListener(it.listener)
+                        ?.setShowAsAction(it.showAsActionFlag)
+            }
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
 
     //region ======================== DI ========================
 
@@ -126,11 +177,11 @@ class RootActivity : BaseActivity() {
 
         fun inject(presenter: RootPresenter)
 
-        //val rootPresenter: RootPresenter
+//        val rootPresenter: RootPresenter
 
         //fun getAccountModel() : AccountModel
 
-        //fun getRootPresenter() : RootPresenter
+        fun getRootPresenter() : RootPresenter
 
         fun getPicasso(): Picasso
     }

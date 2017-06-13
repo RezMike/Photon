@@ -9,4 +9,8 @@ class FiltersPresenter : AbstractPresenter<FiltersView, FiltersModel, FiltersPre
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<FiltersScreen.Component>(scope).inject(this)
     }
+
+    override fun initActionBar() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
