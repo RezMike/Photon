@@ -2,12 +2,14 @@ package io.github.rezmike.foton.ui.root
 
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.View
 import com.squareup.picasso.Picasso
 import flow.Flow
 import io.github.rezmike.foton.App
+import io.github.rezmike.foton.BuildConfig
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.modules.PicassoCacheModule
@@ -79,13 +81,13 @@ class RootActivity : BaseActivity(), IActionBar {
         }
     }
 
+    //region ======================== Initiation ========================
+
     private fun createComponent(): Any? = DaggerRootActivity_RootComponent.builder()
             .appComponent(App.appComponent)
             .rootModule(RootModule())
             .picassoCacheModule(PicassoCacheModule())
             .build()
-
-    //region ======================== Initiation ========================
 
     private fun initBottomNavigation() {
         navigation.setOnNavigationItemSelectedListener { item ->
@@ -110,6 +112,33 @@ class RootActivity : BaseActivity(), IActionBar {
     //endregion
 
     //region ======================== IRootView ========================
+
+    fun showMessage(message: String) {
+        Snackbar.make(coordinator_container, message, Snackbar.LENGTH_LONG).show()
+    }
+
+    fun showMessage(stringResId: Int) {
+        showMessage(getString(stringResId))
+    }
+
+    fun showError(e: Throwable) {
+        if (BuildConfig.DEBUG) {
+            showMessage(e.message ?: "Some error")
+            e.printStackTrace()
+        } else {
+            showMessage(R.string.sorry_something_wrong)
+            //FirebaseCrash.log("ROOT VIEW EXCEPTION")
+            //FirebaseCrash.report(e)
+        }
+    }
+
+    fun showLoad() {
+        showProgress()
+    }
+
+    fun hideLoad() {
+        hideProgress()
+    }
 
     fun turnScreen(item: Int) {
         val screen: AbstractScreen<*>
