@@ -16,7 +16,7 @@ import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import io.github.rezmike.foton.ui.abstracts.BaseActivity
 import io.github.rezmike.foton.ui.screens.main.MainScreen
 import io.github.rezmike.foton.ui.screens.profile.ProfileScreen
-import io.github.rezmike.foton.ui.screens.splash.SplashScreen
+import io.github.rezmike.foton.ui.screens.upload.UploadScreen
 import io.github.rezmike.foton.utils.DaggerService
 import io.github.rezmike.foton.utils.TreeKeyDispatcher
 import kotlinx.android.synthetic.main.activity_root.*
@@ -26,7 +26,7 @@ import javax.inject.Inject
 
 class RootActivity : BaseActivity(), IActionBar {
 
-    var mActionBarMenuItems: ArrayList<MenuItemHolder> = ArrayList()
+    var actionBarMenuItems: ArrayList<MenuItemHolder> = ArrayList()
 
     companion object {
         val MAIN_SCREEN = 0
@@ -47,8 +47,8 @@ class RootActivity : BaseActivity(), IActionBar {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        BundleServiceRunner.getBundleServiceRunner(this).onCreate(savedInstanceState)
         setContentView(R.layout.activity_root)
+        BundleServiceRunner.getBundleServiceRunner(this).onCreate(savedInstanceState)
         DaggerService.getDaggerComponent<RootComponent>(this).inject(this)
         presenter.takeView(this)
         initBottomNavigation()
@@ -116,7 +116,7 @@ class RootActivity : BaseActivity(), IActionBar {
         when (item) {
             MAIN_SCREEN -> screen = MainScreen()
             PROFILE_SCREEN -> screen = ProfileScreen()
-            LOAD_SCREEN -> screen = SplashScreen()
+            LOAD_SCREEN -> screen = UploadScreen()
             else -> return
         }
         Flow.get(this).set(screen)
@@ -142,7 +142,7 @@ class RootActivity : BaseActivity(), IActionBar {
     }
 
     override fun setMenuItem(items: ArrayList<MenuItemHolder>) {
-        mActionBarMenuItems = items
+        actionBarMenuItems = items
         supportInvalidateOptionsMenu()
     }
 
@@ -157,13 +157,14 @@ class RootActivity : BaseActivity(), IActionBar {
     //endregion
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        if (mActionBarMenuItems.isNotEmpty()) {
-            mActionBarMenuItems.forEach {
-                menu?.add(it.itemTitle)
-                        ?.setIcon(it.iconRes)
-                        ?.setOnMenuItemClickListener(it.listener)
-                        ?.setShowAsAction(it.showAsActionFlag)
+        if (actionBarMenuItems.isNotEmpty() && menu != null) {
+            actionBarMenuItems.forEach {
+                menu.add(it.itemTitle)
+                        .setIcon(it.iconRes)
+                        .setOnMenuItemClickListener(it.listener)
+                        .setShowAsAction(it.showAsActionFlag)
             }
+            return true
         }
         return super.onPrepareOptionsMenu(menu)
     }
@@ -177,11 +178,9 @@ class RootActivity : BaseActivity(), IActionBar {
 
         fun inject(presenter: RootPresenter)
 
-//        val rootPresenter: RootPresenter
+        fun getRootPresenter(): RootPresenter
 
         //fun getAccountModel() : AccountModel
-
-        fun getRootPresenter() : RootPresenter
 
         fun getPicasso(): Picasso
     }

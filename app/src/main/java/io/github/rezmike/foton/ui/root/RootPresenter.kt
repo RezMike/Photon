@@ -1,11 +1,10 @@
 package io.github.rezmike.foton.ui.root
 
+import android.support.v4.view.ViewPager
 import io.github.rezmike.foton.utils.DaggerService
 import mortar.MortarScope
 import mortar.Presenter
 import mortar.bundler.BundleService
-import android.support.v4.view.ViewPager
-import android.view.MenuItem
 
 class RootPresenter : Presenter<RootActivity>() {
 
@@ -44,7 +43,11 @@ class RootPresenter : Presenter<RootActivity>() {
         }
     }
 
-    fun newActionBarBuilder() = this.ActionBarBuilder()
+    fun getRootView(): RootActivity? {
+        return view
+    }
+
+    fun newActionBarBuilder() = ActionBarBuilder()
 
     inner class ActionBarBuilder {
         private var isGoBack = false
@@ -55,46 +58,42 @@ class RootPresenter : Presenter<RootActivity>() {
         private var mToolbarMode = DEFAULT_MODE
 
         fun setBackArrow(enable: Boolean): ActionBarBuilder {
-            this.isGoBack = enable
+            isGoBack = enable
             return this
         }
 
         fun setVisible(enable: Boolean): ActionBarBuilder {
-            this.isVisible = enable
+            isVisible = enable
             return this
         }
 
         fun setTitle(title: CharSequence): ActionBarBuilder {
-            this.mTitle = title
+            mTitle = title
             return this
         }
 
         fun addAction(menuItem: MenuItemHolder): ActionBarBuilder {
-            this.mItems.add(menuItem)
+            mItems.add(menuItem)
             return this
         }
 
         fun setTab(pager: ViewPager): ActionBarBuilder {
-            this.mToolbarMode = TAB_MODE
-            this.mPager = pager
+            mToolbarMode = TAB_MODE
+            mPager = pager
             return this
         }
 
         fun build() {
-            if (view != null) {
-                val activity = view
-                activity.setTitleBar(mTitle)
-                activity.setVisibleBar(isVisible)
-                activity.setBackArrow(isGoBack)
-                activity.setMenuItem(mItems)
-                if (mToolbarMode == TAB_MODE) {
-                    activity.setTabLayout(mPager!!)
-                } else {
-                    activity.removeTabLayout()
-                }
+            val activity = view ?: return
+            activity.setTitleBar(mTitle)
+            activity.setVisibleBar(isVisible)
+            activity.setBackArrow(isGoBack)
+            activity.setMenuItem(mItems)
+            if (mToolbarMode == TAB_MODE) {
+                activity.setTabLayout(mPager!!)
+            } else {
+                activity.removeTabLayout()
             }
         }
     }
-
-
 }

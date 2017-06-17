@@ -6,10 +6,8 @@ import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.components.DaggerAppComponent
 import io.github.rezmike.foton.di.modules.AppModule
 import io.github.rezmike.foton.utils.DaggerService
-import io.github.rezmike.foton.utils.ScreenScoper
 import io.realm.Realm
 import mortar.MortarScope
-
 
 class App : Application() {
 
