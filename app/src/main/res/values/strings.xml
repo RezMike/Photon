@@ -5,6 +5,9 @@
     <string name="roboto_medium">sans-serif-medium</string>
     <string name="roboto_regular">sans-serif</string>
 
+    <!--Errors-->
+    <string name="sorry_something_wrong">Извините, что-то пошло не так, попробуйте позже</string>
+
     <!--Splash Screen-->
     <string name="splash_title">Фотон</string>
     <string name="splash_description">Онлайн-галерея фуд-фотографии.\nДля вдохновения и обучения.</string>
