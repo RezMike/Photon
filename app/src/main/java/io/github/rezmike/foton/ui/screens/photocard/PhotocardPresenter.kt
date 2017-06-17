@@ -9,4 +9,8 @@ class PhotocardPresenter : AbstractPresenter<PhotocardView, PhotocardModel, Phot
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<PhotocardScreen.Component>(scope).inject(this)
     }
+
+    override fun initActionBar() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

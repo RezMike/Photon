@@ -2,6 +2,9 @@ package io.github.rezmike.foton.ui.root
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.view.ViewPager
+import android.view.Menu
+import android.view.View
 import com.squareup.picasso.Picasso
 import flow.Flow
 import io.github.rezmike.foton.App
@@ -11,8 +14,9 @@ import io.github.rezmike.foton.di.modules.PicassoCacheModule
 import io.github.rezmike.foton.di.scopes.RootScope
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import io.github.rezmike.foton.ui.abstracts.BaseActivity
+import io.github.rezmike.foton.ui.screens.main.MainScreen
 import io.github.rezmike.foton.ui.screens.profile.ProfileScreen
-import io.github.rezmike.foton.ui.screens.splash.SplashScreen
+import io.github.rezmike.foton.ui.screens.upload.UploadScreen
 import io.github.rezmike.foton.utils.DaggerService
 import io.github.rezmike.foton.utils.TreeKeyDispatcher
 import kotlinx.android.synthetic.main.activity_root.*
@@ -20,7 +24,9 @@ import mortar.MortarScope
 import mortar.bundler.BundleServiceRunner
 import javax.inject.Inject
 
-class RootActivity : BaseActivity() {
+class RootActivity : BaseActivity(), IActionBar {
+
+    var actionBarMenuItems: ArrayList<MenuItemHolder> = ArrayList()
 
     companion object {
         val MAIN_SCREEN = 0
@@ -33,7 +39,7 @@ class RootActivity : BaseActivity() {
 
     override fun attachBaseContext(newBase: Context) {
         val newContext = Flow.configure(newBase, this)
-                .defaultKey(SplashScreen())
+                .defaultKey(MainScreen())
                 .dispatcher(TreeKeyDispatcher(this))
                 .install()
         super.attachBaseContext(newContext)
@@ -41,11 +47,12 @@ class RootActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        BundleServiceRunner.getBundleServiceRunner(this).onCreate(savedInstanceState)
         setContentView(R.layout.activity_root)
+        BundleServiceRunner.getBundleServiceRunner(this).onCreate(savedInstanceState)
         DaggerService.getDaggerComponent<RootComponent>(this).inject(this)
         presenter.takeView(this)
         initBottomNavigation()
+        setSupportActionBar(toolbar)
     }
 
     override fun onDestroy() {
@@ -107,15 +114,60 @@ class RootActivity : BaseActivity() {
     fun turnScreen(item: Int) {
         val screen: AbstractScreen<*>
         when (item) {
-            MAIN_SCREEN -> screen = SplashScreen()
+            MAIN_SCREEN -> screen = MainScreen()
             PROFILE_SCREEN -> screen = ProfileScreen()
-            LOAD_SCREEN -> screen = SplashScreen()
+            LOAD_SCREEN -> screen = UploadScreen()
             else -> return
         }
         Flow.get(this).set(screen)
     }
 
     //endregion
+
+    //region ======================== IActionBar ========================
+
+    override fun setTitleBar(title: CharSequence) {
+        supportActionBar?.title = title
+    }
+
+    override fun setVisibleBar(enable: Boolean) {
+        if (supportActionBar != null) {
+            if (enable) toolbar.visibility = View.VISIBLE
+            else toolbar.visibility = View.GONE
+        }
+    }
+
+    override fun setBackArrow(enable: Boolean) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(enable)
+    }
+
+    override fun setMenuItem(items: ArrayList<MenuItemHolder>) {
+        actionBarMenuItems = items
+        supportInvalidateOptionsMenu()
+    }
+
+    override fun setTabLayout(pager: ViewPager) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun removeTabLayout() {
+
+    }
+
+    //endregion
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        if (actionBarMenuItems.isNotEmpty() && menu != null) {
+            actionBarMenuItems.forEach {
+                menu.add(it.itemTitle)
+                        .setIcon(it.iconRes)
+                        .setOnMenuItemClickListener(it.listener)
+                        .setShowAsAction(it.showAsActionFlag)
+            }
+            return true
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
 
     //region ======================== DI ========================
 

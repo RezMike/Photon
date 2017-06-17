@@ -1,5 +1,6 @@
 package io.github.rezmike.foton.ui.abstracts
 
+import android.os.Bundle
 import io.github.rezmike.foton.ui.root.RootActivity
 import io.github.rezmike.foton.ui.root.RootPresenter
 import mortar.MortarScope
@@ -18,7 +19,14 @@ abstract class AbstractPresenter<V : AbstractView<P, V>, M : AbstractModel, P : 
         initDagger(scope)
     }
 
+    override fun onLoad(savedInstanceState: Bundle?) {
+        super.onLoad(savedInstanceState)
+        initActionBar()
+    }
+
     abstract fun initDagger(scope: MortarScope)
+
+    abstract fun initActionBar()
 
     fun getRootView(): RootActivity? {
         return rootPresenter.getRootView()

@@ -9,4 +9,10 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<MainScreen.Component>(scope).inject(this)
     }
+
+    override fun initActionBar() {
+        rootPresenter.newActionBarBuilder()
+                .setTitle("Фотон")
+                .build()
+    }
 }

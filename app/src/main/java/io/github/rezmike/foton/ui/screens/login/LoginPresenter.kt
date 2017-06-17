@@ -9,4 +9,8 @@ class LoginPresenter : AbstractPresenter<LoginView, LoginModel, LoginPresenter>(
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<LoginScreen.Component>(scope).inject(this)
     }
+
+    override fun initActionBar() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

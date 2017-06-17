@@ -10,6 +10,12 @@ class SplashPresenter : AbstractPresenter<SplashView, SplashModel, SplashPresent
         DaggerService.getDaggerComponent<SplashScreen.Component>(scope).inject(this)
     }
 
+    override fun initActionBar() {
+        rootPresenter.newActionBarBuilder()
+                .setVisible(false)
+                .build()
+    }
+
     fun init() {
         model.updateLocalDataObs()
                 .subscribe({ view?.showMainScreen() }, {
