@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import flow.*
 import io.github.rezmike.foton.R
-import io.github.rezmike.foton.utils.ScreenScoper
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import mortar.MortarScope
 
@@ -18,7 +17,7 @@ class TreeKeyDispatcher(val activity: Activity) : Dispatcher {
         val inKey: AbstractScreen<*> = inState.getKey()
         val outKey: AbstractScreen<*>? = outState?.getKey()
 
-        if (inKey == outKey) {
+        if (inKey.getLayout() == outKey?.getLayout()) {
             callback.onTraversalCompleted()
             return
         }

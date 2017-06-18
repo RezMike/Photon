@@ -22,7 +22,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/background"/>
 
         <android.support.constraint.Guideline
@@ -30,9 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="284dp"/>
+            app:layout_constraintGuide_percent="0.6"/>
 
         <TextView
             android:id="@+id/logo"

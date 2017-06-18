@@ -15,7 +15,7 @@ class SplashScreen : AbstractScreen<RootActivity.RootComponent>() {
                 .build()
     }
 
-    override fun getLayoutResId() = R.layout.screen_splash
+    override fun getLayoutResId(): Int = R.layout.screen_splash
 
     //region ======================== DI ========================
 
@@ -29,14 +29,14 @@ class SplashScreen : AbstractScreen<RootActivity.RootComponent>() {
 
     @dagger.Module
     class Module {
-
         @Provides
         @DaggerScope(SplashScreen::class)
         fun providePresenter() = SplashPresenter()
 
         @Provides
         @DaggerScope(SplashScreen::class)
-        fun provideSplashModel() = SplashModel()
+        fun provideModel() = SplashModel()
     }
+
     //endregion
 }

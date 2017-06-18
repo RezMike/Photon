@@ -7,4 +7,6 @@ abstract class AbstractScreen<in T> {
     abstract fun createScreenComponent(parentComponent: T): Any
 
     abstract fun getLayoutResId(): Int
+
+    fun getLayout() : Int = getLayoutResId()
 }
