@@ -1,6 +1,8 @@
 package io.github.rezmike.foton.data.managers
 
+import io.github.rezmike.foton.data.network.res.AlbumRes
 import io.github.rezmike.foton.data.network.res.PhotoCardRes
+import io.github.rezmike.foton.data.storage.AlbumRealm
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.data.storage.TagRealm
 import io.realm.Realm
@@ -33,6 +35,25 @@ class RealmManager {
         }
 
         realm.executeTransaction { it.insertOrUpdate(photoCardRealm) }
+        realm.close()
+    }
+
+    //endregion
+
+    //region ======================== Albums ========================
+
+    fun saveAlbumResponseToRealm(albumRes: AlbumRes) {
+        val realm = Realm.getDefaultInstance()
+
+        val albumRealm = AlbumRealm(albumRes)
+
+        if (!albumRes.photocards.isEmpty()) {
+            Observable.from(albumRes.photocards)
+                    .map { PhotoCardRealm(it) }
+                    .subscribe { albumRealm.photoCards.add(it) }
+        }
+
+        realm.executeTransaction { it.insertOrUpdate(albumRealm) }
         realm.close()
     }
 

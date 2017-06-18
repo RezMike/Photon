@@ -16,6 +16,10 @@ open class PhotoCardRealm() : RealmObject() {
         private set
     var photo: String = ""
         private set
+    var created: String = ""
+        private set
+    var updated: String = ""
+        private set
     var views: Int = 0
         private set
     var favorits: Int = 0
@@ -30,6 +34,8 @@ open class PhotoCardRealm() : RealmObject() {
         owner = photoCardRes.owner
         title = photoCardRes.title
         photo = photoCardRes.photo
+        created = photoCardRes.created
+        updated = photoCardRes.updated
         views = photoCardRes.views
         favorits = photoCardRes.favorits
         filters = FilterRealm(photoCardRes.filters)

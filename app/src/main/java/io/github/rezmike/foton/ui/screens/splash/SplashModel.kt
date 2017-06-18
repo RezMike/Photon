@@ -4,5 +4,5 @@ import io.github.rezmike.foton.ui.abstracts.AbstractModel
 
 class SplashModel : AbstractModel() {
 
-    fun updateLocalDataObs() = mDataManager.startUpdateLocalData()
+    fun updateLocalDataCompl() = mDataManager.startUpdateLocalData()
 }
