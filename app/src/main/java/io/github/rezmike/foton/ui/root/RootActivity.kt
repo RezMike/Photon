@@ -1,8 +1,11 @@
 package io.github.rezmike.foton.ui.root
 
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.View
@@ -81,6 +84,26 @@ class RootActivity : BaseActivity(), IActionBar {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        presenter.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        presenter.onRequestPermissionResult(requestCode, permissions, grantResults)
+    }
+
+    fun isAllGranted(permissions: Array<String>, allGranted: Boolean): Boolean {
+        var granted = allGranted
+        for (permission in permissions) {
+            val selfPermission = ContextCompat.checkSelfPermission(this, permission)
+            if (selfPermission != PackageManager.PERMISSION_GRANTED) {
+                granted = false
+                break
+            }
+        }
+        return granted
+    }
+
     //region ======================== Initiation ========================
 
     private fun createComponent(): Any? = DaggerRootActivity_RootComponent.builder()
@@ -90,8 +113,8 @@ class RootActivity : BaseActivity(), IActionBar {
             .build()
 
     private fun initBottomNavigation() {
-        navigation.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
+        navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
                 R.id.navigation_main -> {
                     presenter.onClickMain()
                     true

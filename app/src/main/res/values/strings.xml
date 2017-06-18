@@ -92,4 +92,12 @@
     <string name="filter_brown">Коричневый</string>
     <string name="filter_purple">Фиолетовый</string>
 
+    <!--Profile photo upload-->
+    <string name="photo_upload_choose_photo">Выберите фото</string>
+    <string name="photo_upload_permit">Разрешить</string>
+    <string name="photo_upload_need_camera_permission">Необходимо разрешение на работу с камерой!</string>
+    <string name="photo_upload_need_write_permission">Необходимо разрешение на запись!</string>
+    <string name="photo_error_create_file">Фотография не может быть создана</string>
+    <string name="photo_error_give_permission">Для корректной работы приложения необходимо дать требуемые разрешения!</string>
+
 </resources>
