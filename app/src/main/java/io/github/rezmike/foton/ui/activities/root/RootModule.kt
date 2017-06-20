@@ -1,4 +1,4 @@
-package io.github.rezmike.foton.ui.root
+package io.github.rezmike.foton.ui.activities.root
 
 import dagger.Provides
 import io.github.rezmike.foton.di.scopes.RootScope

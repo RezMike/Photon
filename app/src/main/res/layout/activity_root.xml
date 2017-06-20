@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.root.RootActivity">
+    tools:context=".ui.activities.root.RootActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar_layout"

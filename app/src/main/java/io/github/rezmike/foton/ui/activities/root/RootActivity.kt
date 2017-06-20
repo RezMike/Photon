@@ -1,4 +1,4 @@
-package io.github.rezmike.foton.ui.root
+package io.github.rezmike.foton.ui.activities.root
 
 import android.content.Context
 import android.os.Bundle
@@ -18,7 +18,6 @@ import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import io.github.rezmike.foton.ui.abstracts.BaseActivity
 import io.github.rezmike.foton.ui.screens.main.MainScreen
 import io.github.rezmike.foton.ui.screens.profile.ProfileScreen
-import io.github.rezmike.foton.ui.screens.splash.SplashScreen
 import io.github.rezmike.foton.ui.screens.upload.UploadScreen
 import io.github.rezmike.foton.utils.DaggerService
 import io.github.rezmike.foton.utils.TreeKeyDispatcher
@@ -42,7 +41,7 @@ class RootActivity : BaseActivity(), IActionBar {
 
     override fun attachBaseContext(newBase: Context) {
         val newContext = Flow.configure(newBase, this)
-                .defaultKey(SplashScreen())
+                .defaultKey(MainScreen())
                 .dispatcher(TreeKeyDispatcher(this))
                 .install()
         super.attachBaseContext(newContext)

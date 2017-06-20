@@ -1,8 +1,8 @@
 package io.github.rezmike.foton.ui.abstracts
 
 import android.os.Bundle
-import io.github.rezmike.foton.ui.root.RootActivity
-import io.github.rezmike.foton.ui.root.RootPresenter
+import io.github.rezmike.foton.ui.activities.root.RootActivity
+import io.github.rezmike.foton.ui.activities.root.RootPresenter
 import mortar.MortarScope
 import mortar.ViewPresenter
 import javax.inject.Inject
