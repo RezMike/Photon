@@ -1,4 +1,4 @@
-package io.github.rezmike.foton.ui.root
+package io.github.rezmike.foton.ui.activities.root
 
 import android.support.v4.view.ViewPager
 

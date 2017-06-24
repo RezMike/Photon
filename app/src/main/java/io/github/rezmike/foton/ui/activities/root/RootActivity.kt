@@ -1,4 +1,4 @@
-package io.github.rezmike.foton.ui.root
+package io.github.rezmike.foton.ui.activities.root
 
 import android.content.Context
 import android.content.Intent
