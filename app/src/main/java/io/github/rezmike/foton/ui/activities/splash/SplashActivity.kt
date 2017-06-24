@@ -1,26 +1,24 @@
 package io.github.rezmike.foton.ui.activities.splash
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AppCompatActivity
 import dagger.Provides
-import flow.Flow
 import io.github.rezmike.foton.App
 import io.github.rezmike.foton.BuildConfig
-
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.scopes.SplashScope
-import io.github.rezmike.foton.ui.abstracts.BaseActivity
 import io.github.rezmike.foton.ui.activities.root.RootActivity
 import io.github.rezmike.foton.utils.DaggerService
+import kotlinx.android.synthetic.main.activity_root.*
 import kotlinx.android.synthetic.main.activity_splash.*
 import mortar.MortarScope
 import mortar.bundler.BundleServiceRunner
 import javax.inject.Inject
 
-class SplashActivity : BaseActivity() {
+class SplashActivity : AppCompatActivity() {
 
     @Inject
     lateinit var presenter: SplashPresenter
@@ -35,7 +33,13 @@ class SplashActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        progress.smoothToShow()
         presenter.init()
+    }
+
+    override fun onPause() {
+        progress.smoothToHide()
+        super.onPause()
     }
 
     override fun onDestroy() {
@@ -72,6 +76,7 @@ class SplashActivity : BaseActivity() {
     fun showRootActivity() {
         val activityIntent = Intent(this, RootActivity::class.java)
         startActivity(activityIntent)
+        finish()
     }
 
     fun showMessage(message: String) {
@@ -92,8 +97,8 @@ class SplashActivity : BaseActivity() {
             //FirebaseCrash.report(e)
         }
     }
-    //endregion
 
+    //endregion
 
     //region ======================== DI ========================
 
@@ -115,7 +120,6 @@ class SplashActivity : BaseActivity() {
         fun inject(activity: SplashActivity)
 
         fun inject(presenter: SplashPresenter)
-
     }
 
     //endregion

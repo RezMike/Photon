@@ -11,7 +11,7 @@ import javax.inject.Inject
 class SplashPresenter : Presenter<SplashActivity>() {
 
     @Inject
-    protected lateinit var model: SplashModel
+    lateinit var model: SplashModel
 
     override fun extractBundleService(view: SplashActivity?): BundleService {
         return BundleService.getBundleService(view)
@@ -25,11 +25,9 @@ class SplashPresenter : Presenter<SplashActivity>() {
     //region ======================== Presenter ========================
 
     fun init() {
-        Completable.merge(model.updateLocalDataCompl(), delayCompl())
+        Completable.merge(model.updateLocalDataCompl(), Completable.timer(3, TimeUnit.SECONDS))
                 .subscribe({ view?.showRootActivity() }, { view?.showError(it) })
     }
-
-    private fun delayCompl() = Completable.timer(3, TimeUnit.SECONDS)
 
     //endregion
 }
