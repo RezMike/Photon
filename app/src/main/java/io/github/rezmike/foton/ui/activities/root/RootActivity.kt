@@ -29,9 +29,9 @@ import mortar.MortarScope
 import mortar.bundler.BundleServiceRunner
 import javax.inject.Inject
 
-class RootActivity : BaseActivity(), IActionBar {
+class RootActivity : BaseActivity(), IActionBarView {
 
-    var actionBarMenuItems: ArrayList<MenuItemHolder> = ArrayList()
+    var actionBarMenuItems: List<MenuItemHolder> = emptyList()
 
     companion object {
         val MAIN_SCREEN = 0
@@ -92,16 +92,18 @@ class RootActivity : BaseActivity(), IActionBar {
         presenter.onRequestPermissionResult(requestCode, permissions, grantResults)
     }
 
-    fun isAllGranted(permissions: Array<String>, allGranted: Boolean): Boolean {
-        var granted = allGranted
-        for (permission in permissions) {
-            val selfPermission = ContextCompat.checkSelfPermission(this, permission)
-            if (selfPermission != PackageManager.PERMISSION_GRANTED) {
-                granted = false
-                break
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        menu?.clear()
+        if (actionBarMenuItems.isNotEmpty() && menu != null) {
+            actionBarMenuItems.forEach {
+                menu.add(it.itemTitle)
+                        .setIcon(it.iconRes)
+                        .setOnMenuItemClickListener(it.listener)
+                        .setShowAsAction(it.showAsActionFlag)
             }
+            return true
         }
-        return granted
+        return super.onPrepareOptionsMenu(menu)
     }
 
     //region ======================== Initiation ========================
@@ -174,9 +176,21 @@ class RootActivity : BaseActivity(), IActionBar {
         Flow.get(this).set(screen)
     }
 
+    fun isAllGranted(permissions: Array<String>, allGranted: Boolean): Boolean {
+        var granted = allGranted
+        for (permission in permissions) {
+            val selfPermission = ContextCompat.checkSelfPermission(this, permission)
+            if (selfPermission != PackageManager.PERMISSION_GRANTED) {
+                granted = false
+                break
+            }
+        }
+        return granted
+    }
+
     //endregion
 
-    //region ======================== IActionBar ========================
+    //region ======================== IActionBarView ========================
 
     override fun setTitleBar(title: CharSequence) {
         supportActionBar?.title = title
@@ -193,7 +207,11 @@ class RootActivity : BaseActivity(), IActionBar {
         supportActionBar?.setDisplayHomeAsUpEnabled(enable)
     }
 
-    override fun setMenuItem(items: ArrayList<MenuItemHolder>) {
+    override fun setOverFlowIcon(iconRes: Int?) {
+        if (iconRes != null) toolbar.overflowIcon = resources.getDrawable(iconRes)
+    }
+
+    override fun setMenuItem(items: List<MenuItemHolder>) {
         actionBarMenuItems = items
         supportInvalidateOptionsMenu()
     }
@@ -207,19 +225,6 @@ class RootActivity : BaseActivity(), IActionBar {
     }
 
     //endregion
-
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        if (actionBarMenuItems.isNotEmpty() && menu != null) {
-            actionBarMenuItems.forEach {
-                menu.add(it.itemTitle)
-                        .setIcon(it.iconRes)
-                        .setOnMenuItemClickListener(it.listener)
-                        .setShowAsAction(it.showAsActionFlag)
-            }
-            return true
-        }
-        return super.onPrepareOptionsMenu(menu)
-    }
 
     //region ======================== DI ========================
 

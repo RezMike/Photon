@@ -86,10 +86,11 @@ class RootPresenter : Presenter<RootActivity>() {
     inner class ActionBarBuilder {
         private var isGoBack = false
         private var isVisible = true
-        private var mTitle: CharSequence = ""
-        private var mItems: ArrayList<MenuItemHolder> = ArrayList()
-        private var mPager: ViewPager? = null
-        private var mToolbarMode = DEFAULT_MODE
+        private var title: CharSequence = ""
+        private var overFlowIconRes: Int? = null
+        private var items: MutableList<MenuItemHolder> = mutableListOf()
+        private var pager: ViewPager? = null
+        private var toolbarMode = DEFAULT_MODE
 
         fun setBackArrow(enable: Boolean): ActionBarBuilder {
             isGoBack = enable
@@ -102,18 +103,23 @@ class RootPresenter : Presenter<RootActivity>() {
         }
 
         fun setTitle(title: CharSequence): ActionBarBuilder {
-            mTitle = title
+            this.title = title
+            return this
+        }
+
+        fun setOverFlowIcon(iconRes: Int?): ActionBarBuilder {
+            overFlowIconRes = iconRes
             return this
         }
 
         fun addAction(menuItem: MenuItemHolder): ActionBarBuilder {
-            mItems.add(menuItem)
+            items.add(menuItem)
             return this
         }
 
         fun setTab(pager: ViewPager): ActionBarBuilder {
-            mToolbarMode = TAB_MODE
-            mPager = pager
+            toolbarMode = TAB_MODE
+            this.pager = pager
             return this
         }
 
@@ -121,12 +127,13 @@ class RootPresenter : Presenter<RootActivity>() {
             val activity = view ?: return
             activity.setVisibleBar(isVisible)
             if (isVisible) {
-                activity.setTitleBar(mTitle)
+                activity.setTitleBar(title)
                 activity.setBackArrow(isGoBack)
-                activity.setMenuItem(mItems)
+                activity.setMenuItem(items.toList())
+                activity.setOverFlowIcon(overFlowIconRes)
             }
-            if (mToolbarMode == TAB_MODE) {
-                activity.setTabLayout(mPager!!)
+            if (toolbarMode == TAB_MODE) {
+                activity.setTabLayout(pager!!)
             } else {
                 activity.removeTabLayout()
             }
