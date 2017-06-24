@@ -9,7 +9,6 @@ import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.di.components.DaggerDataManagerComponent
 import io.github.rezmike.foton.di.modules.LocalModule
 import io.github.rezmike.foton.di.modules.NetworkModule
-import io.github.rezmike.foton.utils.NetworkStatusChecker
 import rx.Completable
 import rx.Observable
 import rx.schedulers.Schedulers
@@ -42,20 +41,13 @@ class DataManager private constructor() {
         restCallTransformer = RestCallTransformer()
     }
 
-    fun startUpdateLocalData(): Completable {
-        return NetworkStatusChecker.isInternetAvailable()
-                .toCompletable()
-                .andThen(getPhotoCardComplFromNetwork())
-                .andThen(getAlbumComplFromNetwork())
-    }
-
     //region ======================== PhotoCard ========================
 
     fun getPhotoCardObsFromRealm(): Observable<PhotoCardRealm> {
         return realmManager.getAllPhotoCards();
     }
 
-    private fun getPhotoCardComplFromNetwork(): Completable {
+    fun getPhotoCardComplFromNetwork(): Completable {
         return restService.getAllPhotoCards(preferencesManager.getLastPhotoCardsUpdate())
                 .compose(restCallTransformer as RestCallTransformer<List<PhotoCardRes>>)
                 .flatMap { Observable.from(it) }
@@ -71,7 +63,7 @@ class DataManager private constructor() {
 
     //region ======================== Album ========================
 
-    private fun getAlbumComplFromNetwork(): Completable {
+    fun getAlbumComplFromNetwork(): Completable {
         return Observable.just(preferencesManager.isUserAuth())
                 .filter { it }
                 .flatMap { restService.getAllAlbums(preferencesManager.getLastAlbumsUpdate(), preferencesManager.getUserId()!!) }
