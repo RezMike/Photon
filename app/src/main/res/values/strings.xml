@@ -32,7 +32,7 @@
     <!--Navigation Screen-->
     <string name="navigation_main">Главная</string>
     <string name="navigation_profile">Профиль</string>
-    <string name="navigation_load">Загрузить</string>
+    <string name="navigation_upload">Загрузить</string>
 
     <!--Items Info Photo Or Album-->
     <string name="item_info_name_album">Фото</string>

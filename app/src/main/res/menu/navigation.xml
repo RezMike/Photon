@@ -12,8 +12,8 @@
         android:title="@string/navigation_profile"/>
 
     <item
-        android:id="@+id/navigation_load"
+        android:id="@+id/navigation_upload"
         android:icon="@drawable/ic_custom_upload_black_24dp"
-        android:title="@string/navigation_load"/>
+        android:title="@string/navigation_upload" />
 
 </menu>

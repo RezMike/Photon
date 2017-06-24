@@ -20,9 +20,7 @@ class RootPresenter : Presenter<RootActivity>() {
         val TAB_MODE = 1
     }
 
-    private val activityResultDtoObs = PublishSubject.create<ActivityResultDto>()
-
-    var currentItem: Int = RootActivity.MAIN_SCREEN
+    private val activityResultDtoSub = PublishSubject.create<ActivityResultDto>()
 
     override fun onEnterScope(scope: MortarScope) {
         super.onEnterScope(scope)
@@ -33,7 +31,7 @@ class RootPresenter : Presenter<RootActivity>() {
         return BundleService.getBundleService(view)
     }
 
-    fun getActivityResultSubject() = activityResultDtoObs
+    fun getActivityResultSubject() = activityResultDtoSub
 
     fun checkPermissionAndRequestIfNotGranted(permissions: Array<String>, requestCode: Int): Boolean {
         val allGranted = view?.isAllGranted(permissions, true) ?: return false
@@ -46,7 +44,7 @@ class RootPresenter : Presenter<RootActivity>() {
     }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent) {
-        activityResultDtoObs.onNext(ActivityResultDto(requestCode, resultCode, intent))
+        activityResultDtoSub.onNext(ActivityResultDto(requestCode, resultCode, intent))
     }
 
     fun onRequestPermissionResult(requestCode: Int, permissions: Array<String>, grantRes: IntArray) {
@@ -61,22 +59,15 @@ class RootPresenter : Presenter<RootActivity>() {
     }
 
     fun onClickMain() {
-        saveItemSelected(RootActivity.MAIN_SCREEN)
+        view?.showMainScreen()
     }
 
     fun onClickProfile() {
-        saveItemSelected(RootActivity.PROFILE_SCREEN)
+        view?.showProfileScreen()
     }
 
-    fun onClickLoad() {
-        saveItemSelected(RootActivity.LOAD_SCREEN)
-    }
-
-    private fun saveItemSelected(item: Int) {
-        if (currentItem != item) {
-            currentItem = item
-            view?.turnScreen(item)
-        }
+    fun onClickUpload() {
+        view?.showUploadScreen()
     }
 
     fun getRootView(): RootActivity? = view

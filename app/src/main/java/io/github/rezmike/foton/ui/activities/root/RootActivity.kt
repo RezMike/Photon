@@ -17,7 +17,6 @@ import io.github.rezmike.foton.R
 import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.modules.PicassoCacheModule
 import io.github.rezmike.foton.di.scopes.RootScope
-import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import io.github.rezmike.foton.ui.abstracts.BaseActivity
 import io.github.rezmike.foton.ui.screens.main.MainScreen
 import io.github.rezmike.foton.ui.screens.profile.ProfileScreen
@@ -32,12 +31,6 @@ import javax.inject.Inject
 class RootActivity : BaseActivity(), IActionBarView {
 
     var actionBarMenuItems: List<MenuItemHolder> = emptyList()
-
-    companion object {
-        val MAIN_SCREEN = 0
-        val PROFILE_SCREEN = 1
-        val LOAD_SCREEN = 2
-    }
 
     @Inject
     lateinit var presenter: RootPresenter
@@ -125,8 +118,8 @@ class RootActivity : BaseActivity(), IActionBarView {
                     presenter.onClickProfile()
                     true
                 }
-                R.id.navigation_load -> {
-                    presenter.onClickLoad()
+                R.id.navigation_upload -> {
+                    presenter.onClickUpload()
                     true
                 }
                 else -> false
@@ -165,15 +158,24 @@ class RootActivity : BaseActivity(), IActionBarView {
         hideProgress()
     }
 
-    fun turnScreen(item: Int) {
-        val screen: AbstractScreen<*>
-        when (item) {
-            MAIN_SCREEN -> screen = MainScreen()
-            PROFILE_SCREEN -> screen = ProfileScreen()
-            LOAD_SCREEN -> screen = UploadScreen()
-            else -> return
+    fun showMainScreen() {
+        Flow.get(this).set(MainScreen())
+    }
+
+    fun showProfileScreen() {
+        Flow.get(this).set(ProfileScreen())
+    }
+
+    fun showUploadScreen() {
+        Flow.get(this).set(UploadScreen())
+    }
+
+    fun setCurrentBottomItem(item: BottomBarItems) {
+        navigation.selectedItemId = when (item) {
+            BottomBarItems.MAIN -> R.id.navigation_main
+            BottomBarItems.PROFILE -> R.id.navigation_profile
+            BottomBarItems.UPLOAD -> R.id.navigation_upload
         }
-        Flow.get(this).set(screen)
     }
 
     fun isAllGranted(permissions: Array<String>, allGranted: Boolean): Boolean {

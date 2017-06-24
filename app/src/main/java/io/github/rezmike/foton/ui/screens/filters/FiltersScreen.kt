@@ -4,6 +4,7 @@ import dagger.Provides
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.di.scopes.DaggerScope
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
+import io.github.rezmike.foton.ui.activities.root.BottomBarItems
 import io.github.rezmike.foton.ui.activities.root.RootActivity
 
 class FiltersScreen : AbstractScreen<RootActivity.RootComponent>() {
@@ -16,6 +17,8 @@ class FiltersScreen : AbstractScreen<RootActivity.RootComponent>() {
     }
 
     override fun getLayoutResId(): Int = R.layout.layout_filters
+
+    override fun getCurrentBottomItem() = BottomBarItems.MAIN
 
     //region ======================== DI ========================
 

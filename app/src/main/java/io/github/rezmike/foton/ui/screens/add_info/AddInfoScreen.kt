@@ -4,6 +4,7 @@ import dagger.Provides
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.di.scopes.DaggerScope
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
+import io.github.rezmike.foton.ui.activities.root.BottomBarItems
 import io.github.rezmike.foton.ui.activities.root.RootActivity
 
 class AddInfoScreen : AbstractScreen<RootActivity.RootComponent>() {
@@ -16,6 +17,8 @@ class AddInfoScreen : AbstractScreen<RootActivity.RootComponent>() {
     }
 
     override fun getLayoutResId(): Int = R.layout.screen_add_info
+
+    override fun getCurrentBottomItem() = BottomBarItems.UPLOAD
 
     //region ======================== DI ========================
 

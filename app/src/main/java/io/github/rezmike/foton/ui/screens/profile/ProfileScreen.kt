@@ -4,6 +4,7 @@ import dagger.Provides
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.di.scopes.DaggerScope
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
+import io.github.rezmike.foton.ui.activities.root.BottomBarItems
 import io.github.rezmike.foton.ui.activities.root.RootActivity
 
 class ProfileScreen : AbstractScreen<RootActivity.RootComponent>() {
@@ -15,6 +16,8 @@ class ProfileScreen : AbstractScreen<RootActivity.RootComponent>() {
     }
 
     override fun getLayoutResId(): Int = R.layout.screen_profile
+
+    override fun getCurrentBottomItem() = BottomBarItems.PROFILE
 
     //region ======================== DI ========================
 
