@@ -12,6 +12,13 @@
     <string name="splash_title">Фотон</string>
     <string name="splash_description">Онлайн-галерея фуд-фотографии.\nДля вдохновения и обучения.</string>
 
+    <!--Main Screen-->
+    <string name="main_enter">Войти</string>
+    <string name="main_search">Поиск</string>
+    <string name="main_title">@string/splash_title</string>
+    <string name="main_sign_up">Зарегистрироваться</string>
+    <string name="main_connect_developer">Связаться с разработчиками</string>
+
     <!--Auth Screen-->
     <string name="auth_description">Авторизуйтесь, чтобы посмотреть данные профиля</string>
     <string name="auth_sign_up">Регистрация</string>
