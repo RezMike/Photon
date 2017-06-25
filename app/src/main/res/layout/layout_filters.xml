@@ -11,7 +11,7 @@
         android:text="@string/filters_food"/>
 
     <LinearLayout
-        style="@style/wrap_section">
+        style="@style/wrap_section_horizontal">
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/meat_cb"
@@ -63,11 +63,11 @@
         android:text="@string/filter_tone"/>
 
     <LinearLayout
-        style="@style/wrap_section"
+        style="@style/wrap_section_horizontal"
         android:orientation="vertical">
 
         <LinearLayout
-            style="@style/wrap_section"
+            style="@style/wrap_section_horizontal"
             android:layout_marginBottom="@dimen/spacing_very_small_8"
             android:layout_marginTop="0dp">
 
@@ -104,7 +104,7 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@style/wrap_section"
+            style="@style/wrap_section_horizontal"
             android:layout_marginBottom="0dp"
             android:layout_marginTop="8dp">
 
@@ -146,7 +146,7 @@
         android:text="@string/filter_decor"/>
 
     <LinearLayout
-        style="@style/wrap_section">
+        style="@style/wrap_section_horizontal">
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/common_cb"
@@ -167,7 +167,7 @@
         android:text="@string/filter_temperature"/>
 
     <LinearLayout
-        style="@style/wrap_section">
+        style="@style/wrap_section_horizontal">
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/hot_temp_cb"
@@ -194,7 +194,7 @@
         android:text="@string/filter_light"/>
 
     <LinearLayout
-        style="@style/wrap_section">
+        style="@style/wrap_section_horizontal">
 
 
         <android.support.v7.widget.AppCompatCheckBox
@@ -222,7 +222,7 @@
         android:text="@string/filter_direction_light"/>
 
     <LinearLayout
-        style="@style/wrap_section">
+        style="@style/wrap_section_horizontal">
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/light_dir_front_cb"
@@ -255,7 +255,7 @@
         android:text="@string/filter_source_light"/>
 
     <LinearLayout
-        style="@style/wrap_section">
+        style="@style/wrap_section_horizontal">
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/light_count_1_cb"

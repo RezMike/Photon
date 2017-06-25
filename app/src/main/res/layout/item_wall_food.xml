@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/image"
-        layout="@layout/ratio_image"/>
+        layout="@layout/ratio_image_1_1"/>
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

@@ -75,7 +75,7 @@
         <item name="android:button">@null</item>
     </style>
 
-    <style name="wrap_section">
+    <style name="wrap_section_horizontal">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
@@ -83,4 +83,27 @@
         <item name="android:layout_marginBottom">@dimen/spacing_small_16</item>
     </style>
 
+    <style name="image_style">
+        <item name="android:background">@color/color_accent</item>
+    </style>
+
+    <style name="avatar_style">
+        <item name="android:layout_width">@dimen/avatar_size</item>
+        <item name="android:layout_height">@dimen/avatar_size</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="civ_border_width">0dp</item>
+    </style>
+
+    <style name="flex_box">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">@dimen/spacing_small_16</item>
+        <item name="android:paddingLeft">@dimen/spacing_small_16</item>
+        <item name="android:paddingRight">@dimen/spacing_small_16</item>
+        <item name="alignContent">flex_start</item>
+        <item name="alignItems">flex_start</item>
+        <item name="dividerDrawable">@drawable/divider_tags</item>
+        <item name="flexWrap">wrap</item>
+        <item name="showDivider">middle</item>
+    </style>
 </resources>

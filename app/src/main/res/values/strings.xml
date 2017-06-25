@@ -29,6 +29,9 @@
     <string name="sign_up_name">Имя</string>
     <string name="sign_up_password">Пароль</string>
 
+    <!--Photocard Screen-->
+    <string name="photocard_title">Фотокарточка</string>
+
     <!--Navigation Screen-->
     <string name="navigation_main">Главная</string>
     <string name="navigation_profile">Профиль</string>

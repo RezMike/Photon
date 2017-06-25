@@ -21,4 +21,6 @@
     <dimen name="font_size_normal_24">24sp</dimen>
     <dimen name="font_size_medium_40">40sp</dimen>
 
+    <!--element size-->
+    <dimen name="avatar_size">60dp</dimen>
 </resources>
