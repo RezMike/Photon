@@ -2,9 +2,12 @@ package io.github.rezmike.foton.ui.screens.main
 
 import android.os.Bundle
 import android.view.MenuItem
+import flow.Flow
 import io.github.rezmike.foton.R
+import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
 import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
+import io.github.rezmike.foton.ui.screens.photocard.PhotocardScreen
 import io.github.rezmike.foton.utils.DaggerService
 import mortar.MortarScope
 
@@ -54,5 +57,9 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
 
     fun onClickConnectDeveloper(): Boolean {
         return true
+    }
+
+    fun onClickItem(photoCardRealm: PhotoCardRealm) {
+//        Flow.get(view).set(PhotocardScreen(photoCardRealm))
     }
 }

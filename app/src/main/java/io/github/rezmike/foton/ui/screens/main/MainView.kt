@@ -15,7 +15,7 @@ class MainView(context: Context, attrs: AttributeSet?) : AbstractView<MainPresen
     @Inject
     lateinit var picasso: Picasso
 
-    val adapter = MainFoodAdapter(picasso)
+    val adapter = MainFoodAdapter(picasso, { presenter.onClickItem(it) })
 
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<MainScreen.Component>(context).inject(this)

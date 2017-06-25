@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 
-class MainFoodAdapter(val picasso: Picasso) : RecyclerView.Adapter<MainFoodAdapter.FoodViewHolder>() {
+class MainFoodAdapter(val picasso: Picasso, val itemClick: (PhotoCardRealm) -> Unit) : RecyclerView.Adapter<MainFoodAdapter.FoodViewHolder>() {
 
     private var items: ArrayList<PhotoCardRealm> = ArrayList()
 
@@ -22,7 +22,7 @@ class MainFoodAdapter(val picasso: Picasso) : RecyclerView.Adapter<MainFoodAdapt
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): FoodViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_wall_food, parent, false)
-        return FoodViewHolder(view)
+        return FoodViewHolder(view, itemClick)
     }
 
     override fun onBindViewHolder(holder: FoodViewHolder?, position: Int) {
@@ -36,7 +36,7 @@ class MainFoodAdapter(val picasso: Picasso) : RecyclerView.Adapter<MainFoodAdapt
     override fun getItemCount() = items.size
 
 
-    inner class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FoodViewHolder(itemView: View, val itemClick: (PhotoCardRealm) -> Unit) : RecyclerView.ViewHolder(itemView) {
         val favorite: TextView
         val watcher: TextView
         val image: ImageView
@@ -52,10 +52,10 @@ class MainFoodAdapter(val picasso: Picasso) : RecyclerView.Adapter<MainFoodAdapt
             favorite.text = item.favorits.toString()
             watcher.text = item.views.toString()
             picasso.load(item.photo)
-                    .resize(300,200)
+                    .resize(300, 200)
                     .into(image)
+            itemView.setOnClickListener { itemClick(item) }
         }
-
 
 
     }
