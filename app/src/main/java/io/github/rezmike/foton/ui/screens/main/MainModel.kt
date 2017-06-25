@@ -4,7 +4,11 @@ import io.github.rezmike.foton.ui.abstracts.AbstractModel
 
 class MainModel : AbstractModel(){
 
-    fun getPhotoCardObs()  = dataManager.getPhotoCardObsFromRealm()
+    fun getPhotoCardObs() = dataManager.getPhotoCardObsFromRealm()
 
-    fun  isAuth() = false //TODO сделать проверку
+    fun isUserAuth() = dataManager.isUserAuth()
+
+    fun logoutUser() {
+        dataManager.logoutUser()
+    }
 }

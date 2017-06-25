@@ -77,7 +77,7 @@ class RootPresenter : Presenter<RootActivity>() {
     inner class ActionBarBuilder {
         private var isGoBack = false
         private var isVisible = true
-        private var title: CharSequence = ""
+        private var title: String = ""
         private var overFlowIconRes: Int? = null
         private var items: MutableList<MenuItemHolder> = mutableListOf()
         private var pager: ViewPager? = null
@@ -93,7 +93,7 @@ class RootPresenter : Presenter<RootActivity>() {
             return this
         }
 
-        fun setTitle(title: CharSequence): ActionBarBuilder {
+        fun setTitle(title: String): ActionBarBuilder {
             this.title = title
             return this
         }

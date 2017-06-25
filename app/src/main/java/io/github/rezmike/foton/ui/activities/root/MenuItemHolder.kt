@@ -2,7 +2,7 @@ package io.github.rezmike.foton.ui.activities.root
 
 import android.view.MenuItem
 
-class MenuItemHolder(val itemTitle: CharSequence,
+class MenuItemHolder(val itemTitle: String?,
                      val iconRes: Int,
-                     val listener: MenuItem.OnMenuItemClickListener,
+                     val listener: (MenuItem) -> Boolean,
                      val showAsActionFlag: Int)

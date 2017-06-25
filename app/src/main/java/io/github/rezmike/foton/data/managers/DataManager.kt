@@ -41,6 +41,18 @@ class DataManager private constructor() {
         restCallTransformer = RestCallTransformer()
     }
 
+    //region ======================== Auth ========================
+
+    fun isUserAuth(): Boolean {
+        return preferencesManager.isUserAuth()
+    }
+
+    fun logoutUser() {
+        preferencesManager.deleteAuthToken()
+    }
+
+    //endregion
+
     //region ======================== PhotoCard ========================
 
     fun getPhotoCardObsFromRealm(): Observable<PhotoCardRealm> {

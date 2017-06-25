@@ -7,10 +7,11 @@ import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
 import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
+import io.github.rezmike.foton.ui.screens.login.LoginScreen
 import io.github.rezmike.foton.ui.screens.photocard.PhotocardScreen
+import io.github.rezmike.foton.ui.screens.register.RegisterScreen
 import io.github.rezmike.foton.utils.DaggerService
 import mortar.MortarScope
-
 
 class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
 
@@ -20,22 +21,16 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
 
     override fun initActionBar() {
         val actionBar = rootPresenter.newActionBarBuilder()
-                .setTitle(view?.resources?.getString(R.string.main_search) as CharSequence)
+                .setTitle(view?.resources?.getString(R.string.main_title)!!)
                 .setOverFlowIcon(R.drawable.ic_custom_gear_black_24dp)
-                .addAction(MenuItemHolder(view?.resources?.getString(R.string.main_search) as CharSequence, R.drawable.ic_custom_search_black_24dp,
-                        MenuItem.OnMenuItemClickListener { true }, MenuItem.SHOW_AS_ACTION_ALWAYS))
-        if (model.isAuth()) {
-            //TODO  сделать если зарегистрированный пользователь
+                .addAction(MenuItemHolder(view?.context?.getString(R.string.main_menu_search), R.drawable.ic_custom_search_black_24dp, { true }, MenuItem.SHOW_AS_ACTION_ALWAYS))
+        if (model.isUserAuth()) {
+            actionBar.addAction(MenuItemHolder(view?.context?.getString(R.string.main_menu_logout), 0, { onClickLogout() }, MenuItem.SHOW_AS_ACTION_NEVER))
         } else {
-            actionBar.addAction(MenuItemHolder(view?.resources?.getString(R.string.main_enter) as CharSequence, 0,
-                    MenuItem.OnMenuItemClickListener { onClickEnter() }, MenuItem.SHOW_AS_ACTION_NEVER))
-
-                    .addAction(MenuItemHolder(view?.resources?.getString(R.string.main_sign_up) as CharSequence, 0,
-                            MenuItem.OnMenuItemClickListener { onClickSignUp() }, MenuItem.SHOW_AS_ACTION_NEVER))
-
-                    .addAction(MenuItemHolder(view?.resources?.getString(R.string.main_connect_developer) as CharSequence, 0,
-                            MenuItem.OnMenuItemClickListener { onClickConnectDeveloper() }, MenuItem.SHOW_AS_ACTION_NEVER))
+            actionBar.addAction(MenuItemHolder(view?.context?.getString(R.string.main_menu_login), 0, { onClickLogin() }, MenuItem.SHOW_AS_ACTION_NEVER))
+                    .addAction(MenuItemHolder(view?.context?.getString(R.string.main_menu_register), 0, { onClickRegister() }, MenuItem.SHOW_AS_ACTION_NEVER))
         }
+        actionBar.addAction(MenuItemHolder(view?.context?.getString(R.string.main_menu_connect_developers), 0, { onClickConnectDevelopers() }, MenuItem.SHOW_AS_ACTION_NEVER))
         actionBar.build()
     }
 
@@ -44,22 +39,29 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
 
         model.getPhotoCardObs()
                 .subscribe({ view.addItem(it) }, { getRootView()?.showError(it) })
-
     }
 
-    fun onClickEnter(): Boolean {
+    fun onClickLogout(): Boolean {
+        model.logoutUser()
+        initActionBar()
         return true
     }
 
-    fun onClickSignUp(): Boolean {
+    fun onClickLogin(): Boolean {
+        Flow.get(view).set(LoginScreen())
         return true
     }
 
-    fun onClickConnectDeveloper(): Boolean {
+    fun onClickRegister(): Boolean {
+        Flow.get(view).set(RegisterScreen())
+        return true
+    }
+
+    fun onClickConnectDevelopers(): Boolean {
         return true
     }
 
     fun onClickItem(photoCardRealm: PhotoCardRealm) {
-//        Flow.get(view).set(PhotocardScreen(photoCardRealm))
+        Flow.get(view).set(PhotocardScreen(photoCardRealm))
     }
 }

@@ -4,11 +4,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.squareup.picasso.Picasso
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
+import kotlinx.android.synthetic.main.item_wall_food.view.*
+import kotlinx.android.synthetic.main.ratio_image.view.*
 
 class MainFoodAdapter(val picasso: Picasso, val itemClick: (PhotoCardRealm) -> Unit) : RecyclerView.Adapter<MainFoodAdapter.FoodViewHolder>() {
 
@@ -16,47 +16,29 @@ class MainFoodAdapter(val picasso: Picasso, val itemClick: (PhotoCardRealm) -> U
 
     fun addItem(item: PhotoCardRealm) {
         items.add(item)
-        notifyDataSetChanged()
+        notifyItemInserted(items.size - 1)
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): FoodViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_wall_food, parent, false)
-        return FoodViewHolder(view, itemClick)
+        return FoodViewHolder(view, picasso, itemClick)
     }
 
-    override fun onBindViewHolder(holder: FoodViewHolder?, position: Int) {
-        holder?.bind(items[position])
-    }
-
-    override fun onViewDetachedFromWindow(holder: FoodViewHolder?) {
-        super.onViewDetachedFromWindow(holder)
+    override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
+        holder.bind(items[position])
     }
 
     override fun getItemCount() = items.size
 
-
-    inner class FoodViewHolder(itemView: View, val itemClick: (PhotoCardRealm) -> Unit) : RecyclerView.ViewHolder(itemView) {
-        val favorite: TextView
-        val watcher: TextView
-        val image: ImageView
-
-        init {
-            favorite = itemView.findViewById(R.id.favorite) as TextView
-            watcher = itemView.findViewById(R.id.watcher) as TextView
-            image = itemView.findViewById(R.id.image_food) as ImageView
-        }
-
+    class FoodViewHolder(val view: View, val picasso: Picasso, val itemClick: (PhotoCardRealm) -> Unit) : RecyclerView.ViewHolder(view) {
 
         fun bind(item: PhotoCardRealm) {
-            favorite.text = item.favorits.toString()
-            watcher.text = item.views.toString()
+            view.favorites_tv.text = item.favorits.toString()
+            view.watchers_tv.text = item.views.toString()
             picasso.load(item.photo)
                     .resize(300, 200)
-                    .into(image)
-            itemView.setOnClickListener { itemClick(item) }
+                    .into(view.food_img)
+            view.setOnClickListener { itemClick(item) }
         }
-
-
     }
 }
