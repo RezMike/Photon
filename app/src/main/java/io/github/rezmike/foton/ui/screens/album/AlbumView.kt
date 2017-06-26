@@ -10,4 +10,8 @@ class AlbumView(context: Context, attrs: AttributeSet?) : AbstractView<AlbumPres
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<AlbumScreen.Component>(context).inject(this)
     }
+
+    override fun onBackPressed(): Boolean {
+        return false
+    }
 }

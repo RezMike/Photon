@@ -10,4 +10,8 @@ class ProfileView(context: Context, attrs: AttributeSet) : AbstractView<ProfileP
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<ProfileScreen.Component>(context).inject(this)
     }
+
+    override fun onBackPressed(): Boolean {
+        return false
+    }
 }

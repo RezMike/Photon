@@ -10,4 +10,8 @@ class AuthView(context: Context, attrs: AttributeSet?) : AbstractView<AuthPresen
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<AuthScreen.Component>(context).inject(this)
     }
+
+    override fun onBackPressed(): Boolean {
+        return false
+    }
 }

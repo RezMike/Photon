@@ -10,4 +10,8 @@ class LoginView(context: Context, attrs: AttributeSet?) : AbstractView<LoginPres
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<LoginScreen.Component>(context).inject(this)
     }
+
+    override fun onBackPressed(): Boolean {
+        return false
+    }
 }

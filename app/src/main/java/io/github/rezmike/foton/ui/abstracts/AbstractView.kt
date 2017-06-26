@@ -6,7 +6,7 @@ import android.widget.FrameLayout
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
-abstract class AbstractView<P : AbstractPresenter<V, *, P>, V : AbstractView<P, V>>(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
+abstract class AbstractView<P : AbstractPresenter<V, *, P>, V : AbstractView<P, V>>(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs), IView {
 
     @Inject
     lateinit var presenter: P
@@ -27,5 +27,4 @@ abstract class AbstractView<P : AbstractPresenter<V, *, P>, V : AbstractView<P, 
         super.onDetachedFromWindow()
         if (!isInEditMode) presenter.dropView(this as V)
     }
-
 }

@@ -10,4 +10,8 @@ class AddInfoView(context: Context, attrs: AttributeSet?) : AbstractView<AddInfo
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<AddInfoScreen.Component>(context).inject(this)
     }
+
+    override fun onBackPressed(): Boolean {
+        return false
+    }
 }

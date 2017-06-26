@@ -10,4 +10,8 @@ class RegisterView(context: Context, attrs: AttributeSet?) : AbstractView<Regist
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<RegisterScreen.Component>(context).inject(this)
     }
+
+    override fun onBackPressed(): Boolean {
+        return false
+    }
 }

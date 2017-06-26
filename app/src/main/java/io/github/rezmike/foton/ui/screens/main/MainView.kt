@@ -10,4 +10,8 @@ class MainView(context: Context, attrs: AttributeSet?) : AbstractView<MainPresen
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<MainScreen.Component>(context).inject(this)
     }
+
+    override fun onBackPressed(): Boolean {
+        return false
+    }
 }

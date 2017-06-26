@@ -10,4 +10,8 @@ class SearchView(context: Context, attrs: AttributeSet?) : AbstractView<SearchPr
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<SearchScreen.Component>(context).inject(this)
     }
+
+    override fun onBackPressed(): Boolean {
+        return false
+    }
 }

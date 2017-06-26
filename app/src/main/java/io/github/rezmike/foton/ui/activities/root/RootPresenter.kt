@@ -3,7 +3,6 @@ package io.github.rezmike.foton.ui.activities.root
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import android.support.v4.view.ViewPager
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.dto.ActivityResultDto
 import io.github.rezmike.foton.utils.ConstantManager
@@ -14,11 +13,6 @@ import mortar.bundler.BundleService
 import rx.subjects.PublishSubject
 
 class RootPresenter : Presenter<RootActivity>() {
-
-    companion object {
-        val DEFAULT_MODE = 0
-        val TAB_MODE = 1
-    }
 
     private val activityResultDtoSub = PublishSubject.create<ActivityResultDto>()
 
@@ -72,16 +66,12 @@ class RootPresenter : Presenter<RootActivity>() {
 
     fun getRootView(): RootActivity? = view
 
-    fun newActionBarBuilder() = ActionBarBuilder()
-
     inner class ActionBarBuilder {
         private var isGoBack = false
         private var isVisible = true
         private var title: CharSequence = ""
         private var overFlowIconRes: Int? = null
-        private var items: MutableList<MenuItemHolder> = mutableListOf()
-        private var pager: ViewPager? = null
-        private var toolbarMode = DEFAULT_MODE
+        private var items: ArrayList<MenuItemHolder> = ArrayList()
 
         fun setBackArrow(enable: Boolean): ActionBarBuilder {
             isGoBack = enable
@@ -108,25 +98,14 @@ class RootPresenter : Presenter<RootActivity>() {
             return this
         }
 
-        fun setTab(pager: ViewPager): ActionBarBuilder {
-            toolbarMode = TAB_MODE
-            this.pager = pager
-            return this
-        }
-
         fun build() {
             val activity = view ?: return
             activity.setVisibleBar(isVisible)
             if (isVisible) {
                 activity.setTitleBar(title)
                 activity.setBackArrow(isGoBack)
-                activity.setMenuItem(items.toList())
+                activity.setMenuItems(items)
                 activity.setOverFlowIcon(overFlowIconRes)
-            }
-            if (toolbarMode == TAB_MODE) {
-                activity.setTabLayout(pager!!)
-            } else {
-                activity.removeTabLayout()
             }
         }
     }

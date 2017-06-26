@@ -10,4 +10,8 @@ class FiltersView(context: Context, attrs: AttributeSet?) : AbstractView<Filters
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<FiltersScreen.Component>(context).inject(this)
     }
+
+    override fun onBackPressed(): Boolean {
+        return false
+    }
 }

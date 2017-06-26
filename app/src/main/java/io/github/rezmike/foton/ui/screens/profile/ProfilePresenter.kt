@@ -11,7 +11,7 @@ class ProfilePresenter : AbstractPresenter<ProfileView, ProfileModel, ProfilePre
     }
 
     override fun initActionBar() {
-        rootPresenter.newActionBarBuilder()
+        rootPresenter.ActionBarBuilder()
                 .setTitle("Профиль")
                 .build()
     }

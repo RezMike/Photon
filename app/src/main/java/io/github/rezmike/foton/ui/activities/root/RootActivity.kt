@@ -6,8 +6,8 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewPager
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.squareup.picasso.Picasso
 import flow.Flow
@@ -18,6 +18,7 @@ import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.modules.PicassoCacheModule
 import io.github.rezmike.foton.di.scopes.RootScope
 import io.github.rezmike.foton.ui.abstracts.BaseActivity
+import io.github.rezmike.foton.ui.abstracts.IView
 import io.github.rezmike.foton.ui.screens.main.MainScreen
 import io.github.rezmike.foton.ui.screens.profile.ProfileScreen
 import io.github.rezmike.foton.ui.screens.upload.UploadScreen
@@ -30,7 +31,7 @@ import javax.inject.Inject
 
 class RootActivity : BaseActivity(), IActionBarView {
 
-    var actionBarMenuItems: List<MenuItemHolder> = emptyList()
+    var actionBarMenuItems: ArrayList<MenuItemHolder> = ArrayList()
 
     @Inject
     lateinit var presenter: RootPresenter
@@ -97,6 +98,25 @@ class RootActivity : BaseActivity(), IActionBarView {
             return true
         }
         return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == android.R.id.home) {
+            onBackPressed()
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onBackPressed() {
+        if (getCurrentScreen() == null || !getCurrentScreen()!!.onBackPressed() && !Flow.get(this).goBack()) {
+            super.onBackPressed()
+        }
+    }
+
+    private fun getCurrentScreen(): IView? {
+        return root_frame.getChildAt(0) as IView
     }
 
     //region ======================== Initiation ========================
@@ -171,11 +191,12 @@ class RootActivity : BaseActivity(), IActionBarView {
     }
 
     fun setCurrentBottomItem(item: BottomBarItems) {
-        navigation.selectedItemId = when (item) {
+        val itemId = when (item) {
             BottomBarItems.MAIN -> R.id.navigation_main
             BottomBarItems.PROFILE -> R.id.navigation_profile
             BottomBarItems.UPLOAD -> R.id.navigation_upload
         }
+        navigation.menu.findItem(itemId).isChecked = true
     }
 
     fun isAllGranted(permissions: Array<String>, allGranted: Boolean): Boolean {
@@ -213,17 +234,9 @@ class RootActivity : BaseActivity(), IActionBarView {
         if (iconRes != null) toolbar.overflowIcon = resources.getDrawable(iconRes)
     }
 
-    override fun setMenuItem(items: List<MenuItemHolder>) {
+    override fun setMenuItems(items: ArrayList<MenuItemHolder>) {
         actionBarMenuItems = items
         supportInvalidateOptionsMenu()
-    }
-
-    override fun setTabLayout(pager: ViewPager) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun removeTabLayout() {
-
     }
 
     //endregion

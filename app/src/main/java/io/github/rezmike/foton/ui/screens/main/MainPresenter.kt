@@ -11,7 +11,7 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     }
 
     override fun initActionBar() {
-        rootPresenter.newActionBarBuilder()
+        rootPresenter.ActionBarBuilder()
                 .setTitle("Фотон")
                 .build()
     }

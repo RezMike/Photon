@@ -10,4 +10,8 @@ class PhotocardView(context: Context, attrs: AttributeSet?) : AbstractView<Photo
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<PhotocardScreen.Component>(context).inject(this)
     }
+
+    override fun onBackPressed(): Boolean {
+        return false
+    }
 }

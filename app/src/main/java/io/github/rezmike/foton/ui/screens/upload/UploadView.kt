@@ -10,4 +10,8 @@ class UploadView(context: Context, attrs: AttributeSet?) : AbstractView<UploadPr
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<UploadScreen.Component>(context).inject(this)
     }
+
+    override fun onBackPressed(): Boolean {
+        return false
+    }
 }
