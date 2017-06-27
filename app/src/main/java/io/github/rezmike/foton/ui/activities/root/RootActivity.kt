@@ -252,7 +252,7 @@ class RootActivity : BaseActivity(), IActionBarView {
 
         fun getRootPresenter(): RootPresenter
 
-        //fun getAccountModel() : AccountModel
+        fun getAccountModel(): AccountModel
 
         fun getPicasso(): Picasso
     }

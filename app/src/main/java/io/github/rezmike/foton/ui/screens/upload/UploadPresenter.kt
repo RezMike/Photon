@@ -5,16 +5,16 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import io.github.rezmike.foton.data.storage.dto.ActivityResultDto
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
+import io.github.rezmike.foton.ui.activities.root.AccountModel
 import io.github.rezmike.foton.utils.ConstantManager.REQUEST_PERMISSION_READ_EXTERNAL_STORAGE
 import io.github.rezmike.foton.utils.ConstantManager.REQUEST_PHOTOCARD_PHOTO_GALLERY
 import io.github.rezmike.foton.utils.DaggerService
 import mortar.MortarScope
 import rx.Subscription
 
-class UploadPresenter : AbstractPresenter<UploadView, UploadModel, UploadPresenter>() {
+class UploadPresenter : AbstractPresenter<UploadView, AccountModel, UploadPresenter>() {
 
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<UploadScreen.Component>(scope).inject(this)
@@ -64,7 +64,6 @@ class UploadPresenter : AbstractPresenter<UploadView, UploadModel, UploadPresent
         if (activityResult.resultCode == Activity.RESULT_OK &&
                 activityResult.requestCode == REQUEST_PHOTOCARD_PHOTO_GALLERY &&
                 activityResult.intent != null) {
-            Log.d("UploadPresenter", "handle");
             val photoUri = activityResult.intent.data.toString()
             view?.showAddInfoScreen(photoUri)
         }

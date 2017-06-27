@@ -35,10 +35,6 @@ class UploadScreen : AbstractScreen<RootActivity.RootComponent>() {
         @Provides
         @DaggerScope(UploadScreen::class)
         fun providePresenter() = UploadPresenter()
-
-        @Provides
-        @DaggerScope(UploadScreen::class)
-        fun provideModel() = UploadModel()
     }
 
     //endregion
