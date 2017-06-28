@@ -1,83 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<io.github.rezmike.foton.ui.screens.auth.AuthView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="25dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/description"
-        style="@style/description_text_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:fontFamily="sans-serif"
-        android:lineSpacingExtra="4sp"
-        android:text="@string/auth_description"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/sign_up_btn"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/left_padding"
-        app:layout_constraintRight_toLeftOf="@+id/rigth_padding"/>
-
-    <Button
-        android:id="@+id/sign_up_btn"
-        style="@style/CustomButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:text="@string/auth_sign_up"
-        android:theme="@style/FotonBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/left_padding"
-        app:layout_constraintRight_toLeftOf="@+id/rigth_padding"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"/>
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.32"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="181dp"/>
+        tools:layout_editor_absoluteY="25dp">
 
-    <Button
-        android:id="@+id/sign_in_btn"
-        style="@style/CustomButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/auth_sign_in"
-        android:theme="@style/FotonBtn"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/left_padding"
-        app:layout_constraintRight_toLeftOf="@+id/rigth_padding"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_btn"/>
+        <TextView
+            android:id="@+id/description"
+            style="@style/description_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/auth_description"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/sign_up_btn"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/left_padding"
+            app:layout_constraintRight_toLeftOf="@+id/rigth_padding"/>
 
-    <android.support.constraint.Guideline
-        android:id="@+id/left_padding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.3"/>
+        <Button
+            android:id="@+id/sign_up_btn"
+            style="@style/CustomButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:text="@string/auth_sign_up"
+            android:theme="@style/FotonBtn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/left_padding"
+            app:layout_constraintRight_toLeftOf="@+id/rigth_padding"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.499"/>
 
-    <android.support.constraint.Guideline
-        android:id="@+id/rigth_padding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.7"/>
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.32"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="181dp"/>
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/sign_in_btn"
+            style="@style/CustomButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/auth_sign_in"
+            android:theme="@style/FotonBtn"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/left_padding"
+            app:layout_constraintRight_toLeftOf="@+id/rigth_padding"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_btn"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/left_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/rigth_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7"/>
+
+    </android.support.constraint.ConstraintLayout>
+</io.github.rezmike.foton.ui.screens.auth.AuthView>

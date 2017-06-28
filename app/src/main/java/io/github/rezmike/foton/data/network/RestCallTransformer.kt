@@ -30,7 +30,7 @@ class RestCallTransformer<R> : Observable.Transformer<Response<R>, R> {
                     when (rResponse.code()) {
                         200 -> {
                             val lastModified = rResponse.headers().get(ConstantManager.LAST_MODIFIED_HEADER)
-                            if (lastModified != null) DataManager.INSTANCE.preferencesManager.saveLastProductUpdate(lastModified)
+                            if (lastModified != null) DataManager.INSTANCE.preferencesManager.saveLastPhotoCardsUpdate(lastModified)
                             Observable.just(rResponse.body())
                         }
                         304 -> Observable.empty()

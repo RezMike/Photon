@@ -8,6 +8,13 @@
         <item name="colorAccent">@color/color_accent</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/color_primary_dark</item>
+        <item name="colorControlNormal">@color/color_primary_dark</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
     <style name="CustomDialog">
         <item name="android:fullDark">@android:color/transparent</item>
     </style>
@@ -46,4 +53,34 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/dialog_background</item>
     </style>
+
+    <style name="edit_text_borders">
+        <item name="android:background">@drawable/borders_edit_text</item>
+        <item name="android:padding">@dimen/spacing_very_small_8</item>
+    </style>
+
+    <style name="checkbox">
+
+    </style>
+
+    <style name="checkbox.checkbox_filters">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@color/color_transparent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/color_filter_not_accent</item>
+        <item name="android:textSize">@dimen/font_size_normal_10</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="wrap_section">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small_16</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_small_16</item>
+    </style>
+
 </resources>

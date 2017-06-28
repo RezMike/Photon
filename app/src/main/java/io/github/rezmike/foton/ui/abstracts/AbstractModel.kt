@@ -1,24 +1,19 @@
 package io.github.rezmike.foton.ui.abstracts
 
 import android.support.annotation.VisibleForTesting
-
-import com.birbit.android.jobqueue.JobManager
-
-import javax.inject.Inject
-
-import io.github.rezmike.foton.data.managers.DataManager
-import io.github.rezmike.foton.di.components.ModelComponent
-import io.github.rezmike.foton.di.modules.ModelModule
-
 import android.support.annotation.VisibleForTesting.NONE
+import com.birbit.android.jobqueue.JobManager
+import io.github.rezmike.foton.data.managers.DataManager
 import io.github.rezmike.foton.di.components.DaggerModelComponent
+import io.github.rezmike.foton.di.modules.ModelModule
+import javax.inject.Inject
 
 abstract class AbstractModel {
 
     @Inject
-    lateinit var mDataManager: DataManager
+    lateinit var dataManager: DataManager
     @Inject
-    lateinit var mJobManager: JobManager
+    lateinit var jobManager: JobManager
 
     @Suppress("LeakingThis")
     constructor() {
@@ -30,7 +25,7 @@ abstract class AbstractModel {
 
     @VisibleForTesting(otherwise = NONE)
     constructor(dataManager: DataManager, jobManager: JobManager) {
-        mDataManager = dataManager
-        mJobManager = jobManager
+        this.dataManager = dataManager
+        this.jobManager = jobManager
     }
 }
