@@ -20,18 +20,12 @@ class PhotocardView(context: Context, attrs: AttributeSet?) : AbstractView<Photo
     @Inject
     lateinit var picasso: Picasso
 
-
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<PhotocardScreen.Component>(context).inject(this)
     }
 
-    override fun onBackPressed(): Boolean {
-        return false
-    }
-
-    fun showInfoUser(photoCard: PhotoCardRealm) {
-
-        info_about_food.text = photoCard.title
+    fun showPhotoCardInfo(photoCard: PhotoCardRealm) {
+        food_info_tv.text = photoCard.title
         picasso.load(photoCard.photo)
                 .resize(300, 200)
                 .into(image_food)
@@ -41,12 +35,11 @@ class PhotocardView(context: Context, attrs: AttributeSet?) : AbstractView<Photo
     private fun initFlexBox(tags: RealmList<TagRealm>) {
         flex_box.removeAllViews()
         tags.forEach {
-            val textView = createTextView(it)
-            flex_box.addView(textView)
+            flex_box.addView(createTagTv(it))
         }
     }
 
-    private fun createTextView(item: TagRealm): TextView {
+    private fun createTagTv(item: TagRealm): TextView {
         val textView = TextView(context)
         textView.setBackgroundResource(R.drawable.borders_tags)
         textView.text = "#${item.tag.toLowerCase().replace(" ", "")}"
@@ -57,4 +50,7 @@ class PhotocardView(context: Context, attrs: AttributeSet?) : AbstractView<Photo
         return textView
     }
 
+    override fun onBackPressed(): Boolean {
+        return false
+    }
 }

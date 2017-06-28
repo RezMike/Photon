@@ -39,9 +39,11 @@
 
     <!--Photocard Screen-->
     <string name="photocard_title">Фотокарточка</string>
-    <string name="photocard_in_favorites">В избранное</string>
-    <string name="photocard_share">Поделиться</string>
-    <string name="photocard_save">Скачать</string>
+    <string name="photocard_menu_in_favorites">В избранное</string>
+    <string name="photocard_menu_share">Поделиться</string>
+    <string name="photocard_menu_save">Скачать</string>
+    <string name="photocard_cards">Карты</string>
+    <string name="photocard_albums">Альбомы</string>
 
     <!--Navigation Screen-->
     <string name="navigation_main">Главная</string>
