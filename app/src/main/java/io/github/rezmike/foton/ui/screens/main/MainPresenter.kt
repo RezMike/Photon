@@ -6,7 +6,6 @@ import flow.Flow
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
-import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
 import io.github.rezmike.foton.ui.screens.login.LoginScreen
 import io.github.rezmike.foton.ui.screens.photocard.PhotocardScreen
@@ -16,8 +15,6 @@ import io.github.rezmike.foton.utils.DaggerService
 import mortar.MortarScope
 
 class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
-
-    private var screen: MainScreen? = null
 
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<MainScreen.Component>(scope).inject(this)
