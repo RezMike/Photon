@@ -78,7 +78,7 @@ class RootActivity : BaseActivity(), IActionBarView {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         presenter.onActivityResult(requestCode, resultCode, data)
     }
 
@@ -252,7 +252,7 @@ class RootActivity : BaseActivity(), IActionBarView {
 
         fun getRootPresenter(): RootPresenter
 
-        //fun getAccountModel() : AccountModel
+        fun getAccountModel(): AccountModel
 
         fun getPicasso(): Picasso
     }

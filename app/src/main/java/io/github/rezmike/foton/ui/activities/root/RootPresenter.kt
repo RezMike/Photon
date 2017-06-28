@@ -25,7 +25,7 @@ class RootPresenter : Presenter<RootActivity>() {
         return BundleService.getBundleService(view)
     }
 
-    fun getActivityResultSubject() = activityResultDtoSub
+    fun getActivityResultSubject() = activityResultDtoSub!!
 
     fun checkPermissionAndRequestIfNotGranted(permissions: Array<String>, requestCode: Int): Boolean {
         val allGranted = view?.isAllGranted(permissions, true) ?: return false
@@ -37,7 +37,7 @@ class RootPresenter : Presenter<RootActivity>() {
         return allGranted
     }
 
-    fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent) {
+    fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         activityResultDtoSub.onNext(ActivityResultDto(requestCode, resultCode, intent))
     }
 

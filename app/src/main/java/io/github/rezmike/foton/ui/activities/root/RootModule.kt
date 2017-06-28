@@ -8,4 +8,8 @@ class RootModule {
     @Provides
     @RootScope
     fun provideRootPresenter() = RootPresenter()
+
+    @Provides
+    @RootScope
+    fun provideAccountModel() = AccountModel()
 }
