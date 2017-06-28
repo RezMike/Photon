@@ -13,7 +13,7 @@ class PhotocardScreen(val photoCard: PhotoCardRealm) : AbstractScreen<RootActivi
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
         return DaggerPhotocardScreen_Component.builder()
                 .rootComponent(parentComponent)
-                .module(Module())
+                .module(Module(photoCard))
                 .build()
     }
 
@@ -32,10 +32,11 @@ class PhotocardScreen(val photoCard: PhotoCardRealm) : AbstractScreen<RootActivi
     }
 
     @dagger.Module
-    class Module {
+    class Module(val photoCard: PhotoCardRealm) {
+
         @Provides
         @DaggerScope(PhotocardScreen::class)
-        fun providePresenter() = PhotocardPresenter()
+        fun providePresenter() = PhotocardPresenter(photoCard)
 
         @Provides
         @DaggerScope(PhotocardScreen::class)
