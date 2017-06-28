@@ -1,5 +1,6 @@
 package io.github.rezmike.foton.ui.screens.photocard
 
+import android.os.Bundle
 import android.view.MenuItem
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
@@ -23,6 +24,11 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<Phot
                 .addAction(MenuItemHolder(view?.context?.getString(R.string.photocard_share), 0, { onClickShare() }, MenuItem.SHOW_AS_ACTION_NEVER))
                 .addAction(MenuItemHolder(view?.context?.getString(R.string.photocard_save), 0, { onClickSave() }, MenuItem.SHOW_AS_ACTION_NEVER))
                 .build()
+    }
+
+    override fun onLoad(savedInstanceState: Bundle?) {
+        super.onLoad(savedInstanceState)
+        view.showInfoUser(photoCard)
     }
 
     private fun onClickInFavorite(): Boolean {
