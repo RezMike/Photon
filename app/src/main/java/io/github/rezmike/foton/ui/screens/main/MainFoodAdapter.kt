@@ -8,7 +8,7 @@ import com.squareup.picasso.Picasso
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import kotlinx.android.synthetic.main.item_wall_food.view.*
-import kotlinx.android.synthetic.main.ratio_image.view.*
+import kotlinx.android.synthetic.main.ratio_image_1_1.view.*
 
 class MainFoodAdapter(val picasso: Picasso, val itemClick: (PhotoCardRealm) -> Unit) : RecyclerView.Adapter<MainFoodAdapter.FoodViewHolder>() {
 
