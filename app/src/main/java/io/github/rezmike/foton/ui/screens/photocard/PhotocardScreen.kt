@@ -2,12 +2,13 @@ package io.github.rezmike.foton.ui.screens.photocard
 
 import dagger.Provides
 import io.github.rezmike.foton.R
+import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.di.scopes.DaggerScope
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import io.github.rezmike.foton.ui.activities.root.BottomBarItems
 import io.github.rezmike.foton.ui.activities.root.RootActivity
 
-class PhotocardScreen : AbstractScreen<RootActivity.RootComponent>() {
+class PhotocardScreen(val photoCard: PhotoCardRealm) : AbstractScreen<RootActivity.RootComponent>() {
 
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
         return DaggerPhotocardScreen_Component.builder()

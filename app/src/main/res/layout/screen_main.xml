@@ -4,11 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        style="@style/title_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="MAIN VIEW"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_food"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </io.github.rezmike.foton.ui.screens.main.MainView>

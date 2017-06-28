@@ -28,7 +28,7 @@
             app:srcCompat="@drawable/ic_custom_favorites_white_24dp"/>
 
         <TextView
-            android:id="@+id/favorite"
+            android:id="@+id/favorites_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/spacing_medium_32"
@@ -44,7 +44,7 @@
             app:srcCompat="@drawable/ic_custom_views_white_24dp"/>
 
         <TextView
-            android:id="@+id/watcher"
+            android:id="@+id/watchers_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
