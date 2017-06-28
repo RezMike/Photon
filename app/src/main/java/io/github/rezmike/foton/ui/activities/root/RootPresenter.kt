@@ -11,8 +11,12 @@ import mortar.MortarScope
 import mortar.Presenter
 import mortar.bundler.BundleService
 import rx.subjects.PublishSubject
+import javax.inject.Inject
 
 class RootPresenter : Presenter<RootActivity>() {
+
+    @Inject
+    lateinit var model: AccountModel
 
     private val activityResultDtoSub = PublishSubject.create<ActivityResultDto>()
 
@@ -57,7 +61,11 @@ class RootPresenter : Presenter<RootActivity>() {
     }
 
     fun onClickProfile() {
-        view?.showProfileScreen()
+        if (model.isUserAuth()) {
+            view?.showProfileScreen()
+        } else {
+            view?.showAuthScreen()
+        }
     }
 
     fun onClickUpload() {
