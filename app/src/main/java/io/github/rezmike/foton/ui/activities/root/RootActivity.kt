@@ -19,6 +19,7 @@ import io.github.rezmike.foton.di.modules.PicassoCacheModule
 import io.github.rezmike.foton.di.scopes.RootScope
 import io.github.rezmike.foton.ui.abstracts.BaseActivity
 import io.github.rezmike.foton.ui.abstracts.IView
+import io.github.rezmike.foton.ui.screens.auth.AuthScreen
 import io.github.rezmike.foton.ui.screens.main.MainScreen
 import io.github.rezmike.foton.ui.screens.profile.ProfileScreen
 import io.github.rezmike.foton.ui.screens.upload.UploadScreen
@@ -184,6 +185,10 @@ class RootActivity : BaseActivity(), IActionBarView {
 
     fun showProfileScreen() {
         Flow.get(this).set(ProfileScreen())
+    }
+
+    fun showAuthScreen() {
+        Flow.get(this).set(AuthScreen())
     }
 
     fun showUploadScreen() {

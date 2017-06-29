@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="25dp">
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/description_tv"
             style="@style/description_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

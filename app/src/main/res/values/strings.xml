@@ -21,6 +21,9 @@
     <string name="main_menu_connect_developers">Связаться с разработчиками</string>
 
     <!--Auth Screen-->
+    <string name="auth_title">Профиль</string>
+    <string name="auth_menu_login">Войти</string>
+    <string name="auth_menu_register">Зарегистрироваться</string>
     <string name="auth_description">Авторизуйтесь, чтобы посмотреть данные профиля</string>
     <string name="auth_sign_up">Регистрация</string>
     <string name="auth_sign_in">Вход</string>
