@@ -1,12 +1,9 @@
 package io.github.rezmike.foton.data.managers
 
 import io.github.rezmike.foton.App
-import io.github.rezmike.foton.data.network.transformer.RestCallTransformer
 import io.github.rezmike.foton.data.network.RestService
-import io.github.rezmike.foton.data.network.res.AlbumRes
-import io.github.rezmike.foton.data.network.res.PhotoCardRes
-import io.github.rezmike.foton.data.network.res.UserRes
 import io.github.rezmike.foton.data.network.transformer.AlbumsRestCallTransformer
+import io.github.rezmike.foton.data.network.transformer.PhotoFileCallTransformer
 import io.github.rezmike.foton.data.network.transformer.PhotosRestCallTransformer
 import io.github.rezmike.foton.data.network.transformer.UserRestCallTranformer
 import io.github.rezmike.foton.data.storage.AlbumRealm
@@ -15,6 +12,7 @@ import io.github.rezmike.foton.data.storage.UserRealm
 import io.github.rezmike.foton.di.components.DaggerDataManagerComponent
 import io.github.rezmike.foton.di.modules.LocalModule
 import io.github.rezmike.foton.di.modules.NetworkModule
+import io.github.rezmike.foton.utils.writeResponseBodyToDisk
 import rx.Completable
 import rx.Observable
 import rx.Single
@@ -75,6 +73,14 @@ class DataManager private constructor() {
                 .doOnNext { if (!it.active) realmManager.deleteFromRealm(PhotoCardRealm::class.java, it.id) }
                 .filter { it.active }
                 .doOnNext { realmManager.savePhotoCardResponseToRealm(it) }
+                .toCompletable()
+    }
+
+    fun getPhotoFileFromNetwork(photoUrl: String): Completable {
+        return restService.getPhotoFile(photoUrl)
+                .compose(PhotoFileCallTransformer())
+                .flatMap { writeResponseBodyToDisk(it) }
+                .subscribeOn(Schedulers.newThread())
                 .toCompletable()
     }
 
