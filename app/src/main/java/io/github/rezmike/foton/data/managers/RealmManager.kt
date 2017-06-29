@@ -2,12 +2,15 @@ package io.github.rezmike.foton.data.managers
 
 import io.github.rezmike.foton.data.network.res.AlbumRes
 import io.github.rezmike.foton.data.network.res.PhotoCardRes
+import io.github.rezmike.foton.data.network.res.UserRes
 import io.github.rezmike.foton.data.storage.AlbumRealm
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.data.storage.TagRealm
+import io.github.rezmike.foton.data.storage.UserRealm
 import io.realm.Realm
 import io.realm.RealmObject
 import rx.Observable
+import rx.Single
 
 class RealmManager {
 
@@ -76,4 +79,33 @@ class RealmManager {
         return realmInstance!!
     }
 
+
+    //region ======================== User ========================
+
+    fun getUser(userId: String): Single<UserRealm> {
+        val realm = Realm.getDefaultInstance()
+
+        val user = realm.where(UserRealm::class.java)
+                .equalTo("id", userId).findFirst()
+
+        if (user == null) return Single.error(Throwable())
+        else return Single.just(user)
+
+
+    }
+
+    fun saveUserResponseToRealm(user: UserRes) {
+//        val realm = Realm.getDefaultInstance()
+//        val userRealm = UserRealm(user)
+//        if (!user.albums.isEmpty()) {
+//            Observable.from(user.albums)
+//                    .doOnNext { Observable.from(it.photocards). }
+
+    }
+    //endregion
 }
+
+
+
+
+

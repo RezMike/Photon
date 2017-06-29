@@ -48,26 +48,27 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<Phot
         super.onLoad(savedInstanceState)
         model.getAuthorPhoto(photoCard.owner)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({view.showPhotoCardInfo(photoCard, it)},{e: Throwable -> getRootView()?.showError(e) })
+                .subscribe({ view.showPhotoCardInfo(photoCard, it) }, { e: Throwable -> getRootView()?.showError(e) })
 
     }
 
     private fun onClickInFavorite(): Boolean {
+        model.saveOnFavorite(photoCard.id)
         return true
     }
 
     private fun onClickShare(): Boolean {
-
-
+        rootPresenter.onShareLink(photoCard.photo)
         return true
     }
 
     private fun onClickSave(): Boolean {
         val permissions = arrayOf(WRITE_EXTERNAL_STORAGE)
-        if(rootPresenter.checkPermissionAndRequestIfNotGranted(permissions, ConstantManager.REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE)){
-//            val photoFile = view.context.createFileFromPhoto()
-        }
+        if (rootPresenter.checkPermissionAndRequestIfNotGranted(permissions, ConstantManager.REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE)) {
+            model.savePhotoOnExternalStorage(photoCard.photo)
+                    .subscribe({ getRootView()?.showMessage("Изображение загружено") }, { getRootView()?.showError(it) })
 
+        }
         return true
     }
 

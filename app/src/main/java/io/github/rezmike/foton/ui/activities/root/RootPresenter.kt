@@ -52,6 +52,10 @@ class RootPresenter : Presenter<RootActivity>() {
         }
     }
 
+    fun onShareLink(link: String) {
+        getRootView()?.sendSharingIntent(link)
+    }
+
     fun onClickMain() {
         view?.showMainScreen()
     }
