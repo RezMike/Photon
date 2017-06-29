@@ -17,6 +17,7 @@ class PreferencesManager(context: Context) {
         val PROFILE_PHONE_KEY = "PROFILE_PHONE_KEY"
         val PHOTO_CARDS_LAST_UPDATE_KEY = "PHOTO_CARDS_LAST_UPDATE_KEY"
         val ALBUMS_LAST_UPDATE_KEY = "ALBUMS_LAST_UPDATE_KEY"
+        val USER_LAST_UPDATE_KEY = "USER_LAST_UPDATE_KEY"
 
         val DEFAULT_LAST_UPDATE = "Thu Jan 1 1970 00:00:00 GMT+0000 (UTC)"
     }
@@ -70,6 +71,14 @@ class PreferencesManager(context: Context) {
         editor.putString(ALBUMS_LAST_UPDATE_KEY, lastModified)
         editor.apply()
     }
+
+    fun saveUserLastUpdate(userId: String, lastUpdate: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(USER_LAST_UPDATE_KEY + userId, lastUpdate)
+        editor.apply()
+    }
+
+    fun getLastUserUpdate(userId: String) = sharedPreferences.getString(USER_LAST_UPDATE_KEY + userId, DEFAULT_LAST_UPDATE)
 
     //endregion
 }

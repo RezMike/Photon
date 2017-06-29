@@ -100,6 +100,7 @@
         <item name="android:paddingBottom">@dimen/spacing_small_16</item>
         <item name="android:paddingLeft">@dimen/spacing_small_16</item>
         <item name="android:paddingRight">@dimen/spacing_small_16</item>
+        <item name="android:background">@color/white</item>
         <item name="alignContent">flex_start</item>
         <item name="alignItems">flex_start</item>
         <item name="dividerDrawable">@drawable/divider_tags</item>

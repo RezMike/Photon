@@ -1,9 +1,8 @@
-package io.github.rezmike.foton.data.network
+package io.github.rezmike.foton.data.network.transformer
 
 import android.support.annotation.VisibleForTesting
 import android.support.annotation.VisibleForTesting.NONE
 import com.fernandocejas.frodo.annotation.RxLogObservable
-import io.github.rezmike.foton.data.managers.DataManager
 import io.github.rezmike.foton.data.network.error.AccessError
 import io.github.rezmike.foton.data.network.error.ErrorUtils
 import io.github.rezmike.foton.data.network.error.NetworkAvailableError
@@ -12,7 +11,7 @@ import io.github.rezmike.foton.utils.NetworkStatusChecker
 import retrofit2.Response
 import rx.Observable
 
-class RestCallTransformer<R> : Observable.Transformer<Response<R>, R> {
+abstract class RestCallTransformer<R> : Observable.Transformer<Response<R>, R> {
 
     private var isInTestMode: Boolean = false
 
@@ -30,7 +29,7 @@ class RestCallTransformer<R> : Observable.Transformer<Response<R>, R> {
                     when (rResponse.code()) {
                         200 -> {
                             val lastModified = rResponse.headers().get(ConstantManager.LAST_MODIFIED_HEADER)
-                            if (lastModified != null) DataManager.INSTANCE.preferencesManager.saveLastPhotoCardsUpdate(lastModified)
+                            if (lastModified != null) saveLastModify(lastModified)
                             Observable.just(rResponse.body())
                         }
                         304 -> Observable.empty()
@@ -44,4 +43,7 @@ class RestCallTransformer<R> : Observable.Transformer<Response<R>, R> {
     fun setTestMode() {
         isInTestMode = true
     }
+
+    abstract fun saveLastModify(lastModified: String)
+
 }
