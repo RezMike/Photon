@@ -19,9 +19,6 @@ class AuthPresenter : AbstractPresenter<AuthView, AuthModel, AuthPresenter>() {
     override fun initActionBar() {
         rootPresenter.ActionBarBuilder()
                 .setTitle(view?.resources?.getString(R.string.auth_title)!!)
-                .setOverFlowIcon(R.drawable.ic_custom_menu_black_24dp)
-                .addAction(MenuItemHolder(view?.context?.getString(R.string.auth_menu_login), 0, { onClickLogin() }, MenuItem.SHOW_AS_ACTION_NEVER))
-                .addAction(MenuItemHolder(view?.context?.getString(R.string.auth_menu_register), 0, { onClickRegister() }, MenuItem.SHOW_AS_ACTION_NEVER))
                 .build()
     }
 
