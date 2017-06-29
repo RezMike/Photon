@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import dagger.Provides
 import io.github.rezmike.foton.App
 import io.github.rezmike.foton.BuildConfig
@@ -12,7 +13,6 @@ import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.scopes.SplashScope
 import io.github.rezmike.foton.ui.activities.root.RootActivity
 import io.github.rezmike.foton.utils.DaggerService
-import kotlinx.android.synthetic.main.activity_root.*
 import kotlinx.android.synthetic.main.activity_splash.*
 import mortar.MortarScope
 import mortar.bundler.BundleServiceRunner
@@ -80,7 +80,9 @@ class SplashActivity : AppCompatActivity() {
     }
 
     fun showMessage(message: String) {
-        Snackbar.make(root_frame, message, Snackbar.LENGTH_LONG).show()
+        Snackbar.make(root_frame, message, Snackbar.LENGTH_LONG)
+                .setAction(R.string.main_repeate, {presenter.init()})
+                .show()
     }
 
     fun showMessage(stringResId: Int) {

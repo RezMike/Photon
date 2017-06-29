@@ -18,6 +18,7 @@
     <string name="main_menu_login">Войти</string>
     <string name="main_menu_logout">Выйти</string>
     <string name="main_menu_register">Зарегистрироваться</string>
+    <string name="main_repeate">Повтор</string>
     <string name="main_menu_connect_developers">Связаться с разработчиками</string>
 
     <!--Auth Screen-->
@@ -113,5 +114,6 @@
     <string name="photo_upload_need_write_permission">Необходимо разрешение на запись!</string>
     <string name="photo_error_create_file">Фотография не может быть создана</string>
     <string name="photo_error_give_permission">Для корректной работы приложения необходимо дать требуемые разрешения!</string>
+
 
 </resources>
