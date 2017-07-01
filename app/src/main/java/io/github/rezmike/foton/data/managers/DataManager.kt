@@ -12,7 +12,7 @@ import io.github.rezmike.foton.data.storage.UserRealm
 import io.github.rezmike.foton.di.components.DaggerDataManagerComponent
 import io.github.rezmike.foton.di.modules.LocalModule
 import io.github.rezmike.foton.di.modules.NetworkModule
-import io.github.rezmike.foton.utils.writeResponseBodyToDisk
+import io.github.rezmike.foton.utils.writePhotoToDisk
 import rx.Completable
 import rx.Observable
 import rx.Single
@@ -76,10 +76,10 @@ class DataManager private constructor() {
                 .toCompletable()
     }
 
-    fun getPhotoFileFromNetwork(photoUrl: String): Completable {
+    fun getPhotoFileComplFromNetwork(photoUrl: String): Completable {
         return restService.getPhotoFile(photoUrl)
                 .compose(PhotoFileCallTransformer())
-                .flatMap { writeResponseBodyToDisk(it) }
+                .flatMap { writePhotoToDisk(it) }
                 .subscribeOn(Schedulers.newThread())
                 .toCompletable()
     }

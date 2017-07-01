@@ -52,7 +52,7 @@ class RootPresenter : Presenter<RootActivity>() {
         }
     }
 
-    fun onShareLink(link: String) {
+    fun sharePhoto(link: String) {
         getRootView()?.sendSharingIntent(link)
     }
 

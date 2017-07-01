@@ -44,7 +44,7 @@
     <string name="photocard_menu_save">Скачать</string>
     <string name="photocard_cards">Карты</string>
     <string name="photocard_albums">Альбомы</string>
-    <string name="photocard_save_complete">Изображение загружено</string>
+    <string name="photocard_saving_completed">Изображение загружено</string>
 
     <!--Navigation Screen-->
     <string name="navigation_main">Главная</string>
