@@ -46,7 +46,7 @@ class PhotocardView(context: Context, attrs: AttributeSet?) : AbstractView<Photo
         food_info_tv.text = photoCard.title
         picasso.load(photoCard.photo)
                 .resize(300, 200)
-                .into(image_food)
+                .into(food_img)
     }
 
     private fun initFlexBox(tags: RealmList<TagRealm>) {
