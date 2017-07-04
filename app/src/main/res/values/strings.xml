@@ -29,10 +29,11 @@
     <string name="auth_sign_up">Регистрация</string>
     <string name="auth_sign_in">Вход</string>
 
-    <!--Sign In Screen-->
-    <string name="sign_in_title">Вход в аккаунт</string>
-    <string name="sign_in_email">Email</string>
-    <string name="sign_in_password">Пароль</string>
+    <!--Login Screen-->
+    <string name="login_title">Фотон</string>
+    <string name="login_header">Вход в аккаунт</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Пароль</string>
 
     <!--Sign Up Screen-->
     <string name="sign_up_title">Регистрация</string>

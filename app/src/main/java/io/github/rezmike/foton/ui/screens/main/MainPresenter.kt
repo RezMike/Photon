@@ -7,7 +7,6 @@ import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
 import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
-import io.github.rezmike.foton.ui.screens.login.LoginScreen
 import io.github.rezmike.foton.ui.screens.photocard.PhotocardScreen
 import io.github.rezmike.foton.ui.screens.register.RegisterScreen
 import io.github.rezmike.foton.ui.screens.search.SearchScreen
@@ -21,7 +20,6 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     }
 
     override fun initActionBar() {
-
         val actionBar = rootPresenter.ActionBarBuilder()
                 .setTitle(view?.resources?.getString(R.string.main_title)!!)
                 .setOverFlowIcon(R.drawable.ic_custom_gear_black_24dp)
@@ -54,7 +52,7 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     }
 
     fun onClickLogin(): Boolean {
-        Flow.get(view).set(LoginScreen())
+        rootPresenter.showLoginDialog()
         return true
     }
 

@@ -3,8 +3,11 @@ package io.github.rezmike.foton.ui.activities.root
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Bundle
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.dto.ActivityResultDto
+import io.github.rezmike.foton.ui.dialogs.login.LoginDialog
+import io.github.rezmike.foton.ui.dialogs.login.LoginPresenter
 import io.github.rezmike.foton.utils.ConstantManager
 import io.github.rezmike.foton.utils.DaggerService
 import mortar.MortarScope
@@ -23,6 +26,16 @@ class RootPresenter : Presenter<RootActivity>() {
     override fun onEnterScope(scope: MortarScope) {
         super.onEnterScope(scope)
         DaggerService.getDaggerComponent<RootActivity.RootComponent>(scope).inject(this)
+    }
+
+    override fun onLoad(savedInstanceState: Bundle?) {
+        super.onLoad(savedInstanceState)
+        initDialogs()
+    }
+
+    override fun dropView(view: RootActivity?) {
+        dismissDialogs()
+        super.dropView(view)
     }
 
     override fun extractBundleService(view: RootActivity): BundleService {
@@ -55,6 +68,41 @@ class RootPresenter : Presenter<RootActivity>() {
             }
         }
     }
+
+    //region ======================== Dialogs ========================
+
+    private var loginDialogPresenter: LoginPresenter? = null
+
+    private var loginDialog: LoginDialog? = null
+
+    fun showLoginDialog() {
+        loginDialogPresenter = LoginPresenter()
+        loginDialogPresenter?.setOnResultListener {
+            loginDialogPresenter = null
+            loginDialog = null
+            if (it.isOk() && model.isUserAuth()) view?.showProfileScreen()
+        }
+        loginDialog = LoginDialog(view!!)
+        loginDialogPresenter?.takeView(loginDialog)
+        loginDialogPresenter?.show()
+    }
+
+    private fun initDialogs() {
+        if (loginDialogPresenter != null) {
+            loginDialog = LoginDialog(view)
+            loginDialogPresenter?.takeView(loginDialog)
+            loginDialogPresenter?.show()
+        }
+    }
+
+    private fun dismissDialogs() {
+        if (loginDialogPresenter != null) {
+            loginDialogPresenter?.dismiss()
+        }
+        loginDialog = null
+    }
+
+    //endregion
 
     fun onClickMain() {
         view?.showMainScreen()
