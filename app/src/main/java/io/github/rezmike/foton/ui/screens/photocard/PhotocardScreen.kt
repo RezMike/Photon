@@ -2,7 +2,7 @@ package io.github.rezmike.foton.ui.screens.photocard
 
 import dagger.Provides
 import io.github.rezmike.foton.R
-import io.github.rezmike.foton.data.storage.PhotoCardRealm
+import io.github.rezmike.foton.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.foton.di.scopes.DaggerScope
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import io.github.rezmike.foton.ui.activities.root.BottomBarItems

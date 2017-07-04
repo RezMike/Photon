@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.MenuItem
 import flow.Flow
 import io.github.rezmike.foton.R
-import io.github.rezmike.foton.data.storage.PhotoCardRealm
+import io.github.rezmike.foton.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
-import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
+import io.github.rezmike.foton.ui.others.MenuItemHolder
 import io.github.rezmike.foton.ui.screens.login.LoginScreen
 import io.github.rezmike.foton.ui.screens.photocard.PhotocardScreen
 import io.github.rezmike.foton.ui.screens.register.RegisterScreen

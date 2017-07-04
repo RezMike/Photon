@@ -2,9 +2,9 @@ package io.github.rezmike.foton.data.managers
 
 import io.github.rezmike.foton.data.network.res.AlbumRes
 import io.github.rezmike.foton.data.network.res.PhotoCardRes
-import io.github.rezmike.foton.data.storage.AlbumRealm
-import io.github.rezmike.foton.data.storage.PhotoCardRealm
-import io.github.rezmike.foton.data.storage.TagRealm
+import io.github.rezmike.foton.data.storage.realm.AlbumRealm
+import io.github.rezmike.foton.data.storage.realm.PhotoCardRealm
+import io.github.rezmike.foton.data.storage.realm.TagRealm
 import io.realm.Realm
 import io.realm.RealmObject
 import rx.Observable

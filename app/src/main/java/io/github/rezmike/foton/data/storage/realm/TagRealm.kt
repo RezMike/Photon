@@ -1,4 +1,4 @@
-package io.github.rezmike.foton.data.storage
+package io.github.rezmike.foton.data.storage.realm
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
