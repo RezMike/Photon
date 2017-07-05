@@ -1,4 +1,4 @@
-package io.github.rezmike.foton.utils
+package io.github.rezmike.foton.ui.others
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator

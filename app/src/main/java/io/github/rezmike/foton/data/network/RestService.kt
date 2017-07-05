@@ -1,6 +1,6 @@
 package io.github.rezmike.foton.data.network
 
-import io.github.rezmike.foton.data.network.req.SingInReq
+import io.github.rezmike.foton.data.network.req.LoginReq
 import io.github.rezmike.foton.data.network.res.AlbumRes
 import io.github.rezmike.foton.data.network.res.PhotoCardRes
 import io.github.rezmike.foton.data.network.res.UserRes
@@ -19,5 +19,5 @@ interface RestService {
                      @Path("userId") userId: String): Observable<Response<List<AlbumRes>>>
 
     @POST("user/signIn")
-    fun signIn(@Body signIn: SingInReq): Observable<Response<UserRes>>
+    fun login(@Body loginReq: LoginReq): Observable<Response<UserRes>>
 }

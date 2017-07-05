@@ -3,6 +3,7 @@ package io.github.rezmike.foton.data.managers
 import io.github.rezmike.foton.App
 import io.github.rezmike.foton.data.network.RestCallTransformer
 import io.github.rezmike.foton.data.network.RestService
+import io.github.rezmike.foton.data.network.req.LoginReq
 import io.github.rezmike.foton.data.network.res.AlbumRes
 import io.github.rezmike.foton.data.network.res.PhotoCardRes
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
@@ -46,6 +47,8 @@ class DataManager private constructor() {
     fun isUserAuth(): Boolean {
         return preferencesManager.isUserAuth()
     }
+
+    fun login(loginReq: LoginReq) = restService.login(loginReq)
 
     fun logoutUser() {
         preferencesManager.deleteAuthToken()
