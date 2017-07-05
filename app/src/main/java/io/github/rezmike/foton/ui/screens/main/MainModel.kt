@@ -6,8 +6,6 @@ class MainModel : AbstractModel(){
 
     fun getPhotoCardObs() = dataManager.getPhotoCardObsFromRealm()
 
-    fun isUserAuth() = dataManager.isUserAuth()
-
     fun logoutUser() {
         dataManager.logoutUser()
     }

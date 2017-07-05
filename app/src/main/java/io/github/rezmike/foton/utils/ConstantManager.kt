@@ -13,6 +13,7 @@ object ConstantManager {
     const val FILE_PROVIDER_AUTHORITY = ""
     const val LAST_MODIFIED_HEADER = "Last-Modified"
     const val IF_MODIFIED_SINCE_HEADER = "If-Modified-Since"
+    const val AUTHORIZATION = "Authorization"
 
     const val PUSH_REQ_CODE = 545
 }

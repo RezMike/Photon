@@ -2,6 +2,7 @@ package io.github.rezmike.foton.data.network
 
 import io.github.rezmike.foton.data.network.res.AlbumRes
 import io.github.rezmike.foton.data.network.res.PhotoCardRes
+import io.github.rezmike.foton.data.network.res.SuccessRes
 import io.github.rezmike.foton.data.network.res.UserRes
 import io.github.rezmike.foton.utils.ConstantManager
 import okhttp3.ResponseBody
@@ -24,6 +25,11 @@ interface RestService {
     @GET("user/{userId}")
     fun getUserInfo(@Header(ConstantManager.IF_MODIFIED_SINCE_HEADER) lastEntityUpdate: String,
                     @Path("userId") userId: String): Observable<Response<UserRes>>
+
+    @GET("user/{userId}/favorite/{photoId}")
+    fun savePhotoOnFavorite(@Header(ConstantManager.AUTHORIZATION) authToken: String,
+                            @Path("userId") userId: String,
+                            @Path("photoId") photoId: String): Observable<Response<SuccessRes>>
 
     @GET
     fun getPhotoFile(@Url fileUrl: String): Observable<Response<ResponseBody>>

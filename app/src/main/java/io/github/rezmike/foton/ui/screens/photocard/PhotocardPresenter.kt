@@ -4,6 +4,7 @@ import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.os.Bundle
 import android.view.MenuItem
 import io.github.rezmike.foton.R
+import io.github.rezmike.foton.data.network.res.SuccessRes
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
 import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
@@ -37,8 +38,19 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<Phot
     }
 
     fun onClickInFavorite(): Boolean {
-        model.saveOnFavorite(photoCard.id)
+        if (!rootPresenter.isUserAuth()) {
+            getRootView()?.showMessage("Необходимо войти в профиль")
+        } else {
+            model.saveOnFavorite(photoCard.id)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ onGiveResponse(it.success) }, { e -> getRootView()?.showError(e) })
+
+        }
         return true
+    }
+
+    fun onGiveResponse(success: Boolean) {
+        TODO() //сделать сохрание фото в альбом фаворит
     }
 
     fun onClickShare(): Boolean {

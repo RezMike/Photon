@@ -2,10 +2,8 @@ package io.github.rezmike.foton.data.managers
 
 import io.github.rezmike.foton.App
 import io.github.rezmike.foton.data.network.RestService
-import io.github.rezmike.foton.data.network.transformer.AlbumsRestCallTransformer
-import io.github.rezmike.foton.data.network.transformer.PhotoFileCallTransformer
-import io.github.rezmike.foton.data.network.transformer.PhotosRestCallTransformer
-import io.github.rezmike.foton.data.network.transformer.UserRestCallTranformer
+import io.github.rezmike.foton.data.network.res.SuccessRes
+import io.github.rezmike.foton.data.network.transformer.*
 import io.github.rezmike.foton.data.storage.AlbumRealm
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.data.storage.UserRealm
@@ -84,6 +82,13 @@ class DataManager private constructor() {
                 .toCompletable()
     }
 
+    fun savePhotoOnFavoriteSing(photoId: String): Single<SuccessRes> {
+        return restService.savePhotoOnFavorite(preferencesManager.getAuthToken()!!,
+                preferencesManager.getUserId()!!, photoId)
+                .compose(SuccessCallTransformer())
+                .subscribeOn(Schedulers.newThread())
+                .toSingle()
+    }
     //endregion
 
     //region ======================== Album ========================
