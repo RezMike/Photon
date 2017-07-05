@@ -56,6 +56,8 @@ class RootPresenter : Presenter<RootActivity>() {
         }
     }
 
+    fun isUserAuth() = model.isUserAuth()
+
     fun onClickMain() {
         view?.showMainScreen()
     }

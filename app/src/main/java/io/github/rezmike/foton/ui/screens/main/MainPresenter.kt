@@ -26,7 +26,7 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
                 .setTitle(view?.resources?.getString(R.string.main_title)!!)
                 .setOverFlowIcon(R.drawable.ic_custom_gear_black_24dp)
                 .addAction(MenuItemHolder(view?.context?.getString(R.string.main_menu_search), R.drawable.ic_custom_search_black_24dp, { onClickSearch() }, MenuItem.SHOW_AS_ACTION_ALWAYS))
-        if (model.isUserAuth()) {
+        if (rootPresenter.isUserAuth()) {
             actionBar.addAction(MenuItemHolder(view?.context?.getString(R.string.main_menu_logout), 0, { onClickLogout() }, MenuItem.SHOW_AS_ACTION_NEVER))
         } else {
             actionBar.addAction(MenuItemHolder(view?.context?.getString(R.string.main_menu_login), 0, { onClickLogin() }, MenuItem.SHOW_AS_ACTION_NEVER))
