@@ -27,9 +27,5 @@ open class UserRealm() : RealmObject() {
         token = user.token
         albumCount = user.albumCount
         photocardCount = user.photocardCount
-
     }
 }
-
-
-

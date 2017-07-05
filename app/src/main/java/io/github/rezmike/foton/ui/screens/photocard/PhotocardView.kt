@@ -26,13 +26,12 @@ class PhotocardView(context: Context, attrs: AttributeSet?) : AbstractView<Photo
     }
 
     fun showPhotoCardInfo(photoCard: PhotoCardRealm, user: UserRealm) {
-
-        initUser(user)
+        initUserData(user)
         initPhotoCard(photoCard)
         initFlexBox(photoCard.tags)
     }
 
-    private fun initUser(user: UserRealm) {
+    private fun initUserData(user: UserRealm) {
         author_name_tv.text = user.name
         album_count.text = user.albumCount.toString()
         photocard_count.text = user.photocardCount.toString()

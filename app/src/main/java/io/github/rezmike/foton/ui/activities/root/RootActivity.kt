@@ -218,6 +218,7 @@ class RootActivity : BaseActivity(), IActionBarView {
         shareIntent.type = "text/plain"
         if (shareIntent.resolveActivity(packageManager) != null) startActivity(shareIntent)
     }
+
     //endregion
 
     //region ======================== IActionBarView ========================

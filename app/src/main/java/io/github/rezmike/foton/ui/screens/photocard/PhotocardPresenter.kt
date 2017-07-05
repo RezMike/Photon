@@ -7,11 +7,10 @@ import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
 import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
+import io.github.rezmike.foton.utils.ConstantManager
 import io.github.rezmike.foton.utils.DaggerService
 import mortar.MortarScope
 import rx.android.schedulers.AndroidSchedulers
-import io.github.rezmike.foton.utils.ConstantManager
-
 
 class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<PhotocardView, PhotocardModel, PhotocardPresenter>() {
 
@@ -32,31 +31,29 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<Phot
 
     override fun onLoad(savedInstanceState: Bundle?) {
         super.onLoad(savedInstanceState)
-        model.getAuthorPhoto(photoCard.owner)
+        model.getUserData(photoCard.owner)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ view.showPhotoCardInfo(photoCard, it) }, { e: Throwable -> getRootView()?.showError(e) })
-
+                .subscribe({ view?.showPhotoCardInfo(photoCard, it) }, { getRootView()?.showError(it) })
     }
 
-    private fun onClickInFavorite(): Boolean {
+    fun onClickInFavorite(): Boolean {
         model.saveOnFavorite(photoCard.id)
         return true
     }
 
-    private fun onClickShare(): Boolean {
-        rootPresenter.onShareLink(photoCard.photo)
+    fun onClickShare(): Boolean {
+        rootPresenter.sharePhoto(photoCard.photo)
         return true
     }
 
-    private fun onClickSave(): Boolean {
+    fun onClickSave(): Boolean {
         val permissions = arrayOf(WRITE_EXTERNAL_STORAGE)
         if (rootPresenter.checkPermissionAndRequestIfNotGranted(permissions, ConstantManager.REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE)) {
-            model.savePhotoOnExternalStorage(photoCard.photo)
+            model.downloadAndSavePhotoFile(photoCard.photo)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ getRootView()?.showMessage(R.string.photocard_save_complete) }
-                            , { getRootView()?.showError(it) })
+                    .subscribe({ getRootView()?.showMessage(R.string.photocard_saving_completed) },
+                            { getRootView()?.showError(it) })
         }
         return true
     }
-
 }

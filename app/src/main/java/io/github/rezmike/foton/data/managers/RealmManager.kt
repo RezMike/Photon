@@ -100,12 +100,7 @@ class RealmManager {
 //        if (!user.albums.isEmpty()) {
 //            Observable.from(user.albums)
 //                    .doOnNext { Observable.from(it.photocards). }
-
     }
+
     //endregion
 }
-
-
-
-
-
