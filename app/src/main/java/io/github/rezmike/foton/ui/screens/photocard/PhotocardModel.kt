@@ -4,9 +4,9 @@ import io.github.rezmike.foton.ui.abstracts.AbstractModel
 
 class PhotocardModel : AbstractModel() {
 
-    fun getUserData(userId: String) = dataManager.getUserObsFromNetwork(userId)
+    fun getUserData(userId: String) = dataManager.getUserSinFromNetwork(userId)
 
-    fun saveOnFavorite(photoId: String) = dataManager.savePhotoOnFavoriteSing(photoId)
+    fun saveFavorite(photoId: String) = dataManager.savePhotoFavoriteSin(photoId)
 
     fun downloadAndSavePhotoFile(photoUrl: String) = dataManager.getPhotoFileComplFromNetwork(photoUrl)
 }

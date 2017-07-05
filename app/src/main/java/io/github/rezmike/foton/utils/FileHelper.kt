@@ -32,7 +32,7 @@ fun Context.createFileFromPhoto(): File? {
     return image
 }
 
-fun writePhotoToDisk(body: ResponseBody?): Observable<File> {
+fun writePhotoToDisk(body: ResponseBody): Observable<File> {
     val timeStamp = DateFormat.getDateInstance(DateFormat.MEDIUM).format(Date())
     val imageFileName = "IMG_" + timeStamp
     val storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
@@ -50,11 +50,11 @@ fun writePhotoToDisk(body: ResponseBody?): Observable<File> {
         val fileReader = ByteArray(4096)
         var fileSizeDownloaded = 0
 
-        inputStream = body?.byteStream()
+        inputStream = body.byteStream()
         outputStream = FileOutputStream(photoFile)
 
         while (true) {
-            val read = inputStream!!.read(fileReader)
+            val read = inputStream.read(fileReader)
             if (read == -1) {
                 break
             }

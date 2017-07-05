@@ -16,7 +16,7 @@ open class UserRealm() : RealmObject() {
     var token: String = ""
     var albumCount: Int = 0
     var photocardCount: Int = 0
-    var list: RealmList<AlbumRealm> = RealmList()
+    var albums: RealmList<AlbumRealm> = RealmList()
 
     constructor(user: UserRes) : this() {
         id = user.id

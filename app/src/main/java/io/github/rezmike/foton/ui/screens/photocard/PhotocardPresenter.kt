@@ -4,7 +4,6 @@ import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.os.Bundle
 import android.view.MenuItem
 import io.github.rezmike.foton.R
-import io.github.rezmike.foton.data.network.res.SuccessRes
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
 import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
@@ -24,7 +23,7 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<Phot
                 .setTitle(view?.resources?.getString(R.string.photocard_title)!!)
                 .setBackArrow(true)
                 .setOverFlowIcon(R.drawable.ic_custom_menu_black_24dp)
-                .addAction(MenuItemHolder(view?.context?.getString(R.string.photocard_menu_in_favorites), 0, { onClickInFavorite() }, MenuItem.SHOW_AS_ACTION_NEVER))
+                .addAction(MenuItemHolder(view?.context?.getString(R.string.photocard_menu_in_favorites), 0, { onClickFavorite() }, MenuItem.SHOW_AS_ACTION_NEVER))
                 .addAction(MenuItemHolder(view?.context?.getString(R.string.photocard_menu_share), 0, { onClickShare() }, MenuItem.SHOW_AS_ACTION_NEVER))
                 .addAction(MenuItemHolder(view?.context?.getString(R.string.photocard_menu_save), 0, { onClickSave() }, MenuItem.SHOW_AS_ACTION_NEVER))
                 .build()
@@ -37,14 +36,13 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<Phot
                 .subscribe({ view?.showPhotoCardInfo(photoCard, it) }, { getRootView()?.showError(it) })
     }
 
-    fun onClickInFavorite(): Boolean {
+    fun onClickFavorite(): Boolean {
         if (!rootPresenter.isUserAuth()) {
-            getRootView()?.showMessage("Необходимо войти в профиль")
+            getRootView()?.showMessage(R.string.error_need_enter_account)
         } else {
-            model.saveOnFavorite(photoCard.id)
+            model.saveFavorite(photoCard.id)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ onGiveResponse(it.success) }, { e -> getRootView()?.showError(e) })
-
+                    .subscribe({ onGiveResponse(it.success) }, { getRootView()?.showError(it) })
         }
         return true
     }
@@ -63,8 +61,7 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<Phot
         if (rootPresenter.checkPermissionAndRequestIfNotGranted(permissions, ConstantManager.REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE)) {
             model.downloadAndSavePhotoFile(photoCard.photo)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ getRootView()?.showMessage(R.string.photocard_saving_completed) },
-                            { getRootView()?.showError(it) })
+                    .subscribe({ getRootView()?.showMessage(R.string.photocard_saving_completed) }, { getRootView()?.showError(it) })
         }
         return true
     }

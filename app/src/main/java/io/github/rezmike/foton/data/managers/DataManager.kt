@@ -64,7 +64,7 @@ class DataManager private constructor() {
 
     fun getPhotoCardComplFromNetwork(): Completable {
         return restService.getAllPhotoCards(preferencesManager.getLastPhotoCardsUpdate())
-                .compose(PhotosRestCallTransformer())
+                .compose(PhotosCallTransformer())
                 .flatMap { Observable.from(it) }
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.io())
@@ -82,13 +82,13 @@ class DataManager private constructor() {
                 .toCompletable()
     }
 
-    fun savePhotoOnFavoriteSing(photoId: String): Single<SuccessRes> {
-        return restService.savePhotoOnFavorite(preferencesManager.getAuthToken()!!,
-                preferencesManager.getUserId()!!, photoId)
+    fun savePhotoFavoriteSin(photoId: String): Single<SuccessRes> {
+        return restService.savePhotoOnFavorite(preferencesManager.getAuthToken()!!, preferencesManager.getUserId()!!, photoId)
                 .compose(SuccessCallTransformer())
                 .subscribeOn(Schedulers.newThread())
                 .toSingle()
     }
+
     //endregion
 
     //region ======================== Album ========================
@@ -113,13 +113,12 @@ class DataManager private constructor() {
 
     fun getUserSingleFromRealm(userId: String) = realmManager.getUser(userId)
 
-    fun getUserObsFromNetwork(userId: String): Single<UserRealm> {
+    fun getUserSinFromNetwork(userId: String): Single<UserRealm> {
         return restService.getUserInfo(preferencesManager.getLastUserUpdate(userId), userId)
-                .compose(UserRestCallTranformer(userId))
+                .compose(UserCallTranformer(userId))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.io())
-                .doOnNext { realmManager.saveUserResponseToRealm(it) }
-                .map { UserRealm(it) }
+                .map { realmManager.saveUserResponseToRealm(it) }
                 .toSingle()
     }
 
