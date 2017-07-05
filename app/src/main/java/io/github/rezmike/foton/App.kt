@@ -2,6 +2,7 @@ package io.github.rezmike.foton
 
 import android.app.Application
 import android.content.Context
+import android.support.v7.app.AppCompatDelegate
 import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.components.DaggerAppComponent
 import io.github.rezmike.foton.di.modules.AppModule
@@ -16,6 +17,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         Realm.init(this)
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
 
     override fun getSystemService(name: String): Any {

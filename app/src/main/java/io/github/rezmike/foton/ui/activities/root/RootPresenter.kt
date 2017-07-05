@@ -76,7 +76,7 @@ class RootPresenter : Presenter<RootActivity>() {
     private var loginDialog: LoginDialog? = null
 
     fun showLoginDialog() {
-        loginDialogPresenter = LoginPresenter()
+        loginDialogPresenter = LoginPresenter(model)
         loginDialogPresenter?.setOnResultListener {
             loginDialogPresenter = null
             loginDialog = null
