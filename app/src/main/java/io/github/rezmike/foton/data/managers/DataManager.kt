@@ -5,7 +5,7 @@ import io.github.rezmike.foton.data.network.RestCallTransformer
 import io.github.rezmike.foton.data.network.RestService
 import io.github.rezmike.foton.data.network.res.AlbumRes
 import io.github.rezmike.foton.data.network.res.PhotoCardRes
-import io.github.rezmike.foton.data.storage.PhotoCardRealm
+import io.github.rezmike.foton.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.foton.di.components.DaggerDataManagerComponent
 import io.github.rezmike.foton.di.modules.LocalModule
 import io.github.rezmike.foton.di.modules.NetworkModule

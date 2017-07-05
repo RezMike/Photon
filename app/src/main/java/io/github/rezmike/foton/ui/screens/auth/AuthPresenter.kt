@@ -1,10 +1,8 @@
 package io.github.rezmike.foton.ui.screens.auth
 
-import android.view.MenuItem
 import flow.Flow
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
-import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
 import io.github.rezmike.foton.ui.screens.login.LoginScreen
 import io.github.rezmike.foton.ui.screens.register.RegisterScreen
 import io.github.rezmike.foton.utils.DaggerService

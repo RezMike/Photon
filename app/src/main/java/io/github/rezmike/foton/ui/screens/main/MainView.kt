@@ -4,7 +4,7 @@ import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import android.util.AttributeSet
 import com.squareup.picasso.Picasso
-import io.github.rezmike.foton.data.storage.PhotoCardRealm
+import io.github.rezmike.foton.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractView
 import io.github.rezmike.foton.utils.DaggerService
 import kotlinx.android.synthetic.main.screen_main.view.*
