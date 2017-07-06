@@ -10,6 +10,9 @@ import rx.Observable
 import java.io.*
 import java.text.DateFormat
 import java.util.*
+import android.content.Intent
+import android.net.Uri
+
 
 fun Context.createFileFromPhoto(): File? {
     val dataTimeInstance = DateFormat.getDateInstance(DateFormat.MEDIUM)
@@ -63,11 +66,9 @@ fun writePhotoToDisk(body: ResponseBody): Observable<File> {
         }
         outputStream.flush()
 
-        val values = ContentValues()
-        values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis())
-        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-        values.put(MediaStore.MediaColumns.DATA, photoFile.absolutePath)
-        App.context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+        val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+        intent.data = Uri.fromFile(photoFile)
+        App.context.sendBroadcast(intent)
 
         return Observable.just(photoFile)
     } catch (e: IOException) {

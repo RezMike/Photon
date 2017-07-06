@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
+import io.github.rezmike.foton.data.storage.UserRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
 import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
 import io.github.rezmike.foton.utils.ConstantManager
@@ -31,8 +32,15 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<Phot
 
     override fun onLoad(savedInstanceState: Bundle?) {
         super.onLoad(savedInstanceState)
+
+        loadPhotocardInfo()
+    }
+
+    private fun loadPhotocardInfo() {
+        //        getRootView()?.showProgress()
         model.getUserData(photoCard.owner)
                 .observeOn(AndroidSchedulers.mainThread())
+//                .doAfterTerminate {getRootView()?.hideProgress()}
                 .subscribe({ view?.showPhotoCardInfo(photoCard, it) }, { getRootView()?.showError(it) })
     }
 
