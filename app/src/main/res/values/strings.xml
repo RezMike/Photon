@@ -7,6 +7,7 @@
 
     <!--Errors-->
     <string name="sorry_something_wrong">Извините, что-то пошло не так, попробуйте позже</string>
+    <string name="error_unknown">Неизвестная ошибка</string>
 
     <!--Splash Screen-->
     <string name="splash_title">Фотон</string>
@@ -33,7 +34,7 @@
     <string name="login_title">Фотон</string>
     <string name="login_header">Вход в аккаунт</string>
     <string name="login_email">Email</string>
-    <string name="login_email_error">Email не валидный</string>
+    <string name="login_email_error">Email невалидный</string>
     <string name="login_password">Пароль</string>
     <string name="login_password_error">Длина не менее 8 символов, латиница, не может содержать спецзнаки и нижние подчеркивания (!@#$%^&amp;*()\|_=+-)</string>
 
@@ -117,6 +118,5 @@
     <string name="photo_upload_need_write_permission">Необходимо разрешение на запись!</string>
     <string name="photo_error_create_file">Фотография не может быть создана</string>
     <string name="photo_error_give_permission">Для корректной работы приложения необходимо дать требуемые разрешения!</string>
-
 
 </resources>

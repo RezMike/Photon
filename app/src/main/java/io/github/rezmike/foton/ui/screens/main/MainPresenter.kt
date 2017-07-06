@@ -52,7 +52,7 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     }
 
     fun onClickLogin(): Boolean {
-        rootPresenter.showLoginDialog()
+        rootPresenter.showLoginDialog({ initActionBar() })
         return true
     }
 

@@ -7,5 +7,5 @@ class AccountModel : AbstractModel() {
 
     fun isUserAuth() = dataManager.isUserAuth()
 
-    fun login(loginReq: LoginReq) = dataManager.login(loginReq) // TODO: 05.07.2017 add getting response
+    fun login(loginReq: LoginReq) = dataManager.loginUserCompl(loginReq)
 }

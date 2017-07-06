@@ -3,11 +3,12 @@ package io.github.rezmike.foton.ui.screens.auth
 import flow.Flow
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
+import io.github.rezmike.foton.ui.activities.root.AccountModel
 import io.github.rezmike.foton.ui.screens.register.RegisterScreen
 import io.github.rezmike.foton.utils.DaggerService
 import mortar.MortarScope
 
-class AuthPresenter : AbstractPresenter<AuthView, AuthModel, AuthPresenter>() {
+class AuthPresenter : AbstractPresenter<AuthView, AccountModel, AuthPresenter>() {
 
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<AuthScreen.Component>(scope).inject(this)
@@ -20,7 +21,7 @@ class AuthPresenter : AbstractPresenter<AuthView, AuthModel, AuthPresenter>() {
     }
 
     fun onClickLogin(): Boolean {
-        rootPresenter.showLoginDialog()
+        rootPresenter.showLoginDialog({ if (it.isOk()) rootPresenter.onClickProfile() })
         return true
     }
 

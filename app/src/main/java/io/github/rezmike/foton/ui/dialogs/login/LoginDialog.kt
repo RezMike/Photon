@@ -80,25 +80,40 @@ class LoginDialog(context: Context) : Popup<LoginInfoDto, DialogResult> {
         passwordEt?.changeError(false)
     }
 
-    fun showError(error: Throwable) {
-        Toast.makeText(context, error.message, Toast.LENGTH_LONG).show()
+    fun accentEmail() {
+        AnimHelper.accentAnim(emailEt!!)
     }
 
-    override fun dismiss(withFlourish: Boolean) {
-        if (withFlourish) {
-            emailEt = null
-            passwordEt = null
-            card = null
-            dialog?.dismiss()
-            dialog = null
-        } else {
-            AnimHelper.accentAnim(emailEt!!)
-            AnimHelper.accentAnim(passwordEt!!)
-        }
+    fun accentPassword() {
+        AnimHelper.accentAnim(passwordEt!!)
+    }
+
+    fun accentFields() {
+        accentEmail()
+        accentPassword()
+    }
+
+    fun showError(error: Throwable) {
+        showError(error.message ?: context.getString(R.string.error_unknown))
+    }
+
+    fun showError(errorMessage: String) {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+    }
+
+    fun dismiss() {
+        emailEt = null
+        passwordEt = null
+        card = null
+        dialog?.dismiss()
+        dialog = null
     }
 
     override fun isShowing() = dialog != null
 
     override fun getContext() = rootContext
 
+    override fun dismiss(withFlourish: Boolean) {
+        dismiss()
+    }
 }

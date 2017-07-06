@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.dto.ActivityResultDto
+import io.github.rezmike.foton.data.storage.dto.DialogResult
 import io.github.rezmike.foton.ui.dialogs.login.LoginDialog
 import io.github.rezmike.foton.ui.dialogs.login.LoginPresenter
 import io.github.rezmike.foton.utils.ConstantManager
@@ -75,12 +76,12 @@ class RootPresenter : Presenter<RootActivity>() {
 
     private var loginDialog: LoginDialog? = null
 
-    fun showLoginDialog() {
+    fun showLoginDialog(onResult: (DialogResult) -> Unit = {}) {
         loginDialogPresenter = LoginPresenter(model)
         loginDialogPresenter?.setOnResultListener {
             loginDialogPresenter = null
             loginDialog = null
-            if (it.isOk() && model.isUserAuth()) view?.showProfileScreen()
+            onResult(it)
         }
         loginDialog = LoginDialog(view!!)
         loginDialogPresenter?.takeView(loginDialog)

@@ -6,6 +6,7 @@ import io.github.rezmike.foton.data.network.RestService
 import io.github.rezmike.foton.data.network.req.LoginReq
 import io.github.rezmike.foton.data.network.res.AlbumRes
 import io.github.rezmike.foton.data.network.res.PhotoCardRes
+import io.github.rezmike.foton.data.network.transformers.AuthCallTransformer
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.di.components.DaggerDataManagerComponent
 import io.github.rezmike.foton.di.modules.LocalModule
@@ -48,10 +49,18 @@ class DataManager private constructor() {
         return preferencesManager.isUserAuth()
     }
 
-    fun login(loginReq: LoginReq) = restService.login(loginReq)
+    fun loginUserCompl(loginReq: LoginReq): Completable {
+        return restService.login(loginReq)
+                .compose(AuthCallTransformer())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(Schedulers.io())
+                .doOnNext { preferencesManager.saveUserData(it) }
+                .doOnNext { realmManager.saveUserResponseToRealm(it) }
+                .toCompletable()
+    }
 
     fun logoutUser() {
-        preferencesManager.deleteAuthToken()
+        preferencesManager.deleteUserData()
     }
 
     //endregion

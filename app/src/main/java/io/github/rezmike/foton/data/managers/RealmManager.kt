@@ -2,9 +2,11 @@ package io.github.rezmike.foton.data.managers
 
 import io.github.rezmike.foton.data.network.res.AlbumRes
 import io.github.rezmike.foton.data.network.res.PhotoCardRes
+import io.github.rezmike.foton.data.network.res.UserRes
 import io.github.rezmike.foton.data.storage.AlbumRealm
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.data.storage.TagRealm
+import io.github.rezmike.foton.data.storage.UserRealm
 import io.realm.Realm
 import io.realm.RealmObject
 import rx.Observable
@@ -12,6 +14,11 @@ import rx.Observable
 class RealmManager {
 
     private var realmInstance: Realm? = null
+
+    fun saveUserResponseToRealm(user: UserRes): UserRealm {
+        // TODO: 06.07.2017 implement this (see photocard branch)
+        return UserRealm()
+    }
 
     //region ======================== PhotoCards ========================
 

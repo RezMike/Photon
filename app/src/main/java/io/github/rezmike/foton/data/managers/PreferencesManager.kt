@@ -3,6 +3,7 @@ package io.github.rezmike.foton.data.managers
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import io.github.rezmike.foton.data.network.res.UserRes
 
 class PreferencesManager(context: Context) {
 
@@ -14,7 +15,8 @@ class PreferencesManager(context: Context) {
         val PROFILE_USER_ID_KEY = "PROFILE_USER_ID_KEY"
         val PROFILE_NAME_KEY = "PROFILE_NAME_KEY"
         val PROFILE_AVATAR_KEY = "PROFILE_AVATAR_KEY"
-        val PROFILE_PHONE_KEY = "PROFILE_PHONE_KEY"
+        val PROFILE_LOGIN_KEY = "PROFILE_LOGIN_KEY"
+
         val PHOTO_CARDS_LAST_UPDATE_KEY = "PHOTO_CARDS_LAST_UPDATE_KEY"
         val ALBUMS_LAST_UPDATE_KEY = "ALBUMS_LAST_UPDATE_KEY"
 
@@ -31,23 +33,27 @@ class PreferencesManager(context: Context) {
         return sharedPreferences.getString(PROFILE_AUTH_TOKEN_KEY, null)
     }
 
-    fun saveAuthToken(authToken: String?) {
-        val editor = sharedPreferences.edit()
-        editor.putString(PROFILE_AUTH_TOKEN_KEY, authToken)
-        editor.apply()
-    }
-
-    fun deleteAuthToken() {
-        saveAuthToken(null)
-    }
-
     fun getUserId(): String? {
         return sharedPreferences.getString(PROFILE_USER_ID_KEY, null)
     }
 
-    fun saveUserId(userId: String) {
+    fun deleteUserData() {
         val editor = sharedPreferences.edit()
-        editor.putString(PROFILE_USER_ID_KEY, userId)
+        editor.putString(PROFILE_USER_ID_KEY, null)
+        editor.putString(PROFILE_NAME_KEY, null)
+        editor.putString(PROFILE_LOGIN_KEY, null)
+        editor.putString(PROFILE_AVATAR_KEY, null)
+        editor.putString(PROFILE_AUTH_TOKEN_KEY, null)
+        editor.apply()
+    }
+
+    fun saveUserData(userRes: UserRes) {
+        val editor = sharedPreferences.edit()
+        editor.putString(PROFILE_USER_ID_KEY, userRes.id)
+        editor.putString(PROFILE_NAME_KEY, userRes.name)
+        editor.putString(PROFILE_LOGIN_KEY, userRes.login)
+        editor.putString(PROFILE_AVATAR_KEY, userRes.avatar)
+        editor.putString(PROFILE_AUTH_TOKEN_KEY, userRes.token)
         editor.apply()
     }
 

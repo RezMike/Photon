@@ -1,12 +1,15 @@
 package io.github.rezmike.foton.ui.dialogs.login
 
+import io.github.rezmike.foton.data.network.error.AccessError
+import io.github.rezmike.foton.data.network.error.NotFoundError
 import io.github.rezmike.foton.data.network.req.LoginReq
 import io.github.rezmike.foton.data.storage.dto.DialogResult
 import io.github.rezmike.foton.data.storage.dto.LoginInfoDto
 import io.github.rezmike.foton.ui.activities.root.AccountModel
-import io.github.rezmike.foton.utils.isEmailValid
-import io.github.rezmike.foton.utils.isPasswordValid
+import io.github.rezmike.foton.ui.others.isEmailValid
+import io.github.rezmike.foton.ui.others.isPasswordValid
 import mortar.PopupPresenter
+import rx.android.schedulers.AndroidSchedulers
 
 class LoginPresenter(val model: AccountModel) : PopupPresenter<LoginInfoDto, DialogResult>() {
 
@@ -40,25 +43,39 @@ class LoginPresenter(val model: AccountModel) : PopupPresenter<LoginInfoDto, Dia
     }
 
     fun onClickOk() {
-        if (email.isEmailValid() && password.isPasswordValid()) {
+        if (email.isEmpty() || password.isEmpty()) {
+            if (email.isEmpty()) getDialog()?.accentEmail()
+            if (password.isEmpty()) getDialog()?.accentPassword()
+            getDialog()?.showError("Заполните все поля!")
+        } else if (email.isEmailValid() && password.isPasswordValid()) {
             model.login(LoginReq(email, password))
+                    .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        view?.dismiss(true)
+                        getDialog()?.dismiss()
                         onResult(DialogResult(true))
                     }, {
-                        view?.dismiss(false)
-                        getDialog()?.showError(it)
+                        if (it is AccessError || it is NotFoundError) {
+                            getDialog()?.showError("Неверный email или пароль")
+                            getDialog()?.accentFields()
+                        } else {
+                            getDialog()?.showError(it)
+                        }
                     })
         } else {
-            view?.dismiss(false)
+            if (!email.isEmailValid()) getDialog()?.accentEmail()
+            if (!password.isPasswordValid()) getDialog()?.accentPassword()
         }
     }
 
     fun onClickCancel() {
-        view?.dismiss(true)
+        getDialog()?.dismiss()
+        onResult(DialogResult(false))
     }
 
-    override fun onPopupResult(result: DialogResult) {}
+    override fun onPopupResult(result: DialogResult) {
+        getDialog()?.dismiss()
+        onResult(result)
+    }
 
     fun getDialog(): LoginDialog? = view as LoginDialog
 }
