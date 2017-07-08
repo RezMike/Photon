@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.graphics.drawable.VectorDrawableCompat
 import android.support.v4.content.ContextCompat
 import android.view.Menu
 import android.view.MenuItem
@@ -245,7 +246,7 @@ class RootActivity : BaseActivity(), IActionBarView {
     }
 
     override fun setOverFlowIcon(iconRes: Int?) {
-        if (iconRes != null) toolbar.overflowIcon = resources.getDrawable(iconRes)
+        if (iconRes != null) toolbar.overflowIcon = VectorDrawableCompat.create(resources, iconRes, null)
     }
 
     override fun setMenuItems(items: ArrayList<MenuItemHolder>) {

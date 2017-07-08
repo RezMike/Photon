@@ -38,7 +38,7 @@ class PhotocardView(context: Context, attrs: AttributeSet?) : AbstractView<Photo
         user_info_wrap.setOnClickListener { presenter.onClickUserInfo(user.id) }
         picasso.load(user.avatar)
                 .resize(80, 80)
-                .placeholder(R.drawable.ic_custom_profile_black_24dp)
+                .placeholder(R.drawable.default_avatar)
                 .into(author_avatar_img)
     }
 
