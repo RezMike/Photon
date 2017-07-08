@@ -5,7 +5,6 @@ import io.github.rezmike.foton.data.network.res.PhotoCardRes
 import io.github.rezmike.foton.data.network.res.UserRes
 import io.github.rezmike.foton.data.storage.AlbumRealm
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
-import io.github.rezmike.foton.data.storage.TagRealm
 import io.github.rezmike.foton.data.storage.UserRealm
 import io.realm.Realm
 import io.realm.RealmObject
@@ -55,7 +54,9 @@ class RealmManager {
 
         if (!albumRes.photocards.isEmpty()) {
             Observable.from(albumRes.photocards)
-                    .map { savePhotoCardResponseToRealm(it) }
+                    .doOnNext { if (!it.active) deleteFromRealm(PhotoCardRealm::class.java, it.id) }
+                    .filter { it.active }
+                    .map { PhotoCardRealm(it) }
                     .subscribe { albumRealm.photoCards.add(it) }
         }
 
@@ -82,27 +83,25 @@ class RealmManager {
 
         val photoCardRealm = PhotoCardRealm(photoCardRes)
 
-        if (!photoCardRes.tags.isEmpty()) {
-            Observable.from(photoCardRes.tags)
-                    .map { saveTagToRealm(it) }
-                    .subscribe { photoCardRealm.tags.add(it) }
-        }
-
         realm.executeTransaction { it.insertOrUpdate(photoCardRealm) }
         realm.close()
 
         return photoCardRealm
     }
 
-    fun saveTagToRealm(tag: String): TagRealm {
-        val realm = Realm.getDefaultInstance()
-
-        val tagRealm = TagRealm(tag)
-
-        realm.executeTransaction { it.insertOrUpdate(tagRealm) }
-        realm.close()
-
-        return tagRealm
+    fun savePhotoCardFavorite(photoId: String, userId: String) {
+        val photoCard = getQueryRealmInstance()
+                .where(PhotoCardRealm::class.java)
+                .equalTo("id", photoId)
+                .findFirst()
+        val favoritesAlbum = getQueryRealmInstance()
+                .where(AlbumRealm::class.java)
+                .equalTo("owner", userId)
+                .equalTo("isFavorite", true)
+                .findFirst()
+        getQueryRealmInstance().executeTransaction {
+            favoritesAlbum.photoCards.add(photoCard)
+        }
     }
 
     //endregion

@@ -3,11 +3,12 @@ package io.github.rezmike.foton.ui.screens.photocard
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.os.Bundle
 import android.view.MenuItem
+import flow.Flow
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
-import io.github.rezmike.foton.data.storage.UserRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
 import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
+import io.github.rezmike.foton.ui.screens.user.UserScreen
 import io.github.rezmike.foton.utils.ConstantManager
 import io.github.rezmike.foton.utils.DaggerService
 import mortar.MortarScope
@@ -37,26 +38,22 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<Phot
     }
 
     private fun loadPhotocardInfo() {
-        //        getRootView()?.showProgress()
+        getRootView()?.showProgress()
         model.getUserData(photoCard.owner)
                 .observeOn(AndroidSchedulers.mainThread())
-//                .doAfterTerminate {getRootView()?.hideProgress()}
+                .doAfterTerminate { getRootView()?.hideProgress() }
                 .subscribe({ view?.showPhotoCardInfo(photoCard, it) }, { getRootView()?.showError(it) })
     }
 
     fun onClickFavorite(): Boolean {
-        if (!rootPresenter.isUserAuth()) {
-            getRootView()?.showMessage(R.string.error_need_enter_account)
-        } else {
+        if (rootPresenter.isUserAuth()) {
             model.saveFavorite(photoCard.id)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ onGiveResponse(it.success) }, { getRootView()?.showError(it) })
+                    .subscribe({}, { getRootView()?.showError(it) })
+        } else {
+            getRootView()?.showMessage(R.string.error_need_enter_account)
         }
         return true
-    }
-
-    fun onGiveResponse(success: Boolean) {
-        TODO() //сделать сохрание фото в альбом фаворит
     }
 
     fun onClickShare(): Boolean {
@@ -72,5 +69,9 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<Phot
                     .subscribe({ getRootView()?.showMessage(R.string.photocard_saving_completed) }, { getRootView()?.showError(it) })
         }
         return true
+    }
+
+    fun onClickUserInfo(userId: String) {
+        Flow.get(view).set(UserScreen(userId))
     }
 }

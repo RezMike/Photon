@@ -2,7 +2,6 @@ package io.github.rezmike.foton.data.managers
 
 import io.github.rezmike.foton.App
 import io.github.rezmike.foton.data.network.RestService
-import io.github.rezmike.foton.data.network.res.SuccessRes
 import io.github.rezmike.foton.data.network.transformer.*
 import io.github.rezmike.foton.data.storage.AlbumRealm
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
@@ -82,11 +81,21 @@ class DataManager private constructor() {
                 .toCompletable()
     }
 
-    fun savePhotoFavoriteSin(photoId: String): Single<SuccessRes> {
+
+    fun savePhotoCardFavoriteComplToRealm(photoId: String): Completable {
+        try {
+            realmManager.savePhotoCardFavorite(photoId, preferencesManager.getUserId()!!)
+            return Completable.complete()
+        } catch (e: Exception) {
+            return Completable.error(e)
+        }
+    }
+
+    fun savePhotoCardFavoriteComplToNetwork(photoId: String): Completable {
         return restService.savePhotoOnFavorite(preferencesManager.getAuthToken()!!, preferencesManager.getUserId()!!, photoId)
                 .compose(SuccessCallTransformer())
                 .subscribeOn(Schedulers.newThread())
-                .toSingle()
+                .toCompletable()
     }
 
     //endregion
@@ -111,7 +120,7 @@ class DataManager private constructor() {
 
     //region ======================== User ========================
 
-    fun getUserSingleFromRealm(userId: String) = realmManager.getUser(userId)
+    fun getUserSinFromRealm(userId: String) = realmManager.getUser(userId)
 
     fun getUserSinFromNetwork(userId: String): Single<UserRealm> {
         return restService.getUserInfo(preferencesManager.getLastUserUpdate(userId), userId)

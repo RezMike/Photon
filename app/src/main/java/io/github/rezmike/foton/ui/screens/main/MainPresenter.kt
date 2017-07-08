@@ -6,7 +6,6 @@ import flow.Flow
 import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.PhotoCardRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
-import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
 import io.github.rezmike.foton.ui.screens.login.LoginScreen
 import io.github.rezmike.foton.ui.screens.photocard.PhotocardScreen
@@ -42,7 +41,7 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     override fun onLoad(savedInstanceState: Bundle?) {
         super.onLoad(savedInstanceState)
         model.getPhotoCardObs()
-                .subscribe({ view.addItem(it) }, { getRootView()?.showError(it) })
+                .subscribe({ view?.addItem(it) }, { getRootView()?.showError(it) })
     }
 
     fun onClickSearch(): Boolean {

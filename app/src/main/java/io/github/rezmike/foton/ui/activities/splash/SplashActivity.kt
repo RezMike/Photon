@@ -12,7 +12,6 @@ import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.scopes.SplashScope
 import io.github.rezmike.foton.ui.activities.root.RootActivity
 import io.github.rezmike.foton.utils.DaggerService
-import kotlinx.android.synthetic.main.activity_root.*
 import kotlinx.android.synthetic.main.activity_splash.*
 import mortar.MortarScope
 import mortar.bundler.BundleServiceRunner
@@ -33,12 +32,10 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        progress.smoothToShow()
         presenter.init()
     }
 
     override fun onPause() {
-        progress.smoothToHide()
         super.onPause()
     }
 
@@ -73,10 +70,12 @@ class SplashActivity : AppCompatActivity() {
 
     //region ======================== ISplashView ========================
 
-    fun showRootActivity() {
-        val activityIntent = Intent(this, RootActivity::class.java)
-        startActivity(activityIntent)
-        finish()
+    fun showProgress() {
+        progress.smoothToShow()
+    }
+
+    fun hideProgress() {
+        progress.smoothToHide()
     }
 
     fun showMessage(message: String) {
@@ -96,6 +95,12 @@ class SplashActivity : AppCompatActivity() {
             //FirebaseCrash.log("ROOT VIEW EXCEPTION")
             //FirebaseCrash.report(e)
         }
+    }
+
+    fun showRootActivity() {
+        val activityIntent = Intent(this, RootActivity::class.java)
+        startActivity(activityIntent)
+        finish()
     }
 
     //endregion

@@ -7,13 +7,13 @@ import rx.Single
 class PhotocardModel : AbstractModel() {
 
     fun getUserData(userId: String): Single<UserRealm> {
-        return dataManager.getUserSingleFromRealm(userId)
+        return dataManager.getUserSinFromRealm(userId)
                 .onErrorResumeNext { dataManager.getUserSinFromNetwork(userId) }
                 .doOnSuccess { dataManager.getUserSinFromNetwork(userId) }
     }
 
-
-    fun saveFavorite(photoId: String) = dataManager.savePhotoFavoriteSin(photoId)
+    fun saveFavorite(photoId: String) = dataManager.savePhotoCardFavoriteComplToRealm(photoId)
+            .andThen(dataManager.savePhotoCardFavoriteComplToNetwork(photoId))
 
     fun downloadAndSavePhotoFile(photoUrl: String) = dataManager.getPhotoFileComplFromNetwork(photoUrl)
 }

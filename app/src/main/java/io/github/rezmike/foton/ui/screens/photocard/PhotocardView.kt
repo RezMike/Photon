@@ -35,6 +35,7 @@ class PhotocardView(context: Context, attrs: AttributeSet?) : AbstractView<Photo
         author_name_tv.text = user.name
         album_count.text = user.albumCount.toString()
         photocard_count.text = user.photocardCount.toString()
+        user_info_wrap.setOnClickListener { presenter.onClickUserInfo(user.id) }
         picasso.load(user.avatar)
                 .resize(80, 80)
                 .placeholder(R.drawable.ic_custom_profile_black_24dp)

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <io.github.rezmike.foton.ui.screens.photocard.PhotocardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -23,13 +22,13 @@
 
                 <include
                     android:id="@+id/food_img_wrap"
-                    layout="@layout/ratio_image_16_9"/>
+                    layout="@layout/ratio_image_16_9" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_alignBottom="@+id/food_img_wrap"
-                    android:background="@drawable/shadow_gradient"/>
+                    android:background="@drawable/shadow_gradient" />
 
                 <TextView
                     android:id="@+id/food_info_tv"
@@ -41,11 +40,12 @@
                     android:layout_marginRight="@dimen/spacing_small_16"
                     android:fontFamily="sans-serif"
                     android:textColor="@color/white"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/user_info_wrap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/spacing_small_16">
@@ -53,7 +53,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/author_avatar_img"
                     style="@style/avatar_style"
-                    tools:background="@color/black"/>
+                    tools:background="@color/black" />
 
                 <TextView
                     android:id="@+id/author_name_tv"
@@ -61,7 +61,7 @@
                     android:layout_marginBottom="4dp"
                     android:layout_marginLeft="@dimen/spacing_small_16"
                     android:layout_toRightOf="@+id/author_avatar_img"
-                    tools:text="Еленна Марчиано"/>
+                    tools:text="Еленна Марчиано" />
 
                 <LinearLayout
                     android:id="@+id/album_wrap"
@@ -75,13 +75,13 @@
                     <TextView
                         android:id="@+id/album_title"
                         style="@style/text_view"
-                        android:text="@string/photocard_albums"/>
+                        android:text="@string/photocard_albums" />
 
                     <TextView
                         android:id="@+id/album_count"
                         style="@style/description_text_view"
                         android:text="0"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -96,20 +96,20 @@
 
                     <TextView
                         style="@style/text_view"
-                        android:text="@string/photocard_cards"/>
+                        android:text="@string/photocard_cards" />
 
                     <TextView
                         android:id="@+id/photocard_count"
                         style="@style/description_text_view"
                         android:text="0"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
             </RelativeLayout>
 
             <com.google.android.flexbox.FlexboxLayout
                 android:id="@+id/flex_box"
-                style="@style/flex_box"/>
+                style="@style/flex_box" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
