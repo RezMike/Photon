@@ -39,7 +39,7 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     override fun onLoad(savedInstanceState: Bundle?) {
         super.onLoad(savedInstanceState)
         model.getPhotoCardObs()
-                .subscribe({ view.addItem(it) }, { getRootView()?.showError(it) })
+                .subscribe({ view?.addItem(it) }, { getRootView()?.showError(it) })
     }
 
     fun onClickSearch(): Boolean {

@@ -59,6 +59,10 @@ class RootPresenter : Presenter<RootActivity>() {
 
     fun isUserAuth() = model.isUserAuth()
 
+    fun sharePhoto(link: String) {
+        getRootView()?.sendSharingIntent(link)
+    }
+
     fun onClickMain() {
         view?.showMainScreen()
     }

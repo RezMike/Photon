@@ -217,6 +217,14 @@ class RootActivity : BaseActivity(), IActionBarView {
         return granted
     }
 
+    fun sendSharingIntent(link: String) {
+        val shareIntent = Intent()
+        shareIntent.action = Intent.ACTION_SEND
+        shareIntent.putExtra(Intent.EXTRA_TEXT, link)
+        shareIntent.type = "text/plain"
+        if (shareIntent.resolveActivity(packageManager) != null) startActivity(shareIntent)
+    }
+
     //endregion
 
     //region ======================== IActionBarView ========================

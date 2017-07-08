@@ -5,6 +5,7 @@ import mortar.MortarScope
 import mortar.Presenter
 import mortar.bundler.BundleService
 import rx.Completable
+import rx.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -22,12 +23,16 @@ class SplashPresenter : Presenter<SplashActivity>() {
         DaggerService.getDaggerComponent<SplashActivity.SplashComponent>(scope).inject(this)
     }
 
-    //region ======================== Presenter ========================
-
     fun init() {
+        view?.showProgress()
         Completable.merge(model.updateLocalDataCompl(), Completable.timer(3, TimeUnit.SECONDS))
-                .subscribe({ view?.showRootActivity() }, { view?.showError(it) })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view?.hideProgress()
+                    view?.showRootActivity()
+                }, {
+                    view?.hideProgress()
+                    view?.showError(it)
+                })
     }
-
-    //endregion
 }

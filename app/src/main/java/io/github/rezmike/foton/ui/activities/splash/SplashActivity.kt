@@ -33,12 +33,10 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        progress.smoothToShow()
         presenter.init()
     }
 
     override fun onPause() {
-        progress.smoothToHide()
         super.onPause()
     }
 
@@ -73,10 +71,12 @@ class SplashActivity : AppCompatActivity() {
 
     //region ======================== ISplashView ========================
 
-    fun showRootActivity() {
-        val activityIntent = Intent(this, RootActivity::class.java)
-        startActivity(activityIntent)
-        finish()
+    fun showProgress() {
+        progress.smoothToShow()
+    }
+
+    fun hideProgress() {
+        progress.smoothToHide()
     }
 
     fun showMessage(message: String) {
@@ -98,6 +98,12 @@ class SplashActivity : AppCompatActivity() {
             //FirebaseCrash.log("ROOT VIEW EXCEPTION")
             //FirebaseCrash.report(e)
         }
+    }
+
+    fun showRootActivity() {
+        val activityIntent = Intent(this, RootActivity::class.java)
+        startActivity(activityIntent)
+        finish()
     }
 
     //endregion

@@ -7,6 +7,7 @@
 
     <!--Errors-->
     <string name="sorry_something_wrong">Извините, что-то пошло не так, попробуйте позже</string>
+    <string name="error_need_enter_account">Необходимо войти в аккаунт</string>
 
     <!--Splash Screen-->
     <string name="splash_title">Фотон</string>
@@ -43,6 +44,12 @@
 
     <!--Photocard Screen-->
     <string name="photocard_title">Фотокарточка</string>
+    <string name="photocard_menu_in_favorites">В избранное</string>
+    <string name="photocard_menu_share">Поделиться</string>
+    <string name="photocard_menu_save">Скачать</string>
+    <string name="photocard_cards">Карты</string>
+    <string name="photocard_albums">Альбомы</string>
+    <string name="photocard_saving_completed">Изображение загружено</string>
 
     <!--Navigation Screen-->
     <string name="navigation_main">Главная</string>
