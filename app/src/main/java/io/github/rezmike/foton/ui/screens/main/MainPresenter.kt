@@ -21,7 +21,6 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     }
 
     override fun initActionBar() {
-
         val actionBar = rootPresenter.ActionBarBuilder()
                 .setTitle(view?.resources?.getString(R.string.main_title)!!)
                 .setOverFlowIcon(R.drawable.ic_custom_gear_black_24dp)

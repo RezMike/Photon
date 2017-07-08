@@ -1,6 +1,6 @@
 package io.github.rezmike.foton.ui.screens.photocard
 
-import io.github.rezmike.foton.data.storage.UserRealm
+import io.github.rezmike.foton.data.storage.realm.UserRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractModel
 import rx.Single
 

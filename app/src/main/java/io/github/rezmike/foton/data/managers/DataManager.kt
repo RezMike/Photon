@@ -2,13 +2,10 @@ package io.github.rezmike.foton.data.managers
 
 import io.github.rezmike.foton.App
 import io.github.rezmike.foton.data.network.RestService
-import io.github.rezmike.foton.data.network.res.AlbumRes
-import io.github.rezmike.foton.data.network.res.PhotoCardRes
-import io.github.rezmike.foton.data.network.transformer.*
+import io.github.rezmike.foton.data.network.transformers.*
 import io.github.rezmike.foton.data.storage.realm.AlbumRealm
 import io.github.rezmike.foton.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.foton.data.storage.realm.UserRealm
-import io.github.rezmike.foton.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.foton.di.components.DaggerDataManagerComponent
 import io.github.rezmike.foton.di.modules.LocalModule
 import io.github.rezmike.foton.di.modules.NetworkModule
@@ -62,7 +59,7 @@ class DataManager private constructor() {
 
     fun getPhotoCardComplFromNetwork(): Completable {
         return restService.getAllPhotoCards(preferencesManager.getLastPhotoCardsUpdate())
-                .compose(PhotosCallTransformer())
+                .compose(PhotoCardsCallTransformer())
                 .flatMap { Observable.from(it) }
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.io())
@@ -105,7 +102,7 @@ class DataManager private constructor() {
         return Observable.just(preferencesManager.isUserAuth())
                 .filter { it }
                 .flatMap { restService.getAllAlbums(preferencesManager.getLastAlbumsUpdate(), preferencesManager.getUserId()!!) }
-                .compose(AlbumsRestCallTransformer())
+                .compose(AlbumsCallTransformer())
                 .flatMap { Observable.from(it) }
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.io())

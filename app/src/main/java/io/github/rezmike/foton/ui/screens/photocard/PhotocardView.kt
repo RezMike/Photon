@@ -6,9 +6,9 @@ import android.view.Gravity
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import io.github.rezmike.foton.R
-import io.github.rezmike.foton.data.storage.PhotoCardRealm
-import io.github.rezmike.foton.data.storage.TagRealm
-import io.github.rezmike.foton.data.storage.UserRealm
+import io.github.rezmike.foton.data.storage.realm.PhotoCardRealm
+import io.github.rezmike.foton.data.storage.realm.TagRealm
+import io.github.rezmike.foton.data.storage.realm.UserRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractView
 import io.github.rezmike.foton.utils.DaggerService
 import io.realm.RealmList

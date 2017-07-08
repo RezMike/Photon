@@ -1,4 +1,4 @@
-package io.github.rezmike.foton.data.network.transformer
+package io.github.rezmike.foton.data.network.transformers
 
 import io.github.rezmike.foton.data.network.res.SuccessRes
 

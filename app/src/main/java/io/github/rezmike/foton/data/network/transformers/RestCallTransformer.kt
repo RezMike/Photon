@@ -1,4 +1,4 @@
-package io.github.rezmike.foton.data.network.transformer
+package io.github.rezmike.foton.data.network.transformers
 
 import android.support.annotation.VisibleForTesting
 import android.support.annotation.VisibleForTesting.NONE
@@ -27,12 +27,9 @@ abstract class RestCallTransformer<R> : Observable.Transformer<Response<R>, R> {
                 .flatMap { aBoolean -> if (aBoolean) responseObservable else Observable.error<Response<R>>(NetworkAvailableError()) }
                 .flatMap { rResponse ->
                     when (rResponse.code()) {
-                        200 -> {
+                        200, 201 -> {
                             val lastModified = rResponse.headers().get(ConstantManager.LAST_MODIFIED_HEADER)
                             if (lastModified != null) saveLastModify(lastModified)
-                            Observable.just(rResponse.body())
-                        }
-                        201 -> {
                             Observable.just(rResponse.body())
                         }
                         304 -> Observable.empty()
