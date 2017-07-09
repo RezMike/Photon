@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.MenuItem
 import flow.Flow
 import io.github.rezmike.foton.R
-import io.github.rezmike.foton.data.storage.PhotoCardRealm
+import io.github.rezmike.foton.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
-import io.github.rezmike.foton.ui.activities.root.MenuItemHolder
+import io.github.rezmike.foton.ui.others.MenuItemHolder
 import io.github.rezmike.foton.ui.screens.photocard.PhotocardScreen
 import io.github.rezmike.foton.ui.screens.register.RegisterScreen
 import io.github.rezmike.foton.ui.screens.search.SearchScreen
@@ -24,7 +24,7 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
                 .setTitle(view?.resources?.getString(R.string.main_title)!!)
                 .setOverFlowIcon(R.drawable.ic_custom_gear_black_24dp)
                 .addAction(MenuItemHolder(view?.context?.getString(R.string.main_menu_search), R.drawable.ic_custom_search_black_24dp, { onClickSearch() }, MenuItem.SHOW_AS_ACTION_ALWAYS))
-        if (model.isUserAuth()) {
+        if (rootPresenter.isUserAuth()) {
             actionBar.addAction(MenuItemHolder(view?.context?.getString(R.string.main_menu_logout), 0, { onClickLogout() }, MenuItem.SHOW_AS_ACTION_NEVER))
         } else {
             actionBar.addAction(MenuItemHolder(view?.context?.getString(R.string.main_menu_login), 0, { onClickLogin() }, MenuItem.SHOW_AS_ACTION_NEVER))
@@ -37,7 +37,7 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     override fun onLoad(savedInstanceState: Bundle?) {
         super.onLoad(savedInstanceState)
         model.getPhotoCardObs()
-                .subscribe({ view.addItem(it) }, { getRootView()?.showError(it) })
+                .subscribe({ view?.addItem(it) }, { getRootView()?.showError(it) })
     }
 
     fun onClickSearch(): Boolean {

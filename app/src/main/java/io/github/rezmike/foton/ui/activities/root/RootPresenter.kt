@@ -9,6 +9,7 @@ import io.github.rezmike.foton.data.storage.dto.ActivityResultDto
 import io.github.rezmike.foton.data.storage.dto.DialogResult
 import io.github.rezmike.foton.ui.dialogs.login.LoginDialog
 import io.github.rezmike.foton.ui.dialogs.login.LoginPresenter
+import io.github.rezmike.foton.ui.others.MenuItemHolder
 import io.github.rezmike.foton.utils.ConstantManager
 import io.github.rezmike.foton.utils.DaggerService
 import mortar.MortarScope
@@ -68,6 +69,12 @@ class RootPresenter : Presenter<RootActivity>() {
                 view.showMessage(R.string.photo_upload_need_write_permission)
             }
         }
+    }
+
+    fun isUserAuth() = model.isUserAuth()
+
+    fun sharePhoto(link: String) {
+        getRootView()?.sendSharingIntent(link)
     }
 
     //region ======================== Dialogs ========================

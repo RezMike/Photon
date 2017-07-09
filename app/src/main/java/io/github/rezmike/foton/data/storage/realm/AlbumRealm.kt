@@ -1,4 +1,4 @@
-package io.github.rezmike.foton.data.storage
+package io.github.rezmike.foton.data.storage.realm
 
 import io.github.rezmike.foton.data.network.res.AlbumRes
 import io.realm.RealmList
@@ -12,6 +12,7 @@ open class AlbumRealm() : RealmObject() {
     var owner: String = ""
     var title: String = ""
     var description: String = ""
+    var active: Boolean = false
     var isFavorite: Boolean = false
     var views: Int = 0
     var favorits: Int = 0
@@ -21,6 +22,7 @@ open class AlbumRealm() : RealmObject() {
         id = albumRes.id
         owner = albumRes.owner
         title = albumRes.title
+        active = albumRes.active
         description = albumRes.description
         isFavorite = albumRes.isFavorite
         views = albumRes.views

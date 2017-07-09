@@ -1,4 +1,4 @@
-package io.github.rezmike.foton.ui.activities.root
+package io.github.rezmike.foton.ui.others
 
 import android.view.MenuItem
 

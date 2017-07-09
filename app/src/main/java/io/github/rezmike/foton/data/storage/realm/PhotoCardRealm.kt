@@ -1,4 +1,4 @@
-package io.github.rezmike.foton.data.storage
+package io.github.rezmike.foton.data.storage.realm
 
 import io.github.rezmike.foton.data.network.res.PhotoCardRes
 import io.realm.RealmList
@@ -23,7 +23,6 @@ open class PhotoCardRealm() : RealmObject() {
     var views: Int = 0
         private set
     var favorits: Int = 0
-        private set
     var tags: RealmList<TagRealm> = RealmList()
         private set
     var filters: FilterRealm = FilterRealm()
@@ -39,5 +38,10 @@ open class PhotoCardRealm() : RealmObject() {
         views = photoCardRes.views
         favorits = photoCardRes.favorits
         filters = FilterRealm(photoCardRes.filters)
+        if (!photoCardRes.tags.isEmpty()) {
+            photoCardRes.tags
+                    .map { TagRealm(it) }
+                    .forEach { tags.add(it) }
+        }
     }
 }

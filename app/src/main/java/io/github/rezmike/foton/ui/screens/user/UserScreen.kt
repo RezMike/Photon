@@ -1,46 +1,44 @@
-package io.github.rezmike.foton.ui.screens.photocard
+package io.github.rezmike.foton.ui.screens.user
 
 import dagger.Provides
 import io.github.rezmike.foton.R
-import io.github.rezmike.foton.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.foton.di.scopes.DaggerScope
 import io.github.rezmike.foton.ui.abstracts.AbstractScreen
 import io.github.rezmike.foton.ui.activities.root.BottomBarItems
 import io.github.rezmike.foton.ui.activities.root.RootActivity
 
-class PhotocardScreen(val photoCard: PhotoCardRealm) : AbstractScreen<RootActivity.RootComponent>() {
+class UserScreen(val userId: String) : AbstractScreen<RootActivity.RootComponent>() {
 
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
-        return DaggerPhotocardScreen_Component.builder()
+        return DaggerUserScreen_Component.builder()
                 .rootComponent(parentComponent)
-                .module(Module(photoCard))
+                .module(Module(userId))
                 .build()
     }
 
-    override fun getLayoutResId(): Int = R.layout.screen_photocard
+    override fun getLayoutResId(): Int = R.layout.screen_user
 
     override fun getCurrentBottomItem() = BottomBarItems.MAIN
 
     //region ======================== DI ========================
 
     @dagger.Component(dependencies = arrayOf(RootActivity.RootComponent::class), modules = arrayOf(Module::class))
-    @DaggerScope(PhotocardScreen::class)
+    @DaggerScope(UserScreen::class)
     interface Component {
-        fun inject(presenter: PhotocardPresenter)
+        fun inject(presenter: UserPresenter)
 
-        fun inject(view: PhotocardView)
+        fun inject(view: UserView)
     }
 
     @dagger.Module
-    class Module(val photoCard: PhotoCardRealm) {
+    class Module(val userId: String) {
+        @Provides
+        @DaggerScope(UserScreen::class)
+        fun providePresenter() = UserPresenter(userId)
 
         @Provides
-        @DaggerScope(PhotocardScreen::class)
-        fun providePresenter() = PhotocardPresenter(photoCard)
-
-        @Provides
-        @DaggerScope(PhotocardScreen::class)
-        fun provideModel() = PhotocardModel()
+        @DaggerScope(UserScreen::class)
+        fun provideModel() = UserModel()
     }
 
     //endregion

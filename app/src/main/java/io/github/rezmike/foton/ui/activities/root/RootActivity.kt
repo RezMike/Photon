@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.graphics.drawable.VectorDrawableCompat
 import android.support.v4.content.ContextCompat
 import android.view.Menu
 import android.view.MenuItem
@@ -19,6 +20,7 @@ import io.github.rezmike.foton.di.modules.PicassoCacheModule
 import io.github.rezmike.foton.di.scopes.RootScope
 import io.github.rezmike.foton.ui.abstracts.BaseActivity
 import io.github.rezmike.foton.ui.abstracts.IView
+import io.github.rezmike.foton.ui.others.MenuItemHolder
 import io.github.rezmike.foton.ui.screens.auth.AuthScreen
 import io.github.rezmike.foton.ui.screens.main.MainScreen
 import io.github.rezmike.foton.ui.screens.profile.ProfileScreen
@@ -216,6 +218,14 @@ class RootActivity : BaseActivity(), IActionBarView {
         return granted
     }
 
+    fun sendSharingIntent(link: String) {
+        val shareIntent = Intent()
+        shareIntent.action = Intent.ACTION_SEND
+        shareIntent.putExtra(Intent.EXTRA_TEXT, link)
+        shareIntent.type = "text/plain"
+        if (shareIntent.resolveActivity(packageManager) != null) startActivity(shareIntent)
+    }
+
     //endregion
 
     //region ======================== IActionBarView ========================
@@ -236,7 +246,7 @@ class RootActivity : BaseActivity(), IActionBarView {
     }
 
     override fun setOverFlowIcon(iconRes: Int?) {
-        if (iconRes != null) toolbar.overflowIcon = resources.getDrawable(iconRes)
+        if (iconRes != null) toolbar.overflowIcon = VectorDrawableCompat.create(resources, iconRes, null)
     }
 
     override fun setMenuItems(items: ArrayList<MenuItemHolder>) {

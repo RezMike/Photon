@@ -8,5 +8,5 @@ data class UserRes(
         val token: String,
         val albumCount: Int,
         val photocardCount: Int,
-        val albums: List<AlbumRes?>
+        val albums: List<AlbumRes>
 )

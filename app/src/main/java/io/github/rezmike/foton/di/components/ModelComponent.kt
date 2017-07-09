@@ -1,10 +1,9 @@
 package io.github.rezmike.foton.di.components
 
-import javax.inject.Singleton
-
 import dagger.Component
 import io.github.rezmike.foton.di.modules.ModelModule
 import io.github.rezmike.foton.ui.abstracts.AbstractModel
+import javax.inject.Singleton
 
 @Component(modules = arrayOf(ModelModule::class))
 @Singleton

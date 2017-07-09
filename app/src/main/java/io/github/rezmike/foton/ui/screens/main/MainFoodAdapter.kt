@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import io.github.rezmike.foton.R
-import io.github.rezmike.foton.data.storage.PhotoCardRealm
+import io.github.rezmike.foton.data.storage.realm.PhotoCardRealm
 import kotlinx.android.synthetic.main.item_wall_food.view.*
 import kotlinx.android.synthetic.main.ratio_image_1_1.view.*
 

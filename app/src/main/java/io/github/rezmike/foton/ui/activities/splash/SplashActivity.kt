@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import dagger.Provides
 import io.github.rezmike.foton.App
 import io.github.rezmike.foton.BuildConfig
@@ -33,12 +32,10 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        progress.smoothToShow()
         presenter.init()
     }
 
     override fun onPause() {
-        progress.smoothToHide()
         super.onPause()
     }
 
@@ -73,15 +70,17 @@ class SplashActivity : AppCompatActivity() {
 
     //region ======================== ISplashView ========================
 
-    fun showRootActivity() {
-        val activityIntent = Intent(this, RootActivity::class.java)
-        startActivity(activityIntent)
-        finish()
+    fun showProgress() {
+        progress.smoothToShow()
+    }
+
+    fun hideProgress() {
+        progress.smoothToHide()
     }
 
     fun showMessage(message: String) {
         Snackbar.make(root_frame, message, Snackbar.LENGTH_LONG)
-                .setAction(R.string.main_repeate, {presenter.init()})
+                .setAction(R.string.main_repeate, { presenter.init() })
                 .show()
     }
 
@@ -98,6 +97,12 @@ class SplashActivity : AppCompatActivity() {
             //FirebaseCrash.log("ROOT VIEW EXCEPTION")
             //FirebaseCrash.report(e)
         }
+    }
+
+    fun showRootActivity() {
+        val activityIntent = Intent(this, RootActivity::class.java)
+        startActivity(activityIntent)
+        finish()
     }
 
     //endregion

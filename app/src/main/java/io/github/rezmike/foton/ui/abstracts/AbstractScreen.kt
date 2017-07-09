@@ -12,5 +12,5 @@ abstract class AbstractScreen<in T> {
 
     abstract fun getCurrentBottomItem(): BottomBarItems
 
-    fun getLayout() : Int = getLayoutResId()
+    fun getLayout(): Int = getLayoutResId()
 }

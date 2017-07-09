@@ -5,9 +5,8 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-
+import com.wang.avi.AVLoadingIndicatorView
 import io.github.rezmike.foton.R
-import kotlinx.android.synthetic.main.progress_splash.*
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -35,7 +34,7 @@ open class BaseActivity : AppCompatActivity() {
         super.onStop()
         if (progressDialog?.isShowing ?: false) {
             isDialogShowing = true
-            progressDialog?.dismiss()
+            dismissProgress()
         }
     }
 
@@ -47,13 +46,19 @@ open class BaseActivity : AppCompatActivity() {
         }
         progressDialog?.show()
         progressDialog?.setContentView(R.layout.progress_splash)
-        progress.show()
+        val progress = progressDialog?.findViewById(R.id.progress) as AVLoadingIndicatorView?
+        progress?.smoothToShow()
     }
 
     fun hideProgress() {
         if (progressDialog == null) return
-        progress.hide()
         isDialogShowing = false;
+        dismissProgress()
+    }
+
+    private fun dismissProgress() {
+        val progress = progressDialog?.findViewById(R.id.progress) as AVLoadingIndicatorView?
+        progress?.smoothToHide()
         progressDialog?.dismiss()
     }
 }
