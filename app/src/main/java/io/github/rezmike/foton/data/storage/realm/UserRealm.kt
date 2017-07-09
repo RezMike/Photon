@@ -11,7 +11,6 @@ open class UserRealm() : RealmObject() {
     var id: String = ""
     var name: String = ""
     var login: String = ""
-    var mail: String = ""
     var avatar: String = ""
     var token: String = ""
     var albumCount: Int = 0
@@ -22,7 +21,6 @@ open class UserRealm() : RealmObject() {
         id = user.id
         name = user.name
         login = user.login
-        mail = user.mail
         avatar = user.avatar
         token = user.token
         albumCount = user.albumCount
