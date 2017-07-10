@@ -5,19 +5,42 @@
     <string name="roboto_medium">sans-serif-medium</string>
     <string name="roboto_regular">sans-serif</string>
 
+    <!--Errors-->
+    <string name="sorry_something_wrong">Извините, что-то пошло не так, попробуйте позже</string>
+    <string name="error_need_enter_account">Необходимо войти в аккаунт</string>
+    <string name="error_unknown">Неизвестная ошибка</string>
+
     <!--Splash Screen-->
     <string name="splash_title">Фотон</string>
     <string name="splash_description">Онлайн-галерея фуд-фотографии.\nДля вдохновения и обучения.</string>
 
+    <!--Main Screen-->
+    <string name="main_title">Фотон</string>
+    <string name="main_menu_search">Поиск</string>
+    <string name="main_menu_login">Войти</string>
+    <string name="main_menu_logout">Выйти</string>
+    <string name="main_menu_register">Зарегистрироваться</string>
+    <string name="main_repeate">Повтор</string>
+    <string name="main_menu_connect_developers">Связаться с разработчиками</string>
+
     <!--Auth Screen-->
+    <string name="auth_title">Профиль</string>
+    <string name="auth_menu_login">Войти</string>
+    <string name="auth_menu_register">Зарегистрироваться</string>
     <string name="auth_description">Авторизуйтесь, чтобы посмотреть данные профиля</string>
     <string name="auth_sign_up">Регистрация</string>
     <string name="auth_sign_in">Вход</string>
+    <string name="auth_success">Вы успешно авторизованы</string>
 
-    <!--Sign In Screen-->
-    <string name="sign_in_title">Вход в аккаунт</string>
-    <string name="sign_in_email">Email</string>
-    <string name="sign_in_password">Пароль</string>
+    <!--Login Screen-->
+    <string name="login_title">Фотон</string>
+    <string name="login_header">Вход в аккаунт</string>
+    <string name="login_email">Email</string>
+    <string name="login_email_error">Email невалидный</string>
+    <string name="login_password">Пароль</string>
+    <string name="login_password_error">Длина не менее 8 символов, латиница, не может содержать спецзнаки и нижние подчеркивания (!@#$%^&amp;*()\|_=+-)</string>
+    <string name="login_error_incorrect_data">Неверный email или пароль</string>
+    <string name="login_error_empty_fields">Заполните все поля!</string>
 
     <!--Sign Up Screen-->
     <string name="sign_up_title">Регистрация</string>
@@ -25,6 +48,20 @@
     <string name="sign_up_email">Email</string>
     <string name="sign_up_name">Имя</string>
     <string name="sign_up_password">Пароль</string>
+
+    <!--Photocard Screen-->
+    <string name="photocard_title">Фотокарточка</string>
+    <string name="photocard_menu_in_favorites">В избранное</string>
+    <string name="photocard_menu_share">Поделиться</string>
+    <string name="photocard_menu_save">Скачать</string>
+    <string name="photocard_cards">Карты</string>
+    <string name="photocard_albums">Альбомы</string>
+    <string name="photocard_saving_completed">Изображение загружено</string>
+
+    <!--Navigation Screen-->
+    <string name="navigation_main">Главная</string>
+    <string name="navigation_profile">Профиль</string>
+    <string name="navigation_upload">Загрузить</string>
 
     <!--Items Info Photo Or Album-->
     <string name="item_info_name_album">Фото</string>
@@ -43,5 +80,53 @@
     <string name="dialog_footer_ok">@android:string/ok</string>
     <string name="dialog_footer_cancel">Отмена</string>
 
+    <!--Filters-->
+    <string name="filters_food">Блюдо</string>
+    <string name="filter_meat">Мясо</string>
+    <string name="filter_fish">Рыба</string>
+    <string name="filter_vegetable">Овощи</string>
+    <string name="filter_fruit">Фрукты</string>
+    <string name="filter_cheese">Сыр</string>
+    <string name="filter_candy">Десерты</string>
+    <string name="filter_drink">Напитки</string>
+    <string name="filter_tone">Оттенки</string>
+    <string name="filter_decor">Оформление</string>
+    <string name="filter_temperature">Температура</string>
+    <string name="filter_light">Свет</string>
+    <string name="filter_direction_light">Направление света</string>
+    <string name="filter_source_light">Источник света</string>
+    <string name="filter_common">Обычное</string>
+    <string name="filter_party">Праздничное</string>
+    <string name="filter_light_natural">Естественный</string>
+    <string name="filter_light_synthetic">Искуственный</string>
+    <string name="filter_light_mix">Смешанный</string>
+    <string name="filter_cold_temp">Холодная</string>
+    <string name="filter_hot_temp">Горячая</string>
+    <string name="filter_comfort_temp">Комнатная</string>
+    <string name="filter_light_dir_front">Прямой</string>
+    <string name="filter_light_dir_back">Контровой</string>
+    <string name="filter_light_dir_side">Боковой</string>
+    <string name="filter_light_dir_mix">Смешанный</string>
+    <string name="filter_light_count_one">Один</string>
+    <string name="filter_light_count_two">Два</string>
+    <string name="filter_light_count_three">Три</string>
+    <string name="filter_yellow">Желтый</string>
+    <string name="filter_orange">Оранжевый</string>
+    <string name="filter_red">Красный</string>
+    <string name="filter_green">Зеленый</string>
+    <string name="filter_blue">Голубой</string>
+    <string name="filter_white">Белый</string>
+    <string name="filter_dark_blue">Синий</string>
+    <string name="filter_black">Черный</string>
+    <string name="filter_brown">Коричневый</string>
+    <string name="filter_purple">Фиолетовый</string>
+
+    <!--Profile photo upload-->
+    <string name="photo_upload_choose_photo">Выберите фото</string>
+    <string name="photo_upload_permit">Разрешить</string>
+    <string name="photo_upload_need_camera_permission">Необходимо разрешение на работу с камерой!</string>
+    <string name="photo_upload_need_write_permission">Необходимо разрешение на запись!</string>
+    <string name="photo_error_create_file">Фотография не может быть создана</string>
+    <string name="photo_error_give_permission">Для корректной работы приложения необходимо дать требуемые разрешения!</string>
 
 </resources>

@@ -10,8 +10,6 @@ import kotlin.collections.ArrayList
 
 object ScreenScoper {
 
-    const val SERVICE_NAME = "DEPENDENCY_SERVICE"
-
     @JvmStatic
     fun <T> getScreenScope(context: Context, screen: AbstractScreen<T>): MortarScope {
 
@@ -20,11 +18,11 @@ object ScreenScoper {
         val childScope = parentScope.findChild(screen.getScopeName())
         if (childScope != null) return childScope
 
-        val parentComponent: T = parentScope.getService(SERVICE_NAME)
+        val parentComponent: T = parentScope.getService(DaggerService.SERVICE_NAME)
         val screenComponent: Any = screen.createScreenComponent(parentComponent)
 
         return parentScope.buildChild()
-                .withService(SERVICE_NAME, screenComponent)
+                .withService(DaggerService.SERVICE_NAME, screenComponent)
                 .build(screen.getScopeName())
     }
 

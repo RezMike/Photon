@@ -2,13 +2,13 @@ package io.github.rezmike.foton
 
 import android.app.Application
 import android.content.Context
+import android.support.v7.app.AppCompatDelegate
 import io.github.rezmike.foton.di.components.AppComponent
 import io.github.rezmike.foton.di.components.DaggerAppComponent
 import io.github.rezmike.foton.di.modules.AppModule
-import io.github.rezmike.foton.utils.ScreenScoper
+import io.github.rezmike.foton.utils.DaggerService
 import io.realm.Realm
 import mortar.MortarScope
-
 
 class App : Application() {
 
@@ -17,6 +17,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         Realm.init(this)
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
 
     override fun getSystemService(name: String): Any {
@@ -33,7 +34,7 @@ class App : Application() {
                 .appModule(AppModule(applicationContext))
                 .build()
         rootScope = MortarScope.buildRootScope()
-                .withService(ScreenScoper.SERVICE_NAME, appComponent)
+                .withService(DaggerService.SERVICE_NAME, appComponent)
                 .build("Root")
         context = appComponent.context()
     }
