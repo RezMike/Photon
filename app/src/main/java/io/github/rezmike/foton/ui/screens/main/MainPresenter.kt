@@ -7,7 +7,6 @@ import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.foton.ui.abstracts.AbstractPresenter
 import io.github.rezmike.foton.ui.others.MenuItemHolder
-import io.github.rezmike.foton.ui.screens.login.LoginScreen
 import io.github.rezmike.foton.ui.screens.photocard.PhotocardScreen
 import io.github.rezmike.foton.ui.screens.register.RegisterScreen
 import io.github.rezmike.foton.ui.screens.search.SearchScreen
@@ -53,7 +52,7 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     }
 
     fun onClickLogin(): Boolean {
-        Flow.get(view).set(LoginScreen())
+        rootPresenter.showLoginDialog({ initActionBar() })
         return true
     }
 

@@ -1,5 +1,6 @@
 package io.github.rezmike.foton.data.network
 
+import io.github.rezmike.foton.data.network.req.LoginReq
 import io.github.rezmike.foton.data.network.res.AlbumRes
 import io.github.rezmike.foton.data.network.res.PhotoCardRes
 import io.github.rezmike.foton.data.network.res.SuccessRes
@@ -7,10 +8,7 @@ import io.github.rezmike.foton.data.network.res.UserRes
 import io.github.rezmike.foton.utils.ConstantManager
 import okhttp3.ResponseBody
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Path
-import retrofit2.http.Url
+import retrofit2.http.*
 import rx.Observable
 
 interface RestService {
@@ -33,4 +31,7 @@ interface RestService {
 
     @GET
     fun getPhotoFile(@Url fileUrl: String): Observable<Response<ResponseBody>>
+
+    @POST("user/signIn")
+    fun login(@Body loginReq: LoginReq): Observable<Response<UserRes>>
 }

@@ -8,6 +8,7 @@
     <!--Errors-->
     <string name="sorry_something_wrong">Извините, что-то пошло не так, попробуйте позже</string>
     <string name="error_need_enter_account">Необходимо войти в аккаунт</string>
+    <string name="error_unknown">Неизвестная ошибка</string>
 
     <!--Splash Screen-->
     <string name="splash_title">Фотон</string>
@@ -29,11 +30,17 @@
     <string name="auth_description">Авторизуйтесь, чтобы посмотреть данные профиля</string>
     <string name="auth_sign_up">Регистрация</string>
     <string name="auth_sign_in">Вход</string>
+    <string name="auth_success">Вы успешно авторизованы</string>
 
-    <!--Sign In Screen-->
-    <string name="sign_in_title">Вход в аккаунт</string>
-    <string name="sign_in_email">Email</string>
-    <string name="sign_in_password">Пароль</string>
+    <!--Login Screen-->
+    <string name="login_title">Фотон</string>
+    <string name="login_header">Вход в аккаунт</string>
+    <string name="login_email">Email</string>
+    <string name="login_email_error">Email невалидный</string>
+    <string name="login_password">Пароль</string>
+    <string name="login_password_error">Длина не менее 8 символов, латиница, не может содержать спецзнаки и нижние подчеркивания (!@#$%^&amp;*()\|_=+-)</string>
+    <string name="login_error_incorrect_data">Неверный email или пароль</string>
+    <string name="login_error_empty_fields">Заполните все поля!</string>
 
     <!--Sign Up Screen-->
     <string name="sign_up_title">Регистрация</string>
@@ -121,6 +128,5 @@
     <string name="photo_upload_need_write_permission">Необходимо разрешение на запись!</string>
     <string name="photo_error_create_file">Фотография не может быть создана</string>
     <string name="photo_error_give_permission">Для корректной работы приложения необходимо дать требуемые разрешения!</string>
-
 
 </resources>

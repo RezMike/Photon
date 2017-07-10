@@ -14,6 +14,7 @@
     <!--dialog-->
     <color name="dialog_background">#88000000</color>
     <color name="dialog_borders_et">#939393</color>
+    <color name="dialog_borders_et_error">#a20707</color>
 
     <!--gradient-->
     <color name="color_start_gradient">#88000000</color>

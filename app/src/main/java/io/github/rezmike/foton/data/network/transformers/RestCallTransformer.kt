@@ -6,6 +6,7 @@ import com.fernandocejas.frodo.annotation.RxLogObservable
 import io.github.rezmike.foton.data.network.error.AccessError
 import io.github.rezmike.foton.data.network.error.ErrorUtils
 import io.github.rezmike.foton.data.network.error.NetworkAvailableError
+import io.github.rezmike.foton.data.network.error.NotFoundError
 import io.github.rezmike.foton.utils.ConstantManager
 import io.github.rezmike.foton.utils.NetworkStatusChecker
 import retrofit2.Response
@@ -34,6 +35,7 @@ abstract class RestCallTransformer<R> : Observable.Transformer<Response<R>, R> {
                         }
                         304 -> Observable.empty()
                         403 -> Observable.error(AccessError())
+                        404 -> Observable.error(NotFoundError())
                         else -> Observable.error(ErrorUtils.parseError(rResponse))
                     }
                 }
