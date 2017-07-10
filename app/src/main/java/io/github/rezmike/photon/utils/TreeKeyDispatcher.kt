@@ -46,7 +46,7 @@ class TreeKeyDispatcher(val activity: Activity) : Dispatcher {
             }
         }
         rootFrame.addView(newView)
-        (activity as RootActivity).setCurrentBottomItem(inKey.getCurrentBottomItem())
+        (activity as RootActivity).setCurrentBottomItem(inKey.currentBottomItem)
         callback.onTraversalCompleted()
     }
 }

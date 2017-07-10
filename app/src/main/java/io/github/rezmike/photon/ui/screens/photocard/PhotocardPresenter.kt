@@ -7,6 +7,7 @@ import flow.Flow
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.photon.ui.abstracts.AbstractPresenter
+import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.others.MenuItemHolder
 import io.github.rezmike.photon.ui.screens.user.UserScreen
 import io.github.rezmike.photon.utils.ConstantManager
@@ -14,7 +15,7 @@ import io.github.rezmike.photon.utils.DaggerService
 import mortar.MortarScope
 import rx.android.schedulers.AndroidSchedulers
 
-class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<PhotocardView, PhotocardModel, PhotocardPresenter>() {
+class PhotocardPresenter(val photoCard: PhotoCardRealm, val bottomBarItem: BottomBarItems) : AbstractPresenter<PhotocardView, PhotocardModel, PhotocardPresenter>() {
 
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<PhotocardScreen.Component>(scope).inject(this)
@@ -72,6 +73,6 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm) : AbstractPresenter<Phot
     }
 
     fun onClickUserInfo(userId: String) {
-        Flow.get(view).set(UserScreen(userId))
+        Flow.get(view).set(UserScreen(userId, bottomBarItem))
     }
 }

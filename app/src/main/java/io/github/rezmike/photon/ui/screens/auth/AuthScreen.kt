@@ -7,7 +7,7 @@ import io.github.rezmike.photon.ui.abstracts.AbstractScreen
 import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.activities.root.RootActivity
 
-class AuthScreen : AbstractScreen<RootActivity.RootComponent>() {
+class AuthScreen : AbstractScreen<RootActivity.RootComponent>(BottomBarItems.PROFILE) {
 
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
         return DaggerAuthScreen_Component.builder()
@@ -17,8 +17,6 @@ class AuthScreen : AbstractScreen<RootActivity.RootComponent>() {
     }
 
     override fun getLayoutResId(): Int = R.layout.screen_auth
-
-    override fun getCurrentBottomItem() = BottomBarItems.PROFILE
 
     //region ======================== DI ========================
 
@@ -35,10 +33,6 @@ class AuthScreen : AbstractScreen<RootActivity.RootComponent>() {
         @Provides
         @DaggerScope(AuthScreen::class)
         fun providePresenter() = AuthPresenter()
-
-        @Provides
-        @DaggerScope(AuthScreen::class)
-        fun provideModel() = AuthModel()
     }
 
     //endregion

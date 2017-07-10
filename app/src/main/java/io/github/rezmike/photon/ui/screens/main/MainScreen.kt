@@ -7,7 +7,7 @@ import io.github.rezmike.photon.ui.abstracts.AbstractScreen
 import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.activities.root.RootActivity
 
-class MainScreen : AbstractScreen<RootActivity.RootComponent>() {
+class MainScreen : AbstractScreen<RootActivity.RootComponent>(BottomBarItems.MAIN) {
 
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
         return DaggerMainScreen_Component.builder()
@@ -17,8 +17,6 @@ class MainScreen : AbstractScreen<RootActivity.RootComponent>() {
     }
 
     override fun getLayoutResId(): Int = R.layout.screen_main
-
-    override fun getCurrentBottomItem() = BottomBarItems.MAIN
 
     //region ======================== DI ========================
 

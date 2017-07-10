@@ -8,18 +8,17 @@ import io.github.rezmike.photon.ui.abstracts.AbstractScreen
 import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.activities.root.RootActivity
 
-class PhotocardScreen(val photoCard: PhotoCardRealm) : AbstractScreen<RootActivity.RootComponent>() {
+class PhotocardScreen(val photoCard: PhotoCardRealm,
+                      val bottomBarItem: BottomBarItems = BottomBarItems.MAIN) : AbstractScreen<RootActivity.RootComponent>(bottomBarItem) {
 
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
         return DaggerPhotocardScreen_Component.builder()
                 .rootComponent(parentComponent)
-                .module(Module(photoCard))
+                .module(Module(photoCard, bottomBarItem))
                 .build()
     }
 
     override fun getLayoutResId(): Int = R.layout.screen_photocard
-
-    override fun getCurrentBottomItem() = BottomBarItems.MAIN
 
     //region ======================== DI ========================
 
@@ -32,11 +31,11 @@ class PhotocardScreen(val photoCard: PhotoCardRealm) : AbstractScreen<RootActivi
     }
 
     @dagger.Module
-    class Module(val photoCard: PhotoCardRealm) {
+    class Module(val photoCard: PhotoCardRealm, val bottomBarItem: BottomBarItems) {
 
         @Provides
         @DaggerScope(PhotocardScreen::class)
-        fun providePresenter() = PhotocardPresenter(photoCard)
+        fun providePresenter() = PhotocardPresenter(photoCard, bottomBarItem)
 
         @Provides
         @DaggerScope(PhotocardScreen::class)

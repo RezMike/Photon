@@ -7,7 +7,7 @@ import io.github.rezmike.photon.ui.abstracts.AbstractScreen
 import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.activities.root.RootActivity
 
-class AddInfoScreen(photoUri: String) : AbstractScreen<RootActivity.RootComponent>() {
+class AddInfoScreen(photoUri: String) : AbstractScreen<RootActivity.RootComponent>(BottomBarItems.UPLOAD) {
 
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
         return DaggerAddInfoScreen_Component.builder()
@@ -17,8 +17,6 @@ class AddInfoScreen(photoUri: String) : AbstractScreen<RootActivity.RootComponen
     }
 
     override fun getLayoutResId(): Int = R.layout.screen_add_info
-
-    override fun getCurrentBottomItem() = BottomBarItems.UPLOAD
 
     //region ======================== DI ========================
 

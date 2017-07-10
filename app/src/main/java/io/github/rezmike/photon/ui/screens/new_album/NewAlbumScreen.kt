@@ -7,7 +7,7 @@ import io.github.rezmike.photon.ui.abstracts.AbstractScreen
 import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.activities.root.RootActivity
 
-class NewAlbumScreen : AbstractScreen<RootActivity.RootComponent>() {
+class NewAlbumScreen : AbstractScreen<RootActivity.RootComponent>(BottomBarItems.PROFILE) {
 
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
         return DaggerNewAlbumScreen_Component.builder()
@@ -17,8 +17,6 @@ class NewAlbumScreen : AbstractScreen<RootActivity.RootComponent>() {
     }
 
     override fun getLayoutResId(): Int = R.layout.screen_new_album
-
-    override fun getCurrentBottomItem() = BottomBarItems.PROFILE
 
     //region ======================== DI ========================
 

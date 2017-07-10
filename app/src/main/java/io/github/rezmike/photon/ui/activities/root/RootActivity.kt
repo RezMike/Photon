@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.graphics.drawable.VectorDrawableCompat
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.squareup.picasso.Picasso
+import flow.Direction
 import flow.Flow
 import io.github.rezmike.photon.App
 import io.github.rezmike.photon.BuildConfig
@@ -114,7 +116,12 @@ class RootActivity : BaseActivity(), IActionBarView {
 
     override fun onBackPressed() {
         if (getCurrentScreen() == null || !getCurrentScreen()!!.onBackPressed() && !Flow.get(this).goBack()) {
-            super.onBackPressed()
+            val alertDialog = AlertDialog.Builder(this)
+                    .setTitle(R.string.exit_title)
+                    .setPositiveButton(R.string.exit_yes) { _, _ -> finish() }
+                    .setNegativeButton(R.string.exit_no, null)
+                    .create()
+            alertDialog.show()
         }
     }
 
@@ -182,19 +189,19 @@ class RootActivity : BaseActivity(), IActionBarView {
     }
 
     fun showMainScreen() {
-        Flow.get(this).set(MainScreen())
+        Flow.get(this).replaceHistory(MainScreen(), Direction.REPLACE)
     }
 
     fun showProfileScreen() {
-        Flow.get(this).set(ProfileScreen())
+        Flow.get(this).replaceHistory(ProfileScreen(), Direction.REPLACE)
     }
 
     fun showAuthScreen() {
-        Flow.get(this).set(AuthScreen())
+        Flow.get(this).replaceHistory(AuthScreen(), Direction.REPLACE)
     }
 
     fun showUploadScreen() {
-        Flow.get(this).set(UploadScreen())
+        Flow.get(this).replaceHistory(UploadScreen(), Direction.REPLACE)
     }
 
     fun setCurrentBottomItem(item: BottomBarItems) {

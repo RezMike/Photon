@@ -32,7 +32,7 @@
     <string name="auth_sign_in">Вход</string>
     <string name="auth_success">Вы успешно авторизованы</string>
 
-    <!--Login Screen-->
+    <!--Login Dialog-->
     <string name="login_title">Фотон</string>
     <string name="login_header">Вход в аккаунт</string>
     <string name="login_email">Email</string>
@@ -48,6 +48,11 @@
     <string name="sign_up_email">Email</string>
     <string name="sign_up_name">Имя</string>
     <string name="sign_up_password">Пароль</string>
+
+    <!--Exit dialog-->
+    <string name="exit_title">Вы действительно хотите выйти?</string>
+    <string name="exit_yes">Да</string>
+    <string name="exit_no">Нет</string>
 
     <!--Photocard Screen-->
     <string name="photocard_title">Фотокарточка</string>
