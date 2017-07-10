@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Foton</string>
+    <string name="app_name">Photon</string>
 
     <!--Fonts-->
     <string name="roboto_medium">sans-serif-medium</string>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<io.github.rezmike.foton.ui.screens.register.RegisterView
+<io.github.rezmike.photon.ui.screens.register.RegisterView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -73,4 +73,4 @@
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
-</io.github.rezmike.foton.ui.screens.register.RegisterView>
+</io.github.rezmike.photon.ui.screens.register.RegisterView>

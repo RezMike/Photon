@@ -6,7 +6,7 @@
     android:id="@+id/root_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.github.rezmike.foton.ui.activities.splash.SplashActivity">
+    tools:context="io.github.rezmike.photon.ui.activities.splash.SplashActivity">
 
     <ImageView
         android:id="@+id/imageView"
