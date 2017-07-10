@@ -49,8 +49,7 @@ class DataManager private constructor() {
     fun loginUserCompl(loginReq: LoginReq): Completable {
         return restService.login(loginReq)
                 .compose(AuthCallTransformer())
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .doOnNext { preferencesManager.saveUserData(it) }
                 .doOnNext { realmManager.saveUserResponseToRealm(it) }
                 .toCompletable()
@@ -72,8 +71,7 @@ class DataManager private constructor() {
         return restService.getAllPhotoCards(preferencesManager.getLastPhotoCardsUpdate())
                 .compose(PhotoCardsCallTransformer())
                 .flatMap { Observable.from(it) }
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .doOnNext { if (!it.active) realmManager.deleteFromRealm(PhotoCardRealm::class.java, it.id) }
                 .filter { it.active }
                 .doOnNext { realmManager.savePhotoCardResponseToRealm(it) }
@@ -84,7 +82,7 @@ class DataManager private constructor() {
         return restService.getPhotoFile(photoUrl)
                 .compose(PhotoFileCallTransformer())
                 .flatMap { writePhotoToDisk(it) }
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .toCompletable()
     }
 
@@ -101,7 +99,7 @@ class DataManager private constructor() {
     fun savePhotoCardFavoriteComplToNetwork(photoId: String): Completable {
         return restService.savePhotoOnFavorite(preferencesManager.getAuthToken()!!, preferencesManager.getUserId()!!, photoId)
                 .compose(SuccessCallTransformer())
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .toCompletable()
     }
 
@@ -115,8 +113,7 @@ class DataManager private constructor() {
                 .flatMap { restService.getAllAlbums(preferencesManager.getLastAlbumsUpdate(), preferencesManager.getUserId()!!) }
                 .compose(AlbumsCallTransformer())
                 .flatMap { Observable.from(it) }
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .doOnNext { if (!it.active) realmManager.deleteFromRealm(AlbumRealm::class.java, it.id) }
                 .filter { it.active }
                 .doOnNext { realmManager.saveAlbumResponseToRealm(it) }
@@ -132,8 +129,7 @@ class DataManager private constructor() {
     fun getUserSinFromNetwork(userId: String): Single<UserRealm> {
         return restService.getUserInfo(preferencesManager.getLastUserUpdate(userId), userId)
                 .compose(UserCallTranformer(userId))
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .map { realmManager.saveUserResponseToRealm(it) }
                 .toSingle()
     }

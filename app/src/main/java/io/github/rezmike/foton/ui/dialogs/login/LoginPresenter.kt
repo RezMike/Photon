@@ -1,5 +1,6 @@
 package io.github.rezmike.foton.ui.dialogs.login
 
+import io.github.rezmike.foton.R
 import io.github.rezmike.foton.data.network.error.AccessError
 import io.github.rezmike.foton.data.network.error.NotFoundError
 import io.github.rezmike.foton.data.network.req.LoginReq
@@ -46,16 +47,17 @@ class LoginPresenter(val model: AccountModel) : PopupPresenter<LoginInfoDto, Dia
         if (email.isEmpty() || password.isEmpty()) {
             if (email.isEmpty()) getDialog()?.accentEmail()
             if (password.isEmpty()) getDialog()?.accentPassword()
-            getDialog()?.showError("Заполните все поля!")
+            getDialog()?.showMessage(R.string.login_error_empty_fields)
         } else if (email.isEmailValid() && password.isPasswordValid()) {
             model.login(LoginReq(email, password))
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
+                        getDialog()?.showMessage(R.string.auth_success)
                         getDialog()?.dismiss()
                         onResult(DialogResult(true))
                     }, {
                         if (it is AccessError || it is NotFoundError) {
-                            getDialog()?.showError("Неверный email или пароль")
+                            getDialog()?.showMessage(R.string.login_error_incorrect_data)
                             getDialog()?.accentFields()
                         } else {
                             getDialog()?.showError(it)

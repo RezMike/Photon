@@ -94,11 +94,15 @@ class LoginDialog(context: Context) : Popup<LoginInfoDto, DialogResult> {
     }
 
     fun showError(error: Throwable) {
-        showError(error.message ?: context.getString(R.string.error_unknown))
+        showMessage(error.message ?: context.getString(R.string.error_unknown))
     }
 
-    fun showError(errorMessage: String) {
-        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+    fun showMessage(stringResId: Int) {
+        showMessage(context.getString(stringResId))
+    }
+
+    fun showMessage(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     fun dismiss() {
