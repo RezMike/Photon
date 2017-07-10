@@ -3,6 +3,7 @@ package io.github.rezmike.photon.data.managers
 import io.github.rezmike.photon.App
 import io.github.rezmike.photon.data.network.RestService
 import io.github.rezmike.photon.data.network.req.LoginReq
+import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.data.network.transformers.*
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
@@ -55,6 +56,11 @@ class DataManager private constructor() {
                 .toCompletable()
     }
 
+    fun registerUserCompl(registerReq: RegisterReq): Completable {
+        // TODO: 10.07.2017 implement this
+        return Completable.complete()
+    }
+
     fun logoutUser() {
         preferencesManager.deleteUserData()
     }
@@ -85,7 +91,6 @@ class DataManager private constructor() {
                 .subscribeOn(Schedulers.io())
                 .toCompletable()
     }
-
 
     fun savePhotoCardFavoriteComplToRealm(photoId: String): Completable {
         try {
