@@ -82,9 +82,9 @@ class RegisterPresenter(val model: AccountModel) : PopupPresenter<RegisterInfoDt
                         /*if (it is AccessError || it is NotFoundError) {
                             getDialog()?.showMessage(R.string.login_error_incorrect_data)
                             getDialog()?.accentFields()
-                        } else {
+                        } else {*/
                             getDialog()?.showError(it)
-                        }*/
+                        //}
                     })
         } else {
             if (!login.isLoginValid()) getDialog()?.accentLogin()

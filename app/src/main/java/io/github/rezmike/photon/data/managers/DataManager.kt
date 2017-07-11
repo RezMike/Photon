@@ -57,8 +57,12 @@ class DataManager private constructor() {
     }
 
     fun registerUserCompl(registerReq: RegisterReq): Completable {
-        // TODO: 10.07.2017 implement this
-        return Completable.complete()
+        return restService.register(registerReq)
+                .compose(AuthCallTransformer())
+                .subscribeOn(Schedulers.io())
+                .doOnNext { preferencesManager.saveUserData(it) }
+                .doOnNext { realmManager.saveUserResponseToRealm(it) }
+                .toCompletable()
     }
 
     fun logoutUser() {
