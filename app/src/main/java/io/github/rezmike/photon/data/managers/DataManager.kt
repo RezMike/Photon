@@ -124,6 +124,8 @@ class DataManager private constructor() {
 
     //region ======================== User ========================
 
+    fun getUserId() = preferencesManager.getUserId()
+
     fun getUserSinFromRealm(userId: String) = realmManager.getUser(userId)
 
     fun getUserSinFromNetwork(userId: String): Single<UserRealm> {

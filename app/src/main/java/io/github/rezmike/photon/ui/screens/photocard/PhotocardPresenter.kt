@@ -34,7 +34,6 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm, val bottomBarItem: Botto
 
     override fun onLoad(savedInstanceState: Bundle?) {
         super.onLoad(savedInstanceState)
-
         loadPhotocardInfo()
     }
 

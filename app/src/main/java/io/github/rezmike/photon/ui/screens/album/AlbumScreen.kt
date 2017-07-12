@@ -2,12 +2,14 @@ package io.github.rezmike.photon.ui.screens.album
 
 import dagger.Provides
 import io.github.rezmike.photon.R
+import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.di.scopes.DaggerScope
 import io.github.rezmike.photon.ui.abstracts.AbstractScreen
 import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.activities.root.RootActivity
 
-class AlbumScreen : AbstractScreen<RootActivity.RootComponent>(BottomBarItems.MAIN) {
+class AlbumScreen(val album: AlbumRealm,
+                  val bottomBarItem: BottomBarItems = BottomBarItems.MAIN) : AbstractScreen<RootActivity.RootComponent>(bottomBarItem) {
 
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
         return DaggerAlbumScreen_Component.builder()

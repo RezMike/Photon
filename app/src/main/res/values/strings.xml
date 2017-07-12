@@ -63,6 +63,15 @@
     <string name="photocard_albums">Альбомы</string>
     <string name="photocard_saving_completed">Изображение загружено</string>
 
+    <!--Profile Screen-->
+    <string name="profile_title">Профиль</string>
+    <string name="profile_menu_create_album">Создать альбом</string>
+    <string name="profile_menu_edit_profile">Редактировать профиль</string>
+    <string name="profile_menu_change_avatar">Изменить аватар</string>
+    <string name="profile_menu_logout">Выйти</string>
+    <string name="profile_cards">Карты</string>
+    <string name="profile_albums">Альбомы</string>
+
     <!--Navigation Screen-->
     <string name="navigation_main">Главная</string>
     <string name="navigation_profile">Профиль</string>
