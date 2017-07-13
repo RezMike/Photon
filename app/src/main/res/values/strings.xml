@@ -42,6 +42,11 @@
     <string name="login_error_incorrect_data">Неверный email или пароль</string>
     <string name="login_error_empty_fields">Заполните все поля!</string>
 
+    <!--Album Dialog-->
+    <string name="album_title_error">Длина не менее 3 символов, не может содержать спецзнаки(!@#$%^&amp;*()\|=+-)</string>
+    <string name="album_description_error">Длина не менее 3 символов, не более 400 символов</string>
+    <string name="album_error_empty_fields">@string/login_error_empty_fields</string>
+
     <!--Sign Up Screen-->
     <string name="sign_up_title">Регистрация</string>
     <string name="sign_up_login">Логин</string>

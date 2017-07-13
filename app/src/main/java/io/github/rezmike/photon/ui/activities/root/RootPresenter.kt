@@ -7,8 +7,10 @@ import android.os.Bundle
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.ActivityResultDto
 import io.github.rezmike.photon.data.storage.dto.DialogResult
+import io.github.rezmike.photon.ui.dialogs.album.AlbumDialog
+import io.github.rezmike.photon.ui.dialogs.album.AlbumDialogPresenter
 import io.github.rezmike.photon.ui.dialogs.login.LoginDialog
-import io.github.rezmike.photon.ui.dialogs.login.LoginPresenter
+import io.github.rezmike.photon.ui.dialogs.login.LoginDialogPresenter
 import io.github.rezmike.photon.ui.others.MenuItemHolder
 import io.github.rezmike.photon.utils.ConstantManager
 import io.github.rezmike.photon.utils.DaggerService
@@ -79,35 +81,59 @@ class RootPresenter : Presenter<RootActivity>() {
 
     //region ======================== Dialogs ========================
 
-    private var loginDialogPresenter: LoginPresenter? = null
-
+    private var mLoginDialogDialogPresenter: LoginDialogPresenter? = null
     private var loginDialog: LoginDialog? = null
 
+    private var mAlbumDialogDialogPresenter: AlbumDialogPresenter? = null
+    private var albumDialog: AlbumDialog? = null
+
     fun showLoginDialog(onResult: (DialogResult) -> Unit = {}) {
-        loginDialogPresenter = LoginPresenter(model)
-        loginDialogPresenter?.setOnResultListener {
-            loginDialogPresenter = null
+        mLoginDialogDialogPresenter = LoginDialogPresenter(model)
+        mLoginDialogDialogPresenter?.setOnResultListener {
+            mLoginDialogDialogPresenter = null
             loginDialog = null
             onResult(it)
         }
         loginDialog = LoginDialog(view!!)
-        loginDialogPresenter?.takeView(loginDialog)
-        loginDialogPresenter?.show()
+        mLoginDialogDialogPresenter?.takeView(loginDialog)
+        mLoginDialogDialogPresenter?.show()
+    }
+
+    fun showAlbumDialog(onResult: (DialogResult) -> Unit = {}) {
+        mAlbumDialogDialogPresenter = AlbumDialogPresenter(model)
+        mAlbumDialogDialogPresenter?.setOnResultListener {
+            mAlbumDialogDialogPresenter = null
+            albumDialog = null
+            onResult(it)
+        }
+        albumDialog = AlbumDialog(view!!)
+        mAlbumDialogDialogPresenter?.takeView(albumDialog)
+        mAlbumDialogDialogPresenter?.show()
     }
 
     private fun initDialogs() {
-        if (loginDialogPresenter != null) {
+        if (mLoginDialogDialogPresenter != null) {
             loginDialog = LoginDialog(view)
-            loginDialogPresenter?.takeView(loginDialog)
-            loginDialogPresenter?.show()
+            mLoginDialogDialogPresenter?.takeView(loginDialog)
+            mLoginDialogDialogPresenter?.show()
+        }
+        if (mAlbumDialogDialogPresenter != null) {
+            albumDialog = AlbumDialog(view)
+            mAlbumDialogDialogPresenter?.takeView(albumDialog)
+            mAlbumDialogDialogPresenter?.show()
         }
     }
 
     private fun dismissDialogs() {
-        if (loginDialogPresenter != null) {
-            loginDialogPresenter?.dismiss()
+        if (mLoginDialogDialogPresenter != null) {
+            mLoginDialogDialogPresenter?.dismiss()
         }
         loginDialog = null
+        if (mAlbumDialogDialogPresenter != null) {
+            mAlbumDialogDialogPresenter?.dismiss()
+        }
+        albumDialog = null
+
     }
 
     //endregion
