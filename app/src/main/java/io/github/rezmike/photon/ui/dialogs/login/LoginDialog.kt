@@ -21,7 +21,7 @@ class LoginDialog(context: Context) : AbstractDialog<LoginInfoDto>(context) {
     private var okBtn: Button? = null
     private var cancelBtn: Button? = null
 
-    override fun setLayoutRes() = R.layout.dialog_login
+    override fun getLayoutRes() = R.layout.dialog_login
 
     override fun onFinishInflate(view: View, presenter: PopupPresenter<LoginInfoDto, DialogResult>, info: LoginInfoDto) {
         if (presenter !is LoginDialogPresenter) {
@@ -49,7 +49,7 @@ class LoginDialog(context: Context) : AbstractDialog<LoginInfoDto>(context) {
         cancelBtn?.setOnClickListener { presenter.onClickCancel() }
     }
 
-    override fun clearFields() {
+    override fun onDialogDismiss() {
         okBtn = null
         cancelBtn = null
         emailEt = null
@@ -84,5 +84,4 @@ class LoginDialog(context: Context) : AbstractDialog<LoginInfoDto>(context) {
         accentEmail()
         accentPassword()
     }
-
 }

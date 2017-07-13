@@ -38,14 +38,15 @@
     <string name="login_email">Email</string>
     <string name="login_email_error">Email невалидный</string>
     <string name="login_password">Пароль</string>
-    <string name="login_password_error">Длина не менее 8 символов, латиница, не может содержать спецзнаки и нижние подчеркивания (!@#$%^&amp;*()\|_=+-)</string>
+    <string name="login_password_error">Длина не менее 8 символов, латиница, не может содержать спецсимволы и нижние подчеркивания (!@#$%^&amp;*()\/|_=+-)</string>
     <string name="login_error_incorrect_data">Неверный email или пароль</string>
     <string name="login_error_empty_fields">Заполните все поля!</string>
 
     <!--Album Dialog-->
-    <string name="album_title_error">Длина не менее 3 символов, не может содержать спецзнаки(!@#$%^&amp;*()\|=+-)</string>
-    <string name="album_description_error">Длина не менее 3 символов, не более 400 символов</string>
-    <string name="album_error_empty_fields">@string/login_error_empty_fields</string>
+    <string name="album_dialog_title_error">Длина не менее 3 символов, не может содержать спецсимвоыл(!@#$%^&amp;*()\/|=+-)</string>
+    <string name="album_dialog_description_error">Длина не менее 3 символов, не более 400 символов</string>
+    <string name="album_dialog_error_empty_fields">Заполните все поля!</string>
+    <string name="album_dialog_success">Альбом успешно создан</string>
 
     <!--Sign Up Screen-->
     <string name="sign_up_title">Регистрация</string>

@@ -3,7 +3,6 @@ package io.github.rezmike.photon.ui.dialogs.login
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.network.error.AccessError
 import io.github.rezmike.photon.data.network.error.NotFoundError
-import io.github.rezmike.photon.data.network.req.LoginReq
 import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.data.storage.dto.LoginInfoDto
 import io.github.rezmike.photon.ui.activities.root.AccountModel
@@ -43,7 +42,7 @@ class LoginDialogPresenter(val model: AccountModel) : AbstractDialogPresenter<Lo
             if (password.isEmpty()) getDialog()?.accentPassword()
             getDialog()?.showMessage(R.string.login_error_empty_fields)
         } else if (email.isEmailValid() && password.isPasswordValid()) {
-            model.login(LoginReq(email, password))
+            model.login(email, password)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         getDialog()?.showMessage(R.string.auth_success)

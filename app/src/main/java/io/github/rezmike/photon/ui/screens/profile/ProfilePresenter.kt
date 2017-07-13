@@ -44,7 +44,8 @@ class ProfilePresenter : AbstractPresenter<ProfileView, ProfileModel, ProfilePre
     }
 
     fun onClickNewAlbum(): Boolean {
-        TODO("not implemented")
+        rootPresenter.showAlbumDialog()
+        return true
     }
 
     fun onClickEditProfile(): Boolean {

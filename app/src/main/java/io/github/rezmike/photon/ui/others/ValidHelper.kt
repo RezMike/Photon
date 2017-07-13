@@ -1,7 +1,6 @@
 package io.github.rezmike.photon.ui.others
 
 import android.text.TextUtils
-import android.util.Patterns
 import java.util.regex.Pattern
 
 val PATTERN_LOGIN: Pattern = Pattern.compile("^[A-Za-z0-9_]{3,}$")
@@ -13,6 +12,8 @@ val PATTERN_EMAIL: Pattern = Pattern.compile("(?:[a-z0-9!#\$%&'*+/=?^_`{|}~-]+(?
         "\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")
 val PATTERN_NAME: Pattern = Pattern.compile("^[\\s\\S]{3,}$")
 val PATTERN_PASSWORD: Pattern = Pattern.compile("^[A-Za-z0-9]{8,}")
+val PATTERN_ALBUM_TITLE: Pattern = Pattern.compile("^[^!@#\$%^&*()\\\\/|=+-]{3,}$")
+val PATTERN_ALBUM_DESCRIPTION: Pattern = Pattern.compile("^[\\s\\S]{3,400}$")
 
 fun String.isLoginValid(): Boolean {
     return TextUtils.isEmpty(this) || PATTERN_LOGIN.matcher(this).matches()
@@ -28,4 +29,12 @@ fun String.isNameValid(): Boolean {
 
 fun String.isPasswordValid(): Boolean {
     return TextUtils.isEmpty(this) || PATTERN_PASSWORD.matcher(this).matches()
+}
+
+fun String.isAlbumTitleValid(): Boolean {
+    return TextUtils.isEmpty(this) || PATTERN_ALBUM_TITLE.matcher(this).matches()
+}
+
+fun String.isAlbumDescriptionValid(): Boolean {
+    return TextUtils.isEmpty(this) || PATTERN_ALBUM_DESCRIPTION.matcher(this).matches()
 }

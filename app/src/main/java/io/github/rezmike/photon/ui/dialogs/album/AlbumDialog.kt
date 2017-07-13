@@ -16,7 +16,7 @@ import mortar.PopupPresenter
 
 class AlbumDialog(context: Context) : AbstractDialog<AlbumInfoDto>(context) {
 
-    private var name: EditText? = null
+    private var title: EditText? = null
     private var description: EditText? = null
     private var okBtn: Button? = null
     private var cancelBtn: Button? = null
@@ -26,12 +26,12 @@ class AlbumDialog(context: Context) : AbstractDialog<AlbumInfoDto>(context) {
             throw ClassCastException("presenter must implements AlbumDialogPresenter")
         }
 
-        name = view.findViewById(R.id.name_album_et) as EditText
+        title = view.findViewById(R.id.title_album_et) as EditText
         description = view.findViewById(R.id.description_album_et) as EditText
         okBtn = view.findViewById(R.id.ok_btn) as Button
         cancelBtn = view.findViewById(R.id.cancel_btn) as Button
 
-        name?.addTextChangedListener(object : CustomTextWatcher() {
+        title?.addTextChangedListener(object : CustomTextWatcher() {
             override fun afterTextChanged(s: Editable) {
                 presenter.checkName(s.toString())
             }
@@ -41,17 +41,17 @@ class AlbumDialog(context: Context) : AbstractDialog<AlbumInfoDto>(context) {
                 presenter.checkDescription(s.toString())
             }
         })
-        name?.setText(info.name)
+        title?.setText(info.title)
         description?.setText(info.description)
 
         okBtn?.setOnClickListener { presenter.onClickOk() }
         cancelBtn?.setOnClickListener { presenter.onClickCancel() }
     }
 
-    override fun setLayoutRes(): Int = R.layout.dialog_album
+    override fun getLayoutRes(): Int = R.layout.dialog_album
 
-    override fun clearFields() {
-        name = null
+    override fun onDialogDismiss() {
+        title = null
         description = null
         okBtn = null
         cancelBtn = null
@@ -59,16 +59,16 @@ class AlbumDialog(context: Context) : AbstractDialog<AlbumInfoDto>(context) {
 
     //region ======================== Error ========================
 
-    fun showNameError() {
-        name?.changeError(true, context.getString(R.string.album_title_error))
+    fun showTitleError() {
+        title?.changeError(true, context.getString(R.string.album_dialog_title_error))
     }
 
-    fun hideNameError() {
-        name?.changeError(false)
+    fun hideTitleError() {
+        title?.changeError(false)
     }
 
     fun showDescriptionError() {
-        description?.changeError(true, context.getString(R.string.album_title_error))
+        description?.changeError(true, context.getString(R.string.album_dialog_title_error))
     }
 
     fun hideDescriptionError() {
@@ -80,7 +80,7 @@ class AlbumDialog(context: Context) : AbstractDialog<AlbumInfoDto>(context) {
     //region ======================== Anim ========================
 
     fun accentTitle() {
-        AnimHelper.accentAnim(name!!)
+        AnimHelper.accentAnim(title!!)
     }
 
     fun accentDescription() {

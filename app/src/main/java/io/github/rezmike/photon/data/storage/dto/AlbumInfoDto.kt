@@ -3,16 +3,15 @@ package io.github.rezmike.photon.data.storage.dto
 import android.os.Parcel
 import android.os.Parcelable
 
-
-class AlbumInfoDto(var name: String = "", var description: String = "") : Parcelable {
+class AlbumInfoDto(var title: String = "", var description: String = "") : Parcelable {
 
     constructor(parcel: Parcel) : this() {
-        name = parcel.readString()
+        title = parcel.readString()
         description = parcel.readString()
     }
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
-        dest.writeString(name)
+        dest.writeString(title)
         dest.writeString(description)
     }
 
