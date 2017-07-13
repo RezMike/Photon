@@ -1,15 +1,14 @@
 package io.github.rezmike.photon.data.network
 
 import io.github.rezmike.photon.data.network.req.LoginReq
-import io.github.rezmike.photon.data.network.res.AlbumRes
-import io.github.rezmike.photon.data.network.res.PhotoCardRes
-import io.github.rezmike.photon.data.network.res.SuccessRes
-import io.github.rezmike.photon.data.network.res.UserRes
+import io.github.rezmike.photon.data.network.res.*
 import io.github.rezmike.photon.utils.ConstantManager
+import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 import rx.Observable
+import rx.Single
 
 interface RestService {
 
@@ -34,4 +33,10 @@ interface RestService {
 
     @POST("user/signIn")
     fun login(@Body loginReq: LoginReq): Observable<Response<UserRes>>
+
+    @Multipart
+    @POST("user/{userId}/image/upload")
+    fun uploadAvatarUser(@Header(ConstantManager.AUTHORIZATION) authToken: String,
+                         @Path("userId") userId: String,
+                         @Part file: MultipartBody.Part): Single<AvatarUrlRes>
 }

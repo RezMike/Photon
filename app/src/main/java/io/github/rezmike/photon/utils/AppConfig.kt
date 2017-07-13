@@ -18,5 +18,5 @@ object AppConfig {
     const val JOB_KEEP_ALIVE = 120
     const val JOB_UPDATE_DATA_INTERVAL: Long = 30
     const val JOB_LOAD_FACTOR = 3
-    const val JOB_INITIAL_BACK_OFF_IN_MS = 1000
+    const val JOB_INITIAL_BACK_OFF_IN_MS: Long = 1000
 }

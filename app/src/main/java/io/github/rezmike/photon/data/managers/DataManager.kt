@@ -3,6 +3,7 @@ package io.github.rezmike.photon.data.managers
 import io.github.rezmike.photon.App
 import io.github.rezmike.photon.data.network.RestService
 import io.github.rezmike.photon.data.network.req.LoginReq
+import io.github.rezmike.photon.data.network.res.AvatarUrlRes
 import io.github.rezmike.photon.data.network.transformers.*
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
@@ -11,6 +12,7 @@ import io.github.rezmike.photon.di.components.DaggerDataManagerComponent
 import io.github.rezmike.photon.di.modules.LocalModule
 import io.github.rezmike.photon.di.modules.NetworkModule
 import io.github.rezmike.photon.utils.writePhotoToDisk
+import okhttp3.MultipartBody
 import rx.Completable
 import rx.Observable
 import rx.Single
@@ -136,5 +138,11 @@ class DataManager private constructor() {
                 .toSingle()
     }
 
+    fun uploadAvatarUser(file: MultipartBody.Part): Single<AvatarUrlRes> {
+
+        return restService.uploadAvatarUser(preferencesManager.getAuthToken()!!,
+                getUserId()!!, file)
+
+    }
     //endregion
 }
