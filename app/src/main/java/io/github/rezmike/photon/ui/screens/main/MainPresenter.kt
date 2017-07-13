@@ -8,7 +8,6 @@ import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.photon.ui.abstracts.AbstractPresenter
 import io.github.rezmike.photon.ui.others.MenuItemHolder
 import io.github.rezmike.photon.ui.screens.photocard.PhotocardScreen
-import io.github.rezmike.photon.ui.screens.register.RegisterScreen
 import io.github.rezmike.photon.ui.screens.search.SearchScreen
 import io.github.rezmike.photon.utils.DaggerService
 import mortar.MortarScope
@@ -57,7 +56,7 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     }
 
     fun onClickRegister(): Boolean {
-        Flow.get(view).set(RegisterScreen())
+        TODO()
         return true
     }
 
