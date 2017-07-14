@@ -7,10 +7,7 @@ import android.os.Bundle
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.ActivityResultDto
 import io.github.rezmike.photon.data.storage.dto.DialogResult
-import io.github.rezmike.photon.ui.dialogs.album.AlbumDialog
-import io.github.rezmike.photon.ui.dialogs.album.AlbumDialogPresenter
-import io.github.rezmike.photon.ui.dialogs.login.LoginDialog
-import io.github.rezmike.photon.ui.dialogs.login.LoginDialogPresenter
+import io.github.rezmike.photon.ui.dialogs.DialogManager
 import io.github.rezmike.photon.ui.others.MenuItemHolder
 import io.github.rezmike.photon.utils.ConstantManager
 import io.github.rezmike.photon.utils.DaggerService
@@ -25,20 +22,23 @@ class RootPresenter : Presenter<RootActivity>() {
     @Inject
     lateinit var model: AccountModel
 
+    lateinit var dialogManager: DialogManager
+
     private val activityResultDtoSub = PublishSubject.create<ActivityResultDto>()
 
     override fun onEnterScope(scope: MortarScope) {
         super.onEnterScope(scope)
         DaggerService.getDaggerComponent<RootActivity.RootComponent>(scope).inject(this)
+        dialogManager = DialogManager(model)
     }
 
     override fun onLoad(savedInstanceState: Bundle?) {
         super.onLoad(savedInstanceState)
-        initDialogs()
+        dialogManager.showHiddenDialogs(view)
     }
 
     override fun dropView(view: RootActivity?) {
-        dismissDialogs()
+        dialogManager.dismissDialogs()
         super.dropView(view)
     }
 
@@ -81,62 +81,17 @@ class RootPresenter : Presenter<RootActivity>() {
 
     //region ======================== Dialogs ========================
 
-    private var mLoginDialogDialogPresenter: LoginDialogPresenter? = null
-    private var loginDialog: LoginDialog? = null
-
-    private var mAlbumDialogDialogPresenter: AlbumDialogPresenter? = null
-    private var albumDialog: AlbumDialog? = null
-
     fun showLoginDialog(onResult: (DialogResult) -> Unit = {}) {
-        mLoginDialogDialogPresenter = LoginDialogPresenter(model)
-        mLoginDialogDialogPresenter?.setOnResultListener {
-            mLoginDialogDialogPresenter = null
-            loginDialog = null
-            onResult(it)
-        }
-        loginDialog = LoginDialog(view!!)
-        mLoginDialogDialogPresenter?.takeView(loginDialog)
-        mLoginDialogDialogPresenter?.show()
+        dialogManager.showLoginDialog(view, onResult)
     }
 
     fun showAlbumDialog(onResult: (DialogResult) -> Unit = {}) {
-        mAlbumDialogDialogPresenter = AlbumDialogPresenter(model)
-        mAlbumDialogDialogPresenter?.setOnResultListener {
-            mAlbumDialogDialogPresenter = null
-            albumDialog = null
-            onResult(it)
-        }
-        albumDialog = AlbumDialog(view!!)
-        mAlbumDialogDialogPresenter?.takeView(albumDialog)
-        mAlbumDialogDialogPresenter?.show()
-    }
-
-    private fun initDialogs() {
-        if (mLoginDialogDialogPresenter != null) {
-            loginDialog = LoginDialog(view)
-            mLoginDialogDialogPresenter?.takeView(loginDialog)
-            mLoginDialogDialogPresenter?.show()
-        }
-        if (mAlbumDialogDialogPresenter != null) {
-            albumDialog = AlbumDialog(view)
-            mAlbumDialogDialogPresenter?.takeView(albumDialog)
-            mAlbumDialogDialogPresenter?.show()
-        }
-    }
-
-    private fun dismissDialogs() {
-        if (mLoginDialogDialogPresenter != null) {
-            mLoginDialogDialogPresenter?.dismiss()
-        }
-        loginDialog = null
-        if (mAlbumDialogDialogPresenter != null) {
-            mAlbumDialogDialogPresenter?.dismiss()
-        }
-        albumDialog = null
-
+        dialogManager.showAlbumDialog(view, onResult)
     }
 
     //endregion
+
+    //region ======================== Events ========================
 
     fun onClickMain() {
         view?.showMainScreen()
@@ -153,6 +108,8 @@ class RootPresenter : Presenter<RootActivity>() {
     fun onClickUpload() {
         view?.showUploadScreen()
     }
+
+    //endregion
 
     fun getRootView(): RootActivity? = view
 
