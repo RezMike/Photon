@@ -47,7 +47,6 @@ class AlbumDialogPresenter(val model: AccountModel) : AbstractDialogPresenter<Al
                         getDialog()?.dismiss()
                         onResult(DialogResult(true))
                     }, {
-                        // TODO: 13.07.2017 handle error
                         getDialog()?.showError(it)
                     })
         } else {
