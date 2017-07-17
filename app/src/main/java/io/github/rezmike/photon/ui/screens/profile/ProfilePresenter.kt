@@ -5,15 +5,20 @@ import android.view.MenuItem
 import flow.Flow
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
+import io.github.rezmike.photon.data.storage.realm.UserRealm
 import io.github.rezmike.photon.ui.abstracts.AbstractPresenter
 import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.others.MenuItemHolder
 import io.github.rezmike.photon.ui.screens.album.AlbumScreen
 import io.github.rezmike.photon.utils.DaggerService
+import io.realm.RealmChangeListener
 import mortar.MortarScope
 import rx.android.schedulers.AndroidSchedulers
 
 class ProfilePresenter : AbstractPresenter<ProfileView, ProfileModel, ProfilePresenter>() {
+
+    private var userRealm: UserRealm? = null
+    private var listener: RealmChangeListener<UserRealm>? = null
 
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<ProfileScreen.Component>(scope).inject(this)
@@ -36,15 +41,38 @@ class ProfilePresenter : AbstractPresenter<ProfileView, ProfileModel, ProfilePre
     }
 
     private fun loadProfileInfo() {
-        getRootView()?.showProgress()
+        getRootView()?.showLoad()
         model.getProfileData()
-                .observeOn(AndroidSchedulers.mainThread())
-                .doAfterTerminate { getRootView()?.hideProgress() }
-                .subscribe({ view?.showProfileInfo(it) }, { getRootView()?.showError(it) })
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .doAfterTerminate { getRootView()?.hideLoad() }
+                .subscribe({
+                    userRealm = it
+                    initData()
+                }, {
+                    getRootView()?.showError(it)
+                })
     }
 
+    private fun initData() {
+        view?.showProfileInfo(userRealm!!)
+        listener = RealmChangeListener {
+            val albumList = ArrayList<AlbumRealm>()
+            albumList.addAll(it.albums)
+            view?.adapter?.reloadAdapter(albumList)
+        }
+        userRealm?.addChangeListener(listener)
+    }
+
+    override fun dropView(view: ProfileView) {
+        userRealm?.removeChangeListener(listener)
+        super.dropView(view)
+    }
+
+    //region ======================== Events ========================
+
     fun onClickNewAlbum(): Boolean {
-        TODO("not implemented")
+        rootPresenter.showAlbumDialog()
+        return true
     }
 
     fun onClickEditProfile(): Boolean {
@@ -64,4 +92,6 @@ class ProfilePresenter : AbstractPresenter<ProfileView, ProfileModel, ProfilePre
     fun onClickItem(album: AlbumRealm) {
         Flow.get(view).set(AlbumScreen(album, BottomBarItems.PROFILE))
     }
+
+    //endregion
 }

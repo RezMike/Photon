@@ -18,12 +18,16 @@ class RealmManager {
     //region ======================== User ========================
 
     fun getUser(userId: String): Single<UserRealm> {
-        val realm = Realm.getDefaultInstance()
 
-        val user = realm.where(UserRealm::class.java).equalTo("id", userId).findFirst()
+        val user = getQueryRealmInstance()
+                .where(UserRealm::class.java)
+                .equalTo("id", userId)
+                .findFirst()
 
-        return if (user == null) Single.error(Throwable("User with id \"$userId\" not found"))
-        else return Single.just(user)
+        if (user == null)
+            return Single.error(Throwable("User with id \"$userId\" not found"))
+        else
+            return Single.just(user)
     }
 
     fun saveUserResponseToRealm(user: UserRes): UserRealm {

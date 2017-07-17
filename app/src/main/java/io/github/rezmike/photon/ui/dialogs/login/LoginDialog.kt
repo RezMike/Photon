@@ -1,49 +1,37 @@
 package io.github.rezmike.photon.ui.dialogs.login
 
-import android.app.AlertDialog
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.support.v7.widget.CardView
 import android.text.Editable
-import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.data.storage.dto.LoginInfoDto
+import io.github.rezmike.photon.ui.dialogs.AbstractDialog
 import io.github.rezmike.photon.ui.others.AnimHelper
 import io.github.rezmike.photon.ui.others.CustomTextWatcher
 import io.github.rezmike.photon.ui.others.changeError
-import kotlinx.android.synthetic.main.dialog_footer.view.*
-import mortar.Popup
 import mortar.PopupPresenter
 
-class LoginDialog(context: Context) : Popup<LoginInfoDto, DialogResult> {
+class LoginDialog(context: Context) : AbstractDialog<LoginInfoDto>(context) {
 
-    private val rootContext = context
-    private var dialog: AlertDialog? = null
     private var emailEt: EditText? = null
     private var passwordEt: EditText? = null
-    private var card: CardView? = null
+    private var okBtn: Button? = null
+    private var cancelBtn: Button? = null
 
-    override fun show(info: LoginInfoDto?, withFlourish: Boolean, presenter: PopupPresenter<LoginInfoDto, DialogResult>) {
-        val view = LayoutInflater.from(rootContext).inflate(R.layout.dialog_login, null, false)
-        onFinishInflate(view, presenter as LoginPresenter, info)
-        dialog = AlertDialog.Builder(rootContext)
-                .setView(view)
-                .setOnCancelListener { presenter.onDismissed(DialogResult(false)) }
-                .setOnDismissListener { presenter.onDismissed(DialogResult(false)) }
-                .create()
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog?.show()
-    }
+    override fun getLayoutRes() = R.layout.dialog_login
 
-    private fun onFinishInflate(view: View, presenter: LoginPresenter, info: LoginInfoDto?) = with(view) {
+    override fun onFinishInflate(view: View, presenter: PopupPresenter<LoginInfoDto, DialogResult>, info: LoginInfoDto) {
+        if (presenter !is LoginDialogPresenter) {
+            throw ClassCastException("presenter must implements LoginDialogPresenter")
+        }
         emailEt = view.findViewById(R.id.email_et) as EditText
         passwordEt = view.findViewById(R.id.password_et) as EditText
-        card = view.findViewById(R.id.card) as CardView
+        okBtn = view.findViewById(R.id.ok_btn) as Button
+        cancelBtn = view.findViewById(R.id.cancel_btn) as Button
+
         emailEt?.addTextChangedListener(object : CustomTextWatcher() {
             override fun afterTextChanged(s: Editable) {
                 presenter.checkEmail(s.toString())
@@ -54,14 +42,18 @@ class LoginDialog(context: Context) : Popup<LoginInfoDto, DialogResult> {
                 presenter.checkPassword(s.toString())
             }
         })
-        emailEt?.setText(info?.email ?: "")
-        passwordEt?.setText(info?.password ?: "")
-        ok_btn.setOnClickListener {
-            presenter.onClickOk()
-        }
-        cancel_btn.setOnClickListener {
-            presenter.onClickCancel()
-        }
+        emailEt?.setText(info.email)
+        passwordEt?.setText(info.password)
+
+        okBtn?.setOnClickListener { presenter.onClickOk() }
+        cancelBtn?.setOnClickListener { presenter.onClickCancel() }
+    }
+
+    override fun onDialogDismiss() {
+        okBtn = null
+        cancelBtn = null
+        emailEt = null
+        passwordEt = null
     }
 
     fun showEmailError() {
@@ -91,33 +83,5 @@ class LoginDialog(context: Context) : Popup<LoginInfoDto, DialogResult> {
     fun accentFields() {
         accentEmail()
         accentPassword()
-    }
-
-    fun showError(error: Throwable) {
-        showMessage(error.message ?: context.getString(R.string.error_unknown))
-    }
-
-    fun showMessage(stringResId: Int) {
-        showMessage(context.getString(stringResId))
-    }
-
-    fun showMessage(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-    }
-
-    fun dismiss() {
-        emailEt = null
-        passwordEt = null
-        card = null
-        dialog?.dismiss()
-        dialog = null
-    }
-
-    override fun isShowing() = dialog != null
-
-    override fun getContext() = rootContext
-
-    override fun dismiss(withFlourish: Boolean) {
-        dismiss()
     }
 }

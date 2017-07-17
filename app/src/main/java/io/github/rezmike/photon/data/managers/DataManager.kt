@@ -2,7 +2,9 @@ package io.github.rezmike.photon.data.managers
 
 import io.github.rezmike.photon.App
 import io.github.rezmike.photon.data.network.RestService
+import io.github.rezmike.photon.data.network.req.AlbumReq
 import io.github.rezmike.photon.data.network.req.LoginReq
+import io.github.rezmike.photon.data.network.res.AlbumRes
 import io.github.rezmike.photon.data.network.res.AvatarUrlRes
 import io.github.rezmike.photon.data.network.transformers.*
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
@@ -122,6 +124,12 @@ class DataManager private constructor() {
                 .toCompletable()
     }
 
+    fun createAlbumOnServer(albumReq: AlbumReq): Single<AlbumRes> {
+        return restService.createAlbum(preferencesManager.getAuthToken()!!, getUserId()!!, albumReq)
+                .compose(AlbumCallTransformer())
+                .toSingle()
+    }
+
     //endregion
 
     //region ======================== User ========================
@@ -140,6 +148,8 @@ class DataManager private constructor() {
 
     fun uploadUserAvatar(file: MultipartBody.Part): Single<AvatarUrlRes> {
         return restService.uploadUserAvatar(preferencesManager.getAuthToken()!!, getUserId()!!, file)
+                .compose(AvatarUrlCallTransformer())
+                .toSingle()
     }
 
     //endregion

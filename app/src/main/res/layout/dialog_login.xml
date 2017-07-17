@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal_24"
                 android:hint="@string/login_email"
+                android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:lines="1"/>
 
@@ -40,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small_16"
                 android:hint="@string/login_password"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:lines="1"/>
 

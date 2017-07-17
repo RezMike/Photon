@@ -1,5 +1,6 @@
 package io.github.rezmike.photon.data.network
 
+import io.github.rezmike.photon.data.network.req.AlbumReq
 import io.github.rezmike.photon.data.network.req.LoginReq
 import io.github.rezmike.photon.data.network.res.*
 import io.github.rezmike.photon.utils.ConstantManager
@@ -8,7 +9,6 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 import rx.Observable
-import rx.Single
 
 interface RestService {
 
@@ -38,5 +38,10 @@ interface RestService {
     @POST("user/{userId}/image/upload")
     fun uploadUserAvatar(@Header(ConstantManager.AUTHORIZATION) authToken: String,
                          @Path("userId") userId: String,
-                         @Part file: MultipartBody.Part): Single<AvatarUrlRes>
+                         @Part file: MultipartBody.Part): Observable<Response<AvatarUrlRes>>
+
+    @POST("user/{userId}/album")
+    fun createAlbum(@Header(ConstantManager.AUTHORIZATION) authToken: String,
+                    @Path("userId") userId: String,
+                    @Body albumReq: AlbumReq): Observable<Response<AlbumRes>>
 }

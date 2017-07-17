@@ -38,10 +38,9 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm, val bottomBarItem: Botto
     }
 
     private fun loadPhotocardInfo() {
-        getRootView()?.showProgress()
+        getRootView()?.showLoad()
         model.getUserData(photoCard.owner)
-                .observeOn(AndroidSchedulers.mainThread())
-                .doAfterTerminate { getRootView()?.hideProgress() }
+                .doAfterTerminate { getRootView()?.hideLoad() }
                 .subscribe({ view?.showPhotoCardInfo(photoCard, it) }, { getRootView()?.showError(it) })
     }
 
