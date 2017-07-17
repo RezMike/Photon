@@ -5,11 +5,6 @@ import io.github.rezmike.photon.ui.activities.root.RootActivity
 import io.github.rezmike.photon.ui.activities.root.RootPresenter
 import mortar.MortarScope
 import mortar.ViewPresenter
-import rx.Observable
-import rx.Subscriber
-import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
 
@@ -44,23 +39,5 @@ abstract class AbstractPresenter<V : AbstractView<P, V>, M : AbstractModel, P : 
 
     fun getRootView(): RootActivity? {
         return rootPresenter.getRootView()
-    }
-
-    protected abstract inner class ViewSubscriber<T> : Subscriber<T>() {
-        override fun onCompleted() {
-            getRootView()?.hideLoad()
-        }
-
-        override fun onError(e: Throwable) {
-            getRootView()?.hideLoad()
-            getRootView()?.showError(e)
-        }
-    }
-
-    protected fun <T> subscribe(observable: Observable<T>, subscriber: ViewSubscriber<T>): Subscription {
-        return observable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber)
     }
 }

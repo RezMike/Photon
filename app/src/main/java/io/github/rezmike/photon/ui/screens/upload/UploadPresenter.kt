@@ -53,11 +53,7 @@ class UploadPresenter : AbstractPresenter<UploadView, AccountModel, UploadPresen
 
     private fun subscribeOnActivityResult(): Subscription {
         return rootPresenter.getActivityResultSubject()
-                .subscribe(object : ViewSubscriber<ActivityResultDto>() {
-                    override fun onNext(activityResult: ActivityResultDto?) {
-                        if (activityResult != null) handleActivityResult(activityResult);
-                    }
-                })
+                .subscribe({ if (it != null) handleActivityResult(it) }, { getRootView()?.showError(it) })
     }
 
     private fun handleActivityResult(activityResult: ActivityResultDto) {

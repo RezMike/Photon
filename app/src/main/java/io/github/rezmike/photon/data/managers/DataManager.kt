@@ -138,11 +138,9 @@ class DataManager private constructor() {
                 .toSingle()
     }
 
-    fun uploadAvatarUser(file: MultipartBody.Part): Single<AvatarUrlRes> {
-
-        return restService.uploadAvatarUser(preferencesManager.getAuthToken()!!,
-                getUserId()!!, file)
-
+    fun uploadUserAvatar(file: MultipartBody.Part): Single<AvatarUrlRes> {
+        return restService.uploadUserAvatar(preferencesManager.getAuthToken()!!, getUserId()!!, file)
     }
+
     //endregion
 }

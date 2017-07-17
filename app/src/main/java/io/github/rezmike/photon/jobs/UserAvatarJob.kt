@@ -13,40 +13,12 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 
-class AvatarUserJob(val avatarUrl: String) :
-        Job(Params(JobPriority.HIGH)
-                .requireNetwork()
-                .persist()
-                .singleInstanceBy("Avatar")) {
+class UserAvatarJob(val avatarUrl: String) : Job(params) {
 
-    private val userId = DataManager.INSTANCE.getUserId()
-
-    override fun onRun() {
-
-        val photoFile = File(Uri.parse(avatarUrl).path)
-        val requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), photoFile)
-        val body = MultipartBody.Part.createFormData("avatar", photoFile.name, requestBody)
-
-        DataManager.INSTANCE.uploadAvatarUser(body)
-                .subscribe({
-                    val avatar = it.image
-                    val userId = DataManager.INSTANCE.getUserId()
-                    val realm = Realm.getDefaultInstance()
-
-                    val userRealm = realm.where(UserRealm::class.java).equalTo("id", userId).findFirst()
-                    realm.executeTransaction { userRealm.avatar = avatar }
-
-                    realm.close()
-                })
-
-    }
-
-    override fun shouldReRunOnThrowable(throwable: Throwable, runCount: Int, maxRunCount: Int): RetryConstraint {
-        return RetryConstraint.createExponentialBackoff(runCount, AppConfig.JOB_INITIAL_BACK_OFF_IN_MS)
-    }
+    private val dataManager = DataManager.INSTANCE
+    private val userId = dataManager.getUserId()
 
     override fun onAdded() {
-
         val realm = Realm.getDefaultInstance()
 
         val userRealm = realm.where(UserRealm::class.java).equalTo("id", userId).findFirst()
@@ -55,7 +27,33 @@ class AvatarUserJob(val avatarUrl: String) :
         realm.close()
     }
 
-    override fun onCancel(cancelReason: Int, throwable: Throwable?) {
+    override fun onRun() {
+        val photoFile = File(Uri.parse(avatarUrl).path)
+        val requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), photoFile)
+        val body = MultipartBody.Part.createFormData("avatar", photoFile.name, requestBody)
 
+        dataManager.uploadUserAvatar(body)
+                .subscribe({
+                    val avatar = it.image
+                    val realm = Realm.getDefaultInstance()
+
+                    val userRealm = realm.where(UserRealm::class.java).equalTo("id", userId).findFirst()
+                    realm.executeTransaction { userRealm.avatar = avatar }
+
+                    realm.close()
+                })
+    }
+
+    override fun shouldReRunOnThrowable(throwable: Throwable, runCount: Int, maxRunCount: Int): RetryConstraint {
+        return RetryConstraint.createExponentialBackoff(runCount, AppConfig.JOB_INITIAL_BACK_OFF_IN_MS)
+    }
+
+    override fun onCancel(cancelReason: Int, throwable: Throwable?) {}
+
+    companion object {
+        private val params = Params(JobPriority.HIGH)
+                .requireNetwork()
+                .persist()
+                .singleInstanceBy("Avatar")
     }
 }

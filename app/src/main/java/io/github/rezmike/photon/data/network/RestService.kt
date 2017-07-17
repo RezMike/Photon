@@ -36,7 +36,7 @@ interface RestService {
 
     @Multipart
     @POST("user/{userId}/image/upload")
-    fun uploadAvatarUser(@Header(ConstantManager.AUTHORIZATION) authToken: String,
+    fun uploadUserAvatar(@Header(ConstantManager.AUTHORIZATION) authToken: String,
                          @Path("userId") userId: String,
                          @Part file: MultipartBody.Part): Single<AvatarUrlRes>
 }
