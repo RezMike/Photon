@@ -7,7 +7,6 @@ import io.github.rezmike.photon.ui.activities.root.AccountModel
 import io.github.rezmike.photon.ui.dialogs.AbstractDialogPresenter
 import io.github.rezmike.photon.ui.others.isAlbumDescriptionValid
 import io.github.rezmike.photon.ui.others.isAlbumTitleValid
-import rx.android.schedulers.AndroidSchedulers
 
 class AlbumDialogPresenter(val model: AccountModel) : AbstractDialogPresenter<AlbumInfoDto, AlbumDialog>() {
 
@@ -41,14 +40,9 @@ class AlbumDialogPresenter(val model: AccountModel) : AbstractDialogPresenter<Al
             getDialog()?.showMessage(R.string.album_dialog_error_empty_fields)
         } else if (title.isAlbumTitleValid() && description.isAlbumDescriptionValid()) {
             model.createAlbum(title, description)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        getDialog()?.showMessage(R.string.album_dialog_success)
-                        getDialog()?.dismiss()
-                        onResult(DialogResult(true))
-                    }, {
-                        getDialog()?.showError(it)
-                    })
+            getDialog()?.showMessage(R.string.album_dialog_success)
+            getDialog()?.dismiss()
+            onResult(DialogResult(true))
         } else {
             if (!title.isAlbumTitleValid()) getDialog()?.accentTitle()
             if (!description.isAlbumDescriptionValid()) getDialog()?.accentDescription()

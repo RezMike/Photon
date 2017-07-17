@@ -18,9 +18,11 @@ class RealmManager {
     //region ======================== User ========================
 
     fun getUser(userId: String): Single<UserRealm> {
-        val realm = Realm.getDefaultInstance()
 
-        val user = realm.where(UserRealm::class.java).equalTo("id", userId).findFirst()
+        val user = getQueryRealmInstance()
+                .where(UserRealm::class.java)
+                .equalTo("id", userId)
+                .findFirst()
 
         if (user == null)
             return Single.error(Throwable("User with id \"$userId\" not found"))
@@ -66,16 +68,6 @@ class RealmManager {
         realm.close()
 
         return albumRealm
-    }
-
-    fun saveNewAlbumResponseToRealm(albumRes: AlbumRes, userId: String) {
-        val realm = Realm.getDefaultInstance()
-
-        val userRealm = realm.where(UserRealm::class.java).equalTo("id", userId).findFirst()
-        val albumRealm = AlbumRealm(albumRes)
-
-        realm.executeTransaction { userRealm.albums.add(albumRealm) }
-        realm.close()
     }
 
     //endregion

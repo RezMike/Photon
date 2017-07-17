@@ -1,5 +1,6 @@
 package io.github.rezmike.photon.data.storage.realm
 
+import io.github.rezmike.photon.data.network.req.AlbumReq
 import io.github.rezmike.photon.data.network.res.AlbumRes
 import io.realm.RealmList
 import io.realm.RealmObject
@@ -25,5 +26,12 @@ open class AlbumRealm() : RealmObject() {
         isFavorite = albumRes.isFavorite
         views = albumRes.views
         favorits = albumRes.favorits
+    }
+
+    constructor(id: String, albumReq: AlbumReq) : this() {
+        this.id = id
+        this.owner = albumReq.owner
+        this.title = albumReq.title
+        this.description = albumReq.description
     }
 }

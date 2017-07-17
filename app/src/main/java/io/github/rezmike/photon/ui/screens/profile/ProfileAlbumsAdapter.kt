@@ -20,6 +20,12 @@ class ProfileAlbumsAdapter(val picasso: Picasso, val itemClick: (AlbumRealm) -> 
         notifyItemInserted(items.size - 1)
     }
 
+    fun reloadAdapter(albums: ArrayList<AlbumRealm>) {
+        items.clear()
+        items = albums
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AlbumViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_album, parent, false)
         return AlbumViewHolder(view, picasso, itemClick)

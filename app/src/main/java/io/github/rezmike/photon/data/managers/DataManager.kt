@@ -4,6 +4,7 @@ import io.github.rezmike.photon.App
 import io.github.rezmike.photon.data.network.RestService
 import io.github.rezmike.photon.data.network.req.AlbumReq
 import io.github.rezmike.photon.data.network.req.LoginReq
+import io.github.rezmike.photon.data.network.res.AlbumRes
 import io.github.rezmike.photon.data.network.res.AvatarUrlRes
 import io.github.rezmike.photon.data.network.transformers.*
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
@@ -17,7 +18,6 @@ import okhttp3.MultipartBody
 import rx.Completable
 import rx.Observable
 import rx.Single
-import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -124,13 +124,10 @@ class DataManager private constructor() {
                 .toCompletable()
     }
 
-    fun createAlbum(albumReq: AlbumReq): Completable {
+    fun createAlbumOnServer(albumReq: AlbumReq): Single<AlbumRes> {
         return restService.createAlbum(preferencesManager.getAuthToken()!!, getUserId()!!, albumReq)
                 .compose(AlbumCallTransformer())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { realmManager.saveNewAlbumResponseToRealm(it, getUserId()!!) }
-                .toCompletable()
+                .toSingle()
     }
 
     //endregion
@@ -151,6 +148,8 @@ class DataManager private constructor() {
 
     fun uploadAvatarUser(file: MultipartBody.Part): Single<AvatarUrlRes> {
         return restService.uploadAvatarUser(preferencesManager.getAuthToken()!!, getUserId()!!, file)
+                .compose(AvatarUrlCallTransformer())
+                .toSingle()
     }
 
     //endregion
