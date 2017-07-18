@@ -25,7 +25,7 @@ class LoginDialog(context: Context) : AbstractDialog<LoginInfoDto>(context) {
 
     override fun onFinishInflate(view: View, presenter: PopupPresenter<LoginInfoDto, DialogResult>, info: LoginInfoDto) {
         if (presenter !is LoginDialogPresenter) {
-            throw ClassCastException("presenter must implements LoginDialogPresenter")
+            throw ClassCastException("Presenter must be LoginDialogPresenter")
         }
         emailEt = view.findViewById(R.id.email_et) as EditText
         passwordEt = view.findViewById(R.id.password_et) as EditText

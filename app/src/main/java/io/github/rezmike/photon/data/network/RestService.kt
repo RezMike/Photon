@@ -34,6 +34,9 @@ interface RestService {
     @POST("user/signIn")
     fun login(@Body loginReq: LoginReq): Observable<Response<UserRes>>
 
+    @POST("user/signUp")
+    fun register(@Body registerReq: RegisterReq): Observable<Response<UserRes>>
+
     @Multipart
     @POST("user/{userId}/image/upload")
     fun uploadUserAvatar(@Header(ConstantManager.AUTHORIZATION) authToken: String,

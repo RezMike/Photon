@@ -56,7 +56,7 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     }
 
     fun onClickRegister(): Boolean {
-        TODO("вызвать диалог рещистрации")
+        rootPresenter.showRegisterDialog({ initActionBar() })
         return true
     }
 

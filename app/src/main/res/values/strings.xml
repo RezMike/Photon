@@ -59,7 +59,7 @@
     <string name="login_dialog_email">Email</string>
     <string name="login_dialog_email_error">Email невалидный</string>
     <string name="login_dialog_password">Пароль</string>
-    <string name="login_dialog_password_error">Длина не менее 8 символов, латиница, не может содержать спецсимволы и нижние подчеркивания (!@#$%^&amp;*()\/|_=+-)</string>
+    <string name="login_dialog_password_error">Длина - не менее 8 символов, латиница, не может содержать спецсимволы и нижние подчеркивания (!@#$%^&amp;*()\/|_=+-)</string>
     <string name="login_dialog_error_incorrect_data">Неверный email или пароль</string>
     <string name="login_dialog_error_empty_fields">Заполните все поля!</string>
 
@@ -67,17 +67,22 @@
     <string name="album_dialog_header">Новый альбом</string>
     <string name="album_dialog_title">Название</string>
     <string name="album_dialog_description">Описание</string>
-    <string name="album_dialog_title_error">Длина не менее 3 символов, не может содержать спецсимвоыл(!@#$%^&amp;*()\/|=+-)</string>
-    <string name="album_dialog_description_error">Длина не менее 3 символов, не более 400 символов</string>
+    <string name="album_dialog_title_error">Длина - не менее 3 символов, не может содержать спецсимвоыл(!@#$%^&amp;*()\/|=+-)</string>
+    <string name="album_dialog_description_error">Длина - не менее 3 символов, не более 400 символов</string>
     <string name="album_dialog_error_empty_fields">Заполните все поля!</string>
     <string name="album_dialog_success">Альбом успешно создан</string>
 
-    <!--Sign Up Screen-->
-    <string name="sign_up_title">Регистрация</string>
-    <string name="sign_up_login">Логин</string>
-    <string name="sign_up_email">Email</string>
-    <string name="sign_up_name">Имя</string>
-    <string name="sign_up_password">Пароль</string>
+    <!--Register Dialog-->
+    <string name="register_title">Регистрация</string>
+    <string name="register_login">Логин</string>
+    <string name="register_login_error">Латиница и нижние подчеркивания, не может содержать спецзнаки (!@#$%^&amp;*()\|=+-)</string>
+    <string name="register_email">Email</string>
+    <string name="register_email_error">Email невалидный</string>
+    <string name="register_name">Имя</string>
+    <string name="register_name_error">Имя не должно быть короче 3 символов</string>
+    <string name="register_password">Пароль</string>
+    <string name="register_password_error">Длина - не менее 8 символов, латиница, не может содержать спецсимволы и нижние подчеркивания (!@#$%^&amp;*()\|_=+-)</string>
+    <string name="register_error_empty_fields">Заполните все поля!</string>
 
     <!--Exit dialog-->
     <string name="exit_dialog_title">Вы действительно хотите выйти?</string>

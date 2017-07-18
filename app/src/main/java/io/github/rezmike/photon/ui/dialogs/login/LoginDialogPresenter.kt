@@ -61,5 +61,4 @@ class LoginDialogPresenter(val model: AccountModel) : AbstractDialogPresenter<Lo
             if (!password.isPasswordValid()) getDialog()?.accentPassword()
         }
     }
-
 }

@@ -1,10 +1,8 @@
 package io.github.rezmike.photon.ui.screens.auth
 
-import flow.Flow
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.ui.abstracts.AbstractPresenter
 import io.github.rezmike.photon.ui.activities.root.AccountModel
-//import io.github.rezmike.photon.ui.screens.register.RegisterScreen
 import io.github.rezmike.photon.utils.DaggerService
 import mortar.MortarScope
 
@@ -26,7 +24,7 @@ class AuthPresenter : AbstractPresenter<AuthView, AccountModel, AuthPresenter>()
     }
 
     fun onClickRegister(): Boolean {
-//        Flow.get(view).set(RegisterScreen())
+        rootPresenter.showRegisterDialog({ if (it.isOk()) rootPresenter.onClickProfile() })
         return true
     }
 }
