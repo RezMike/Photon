@@ -1,6 +1,7 @@
 package io.github.rezmike.photon.data.network
 
 import io.github.rezmike.photon.data.network.req.LoginReq
+import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.data.network.res.AlbumRes
 import io.github.rezmike.photon.data.network.res.PhotoCardRes
 import io.github.rezmike.photon.data.network.res.SuccessRes
@@ -34,4 +35,7 @@ interface RestService {
 
     @POST("user/signIn")
     fun login(@Body loginReq: LoginReq): Observable<Response<UserRes>>
+
+    @POST("user/signUp")
+    fun register(@Body registerReq: RegisterReq): Observable<Response<UserRes>>
 }

@@ -9,6 +9,8 @@ import io.github.rezmike.photon.data.storage.dto.ActivityResultDto
 import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.ui.dialogs.login.LoginDialog
 import io.github.rezmike.photon.ui.dialogs.login.LoginPresenter
+import io.github.rezmike.photon.ui.dialogs.register.RegisterDialog
+import io.github.rezmike.photon.ui.dialogs.register.RegisterPresenter
 import io.github.rezmike.photon.ui.others.MenuItemHolder
 import io.github.rezmike.photon.utils.ConstantManager
 import io.github.rezmike.photon.utils.DaggerService
@@ -80,8 +82,10 @@ class RootPresenter : Presenter<RootActivity>() {
     //region ======================== Dialogs ========================
 
     private var loginDialogPresenter: LoginPresenter? = null
+    private var registerDialogPresenter: RegisterPresenter? = null
 
     private var loginDialog: LoginDialog? = null
+    private var registerDialog: RegisterDialog? = null
 
     fun showLoginDialog(onResult: (DialogResult) -> Unit = {}) {
         loginDialogPresenter = LoginPresenter(model)
@@ -95,11 +99,28 @@ class RootPresenter : Presenter<RootActivity>() {
         loginDialogPresenter?.show()
     }
 
+    fun showRegisterDialog(onResult: (DialogResult) -> Unit) {
+        registerDialogPresenter = RegisterPresenter(model)
+        registerDialogPresenter?.setOnResultListener {
+            registerDialogPresenter = null
+            registerDialog = null
+            onResult(it)
+        }
+        registerDialog = RegisterDialog(view!!)
+        registerDialogPresenter?.takeView(registerDialog)
+        registerDialogPresenter?.show()
+    }
+
     private fun initDialogs() {
         if (loginDialogPresenter != null) {
             loginDialog = LoginDialog(view)
             loginDialogPresenter?.takeView(loginDialog)
             loginDialogPresenter?.show()
+        }
+        if (registerDialogPresenter != null) {
+            registerDialog = RegisterDialog(view)
+            registerDialogPresenter?.takeView(registerDialog)
+            registerDialogPresenter?.show()
         }
     }
 
@@ -108,6 +129,10 @@ class RootPresenter : Presenter<RootActivity>() {
             loginDialogPresenter?.dismiss()
         }
         loginDialog = null
+        if (registerDialogPresenter != null) {
+            registerDialogPresenter?.dismiss()
+        }
+        registerDialog = null
     }
 
     //endregion
