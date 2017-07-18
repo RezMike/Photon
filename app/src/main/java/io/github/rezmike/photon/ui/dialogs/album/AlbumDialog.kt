@@ -21,6 +21,8 @@ class AlbumDialog(context: Context) : AbstractDialog<AlbumInfoDto>(context) {
     private var okBtn: Button? = null
     private var cancelBtn: Button? = null
 
+    override fun getLayoutRes(): Int = R.layout.dialog_album
+
     override fun onFinishInflate(view: View, presenter: PopupPresenter<AlbumInfoDto, DialogResult>, info: AlbumInfoDto) {
         if (presenter !is AlbumDialogPresenter) {
             throw ClassCastException("presenter must implements AlbumDialogPresenter")
@@ -47,8 +49,6 @@ class AlbumDialog(context: Context) : AbstractDialog<AlbumInfoDto>(context) {
         okBtn?.setOnClickListener { presenter.onClickOk() }
         cancelBtn?.setOnClickListener { presenter.onClickCancel() }
     }
-
-    override fun getLayoutRes(): Int = R.layout.dialog_album
 
     override fun onDialogDismiss() {
         title = null

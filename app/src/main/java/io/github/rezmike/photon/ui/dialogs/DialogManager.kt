@@ -10,57 +10,57 @@ import io.github.rezmike.photon.ui.dialogs.login.LoginDialogPresenter
 
 class DialogManager(val model: AccountModel) {
 
-    private var mLoginDialogDialogPresenter: LoginDialogPresenter? = null
+    private var loginDialogPresenter: LoginDialogPresenter? = null
     private var loginDialog: LoginDialog? = null
 
-    private var mAlbumDialogDialogPresenter: AlbumDialogPresenter? = null
+    private var albumDialogPresenter: AlbumDialogPresenter? = null
     private var albumDialog: AlbumDialog? = null
 
     fun showLoginDialog(context: Context, onResult: (DialogResult) -> Unit = {}) {
-        mLoginDialogDialogPresenter = LoginDialogPresenter(model)
-        mLoginDialogDialogPresenter?.setOnResultListener {
-            mLoginDialogDialogPresenter = null
+        loginDialogPresenter = LoginDialogPresenter(model)
+        loginDialogPresenter?.setOnResultListener {
+            loginDialogPresenter = null
             loginDialog = null
             onResult(it)
         }
         loginDialog = LoginDialog(context)
-        mLoginDialogDialogPresenter?.takeView(loginDialog)
-        mLoginDialogDialogPresenter?.show()
+        loginDialogPresenter?.takeView(loginDialog)
+        loginDialogPresenter?.show()
     }
 
     fun showAlbumDialog(context: Context, onResult: (DialogResult) -> Unit = {}) {
-        mAlbumDialogDialogPresenter = AlbumDialogPresenter(model)
-        mAlbumDialogDialogPresenter?.setOnResultListener {
-            mAlbumDialogDialogPresenter = null
+        albumDialogPresenter = AlbumDialogPresenter(model)
+        albumDialogPresenter?.setOnResultListener {
+            albumDialogPresenter = null
             albumDialog = null
             onResult(it)
         }
         albumDialog = AlbumDialog(context)
-        mAlbumDialogDialogPresenter?.takeView(albumDialog)
-        mAlbumDialogDialogPresenter?.show()
+        albumDialogPresenter?.takeView(albumDialog)
+        albumDialogPresenter?.show()
     }
 
     fun dismissDialogs() {
-        if (mLoginDialogDialogPresenter != null) {
-            mLoginDialogDialogPresenter?.dismiss()
+        if (loginDialogPresenter != null) {
+            loginDialogPresenter?.dismiss()
         }
         loginDialog = null
-        if (mAlbumDialogDialogPresenter != null) {
-            mAlbumDialogDialogPresenter?.dismiss()
+        if (albumDialogPresenter != null) {
+            albumDialogPresenter?.dismiss()
         }
         albumDialog = null
     }
 
     fun showHiddenDialogs(context: Context) {
-        if (mLoginDialogDialogPresenter != null) {
+        if (loginDialogPresenter != null) {
             loginDialog = LoginDialog(context)
-            mLoginDialogDialogPresenter?.takeView(loginDialog)
-            mLoginDialogDialogPresenter?.show()
+            loginDialogPresenter?.takeView(loginDialog)
+            loginDialogPresenter?.show()
         }
-        if (mAlbumDialogDialogPresenter != null) {
+        if (albumDialogPresenter != null) {
             albumDialog = AlbumDialog(context)
-            mAlbumDialogDialogPresenter?.takeView(albumDialog)
-            mAlbumDialogDialogPresenter?.show()
+            albumDialogPresenter?.takeView(albumDialog)
+            albumDialogPresenter?.show()
         }
     }
 }

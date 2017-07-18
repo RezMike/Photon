@@ -117,9 +117,9 @@ class RootActivity : BaseActivity(), IActionBarView {
     override fun onBackPressed() {
         if (getCurrentScreen() == null || !getCurrentScreen()!!.onBackPressed() && !Flow.get(this).goBack()) {
             val alertDialog = AlertDialog.Builder(this)
-                    .setTitle(R.string.exit_title)
-                    .setPositiveButton(R.string.exit_yes) { _, _ -> finish() }
-                    .setNegativeButton(R.string.exit_no, null)
+                    .setTitle(R.string.exit_dialog_title)
+                    .setPositiveButton(R.string.exit_dialog_yes) { _, _ -> finish() }
+                    .setNegativeButton(R.string.exit_dialog_no, null)
                     .create()
             alertDialog.show()
         }

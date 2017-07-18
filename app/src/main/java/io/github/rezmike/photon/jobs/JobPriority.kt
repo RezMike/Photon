@@ -1,7 +1,7 @@
 package io.github.rezmike.photon.jobs
 
 object JobPriority {
-    val MIN = 5
-    val MID = 50
-    val HIGH = 500
+    const val MIN = 5
+    const val MID = 50
+    const val HIGH = 500
 }

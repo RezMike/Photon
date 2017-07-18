@@ -40,7 +40,7 @@ class LoginDialogPresenter(val model: AccountModel) : AbstractDialogPresenter<Lo
         if (email.isEmpty() || password.isEmpty()) {
             if (email.isEmpty()) getDialog()?.accentEmail()
             if (password.isEmpty()) getDialog()?.accentPassword()
-            getDialog()?.showMessage(R.string.login_error_empty_fields)
+            getDialog()?.showMessage(R.string.login_dialog_error_empty_fields)
         } else if (email.isEmailValid() && password.isPasswordValid()) {
             model.login(email, password)
                     .observeOn(AndroidSchedulers.mainThread())
@@ -50,7 +50,7 @@ class LoginDialogPresenter(val model: AccountModel) : AbstractDialogPresenter<Lo
                         onResult(DialogResult(true))
                     }, {
                         if (it is AccessError || it is NotFoundError) {
-                            getDialog()?.showMessage(R.string.login_error_incorrect_data)
+                            getDialog()?.showMessage(R.string.login_dialog_error_incorrect_data)
                             getDialog()?.accentFields()
                         } else {
                             getDialog()?.showError(it)

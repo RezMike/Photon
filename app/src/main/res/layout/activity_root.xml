@@ -44,7 +44,7 @@
             android:background="@color/white"
             app:elevation="24dp"
             app:itemBackground="@android:color/transparent"
-            app:menu="@menu/navigation"/>
+            app:menu="@menu/menu_navigation"/>
 
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

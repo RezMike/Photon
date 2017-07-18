@@ -57,7 +57,7 @@ class LoginDialog(context: Context) : AbstractDialog<LoginInfoDto>(context) {
     }
 
     fun showEmailError() {
-        emailEt?.changeError(true, context.getString(R.string.login_email_error))
+        emailEt?.changeError(true, context.getString(R.string.login_dialog_email_error))
     }
 
     fun hideEmailError() {
@@ -65,7 +65,7 @@ class LoginDialog(context: Context) : AbstractDialog<LoginInfoDto>(context) {
     }
 
     fun showPasswordError() {
-        passwordEt?.changeError(true, context.getString(R.string.login_password_error))
+        passwordEt?.changeError(true, context.getString(R.string.login_dialog_password_error))
     }
 
     fun hidePasswordError() {

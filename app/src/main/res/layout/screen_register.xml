@@ -69,7 +69,7 @@
                 android:inputType="textPassword"
                 android:lines="1"/>
 
-            <include layout="@layout/dialog_footer"/>
+            <include layout="@layout/layout_dialog_footer"/>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
