@@ -7,11 +7,16 @@ import io.github.rezmike.photon.ui.dialogs.album.AlbumDialog
 import io.github.rezmike.photon.ui.dialogs.album.AlbumDialogPresenter
 import io.github.rezmike.photon.ui.dialogs.login.LoginDialog
 import io.github.rezmike.photon.ui.dialogs.login.LoginDialogPresenter
+import io.github.rezmike.photon.ui.dialogs.register.RegisterDialog
+import io.github.rezmike.photon.ui.dialogs.register.RegisterDialogPresenter
 
 class DialogManager(val model: AccountModel) {
 
     private var loginDialogPresenter: LoginDialogPresenter? = null
     private var loginDialog: LoginDialog? = null
+
+    private var registerDialogPresenter: RegisterDialogPresenter? = null
+    private var registerDialog: RegisterDialog? = null
 
     private var albumDialogPresenter: AlbumDialogPresenter? = null
     private var albumDialog: AlbumDialog? = null
@@ -26,6 +31,18 @@ class DialogManager(val model: AccountModel) {
         loginDialog = LoginDialog(context)
         loginDialogPresenter?.takeView(loginDialog)
         loginDialogPresenter?.show()
+    }
+
+    fun showRegisterDialog(context: Context, onResult: (DialogResult) -> Unit = {}) {
+        registerDialogPresenter = RegisterDialogPresenter(model)
+        registerDialogPresenter?.setOnResultListener {
+            registerDialogPresenter = null
+            registerDialog = null
+            onResult(it)
+        }
+        registerDialog = RegisterDialog(context)
+        registerDialogPresenter?.takeView(registerDialog)
+        registerDialogPresenter?.show()
     }
 
     fun showAlbumDialog(context: Context, onResult: (DialogResult) -> Unit = {}) {
@@ -45,6 +62,10 @@ class DialogManager(val model: AccountModel) {
             loginDialogPresenter?.dismiss()
         }
         loginDialog = null
+        if (registerDialogPresenter != null) {
+            registerDialogPresenter?.dismiss()
+        }
+        registerDialog = null
         if (albumDialogPresenter != null) {
             albumDialogPresenter?.dismiss()
         }
@@ -56,6 +77,11 @@ class DialogManager(val model: AccountModel) {
             loginDialog = LoginDialog(context)
             loginDialogPresenter?.takeView(loginDialog)
             loginDialogPresenter?.show()
+        }
+        if (registerDialogPresenter != null) {
+            registerDialog = RegisterDialog(context)
+            registerDialogPresenter?.takeView(registerDialog)
+            registerDialogPresenter?.show()
         }
         if (albumDialogPresenter != null) {
             albumDialog = AlbumDialog(context)

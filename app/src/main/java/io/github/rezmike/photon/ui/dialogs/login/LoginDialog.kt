@@ -50,10 +50,10 @@ class LoginDialog(context: Context) : AbstractDialog<LoginInfoDto>(context) {
     }
 
     override fun onDialogDismiss() {
-        okBtn = null
-        cancelBtn = null
         emailEt = null
         passwordEt = null
+        okBtn = null
+        cancelBtn = null
     }
 
     fun showEmailError() {

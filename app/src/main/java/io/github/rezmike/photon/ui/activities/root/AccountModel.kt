@@ -6,14 +6,19 @@ import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.jobs.CreateAlbumJob
 import io.github.rezmike.photon.jobs.UserAvatarJob
 import io.github.rezmike.photon.ui.abstracts.AbstractModel
+import rx.Completable
 
 class AccountModel : AbstractModel() {
 
     fun isUserAuth() = dataManager.isUserAuth()
 
-    fun login(email: String, password: String) = dataManager.loginUserCompl(LoginReq(email, password))
+    fun login(email: String, password: String): Completable {
+        return dataManager.loginUserCompl(LoginReq(email, password))
+    }
 
-    fun register(registerReq: RegisterReq) = dataManager.registerUserCompl(registerReq)
+    fun register(name: String, login: String, email: String, password: String): Completable {
+        return dataManager.registerUserCompl(RegisterReq(name, login, email, password))
+    }
 
     fun uploadAvatarToServer(avatarUrl: String) {
         jobManager.addJobInBackground(UserAvatarJob(avatarUrl))

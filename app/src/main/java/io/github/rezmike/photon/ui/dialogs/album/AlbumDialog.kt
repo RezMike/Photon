@@ -25,7 +25,7 @@ class AlbumDialog(context: Context) : AbstractDialog<AlbumInfoDto>(context) {
 
     override fun onFinishInflate(view: View, presenter: PopupPresenter<AlbumInfoDto, DialogResult>, info: AlbumInfoDto) {
         if (presenter !is AlbumDialogPresenter) {
-            throw ClassCastException("presenter must implements AlbumDialogPresenter")
+            throw ClassCastException("Presenter must be AlbumDialogPresenter")
         }
 
         title = view.findViewById(R.id.title_album_et) as EditText

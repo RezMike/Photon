@@ -50,8 +50,8 @@
     <string name="auth_menu_login">Войти</string>
     <string name="auth_menu_register">Зарегистрироваться</string>
     <string name="auth_description">Авторизуйтесь, чтобы посмотреть данные профиля</string>
-    <string name="auth_sign_up">Регистрация</string>
-    <string name="auth_sign_in">Вход</string>
+    <string name="auth_register">Регистрация</string>
+    <string name="auth_login">Вход</string>
     <string name="auth_success">Вы успешно авторизованы</string>
 
     <!--Login Dialog-->
@@ -62,15 +62,6 @@
     <string name="login_dialog_password_error">Длина - не менее 8 символов, латиница, не может содержать спецсимволы и нижние подчеркивания (!@#$%^&amp;*()\/|_=+-)</string>
     <string name="login_dialog_error_incorrect_data">Неверный email или пароль</string>
     <string name="login_dialog_error_empty_fields">Заполните все поля!</string>
-
-    <!--Album Dialog-->
-    <string name="album_dialog_header">Новый альбом</string>
-    <string name="album_dialog_title">Название</string>
-    <string name="album_dialog_description">Описание</string>
-    <string name="album_dialog_title_error">Длина - не менее 3 символов, не может содержать спецсимвоыл(!@#$%^&amp;*()\/|=+-)</string>
-    <string name="album_dialog_description_error">Длина - не менее 3 символов, не более 400 символов</string>
-    <string name="album_dialog_error_empty_fields">Заполните все поля!</string>
-    <string name="album_dialog_success">Альбом успешно создан</string>
 
     <!--Register Dialog-->
     <string name="register_title">Регистрация</string>
@@ -83,6 +74,15 @@
     <string name="register_password">Пароль</string>
     <string name="register_password_error">Длина - не менее 8 символов, латиница, не может содержать спецсимволы и нижние подчеркивания (!@#$%^&amp;*()\|_=+-)</string>
     <string name="register_error_empty_fields">Заполните все поля!</string>
+
+    <!--Album Dialog-->
+    <string name="album_dialog_header">Новый альбом</string>
+    <string name="album_dialog_title">Название</string>
+    <string name="album_dialog_description">Описание</string>
+    <string name="album_dialog_title_error">Длина - не менее 3 символов, не может содержать спецсимвоыл(!@#$%^&amp;*()\/|=+-)</string>
+    <string name="album_dialog_description_error">Длина - не менее 3 символов, не более 400 символов</string>
+    <string name="album_dialog_error_empty_fields">Заполните все поля!</string>
+    <string name="album_dialog_success">Альбом успешно создан</string>
 
     <!--Exit dialog-->
     <string name="exit_dialog_title">Вы действительно хотите выйти?</string>

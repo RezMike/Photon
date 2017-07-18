@@ -2,6 +2,7 @@ package io.github.rezmike.photon.data.network
 
 import io.github.rezmike.photon.data.network.req.AlbumReq
 import io.github.rezmike.photon.data.network.req.LoginReq
+import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.data.network.res.*
 import io.github.rezmike.photon.utils.ConstantManager
 import okhttp3.MultipartBody
