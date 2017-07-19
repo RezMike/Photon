@@ -145,6 +145,10 @@ class DataManager private constructor() {
 
     fun getUserId() = preferencesManager.getUserId()
 
+    fun getUserLogin() = preferencesManager.getUserLogin()
+
+    fun getUserName() = preferencesManager.getUserName()
+
     fun getUserSinFromRealm(userId: String) = realmManager.getUser(userId)
 
     fun getUserSinFromNetwork(userId: String): Single<UserRealm> {

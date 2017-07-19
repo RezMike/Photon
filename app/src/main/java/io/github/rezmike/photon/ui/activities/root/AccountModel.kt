@@ -12,6 +12,10 @@ class AccountModel : AbstractModel() {
 
     fun isUserAuth() = dataManager.isUserAuth()
 
+    fun getUserLogin() = dataManager.getUserLogin()
+
+    fun getUserName() = dataManager.getUserName()
+
     fun login(email: String, password: String): Completable {
         return dataManager.loginUserCompl(LoginReq(email, password))
     }
@@ -20,11 +24,15 @@ class AccountModel : AbstractModel() {
         return dataManager.registerUserCompl(RegisterReq(name, login, email, password))
     }
 
-    fun uploadAvatarToServer(avatarUrl: String) {
-        jobManager.addJobInBackground(UserAvatarJob(avatarUrl))
-    }
-
     fun createAlbum(title: String, description: String) {
         jobManager.addJobInBackground(CreateAlbumJob(AlbumReq(dataManager.getUserId()!!, title, description)))
+    }
+
+    fun updateProfileInfo(name: String, login: String): Completable {
+        TODO("not implemented")
+    }
+
+    fun uploadAvatarToServer(avatarUrl: String) {
+        jobManager.addJobInBackground(UserAvatarJob(avatarUrl))
     }
 }

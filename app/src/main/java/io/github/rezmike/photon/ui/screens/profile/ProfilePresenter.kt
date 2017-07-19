@@ -76,7 +76,8 @@ class ProfilePresenter : AbstractPresenter<ProfileView, ProfileModel, ProfilePre
     }
 
     fun onClickEditProfile(): Boolean {
-        TODO("not implemented")
+        rootPresenter.showEditProfileDialog()
+        return true
     }
 
     fun onClickChangeAvatar(): Boolean {

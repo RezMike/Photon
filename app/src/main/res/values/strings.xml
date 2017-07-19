@@ -84,6 +84,16 @@
     <string name="album_dialog_error_empty_fields">Заполните все поля!</string>
     <string name="album_dialog_success">Альбом успешно создан</string>
 
+    <!--Edit Profile Dialog-->
+    <string name="edit_profile_dialog_header">Редактироние профиля</string>
+    <string name="edit_profile_dialog_name">Имя</string>
+    <string name="edit_profile_dialog_name_error">Имя не должно быть короче 3 символов</string>
+    <string name="edit_profile_dialog_login">Логин</string>
+    <string name="edit_profile_dialog_login_error">Латиница и нижние подчеркивания, не может содержать спецзнаки (!@#$%^&amp;*()\|=+-)</string>
+    <string name="edit_profile_dialog_login_taken">Данный логин уже зарегистрирован!</string>
+    <string name="edit_profile_dialog_error_empty_fields">Невозможно сохранить данные, если хоть одно поле пустое</string>
+    <string name="edit_profile_dialog_success">Данные успешно изменены</string>
+
     <!--Exit dialog-->
     <string name="exit_dialog_title">Вы действительно хотите выйти?</string>
     <string name="exit_dialog_yes">Да</string>

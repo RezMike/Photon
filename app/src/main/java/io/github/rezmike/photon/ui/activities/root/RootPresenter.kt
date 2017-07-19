@@ -93,6 +93,10 @@ class RootPresenter : Presenter<RootActivity>() {
         dialogManager.showAlbumDialog(view, onResult)
     }
 
+    fun showEditProfileDialog(onResult: (DialogResult) -> Unit = {}) {
+        dialogManager.showEditProfileDialog(view, onResult)
+    }
+
     //endregion
 
     //region ======================== Events ========================
