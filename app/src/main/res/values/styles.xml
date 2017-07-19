@@ -55,6 +55,9 @@
     </style>
 
     <style name="edit_text_borders">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/spacing_very_small_8</item>
         <item name="android:background">@drawable/borders_edit_text</item>
         <item name="android:padding">@dimen/spacing_very_small_8</item>
     </style>
@@ -106,5 +109,15 @@
         <item name="dividerDrawable">@drawable/divider_tags</item>
         <item name="flexWrap">wrap</item>
         <item name="showDivider">middle</item>
+    </style>
+
+    <style name="hint_edit_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_description_text_view</item>
+        <item name="android:textSize">@dimen/font_size_normal_14</item>
+        <item name="android:fontFamily">@string/roboto_medium</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small_16</item>
+        <item name="android:layout_gravity">start</item>
     </style>
 </resources>
