@@ -62,7 +62,7 @@ class RegisterDialogPresenter(val model: AccountModel) : AbstractDialogPresenter
             if (email.isEmpty()) getDialog()?.accentEmail()
             if (name.isEmpty()) getDialog()?.accentName()
             if (password.isEmpty()) getDialog()?.accentPassword()
-            getDialog()?.showMessage(R.string.register_error_empty_fields)
+            getDialog()?.showMessage(R.string.register_dialog_error_empty_fields)
         } else if (login.isLoginValid() && email.isEmailValid() && name.isNameValid() && password.isPasswordValid()) {
             model.register(name, login, email, password)
                     .observeOn(AndroidSchedulers.mainThread())

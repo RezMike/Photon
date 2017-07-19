@@ -28,8 +28,8 @@ class AlbumDialog(context: Context) : AbstractDialog<AlbumInfoDto>(context) {
             throw ClassCastException("Presenter must be AlbumDialogPresenter")
         }
 
-        title = view.findViewById(R.id.title_album_et) as EditText
-        description = view.findViewById(R.id.description_album_et) as EditText
+        title = view.findViewById(R.id.title_et) as EditText
+        description = view.findViewById(R.id.description_et) as EditText
         okBtn = view.findViewById(R.id.ok_btn) as Button
         cancelBtn = view.findViewById(R.id.cancel_btn) as Button
 

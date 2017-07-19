@@ -75,7 +75,7 @@ class RegisterDialog(context: Context) : AbstractDialog<RegisterInfoDto>(context
     }
 
     fun showLoginError() {
-        loginEt?.changeError(true, context.getString(R.string.register_login_error))
+        loginEt?.changeError(true, context.getString(R.string.register_dialog_login_error))
     }
 
     fun hideLoginError() {
@@ -83,7 +83,7 @@ class RegisterDialog(context: Context) : AbstractDialog<RegisterInfoDto>(context
     }
 
     fun showEmailError() {
-        emailEt?.changeError(true, context.getString(R.string.register_email_error))
+        emailEt?.changeError(true, context.getString(R.string.register_dialog_email_error))
     }
 
     fun hideEmailError() {
@@ -91,7 +91,7 @@ class RegisterDialog(context: Context) : AbstractDialog<RegisterInfoDto>(context
     }
 
     fun showNameError() {
-        nameEt?.changeError(true, context.getString(R.string.register_name_error))
+        nameEt?.changeError(true, context.getString(R.string.register_dialog_name_error))
     }
 
     fun hideNameError() {
@@ -99,7 +99,7 @@ class RegisterDialog(context: Context) : AbstractDialog<RegisterInfoDto>(context
     }
 
     fun showPasswordError() {
-        passwordEt?.changeError(true, context.getString(R.string.register_password_error))
+        passwordEt?.changeError(true, context.getString(R.string.register_dialog_password_error))
     }
 
     fun hidePasswordError() {
