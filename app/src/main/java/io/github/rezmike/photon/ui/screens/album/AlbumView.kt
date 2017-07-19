@@ -2,7 +2,7 @@ package io.github.rezmike.photon.ui.screens.album
 
 import android.content.Context
 import android.util.AttributeSet
-import io.github.rezmike.photon.ui.abstracts.AbstractView
+import io.github.rezmike.photon.ui.screens.AbstractView
 
 class AlbumView(context: Context, attrs: AttributeSet?) : AbstractView<AlbumPresenter, AlbumView>(context, attrs) {
     override fun onBackPressed(): Boolean {

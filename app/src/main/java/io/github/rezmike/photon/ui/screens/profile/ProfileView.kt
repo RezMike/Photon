@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import com.squareup.picasso.Picasso
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.realm.UserRealm
-import io.github.rezmike.photon.ui.abstracts.AbstractView
+import io.github.rezmike.photon.ui.screens.AbstractView
 import io.github.rezmike.photon.utils.DaggerService
 import kotlinx.android.synthetic.main.screen_profile.view.*
 import javax.inject.Inject

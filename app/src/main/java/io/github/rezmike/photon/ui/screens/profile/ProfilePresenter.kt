@@ -6,9 +6,9 @@ import flow.Flow
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.data.storage.realm.UserRealm
-import io.github.rezmike.photon.ui.abstracts.AbstractPresenter
 import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.others.MenuItemHolder
+import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import io.github.rezmike.photon.ui.screens.album.AlbumScreen
 import io.github.rezmike.photon.utils.DaggerService
 import io.realm.RealmChangeListener

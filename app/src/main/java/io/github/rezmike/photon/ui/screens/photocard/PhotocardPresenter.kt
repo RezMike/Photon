@@ -6,9 +6,9 @@ import android.view.MenuItem
 import flow.Flow
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
-import io.github.rezmike.photon.ui.abstracts.AbstractPresenter
 import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.others.MenuItemHolder
+import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import io.github.rezmike.photon.ui.screens.user.UserScreen
 import io.github.rezmike.photon.utils.ConstantManager
 import io.github.rezmike.photon.utils.DaggerService

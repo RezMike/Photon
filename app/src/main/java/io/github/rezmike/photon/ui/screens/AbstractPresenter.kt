@@ -1,4 +1,4 @@
-package io.github.rezmike.photon.ui.abstracts
+package io.github.rezmike.photon.ui.screens
 
 import android.os.Bundle
 import io.github.rezmike.photon.ui.activities.root.RootActivity

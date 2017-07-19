@@ -5,7 +5,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.util.AttributeSet
 import com.squareup.picasso.Picasso
 import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
-import io.github.rezmike.photon.ui.abstracts.AbstractView
+import io.github.rezmike.photon.ui.screens.AbstractView
 import io.github.rezmike.photon.utils.DaggerService
 import kotlinx.android.synthetic.main.screen_main.view.*
 import javax.inject.Inject

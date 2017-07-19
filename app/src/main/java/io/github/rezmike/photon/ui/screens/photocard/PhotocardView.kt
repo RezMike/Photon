@@ -9,7 +9,7 @@ import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.photon.data.storage.realm.TagRealm
 import io.github.rezmike.photon.data.storage.realm.UserRealm
-import io.github.rezmike.photon.ui.abstracts.AbstractView
+import io.github.rezmike.photon.ui.screens.AbstractView
 import io.github.rezmike.photon.utils.DaggerService
 import io.realm.RealmList
 import kotlinx.android.synthetic.main.ratio_image_16_9.view.*

@@ -1,6 +1,6 @@
 package io.github.rezmike.photon.ui.screens.search
 
-import io.github.rezmike.photon.ui.abstracts.AbstractPresenter
+import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import io.github.rezmike.photon.utils.DaggerService
 import mortar.MortarScope
 

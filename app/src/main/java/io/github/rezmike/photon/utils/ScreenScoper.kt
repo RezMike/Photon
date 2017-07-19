@@ -2,7 +2,7 @@ package io.github.rezmike.photon.utils
 
 import android.content.Context
 import flow.TreeKey
-import io.github.rezmike.photon.ui.abstracts.AbstractScreen
+import io.github.rezmike.photon.ui.screens.AbstractScreen
 import mortar.MortarScope
 import java.util.*
 import kotlin.collections.ArrayList

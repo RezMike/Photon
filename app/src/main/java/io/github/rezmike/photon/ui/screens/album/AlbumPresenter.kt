@@ -1,6 +1,6 @@
 package io.github.rezmike.photon.ui.screens.album
 
-import io.github.rezmike.photon.ui.abstracts.AbstractPresenter
+import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import mortar.MortarScope
 
 class AlbumPresenter : AbstractPresenter<AlbumView, AlbumModel, AlbumPresenter>() {

@@ -5,7 +5,7 @@ import io.github.rezmike.photon.data.network.req.LoginReq
 import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.jobs.CreateAlbumJob
 import io.github.rezmike.photon.jobs.UserAvatarJob
-import io.github.rezmike.photon.ui.abstracts.AbstractModel
+import io.github.rezmike.photon.ui.screens.AbstractModel
 import rx.Completable
 
 class AccountModel : AbstractModel() {

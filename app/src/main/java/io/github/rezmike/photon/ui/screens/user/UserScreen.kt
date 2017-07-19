@@ -3,9 +3,9 @@ package io.github.rezmike.photon.ui.screens.user
 import dagger.Provides
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.di.scopes.DaggerScope
-import io.github.rezmike.photon.ui.abstracts.AbstractScreen
 import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.activities.root.RootActivity
+import io.github.rezmike.photon.ui.screens.AbstractScreen
 
 class UserScreen(val userId: String,
                  val bottomBarItem: BottomBarItems = BottomBarItems.MAIN) : AbstractScreen<RootActivity.RootComponent>(bottomBarItem) {
