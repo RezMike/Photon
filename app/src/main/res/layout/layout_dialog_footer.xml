@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/dialog_footer_ok"
-        android:theme="@style/FotonBtn"/>
+        android:theme="@style/PhotonBtn"/>
 
     <Button
         android:id="@+id/cancel_btn"
@@ -23,5 +23,5 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/dialog_footer_cancel"
-        android:theme="@style/FotonBtn"/>
+        android:theme="@style/PhotonBtn"/>
 </LinearLayout>

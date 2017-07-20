@@ -9,7 +9,6 @@ object ConstantManager {
     const val REQUEST_PROFILE_PHOTO_GALLERY = 200
     const val REQUEST_PROFILE_PHOTO_CAMERA = 201
     const val REQUEST_PHOTOCARD_PHOTO_GALLERY = 202
-    const val REQUEST_CAMERA_PICTURE = 203
 
     const val FILE_PROVIDER_AUTHORITY = ""
     const val LAST_MODIFIED_HEADER = "Last-Modified"

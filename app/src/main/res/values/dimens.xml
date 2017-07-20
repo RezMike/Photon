@@ -23,4 +23,5 @@
 
     <!--element size-->
     <dimen name="avatar_size">60dp</dimen>
+    <dimen name="avatar_preview_size">130dp</dimen>
 </resources>

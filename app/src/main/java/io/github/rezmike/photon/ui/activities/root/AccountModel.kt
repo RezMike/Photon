@@ -8,6 +8,7 @@ import io.github.rezmike.photon.jobs.CreateAlbumJob
 import io.github.rezmike.photon.jobs.UserAvatarJob
 import io.github.rezmike.photon.ui.screens.AbstractModel
 import rx.Completable
+import java.io.File
 
 class AccountModel : AbstractModel() {
 
@@ -16,6 +17,8 @@ class AccountModel : AbstractModel() {
     fun getUserLogin() = dataManager.getUserLogin()
 
     fun getUserName() = dataManager.getUserName()
+
+    fun getUserAvatar() = dataManager.getUserAvatar()
 
     fun login(email: String, password: String): Completable {
         return dataManager.loginUserCompl(LoginReq(email, password))
@@ -33,7 +36,7 @@ class AccountModel : AbstractModel() {
         return dataManager.updateProfileInfo(EditProfileReq(name, login))
     }
 
-    fun uploadAvatarToServer(avatarUrl: String) {
-        jobManager.addJobInBackground(UserAvatarJob(avatarUrl))
+    fun uploadAvatarToServer(avatarFile: File) {
+        jobManager.addJobInBackground(UserAvatarJob(avatarFile))
     }
 }

@@ -20,15 +20,15 @@
             android:padding="@dimen/spacing_small_16">
 
             <TextView
-                style="@style/title_text_view"
+                style="@style/header_text_view"
                 android:layout_marginBottom="@dimen/spacing_normal_24"
                 android:text="@string/avatar_dialog_header"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/avatar_preview_img"
-                style="@style/avatar_style"
+                style="@style/avatar_preview_style"
                 android:layout_gravity="center"
-                android:visibility="gone"
+                android:layout_marginBottom="@dimen/spacing_small_16"
                 tools:background="@color/black"/>
 
             <Button
@@ -36,16 +36,16 @@
                 style="@style/CustomButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/avatar_dialog_chose_camera"
-                android:theme="@style/FotonBtn"/>
+                android:text="@string/avatar_dialog_choose_camera"
+                android:theme="@style/PhotonSecondBtn"/>
 
             <Button
                 android:id="@+id/gallery_btn"
                 style="@style/CustomButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/avatar_dialog_chose_gallery"
-                android:theme="@style/FotonBtn"/>
+                android:text="@string/avatar_dialog_choose_gallery"
+                android:theme="@style/PhotonSecondBtn"/>
 
             <include layout="@layout/layout_dialog_footer"/>
 

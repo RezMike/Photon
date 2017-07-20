@@ -15,7 +15,7 @@ import io.github.rezmike.photon.ui.dialogs.login.LoginDialogPresenter
 import io.github.rezmike.photon.ui.dialogs.register.RegisterDialog
 import io.github.rezmike.photon.ui.dialogs.register.RegisterDialogPresenter
 
-class DialogManager(val model: AccountModel, val rootPresenter: RootPresenter) {
+class DialogManager(val rootPresenter: RootPresenter, val model: AccountModel) {
 
     private var loginDialogPresenter: LoginDialogPresenter? = null
     private var loginDialog: LoginDialog? = null
@@ -81,7 +81,7 @@ class DialogManager(val model: AccountModel, val rootPresenter: RootPresenter) {
     }
 
     fun showAvatarDialog(context: Context, onResult: (DialogResult) -> Unit) {
-        avatarDialogPresenter = AvatarDialogPresenter(model, rootPresenter)
+        avatarDialogPresenter = AvatarDialogPresenter(rootPresenter, model)
         avatarDialogPresenter?.setOnResultListener {
             avatarDialogPresenter = null
             avatarDialog = null

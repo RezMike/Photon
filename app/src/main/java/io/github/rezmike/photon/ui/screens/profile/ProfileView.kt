@@ -25,7 +25,11 @@ class ProfileView(context: Context, attrs: AttributeSet) : AbstractView<ProfileP
 
     override fun onFinishInflate() {
         super.onFinishInflate()
+
         profile_avatar_img.setOnClickListener { presenter.onClickChangeAvatar() }
+
+        list_albums.layoutManager = GridLayoutManager(context, 2)
+        list_albums.adapter = adapter
     }
 
     fun showProfileInfo(user: UserRealm) {
@@ -46,8 +50,6 @@ class ProfileView(context: Context, attrs: AttributeSet) : AbstractView<ProfileP
     }
 
     private fun initList(user: UserRealm) {
-        list_albums.layoutManager = GridLayoutManager(context, 2)
-        list_albums.adapter = adapter
         adapter.reloadAdapter(user.albums.toArrayList())
     }
 

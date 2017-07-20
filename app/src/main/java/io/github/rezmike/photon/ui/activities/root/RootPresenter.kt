@@ -29,7 +29,7 @@ class RootPresenter : Presenter<RootActivity>() {
     override fun onEnterScope(scope: MortarScope) {
         super.onEnterScope(scope)
         DaggerService.getDaggerComponent<RootActivity.RootComponent>(scope).inject(this)
-        dialogManager = DialogManager(model, this)
+        dialogManager = DialogManager(this, model)
     }
 
     override fun onLoad(savedInstanceState: Bundle?) {
