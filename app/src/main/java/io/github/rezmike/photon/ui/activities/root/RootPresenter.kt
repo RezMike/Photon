@@ -29,7 +29,7 @@ class RootPresenter : Presenter<RootActivity>() {
     override fun onEnterScope(scope: MortarScope) {
         super.onEnterScope(scope)
         DaggerService.getDaggerComponent<RootActivity.RootComponent>(scope).inject(this)
-        dialogManager = DialogManager(model)
+        dialogManager = DialogManager(model, this)
     }
 
     override fun onLoad(savedInstanceState: Bundle?) {
@@ -95,6 +95,10 @@ class RootPresenter : Presenter<RootActivity>() {
 
     fun showEditProfileDialog(onResult: (DialogResult) -> Unit = {}) {
         dialogManager.showEditProfileDialog(view, onResult)
+    }
+
+    fun showAvatarDialog(onResult: (DialogResult) -> Unit = {}) {
+        dialogManager.showAvatarDialog(view, onResult)
     }
 
     //endregion

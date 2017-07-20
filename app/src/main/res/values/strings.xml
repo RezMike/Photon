@@ -94,6 +94,12 @@
     <string name="edit_profile_dialog_error_empty_fields">Невозможно сохранить данные, если хоть одно поле пустое</string>
     <string name="edit_profile_dialog_success">Данные успешно изменены</string>
 
+    <!--Avatar dialog-->
+    <string name="avatar_dialog_header">Изменить аватар</string>
+    <string name="avatar_dialog_file_not_created">Фото не может быть создано</string>
+    <string name="avatar_dialog_chose_camera">Сделать фото</string>
+    <string name="avatar_dialog_chose_gallery">Выбрать из галереи</string>
+
     <!--Exit dialog-->
     <string name="exit_dialog_title">Вы действительно хотите выйти?</string>
     <string name="exit_dialog_yes">Да</string>

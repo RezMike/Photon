@@ -13,7 +13,7 @@ import java.io.*
 import java.text.DateFormat
 import java.util.*
 
-fun Context.createFileFromPhoto(): File? {
+fun createFileFromPhoto(): File? {
     val dataTimeInstance = DateFormat.getDateInstance(DateFormat.MEDIUM)
     val timeStamp = dataTimeInstance.format(Date())
     val imageFileName = "IMG_" + timeStamp

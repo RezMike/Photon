@@ -3,8 +3,11 @@ package io.github.rezmike.photon.ui.dialogs
 import android.content.Context
 import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.ui.activities.root.AccountModel
+import io.github.rezmike.photon.ui.activities.root.RootPresenter
 import io.github.rezmike.photon.ui.dialogs.album.AlbumDialog
 import io.github.rezmike.photon.ui.dialogs.album.AlbumDialogPresenter
+import io.github.rezmike.photon.ui.dialogs.avatar.AvatarDialog
+import io.github.rezmike.photon.ui.dialogs.avatar.AvatarDialogPresenter
 import io.github.rezmike.photon.ui.dialogs.edit_profile.EditProfileDialog
 import io.github.rezmike.photon.ui.dialogs.edit_profile.EditProfileDialogPresenter
 import io.github.rezmike.photon.ui.dialogs.login.LoginDialog
@@ -12,7 +15,7 @@ import io.github.rezmike.photon.ui.dialogs.login.LoginDialogPresenter
 import io.github.rezmike.photon.ui.dialogs.register.RegisterDialog
 import io.github.rezmike.photon.ui.dialogs.register.RegisterDialogPresenter
 
-class DialogManager(val model: AccountModel) {
+class DialogManager(val model: AccountModel, val rootPresenter: RootPresenter) {
 
     private var loginDialogPresenter: LoginDialogPresenter? = null
     private var loginDialog: LoginDialog? = null
@@ -25,6 +28,9 @@ class DialogManager(val model: AccountModel) {
 
     private var editProfileDialogPresenter: EditProfileDialogPresenter? = null
     private var editProfileDialog: EditProfileDialog? = null
+
+    private var avatarDialogPresenter: AvatarDialogPresenter? = null
+    private var avatarDialog: AvatarDialog? = null
 
     fun showLoginDialog(context: Context, onResult: (DialogResult) -> Unit = {}) {
         loginDialogPresenter = LoginDialogPresenter(model)
@@ -74,6 +80,18 @@ class DialogManager(val model: AccountModel) {
         editProfileDialogPresenter?.show()
     }
 
+    fun showAvatarDialog(context: Context, onResult: (DialogResult) -> Unit) {
+        avatarDialogPresenter = AvatarDialogPresenter(model, rootPresenter)
+        avatarDialogPresenter?.setOnResultListener {
+            avatarDialogPresenter = null
+            avatarDialog = null
+            onResult(it)
+        }
+        avatarDialog = AvatarDialog(context)
+        avatarDialogPresenter?.takeView(avatarDialog)
+        avatarDialogPresenter?.show()
+    }
+
     fun dismissDialogs() {
         if (loginDialogPresenter != null) {
             loginDialogPresenter?.dismiss()
@@ -91,6 +109,10 @@ class DialogManager(val model: AccountModel) {
             editProfileDialogPresenter?.dismiss()
         }
         editProfileDialog = null
+        if (avatarDialogPresenter != null) {
+            avatarDialogPresenter?.dismiss()
+        }
+        avatarDialog = null
     }
 
     fun showHiddenDialogs(context: Context) {
@@ -113,6 +135,11 @@ class DialogManager(val model: AccountModel) {
             editProfileDialog = EditProfileDialog(context)
             editProfileDialogPresenter?.takeView(editProfileDialog)
             editProfileDialogPresenter?.show()
+        }
+        if (avatarDialogPresenter != null) {
+            avatarDialog = AvatarDialog(context)
+            avatarDialogPresenter?.takeView(avatarDialog)
+            avatarDialogPresenter?.show()
         }
     }
 }

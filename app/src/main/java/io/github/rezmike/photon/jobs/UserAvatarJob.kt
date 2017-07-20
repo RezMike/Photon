@@ -1,6 +1,5 @@
 package io.github.rezmike.photon.jobs
 
-import android.net.Uri
 import com.birbit.android.jobqueue.Job
 import com.birbit.android.jobqueue.Params
 import com.birbit.android.jobqueue.RetryConstraint
@@ -15,8 +14,7 @@ import java.io.File
 
 class UserAvatarJob(val avatarUrl: String) : Job(params) {
 
-    private val dataManager = DataManager.INSTANCE
-    private val userId = dataManager.getUserId()
+    private val userId = DataManager.INSTANCE.getUserId()
 
     override fun onAdded() {
         val realm = Realm.getDefaultInstance()
@@ -28,11 +26,11 @@ class UserAvatarJob(val avatarUrl: String) : Job(params) {
     }
 
     override fun onRun() {
-        val photoFile = File(Uri.parse(avatarUrl).path)
+        val photoFile = File(avatarUrl)
         val requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), photoFile)
         val body = MultipartBody.Part.createFormData("avatar", photoFile.name, requestBody)
 
-        dataManager.uploadUserAvatar(body)
+        DataManager.INSTANCE.uploadUserAvatar(body)
                 .subscribe({
                     val avatar = it.image
                     val realm = Realm.getDefaultInstance()
