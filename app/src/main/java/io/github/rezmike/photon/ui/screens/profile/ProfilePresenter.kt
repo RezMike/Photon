@@ -11,6 +11,7 @@ import io.github.rezmike.photon.ui.others.MenuItemHolder
 import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import io.github.rezmike.photon.ui.screens.album.AlbumScreen
 import io.github.rezmike.photon.utils.DaggerService
+import io.github.rezmike.photon.utils.toArrayList
 import io.realm.RealmChangeListener
 import mortar.MortarScope
 import rx.android.schedulers.AndroidSchedulers
@@ -56,9 +57,8 @@ class ProfilePresenter : AbstractPresenter<ProfileView, ProfileModel, ProfilePre
     private fun initData() {
         view?.showProfileInfo(userRealm!!)
         listener = RealmChangeListener {
-            val albumList = ArrayList<AlbumRealm>()
-            albumList.addAll(it.albums)
-            view?.adapter?.reloadAdapter(albumList)
+            view?.initUserData(it)
+            view?.adapter?.reloadAdapter(it.albums.toArrayList())
         }
         userRealm?.addChangeListener(listener)
     }

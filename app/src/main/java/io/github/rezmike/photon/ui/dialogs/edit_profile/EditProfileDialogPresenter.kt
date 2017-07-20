@@ -55,5 +55,4 @@ class EditProfileDialogPresenter(val model: AccountModel) : AbstractDialogPresen
             if (!login.isLoginValid()) getDialog()?.accentLogin()
         }
     }
-
 }

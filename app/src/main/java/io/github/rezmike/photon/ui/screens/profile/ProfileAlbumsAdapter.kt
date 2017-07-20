@@ -15,11 +15,6 @@ class ProfileAlbumsAdapter(val picasso: Picasso, val itemClick: (AlbumRealm) -> 
 
     private var items: ArrayList<AlbumRealm> = ArrayList()
 
-    fun addItem(item: AlbumRealm) {
-        items.add(item)
-        notifyItemInserted(items.size - 1)
-    }
-
     fun reloadAdapter(albums: ArrayList<AlbumRealm>) {
         items.clear()
         items = albums

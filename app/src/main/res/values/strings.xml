@@ -85,7 +85,7 @@
     <string name="album_dialog_success">Альбом успешно создан</string>
 
     <!--Edit Profile Dialog-->
-    <string name="edit_profile_dialog_header">Редактироние профиля</string>
+    <string name="edit_profile_dialog_header">Редактирование профиля</string>
     <string name="edit_profile_dialog_name">Имя</string>
     <string name="edit_profile_dialog_name_error">Имя не должно быть короче 3 символов</string>
     <string name="edit_profile_dialog_login">Логин</string>

@@ -1,6 +1,7 @@
 package io.github.rezmike.photon.data.network
 
 import io.github.rezmike.photon.data.network.req.AlbumReq
+import io.github.rezmike.photon.data.network.req.EditProfileReq
 import io.github.rezmike.photon.data.network.req.LoginReq
 import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.data.network.res.*
@@ -48,4 +49,9 @@ interface RestService {
     fun createAlbum(@Header(ConstantManager.AUTHORIZATION) authToken: String,
                     @Path("userId") userId: String,
                     @Body albumReq: AlbumReq): Observable<Response<AlbumRes>>
+
+    @PUT("user/{userId}")
+    fun updateProfileInfo(@Header(ConstantManager.AUTHORIZATION) authToken: String,
+                          @Path("userId") userId: String,
+                          @Body editProfileReq: EditProfileReq): Observable<Response<UserRes>>
 }

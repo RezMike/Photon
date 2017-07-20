@@ -1,6 +1,7 @@
 package io.github.rezmike.photon.ui.activities.root
 
 import io.github.rezmike.photon.data.network.req.AlbumReq
+import io.github.rezmike.photon.data.network.req.EditProfileReq
 import io.github.rezmike.photon.data.network.req.LoginReq
 import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.jobs.CreateAlbumJob
@@ -29,7 +30,7 @@ class AccountModel : AbstractModel() {
     }
 
     fun updateProfileInfo(name: String, login: String): Completable {
-        TODO("not implemented")
+        return dataManager.updateProfileInfo(EditProfileReq(name, login))
     }
 
     fun uploadAvatarToServer(avatarUrl: String) {
