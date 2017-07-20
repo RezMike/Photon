@@ -22,24 +22,25 @@
                 style="@style/title_text_view"
                 android:text="@string/login_dialog_header"/>
 
+            <TextView
+                style="@style/hint_edit_text"
+                android:layout_marginTop="@dimen/spacing_normal_24"
+                android:text="@string/login_dialog_email"/>
+
             <EditText
                 android:id="@+id/email_et"
                 style="@style/edit_text_borders"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_normal_24"
-                android:hint="@string/login_dialog_email"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:lines="1"/>
 
+            <TextView
+                style="@style/hint_edit_text"
+                android:text="@string/login_dialog_password"/>
+
             <EditText
                 android:id="@+id/password_et"
                 style="@style/edit_text_borders"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_small_16"
-                android:hint="@string/login_dialog_password"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:lines="1"/>

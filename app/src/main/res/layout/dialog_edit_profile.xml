@@ -25,7 +25,7 @@
 
             <TextView
                 style="@style/hint_edit_text"
-                android:layout_marginTop="@dimen/font_size_normal_24"
+                android:layout_marginTop="@dimen/spacing_normal_24"
                 android:text="@string/edit_profile_dialog_name"/>
 
             <EditText

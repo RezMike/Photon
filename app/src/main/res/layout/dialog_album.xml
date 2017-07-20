@@ -21,25 +21,26 @@
                 style="@style/title_text_view"
                 android:text="@string/album_dialog_header"/>
 
+            <TextView
+                style="@style/hint_edit_text"
+                android:layout_marginTop="@dimen/spacing_normal_24"
+                android:text="@string/album_dialog_title"/>
+
             <EditText
                 android:id="@+id/title_et"
                 style="@style/edit_text_borders"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_normal_24"
-                android:hint="@string/album_dialog_title"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:lines="1"/>
 
+            <TextView
+                style="@style/hint_edit_text"
+                android:text="@string/album_dialog_description"/>
+
             <EditText
                 android:id="@+id/description_et"
                 style="@style/edit_text_borders"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_small_16"
                 android:gravity="top"
-                android:hint="@string/album_dialog_description"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:minHeight="@dimen/spacing_very_large_72"/>
