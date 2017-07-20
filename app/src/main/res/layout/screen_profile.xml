@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<io.github.rezmike.photon.ui.screens.profile.ProfileView xmlns:android="http://schemas.android.com/apk/res/android"
+<io.github.rezmike.photon.ui.screens.profile.ProfileView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -32,6 +33,7 @@
                 <TextView
                     android:id="@+id/profile_login_tv"
                     style="@style/title_text_view"
+                    android:textStyle="bold"
                     tools:text="marchiano" />
 
                 <TextView
@@ -41,7 +43,6 @@
                 <TextView
                     android:id="@+id/profile_name_tv"
                     style="@style/title_text_view"
-                    android:fontFamily="@string/roboto_regular"
                     tools:text="Елена Марчиано" />
 
             </LinearLayout>

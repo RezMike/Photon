@@ -3,6 +3,7 @@ package io.github.rezmike.photon.data.managers
 import io.github.rezmike.photon.App
 import io.github.rezmike.photon.data.network.RestService
 import io.github.rezmike.photon.data.network.req.AlbumReq
+import io.github.rezmike.photon.data.network.req.EditProfileReq
 import io.github.rezmike.photon.data.network.req.LoginReq
 import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.data.network.res.AlbumRes
@@ -19,6 +20,7 @@ import okhttp3.MultipartBody
 import rx.Completable
 import rx.Observable
 import rx.Single
+import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -145,13 +147,18 @@ class DataManager private constructor() {
 
     fun getUserId() = preferencesManager.getUserId()
 
+    fun getUserLogin() = preferencesManager.getUserLogin()
+
+    fun getUserName() = preferencesManager.getUserName()
+
     fun getUserSinFromRealm(userId: String) = realmManager.getUser(userId)
 
     fun getUserSinFromNetwork(userId: String): Single<UserRealm> {
         return restService.getUserInfo(preferencesManager.getLastUserUpdate(userId), userId)
                 .compose(UserCallTranformer(userId))
                 .subscribeOn(Schedulers.io())
-                .map { realmManager.saveUserResponseToRealm(it) }
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { realmManager.saveAndGetUserRealm(it) }
                 .toSingle()
     }
 
@@ -159,6 +166,15 @@ class DataManager private constructor() {
         return restService.uploadUserAvatar(preferencesManager.getAuthToken()!!, getUserId()!!, file)
                 .compose(AvatarUrlCallTransformer())
                 .toSingle()
+    }
+
+    fun updateProfileInfo(editProfileReq: EditProfileReq): Completable {
+        return restService.updateProfileInfo(preferencesManager.getAuthToken()!!, getUserId()!!, editProfileReq)
+                .compose(UserCallTranformer(getUserId()!!))
+                .subscribeOn(Schedulers.io())
+                .doOnNext { preferencesManager.saveUserData(it) }
+                .doOnNext { realmManager.saveUserResponseToRealm(it) }
+                .toCompletable()
     }
 
     //endregion

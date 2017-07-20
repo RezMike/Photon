@@ -28,7 +28,7 @@ abstract class RestCallTransformer<R> : Observable.Transformer<Response<R>, R> {
                 .flatMap { aBoolean -> if (aBoolean) responseObservable else Observable.error<Response<R>>(NetworkAvailableError()) }
                 .flatMap { rResponse ->
                     when (rResponse.code()) {
-                        200, 201 -> {
+                        200, 201, 202 -> {
                             val lastModified = rResponse.headers().get(ConstantManager.LAST_MODIFIED_HEADER)
                             if (lastModified != null) saveLastModify(lastModified)
                             Observable.just(rResponse.body())

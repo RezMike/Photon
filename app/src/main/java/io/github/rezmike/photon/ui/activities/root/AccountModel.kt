@@ -1,6 +1,7 @@
 package io.github.rezmike.photon.ui.activities.root
 
 import io.github.rezmike.photon.data.network.req.AlbumReq
+import io.github.rezmike.photon.data.network.req.EditProfileReq
 import io.github.rezmike.photon.data.network.req.LoginReq
 import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.jobs.CreateAlbumJob
@@ -12,6 +13,10 @@ class AccountModel : AbstractModel() {
 
     fun isUserAuth() = dataManager.isUserAuth()
 
+    fun getUserLogin() = dataManager.getUserLogin()
+
+    fun getUserName() = dataManager.getUserName()
+
     fun login(email: String, password: String): Completable {
         return dataManager.loginUserCompl(LoginReq(email, password))
     }
@@ -20,11 +25,15 @@ class AccountModel : AbstractModel() {
         return dataManager.registerUserCompl(RegisterReq(name, login, email, password))
     }
 
-    fun uploadAvatarToServer(avatarUrl: String) {
-        jobManager.addJobInBackground(UserAvatarJob(avatarUrl))
-    }
-
     fun createAlbum(title: String, description: String) {
         jobManager.addJobInBackground(CreateAlbumJob(AlbumReq(dataManager.getUserId()!!, title, description)))
+    }
+
+    fun updateProfileInfo(name: String, login: String): Completable {
+        return dataManager.updateProfileInfo(EditProfileReq(name, login))
+    }
+
+    fun uploadAvatarToServer(avatarUrl: String) {
+        jobManager.addJobInBackground(UserAvatarJob(avatarUrl))
     }
 }

@@ -5,6 +5,8 @@ import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.ui.activities.root.AccountModel
 import io.github.rezmike.photon.ui.dialogs.album.AlbumDialog
 import io.github.rezmike.photon.ui.dialogs.album.AlbumDialogPresenter
+import io.github.rezmike.photon.ui.dialogs.edit_profile.EditProfileDialog
+import io.github.rezmike.photon.ui.dialogs.edit_profile.EditProfileDialogPresenter
 import io.github.rezmike.photon.ui.dialogs.login.LoginDialog
 import io.github.rezmike.photon.ui.dialogs.login.LoginDialogPresenter
 import io.github.rezmike.photon.ui.dialogs.register.RegisterDialog
@@ -20,6 +22,9 @@ class DialogManager(val model: AccountModel) {
 
     private var albumDialogPresenter: AlbumDialogPresenter? = null
     private var albumDialog: AlbumDialog? = null
+
+    private var editProfileDialogPresenter: EditProfileDialogPresenter? = null
+    private var editProfileDialog: EditProfileDialog? = null
 
     fun showLoginDialog(context: Context, onResult: (DialogResult) -> Unit = {}) {
         loginDialogPresenter = LoginDialogPresenter(model)
@@ -57,6 +62,18 @@ class DialogManager(val model: AccountModel) {
         albumDialogPresenter?.show()
     }
 
+    fun showEditProfileDialog(context: Context, onResult: (DialogResult) -> Unit) {
+        editProfileDialogPresenter = EditProfileDialogPresenter(model)
+        editProfileDialogPresenter?.setOnResultListener {
+            editProfileDialogPresenter = null
+            editProfileDialog = null
+            onResult(it)
+        }
+        editProfileDialog = EditProfileDialog(context)
+        editProfileDialogPresenter?.takeView(editProfileDialog)
+        editProfileDialogPresenter?.show()
+    }
+
     fun dismissDialogs() {
         if (loginDialogPresenter != null) {
             loginDialogPresenter?.dismiss()
@@ -70,6 +87,10 @@ class DialogManager(val model: AccountModel) {
             albumDialogPresenter?.dismiss()
         }
         albumDialog = null
+        if (editProfileDialogPresenter != null) {
+            editProfileDialogPresenter?.dismiss()
+        }
+        editProfileDialog = null
     }
 
     fun showHiddenDialogs(context: Context) {
@@ -87,6 +108,11 @@ class DialogManager(val model: AccountModel) {
             albumDialog = AlbumDialog(context)
             albumDialogPresenter?.takeView(albumDialog)
             albumDialogPresenter?.show()
+        }
+        if (editProfileDialogPresenter != null) {
+            editProfileDialog = EditProfileDialog(context)
+            editProfileDialogPresenter?.takeView(editProfileDialog)
+            editProfileDialogPresenter?.show()
         }
     }
 }
