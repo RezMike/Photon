@@ -8,7 +8,6 @@ import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.ActivityResultDto
 import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.ui.activities.root.AccountModel
-import io.github.rezmike.photon.ui.activities.root.RootActivity
 import io.github.rezmike.photon.ui.activities.root.RootPresenter
 import io.github.rezmike.photon.ui.dialogs.AbstractDialogPresenter
 import io.github.rezmike.photon.utils.ActionHelper
@@ -26,15 +25,16 @@ class AvatarDialogPresenter(val rootPresenter: RootPresenter, val model: Account
 
     private var photoUri: Uri = Uri.parse(model.getUserAvatar()!!)
     private var photoFile: File? = null
-    private var requestSub: Subscription? = null
+    private var activityResultSub: Subscription? = null
 
     override fun onLoad(savedInstanceState: Bundle?) {
         super.onLoad(savedInstanceState)
-        requestSub = subscribeOnActivityResult()
+        activityResultSub = rootPresenter.getActivityResultSubject()
+                .subscribe({ if (it != null) handleActivityResult(it) }, { getDialog()?.showError(it) })
     }
 
     override fun dropView(view: Popup<Uri, DialogResult>?) {
-        requestSub?.unsubscribe()
+        activityResultSub?.unsubscribe()
         super.dropView(view)
     }
 
@@ -43,7 +43,6 @@ class AvatarDialogPresenter(val rootPresenter: RootPresenter, val model: Account
     fun onClickCamera() {
         val permission = arrayOf(CAMERA, WRITE_EXTERNAL_STORAGE)
         if (rootPresenter.checkPermissionAndRequestIfNotGranted(permission, REQUEST_PERMISSION_CAMERA)) {
-
             photoFile = createFileForPhoto()
             if (photoFile == null) {
                 getDialog()?.showMessage(R.string.avatar_dialog_file_not_created)
@@ -66,34 +65,20 @@ class AvatarDialogPresenter(val rootPresenter: RootPresenter, val model: Account
         onResult(DialogResult(photoFile != null))
     }
 
-    private fun subscribeOnActivityResult(): Subscription {
-        return rootPresenter.getActivityResultSubject()
-                .subscribe({ if (it != null) handleActivityResult(it) }, { getRootView()?.showError(it) })
-    }
-
     private fun handleActivityResult(activityResult: ActivityResultDto) {
-        if (activityResult.resultCode == Activity.RESULT_OK) {
-            when (activityResult.requestCode) {
-                REQUEST_PROFILE_PHOTO_CAMERA -> {
-                    if (photoFile != null) photoUri = Uri.fromFile(photoFile)
-                }
-                REQUEST_PROFILE_PHOTO_GALLERY -> {
-                    if (activityResult.intent != null) {
-                        photoUri = activityResult.intent.data
-                        photoFile = getFileFromUri(photoUri, view!!.context)
-                    }
-                }
-                else -> return
+        if (activityResult.resultCode != Activity.RESULT_OK) return
+        when (activityResult.requestCode) {
+            REQUEST_PROFILE_PHOTO_CAMERA -> {
+                if (photoFile != null) photoUri = Uri.fromFile(photoFile)
             }
-            getDialog()?.showAvatar(photoUri.toString())
-        } else {
-            when (activityResult.requestCode) {
-                REQUEST_PROFILE_PHOTO_CAMERA -> if (photoFile != null) getRootView()?.deleteFile(photoFile!!.name)
+            REQUEST_PROFILE_PHOTO_GALLERY -> {
+                if (activityResult.intent != null) {
+                    photoUri = activityResult.intent.data
+                    photoFile = getFileFromUri(photoUri, view!!.context)
+                }
             }
+            else -> return
         }
-    }
-
-    private fun getRootView(): RootActivity? {
-        return rootPresenter.getRootView()
+        getDialog()?.showAvatar(photoUri.toString())
     }
 }
