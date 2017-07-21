@@ -30,7 +30,7 @@ abstract class AbstractDialog<D : Parcelable>(context: Context) : Popup<D, Dialo
         dialog?.show()
     }
 
-    fun dismiss() {
+    override fun dismiss(withFlourish: Boolean) {
         onDialogDismiss()
         dialog?.dismiss()
         dialog = null
@@ -44,7 +44,6 @@ abstract class AbstractDialog<D : Parcelable>(context: Context) : Popup<D, Dialo
 
     override fun isShowing() = dialog != null
     override fun getContext() = rootContext
-    override fun dismiss(withFlourish: Boolean) = dismiss()
 
     //region ======================== Events ========================
 

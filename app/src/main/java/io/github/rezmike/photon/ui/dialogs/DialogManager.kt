@@ -116,27 +116,27 @@ class DialogManager(val rootPresenter: RootPresenter, val model: AccountModel) {
     }
 
     fun showHiddenDialogs(context: Context) {
-        if (loginDialogPresenter != null) {
+        if (loginDialogPresenter != null && loginDialog == null) {
             loginDialog = LoginDialog(context)
             loginDialogPresenter?.takeView(loginDialog)
             loginDialogPresenter?.show()
         }
-        if (registerDialogPresenter != null) {
+        if (registerDialogPresenter != null && registerDialog == null) {
             registerDialog = RegisterDialog(context)
             registerDialogPresenter?.takeView(registerDialog)
             registerDialogPresenter?.show()
         }
-        if (albumDialogPresenter != null) {
+        if (albumDialogPresenter != null && albumDialog == null) {
             albumDialog = AlbumDialog(context)
             albumDialogPresenter?.takeView(albumDialog)
             albumDialogPresenter?.show()
         }
-        if (editProfileDialogPresenter != null) {
+        if (editProfileDialogPresenter != null && albumDialog == null) {
             editProfileDialog = EditProfileDialog(context)
             editProfileDialogPresenter?.takeView(editProfileDialog)
             editProfileDialogPresenter?.show()
         }
-        if (avatarDialogPresenter != null) {
+        if (avatarDialogPresenter != null && albumDialog == null) {
             avatarDialog = AvatarDialog(context)
             avatarDialogPresenter?.takeView(avatarDialog)
             avatarDialogPresenter?.show()

@@ -1,7 +1,6 @@
 package io.github.rezmike.photon.ui.dialogs.register
 
 import io.github.rezmike.photon.R
-import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.data.storage.dto.RegisterInfoDto
 import io.github.rezmike.photon.ui.activities.root.AccountModel
 import io.github.rezmike.photon.ui.dialogs.AbstractDialogPresenter
@@ -68,8 +67,7 @@ class RegisterDialogPresenter(val model: AccountModel) : AbstractDialogPresenter
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         getDialog()?.showMessage(R.string.auth_success)
-                        getDialog()?.dismiss()
-                        onResult(DialogResult(true))
+                        onDialogResult(true)
                     }, {
                         // TODO: 10.07.2017 implement this
                         /*if (it is AccessError || it is NotFoundError) {

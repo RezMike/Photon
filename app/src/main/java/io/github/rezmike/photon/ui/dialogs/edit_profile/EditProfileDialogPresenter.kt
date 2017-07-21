@@ -1,7 +1,6 @@
 package io.github.rezmike.photon.ui.dialogs.edit_profile
 
 import io.github.rezmike.photon.R
-import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.data.storage.dto.EditProfileInfoDto
 import io.github.rezmike.photon.ui.activities.root.AccountModel
 import io.github.rezmike.photon.ui.dialogs.AbstractDialogPresenter
@@ -44,8 +43,7 @@ class EditProfileDialogPresenter(val model: AccountModel) : AbstractDialogPresen
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         getDialog()?.showMessage(R.string.edit_profile_dialog_success)
-                        getDialog()?.dismiss()
-                        onResult(DialogResult(true))
+                        onDialogResult(true)
                     }, {
                         // TODO: 19.07.2017 show error when api fixes
                         getDialog()?.showError(it)

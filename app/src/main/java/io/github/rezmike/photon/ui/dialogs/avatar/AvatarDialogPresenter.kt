@@ -59,8 +59,7 @@ class AvatarDialogPresenter(val rootPresenter: RootPresenter, val model: Account
 
     override fun onClickOk() {
         if (photoFile != null) model.uploadAvatarToServer(photoFile!!)
-        getDialog()?.dismiss()
-        onResult(DialogResult(photoFile != null))
+        onDialogResult(photoFile != null)
     }
 
     private fun handleActivityResult(activityResult: ActivityResultDto) {

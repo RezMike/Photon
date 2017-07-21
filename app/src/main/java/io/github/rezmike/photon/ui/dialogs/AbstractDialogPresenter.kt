@@ -6,7 +6,7 @@ import mortar.PopupPresenter
 
 abstract class AbstractDialogPresenter<D : Parcelable, out V : AbstractDialog<D>> : PopupPresenter<D, DialogResult>() {
 
-    var onResult: (DialogResult) -> Unit = {}
+    private var onResult: (DialogResult) -> Unit = {}
 
     fun setOnResultListener(listener: (DialogResult) -> Unit) {
         onResult = listener
@@ -17,14 +17,18 @@ abstract class AbstractDialogPresenter<D : Parcelable, out V : AbstractDialog<D>
     abstract fun onClickOk()
 
     fun onClickCancel() {
-        onPopupResult(DialogResult(false))
+        onDialogResult(false)
+    }
+
+    fun onDialogResult(result: Boolean) {
+        onDismissed(DialogResult(result))
     }
 
     override fun onPopupResult(result: DialogResult) {
-        getDialog()?.dismiss()
+        dropView(getDialog())
         onResult(result)
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun getDialog(): V? = view as V
+    fun getDialog() = view as V?
 }

@@ -2,7 +2,6 @@ package io.github.rezmike.photon.ui.dialogs.album
 
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.AlbumInfoDto
-import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.ui.activities.root.AccountModel
 import io.github.rezmike.photon.ui.dialogs.AbstractDialogPresenter
 import io.github.rezmike.photon.ui.others.isAlbumDescriptionValid
@@ -41,8 +40,7 @@ class AlbumDialogPresenter(val model: AccountModel) : AbstractDialogPresenter<Al
         } else if (title.isAlbumTitleValid() && description.isAlbumDescriptionValid()) {
             model.createAlbum(title, description)
             getDialog()?.showMessage(R.string.album_dialog_success)
-            getDialog()?.dismiss()
-            onResult(DialogResult(true))
+            onDialogResult(true)
         } else {
             if (!title.isAlbumTitleValid()) getDialog()?.accentTitle()
             if (!description.isAlbumDescriptionValid()) getDialog()?.accentDescription()
