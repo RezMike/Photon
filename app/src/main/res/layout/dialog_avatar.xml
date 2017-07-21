@@ -28,24 +28,19 @@
                 android:id="@+id/avatar_preview_img"
                 style="@style/avatar_preview_style"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/spacing_small_16"
-                tools:background="@color/black"/>
+                android:layout_marginBottom="@dimen/spacing_normal_24"
+                tools:background="@drawable/default_avatar"/>
 
             <Button
                 android:id="@+id/camera_btn"
-                style="@style/CustomButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/avatar_dialog_choose_camera"
-                android:theme="@style/PhotonSecondBtn"/>
+                style="@style/WhiteButton"
+                android:layout_marginBottom="@dimen/spacing_small_16"
+                android:text="@string/avatar_dialog_choose_camera"/>
 
             <Button
                 android:id="@+id/gallery_btn"
-                style="@style/CustomButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/avatar_dialog_choose_gallery"
-                android:theme="@style/PhotonSecondBtn"/>
+                style="@style/WhiteButton"
+                android:text="@string/avatar_dialog_choose_gallery"/>
 
             <include layout="@layout/layout_dialog_footer"/>
 

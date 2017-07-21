@@ -42,7 +42,7 @@
                 style="@style/edit_text_borders"
                 android:gravity="top"
                 android:imeOptions="actionDone"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:minHeight="@dimen/spacing_very_large_72"/>
 
             <include layout="@layout/layout_dialog_footer"/>

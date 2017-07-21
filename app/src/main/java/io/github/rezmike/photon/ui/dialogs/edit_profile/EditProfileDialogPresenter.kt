@@ -34,10 +34,8 @@ class EditProfileDialogPresenter(val model: AccountModel) : AbstractDialogPresen
     }
 
     override fun onClickOk() {
-        if (name.isEmpty() || login.isEmpty()) {
-            if (name.isEmpty()) getDialog()?.accentName()
-            if (login.isEmpty()) getDialog()?.accentLogin()
-            getDialog()?.showMessage(R.string.edit_profile_dialog_error_empty_fields)
+        if ((name.isEmpty() || name == model.getUserName()) && (login.isEmpty() || login == model.getUserLogin())) {
+            onDialogResult(false)
         } else if (name.isNameValid() && login.isLoginValid()) {
             model.updateProfileInfo(name, login)
                     .observeOn(AndroidSchedulers.mainThread())

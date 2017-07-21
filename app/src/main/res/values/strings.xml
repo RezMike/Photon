@@ -91,7 +91,6 @@
     <string name="edit_profile_dialog_login">Логин</string>
     <string name="edit_profile_dialog_login_error">Латиница и нижние подчеркивания, не может содержать спецзнаки (!@#$%^&amp;*()\|=+-)</string>
     <string name="edit_profile_dialog_login_taken">Данный логин уже зарегистрирован!</string>
-    <string name="edit_profile_dialog_error_empty_fields">Невозможно сохранить данные, если хоть одно поле пустое</string>
     <string name="edit_profile_dialog_success">Данные успешно изменены</string>
 
     <!--Avatar dialog-->
