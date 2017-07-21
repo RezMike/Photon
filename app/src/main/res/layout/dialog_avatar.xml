@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_small_16">
+
+            <TextView
+                style="@style/header_text_view"
+                android:layout_marginBottom="@dimen/spacing_normal_24"
+                android:text="@string/avatar_dialog_header"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar_preview_img"
+                style="@style/avatar_preview_style"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/spacing_small_16"
+                tools:background="@color/black"/>
+
+            <Button
+                android:id="@+id/camera_btn"
+                style="@style/CustomButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/avatar_dialog_choose_camera"
+                android:theme="@style/PhotonSecondBtn"/>
+
+            <Button
+                android:id="@+id/gallery_btn"
+                style="@style/CustomButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/avatar_dialog_choose_gallery"
+                android:theme="@style/PhotonSecondBtn"/>
+
+            <include layout="@layout/layout_dialog_footer"/>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>

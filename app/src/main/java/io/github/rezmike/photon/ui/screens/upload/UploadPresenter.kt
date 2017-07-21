@@ -2,12 +2,11 @@ package io.github.rezmike.photon.ui.screens.upload
 
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.app.Activity
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import io.github.rezmike.photon.data.storage.dto.ActivityResultDto
-import io.github.rezmike.photon.ui.abstracts.AbstractPresenter
 import io.github.rezmike.photon.ui.activities.root.AccountModel
+import io.github.rezmike.photon.ui.screens.AbstractPresenter
+import io.github.rezmike.photon.utils.ActionHelper
 import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PERMISSION_READ_EXTERNAL_STORAGE
 import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PHOTOCARD_PHOTO_GALLERY
 import io.github.rezmike.photon.utils.DaggerService
@@ -39,25 +38,12 @@ class UploadPresenter : AbstractPresenter<UploadView, AccountModel, UploadPresen
     }
 
     private fun takePhotoFromGallery() {
-        val intent = Intent()
-        if (Build.VERSION.SDK_INT < 19) {
-            intent.type = "image/*"
-            intent.action = Intent.ACTION_GET_CONTENT
-        } else {
-            intent.type = "image/*"
-            intent.action = Intent.ACTION_OPEN_DOCUMENT
-            intent.addCategory(Intent.CATEGORY_OPENABLE)
-        }
-        getRootView()?.startActivityForResult(intent, REQUEST_PHOTOCARD_PHOTO_GALLERY)
+        getRootView()?.startActivityForResult(ActionHelper.getGalleryIntent(), REQUEST_PHOTOCARD_PHOTO_GALLERY)
     }
 
     private fun subscribeOnActivityResult(): Subscription {
         return rootPresenter.getActivityResultSubject()
-                .subscribe(object : ViewSubscriber<ActivityResultDto>() {
-                    override fun onNext(activityResult: ActivityResultDto?) {
-                        if (activityResult != null) handleActivityResult(activityResult);
-                    }
-                })
+                .subscribe({ if (it != null) handleActivityResult(it) }, { getRootView()?.showError(it) })
     }
 
     private fun handleActivityResult(activityResult: ActivityResultDto) {

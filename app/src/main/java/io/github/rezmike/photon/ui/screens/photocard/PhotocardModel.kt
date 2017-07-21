@@ -1,7 +1,7 @@
 package io.github.rezmike.photon.ui.screens.photocard
 
 import io.github.rezmike.photon.data.storage.realm.UserRealm
-import io.github.rezmike.photon.ui.abstracts.AbstractModel
+import io.github.rezmike.photon.ui.screens.AbstractModel
 import rx.Single
 
 class PhotocardModel : AbstractModel() {

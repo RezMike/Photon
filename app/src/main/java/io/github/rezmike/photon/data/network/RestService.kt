@@ -1,12 +1,12 @@
 package io.github.rezmike.photon.data.network
 
+import io.github.rezmike.photon.data.network.req.AlbumReq
+import io.github.rezmike.photon.data.network.req.EditProfileReq
 import io.github.rezmike.photon.data.network.req.LoginReq
 import io.github.rezmike.photon.data.network.req.RegisterReq
-import io.github.rezmike.photon.data.network.res.AlbumRes
-import io.github.rezmike.photon.data.network.res.PhotoCardRes
-import io.github.rezmike.photon.data.network.res.SuccessRes
-import io.github.rezmike.photon.data.network.res.UserRes
+import io.github.rezmike.photon.data.network.res.*
 import io.github.rezmike.photon.utils.ConstantManager
+import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -38,4 +38,20 @@ interface RestService {
 
     @POST("user/signUp")
     fun register(@Body registerReq: RegisterReq): Observable<Response<UserRes>>
+
+    @Multipart
+    @POST("user/{userId}/image/upload")
+    fun uploadImage(@Header(ConstantManager.AUTHORIZATION) authToken: String,
+                    @Path("userId") userId: String,
+                    @Part file: MultipartBody.Part): Observable<Response<ImageUrlRes>>
+
+    @POST("user/{userId}/album")
+    fun createAlbum(@Header(ConstantManager.AUTHORIZATION) authToken: String,
+                    @Path("userId") userId: String,
+                    @Body albumReq: AlbumReq): Observable<Response<AlbumRes>>
+
+    @PUT("user/{userId}")
+    fun updateProfileInfo(@Header(ConstantManager.AUTHORIZATION) authToken: String,
+                          @Path("userId") userId: String,
+                          @Body editProfileReq: EditProfileReq): Observable<Response<UserRes>>
 }

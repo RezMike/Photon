@@ -2,7 +2,7 @@ package io.github.rezmike.photon.ui.screens.auth
 
 import android.content.Context
 import android.util.AttributeSet
-import io.github.rezmike.photon.ui.abstracts.AbstractView
+import io.github.rezmike.photon.ui.screens.AbstractView
 import io.github.rezmike.photon.utils.DaggerService
 import kotlinx.android.synthetic.main.screen_auth.view.*
 

@@ -1,12 +1,12 @@
-package io.github.rezmike.photon.utils
+package io.github.rezmike.photon.ui.activities.root
 
 import android.app.Activity
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import flow.*
 import io.github.rezmike.photon.R
-import io.github.rezmike.photon.ui.abstracts.AbstractScreen
-import io.github.rezmike.photon.ui.activities.root.RootActivity
+import io.github.rezmike.photon.ui.screens.AbstractScreen
+import io.github.rezmike.photon.utils.ScreenScoper
 import mortar.MortarScope
 
 class TreeKeyDispatcher(val activity: Activity) : Dispatcher {

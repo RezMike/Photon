@@ -2,7 +2,7 @@ package io.github.rezmike.photon.ui.screens.add_info
 
 import android.content.Context
 import android.util.AttributeSet
-import io.github.rezmike.photon.ui.abstracts.AbstractView
+import io.github.rezmike.photon.ui.screens.AbstractView
 import io.github.rezmike.photon.utils.DaggerService
 
 class AddInfoView(context: Context, attrs: AttributeSet?) : AbstractView<AddInfoPresenter, AddInfoView>(context, attrs) {

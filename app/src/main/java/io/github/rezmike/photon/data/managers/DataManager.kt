@@ -2,8 +2,12 @@ package io.github.rezmike.photon.data.managers
 
 import io.github.rezmike.photon.App
 import io.github.rezmike.photon.data.network.RestService
+import io.github.rezmike.photon.data.network.req.AlbumReq
+import io.github.rezmike.photon.data.network.req.EditProfileReq
 import io.github.rezmike.photon.data.network.req.LoginReq
 import io.github.rezmike.photon.data.network.req.RegisterReq
+import io.github.rezmike.photon.data.network.res.AlbumRes
+import io.github.rezmike.photon.data.network.res.ImageUrlRes
 import io.github.rezmike.photon.data.network.transformers.*
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
@@ -12,9 +16,11 @@ import io.github.rezmike.photon.di.components.DaggerDataManagerComponent
 import io.github.rezmike.photon.di.modules.LocalModule
 import io.github.rezmike.photon.di.modules.NetworkModule
 import io.github.rezmike.photon.utils.writePhotoToDisk
+import okhttp3.MultipartBody
 import rx.Completable
 import rx.Observable
 import rx.Single
+import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -129,9 +135,27 @@ class DataManager private constructor() {
                 .toCompletable()
     }
 
+    fun createAlbumOnServer(albumReq: AlbumReq): Single<AlbumRes> {
+        return restService.createAlbum(preferencesManager.getAuthToken()!!, getUserId()!!, albumReq)
+                .compose(AlbumCallTransformer())
+                .toSingle()
+    }
+
     //endregion
 
     //region ======================== User ========================
+
+    fun getUserId() = preferencesManager.getUserId()
+
+    fun getUserLogin() = preferencesManager.getUserLogin()
+
+    fun getUserName() = preferencesManager.getUserName()
+
+    fun getUserAvatar() = preferencesManager.getUserAvatar()
+
+    fun saveUserAvatar(avatarUrl: String) {
+        preferencesManager.saveUserAvatar(avatarUrl)
+    }
 
     fun getUserSinFromRealm(userId: String) = realmManager.getUser(userId)
 
@@ -139,8 +163,24 @@ class DataManager private constructor() {
         return restService.getUserInfo(preferencesManager.getLastUserUpdate(userId), userId)
                 .compose(UserCallTranformer(userId))
                 .subscribeOn(Schedulers.io())
-                .map { realmManager.saveUserResponseToRealm(it) }
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { realmManager.saveAndGetUserRealm(it) }
                 .toSingle()
+    }
+
+    fun uploadImageToServer(file: MultipartBody.Part): Single<ImageUrlRes> {
+        return restService.uploadImage(preferencesManager.getAuthToken()!!, getUserId()!!, file)
+                .compose(ImageUrlCallTransformer())
+                .toSingle()
+    }
+
+    fun updateProfileInfo(editProfileReq: EditProfileReq): Completable {
+        return restService.updateProfileInfo(preferencesManager.getAuthToken()!!, getUserId()!!, editProfileReq)
+                .compose(UserCallTranformer(getUserId()!!))
+                .subscribeOn(Schedulers.io())
+                .doOnNext { preferencesManager.saveUserData(it) }
+                .doOnNext { realmManager.saveUserResponseToRealm(it) }
+                .toCompletable()
     }
 
     //endregion

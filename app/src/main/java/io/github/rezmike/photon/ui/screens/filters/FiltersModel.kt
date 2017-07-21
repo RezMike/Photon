@@ -1,5 +1,5 @@
 package io.github.rezmike.photon.ui.screens.filters
 
-import io.github.rezmike.photon.ui.abstracts.AbstractModel
+import io.github.rezmike.photon.ui.screens.AbstractModel
 
 class FiltersModel : AbstractModel()

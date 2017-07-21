@@ -4,9 +4,9 @@ import dagger.Provides
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.photon.di.scopes.DaggerScope
-import io.github.rezmike.photon.ui.abstracts.AbstractScreen
 import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.activities.root.RootActivity
+import io.github.rezmike.photon.ui.screens.AbstractScreen
 
 class PhotocardScreen(val photoCard: PhotoCardRealm,
                       val bottomBarItem: BottomBarItems = BottomBarItems.MAIN) : AbstractScreen<RootActivity.RootComponent>(bottomBarItem) {

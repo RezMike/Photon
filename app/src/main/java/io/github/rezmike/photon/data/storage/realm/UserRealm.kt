@@ -4,8 +4,9 @@ import io.github.rezmike.photon.data.network.res.UserRes
 import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
+import java.io.Serializable
 
-open class UserRealm() : RealmObject() {
+open class UserRealm() : RealmObject(), Serializable {
 
     @PrimaryKey
     var id: String = ""

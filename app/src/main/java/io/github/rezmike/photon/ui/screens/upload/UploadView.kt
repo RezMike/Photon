@@ -3,7 +3,7 @@ package io.github.rezmike.photon.ui.screens.upload
 import android.content.Context
 import android.util.AttributeSet
 import flow.Flow
-import io.github.rezmike.photon.ui.abstracts.AbstractView
+import io.github.rezmike.photon.ui.screens.AbstractView
 import io.github.rezmike.photon.ui.screens.add_info.AddInfoScreen
 import io.github.rezmike.photon.utils.DaggerService
 import kotlinx.android.synthetic.main.screen_upload.view.*

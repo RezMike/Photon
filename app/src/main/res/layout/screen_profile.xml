@@ -1,14 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <io.github.rezmike.photon.ui.screens.profile.ProfileView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        style="@style/title_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="PROFILE VIEW"/>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/user_info_wrap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_small_16">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_avatar_img"
+                    style="@style/avatar_style"
+                    tools:background="@color/black"/>
+
+                <LinearLayout
+                    android:id="@+id/name_wrap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="@dimen/spacing_small_16"
+                    android:layout_toRightOf="@id/profile_avatar_img"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/profile_login_tv"
+                        style="@style/title_text_view"
+                        android:textStyle="bold"
+                        tools:text="marchiano"/>
+
+                    <TextView
+                        style="@style/title_text_view"
+                        android:text=" / "/>
+
+                    <TextView
+                        android:id="@+id/profile_name_tv"
+                        style="@style/title_text_view"
+                        tools:text="Елена Марчиано"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/album_wrap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name_wrap"
+                    android:layout_marginLeft="@dimen/spacing_small_16"
+                    android:layout_toRightOf="@+id/profile_avatar_img"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/album_title"
+                        style="@style/text_view"
+                        android:text="@string/photocard_albums"/>
+
+                    <TextView
+                        android:id="@+id/album_count"
+                        style="@style/description_text_view"
+                        android:text="0"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/photocard_wrap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name_wrap"
+                    android:layout_marginLeft="@dimen/spacing_small_16"
+                    android:layout_toRightOf="@+id/album_wrap"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/text_view"
+                        android:text="@string/photocard_cards"/>
+
+                    <TextView
+                        android:id="@+id/photocard_count"
+                        style="@style/description_text_view"
+                        android:text="0"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_albums"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:isScrollContainer="false"/>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </io.github.rezmike.photon.ui.screens.profile.ProfileView>

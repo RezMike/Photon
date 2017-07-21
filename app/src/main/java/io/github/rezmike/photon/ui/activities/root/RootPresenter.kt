@@ -7,10 +7,7 @@ import android.os.Bundle
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.ActivityResultDto
 import io.github.rezmike.photon.data.storage.dto.DialogResult
-import io.github.rezmike.photon.ui.dialogs.login.LoginDialog
-import io.github.rezmike.photon.ui.dialogs.login.LoginPresenter
-import io.github.rezmike.photon.ui.dialogs.register.RegisterDialog
-import io.github.rezmike.photon.ui.dialogs.register.RegisterPresenter
+import io.github.rezmike.photon.ui.dialogs.DialogManager
 import io.github.rezmike.photon.ui.others.MenuItemHolder
 import io.github.rezmike.photon.utils.ConstantManager
 import io.github.rezmike.photon.utils.DaggerService
@@ -25,20 +22,23 @@ class RootPresenter : Presenter<RootActivity>() {
     @Inject
     lateinit var model: AccountModel
 
+    lateinit var dialogManager: DialogManager
+
     private val activityResultDtoSub = PublishSubject.create<ActivityResultDto>()
 
     override fun onEnterScope(scope: MortarScope) {
         super.onEnterScope(scope)
         DaggerService.getDaggerComponent<RootActivity.RootComponent>(scope).inject(this)
+        dialogManager = DialogManager(this, model)
     }
 
     override fun onLoad(savedInstanceState: Bundle?) {
         super.onLoad(savedInstanceState)
-        initDialogs()
+        dialogManager.showHiddenDialogs(view)
     }
 
     override fun dropView(view: RootActivity?) {
-        dismissDialogs()
+        dialogManager.dismissDialogs()
         super.dropView(view)
     }
 
@@ -81,61 +81,29 @@ class RootPresenter : Presenter<RootActivity>() {
 
     //region ======================== Dialogs ========================
 
-    private var loginDialogPresenter: LoginPresenter? = null
-    private var registerDialogPresenter: RegisterPresenter? = null
-
-    private var loginDialog: LoginDialog? = null
-    private var registerDialog: RegisterDialog? = null
-
     fun showLoginDialog(onResult: (DialogResult) -> Unit = {}) {
-        loginDialogPresenter = LoginPresenter(model)
-        loginDialogPresenter?.setOnResultListener {
-            loginDialogPresenter = null
-            loginDialog = null
-            onResult(it)
-        }
-        loginDialog = LoginDialog(view!!)
-        loginDialogPresenter?.takeView(loginDialog)
-        loginDialogPresenter?.show()
+        dialogManager.showLoginDialog(view, onResult)
     }
 
     fun showRegisterDialog(onResult: (DialogResult) -> Unit) {
-        registerDialogPresenter = RegisterPresenter(model)
-        registerDialogPresenter?.setOnResultListener {
-            registerDialogPresenter = null
-            registerDialog = null
-            onResult(it)
-        }
-        registerDialog = RegisterDialog(view!!)
-        registerDialogPresenter?.takeView(registerDialog)
-        registerDialogPresenter?.show()
+        dialogManager.showRegisterDialog(view, onResult)
     }
 
-    private fun initDialogs() {
-        if (loginDialogPresenter != null) {
-            loginDialog = LoginDialog(view)
-            loginDialogPresenter?.takeView(loginDialog)
-            loginDialogPresenter?.show()
-        }
-        if (registerDialogPresenter != null) {
-            registerDialog = RegisterDialog(view)
-            registerDialogPresenter?.takeView(registerDialog)
-            registerDialogPresenter?.show()
-        }
+    fun showAlbumDialog(onResult: (DialogResult) -> Unit = {}) {
+        dialogManager.showAlbumDialog(view, onResult)
     }
 
-    private fun dismissDialogs() {
-        if (loginDialogPresenter != null) {
-            loginDialogPresenter?.dismiss()
-        }
-        loginDialog = null
-        if (registerDialogPresenter != null) {
-            registerDialogPresenter?.dismiss()
-        }
-        registerDialog = null
+    fun showEditProfileDialog(onResult: (DialogResult) -> Unit = {}) {
+        dialogManager.showEditProfileDialog(view, onResult)
+    }
+
+    fun showAvatarDialog(onResult: (DialogResult) -> Unit = {}) {
+        dialogManager.showAvatarDialog(view, onResult)
     }
 
     //endregion
+
+    //region ======================== Events ========================
 
     fun onClickMain() {
         view?.showMainScreen()
@@ -152,6 +120,8 @@ class RootPresenter : Presenter<RootActivity>() {
     fun onClickUpload() {
         view?.showUploadScreen()
     }
+
+    //endregion
 
     fun getRootView(): RootActivity? = view
 

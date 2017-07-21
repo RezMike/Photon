@@ -2,7 +2,7 @@ package io.github.rezmike.photon.ui.screens.user
 
 import android.content.Context
 import android.util.AttributeSet
-import io.github.rezmike.photon.ui.abstracts.AbstractView
+import io.github.rezmike.photon.ui.screens.AbstractView
 import io.github.rezmike.photon.utils.DaggerService
 
 class UserView(context: Context, attrs: AttributeSet?) : AbstractView<UserPresenter, UserView>(context, attrs) {

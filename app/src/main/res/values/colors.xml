@@ -9,6 +9,7 @@
     <color name="white">#fff</color>
 
     <color name="color_btn">#212121</color>
+    <color name="color_second_btn">#FF8B8B8B</color>
     <color name="color_description_text_view">@color/color_btn</color>
 
     <!--dialog-->

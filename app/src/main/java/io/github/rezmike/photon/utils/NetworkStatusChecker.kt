@@ -18,4 +18,3 @@ object NetworkStatusChecker {
     @JvmStatic
     fun isInternetAvailable(): Observable<Boolean> = if (isNetworkAvailable()) Observable.just(true) else Observable.error(NetworkAvailableError())
 }
-

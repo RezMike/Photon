@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <include
         android:id="@+id/image"
-        layout="@layout/item_wall_food"/>
+        layout="@layout/item_wall_food" />
 
     <View
-        android:layout_alignBottom="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/image"
         android:background="@drawable/shadow_gradient"
-        android:rotation="180"/>
+        android:rotation="180" />
 
     <TextView
         android:id="@+id/album_name"
@@ -25,9 +25,9 @@
         android:layout_marginBottom="@dimen/spacing_very_small_8"
         android:layout_marginLeft="@dimen/spacing_small_16"
         android:layout_marginTop="@dimen/spacing_small_16"
-        android:textSize="@dimen/font_size_normal_24"
         android:textColor="@color/white"
-        tools:text="Избранное"/>
+        android:textSize="@dimen/font_size_normal_24"
+        tools:text="Избранное" />
 
     <TextView
         android:id="@+id/photocard"
@@ -37,8 +37,8 @@
         android:layout_marginBottom="@dimen/spacing_very_small_8"
         android:layout_marginLeft="@dimen/spacing_small_16"
         android:text="@string/item_info_name_album"
-        android:textSize="@dimen/font_size_normal_16"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_normal_16" />
 
     <TextView
         android:id="@+id/count_photo_tx"
@@ -48,6 +48,6 @@
         android:layout_marginLeft="@dimen/spacing_small_16"
         android:textColor="@color/white"
         android:textSize="@dimen/font_size_normal_20"
-        tools:text="4"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        tools:text="4" />
 </RelativeLayout>

@@ -50,7 +50,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:text="@string/upload_choose_photo"
-            android:theme="@style/FotonBtn"
+            android:theme="@style/PhotonBtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/guideline4"

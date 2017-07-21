@@ -38,6 +38,24 @@ class PreferencesManager(context: Context) {
         return sharedPreferences.getString(PROFILE_USER_ID_KEY, null)
     }
 
+    fun getUserLogin(): String? {
+        return sharedPreferences.getString(PROFILE_LOGIN_KEY, null)
+    }
+
+    fun getUserName(): String? {
+        return sharedPreferences.getString(PROFILE_NAME_KEY, null)
+    }
+
+    fun getUserAvatar(): String? {
+        return sharedPreferences.getString(PROFILE_AVATAR_KEY, null)
+    }
+
+    fun saveUserAvatar(avatarUrl: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(PROFILE_AVATAR_KEY, avatarUrl)
+        editor.apply()
+    }
+
     fun deleteUserData() {
         val editor = sharedPreferences.edit()
         editor.putString(PROFILE_USER_ID_KEY, null)

@@ -1,8 +1,8 @@
 package io.github.rezmike.photon.ui.screens.auth
 
 import io.github.rezmike.photon.R
-import io.github.rezmike.photon.ui.abstracts.AbstractPresenter
 import io.github.rezmike.photon.ui.activities.root.AccountModel
+import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import io.github.rezmike.photon.utils.DaggerService
 import mortar.MortarScope
 

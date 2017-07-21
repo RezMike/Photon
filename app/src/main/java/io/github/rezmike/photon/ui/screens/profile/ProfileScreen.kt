@@ -3,9 +3,9 @@ package io.github.rezmike.photon.ui.screens.profile
 import dagger.Provides
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.di.scopes.DaggerScope
-import io.github.rezmike.photon.ui.abstracts.AbstractScreen
 import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.activities.root.RootActivity
+import io.github.rezmike.photon.ui.screens.AbstractScreen
 
 class ProfileScreen : AbstractScreen<RootActivity.RootComponent>(BottomBarItems.PROFILE) {
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {

@@ -1,4 +1,4 @@
-package io.github.rezmike.photon.ui.abstracts
+package io.github.rezmike.photon.ui.activities
 
 import android.app.ProgressDialog
 import android.graphics.Color
@@ -10,7 +10,7 @@ import io.github.rezmike.photon.R
 
 open class BaseActivity : AppCompatActivity() {
 
-    val IS_PROGRESS_SHOWING = "IS_PROGRESS_SHOWING"
+    private val IS_PROGRESS_SHOWING = "IS_PROGRESS_SHOWING"
 
     private var progressDialog: ProgressDialog? = null
     private var isDialogShowing: Boolean = false
@@ -38,7 +38,7 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    fun showProgress() {
+    protected fun showProgress() {
         if (progressDialog == null) {
             progressDialog = ProgressDialog(this, R.style.CustomDialog)
             progressDialog?.setCancelable(false)
@@ -50,7 +50,7 @@ open class BaseActivity : AppCompatActivity() {
         progress?.smoothToShow()
     }
 
-    fun hideProgress() {
+    protected fun hideProgress() {
         if (progressDialog == null) return
         isDialogShowing = false;
         dismissProgress()

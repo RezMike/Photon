@@ -25,18 +25,14 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        BundleServiceRunner.getBundleServiceRunner(this).onCreate(savedInstanceState)
         DaggerService.getDaggerComponent<SplashComponent>(this).inject(this)
         presenter.takeView(this)
+        BundleServiceRunner.getBundleServiceRunner(this).onCreate(savedInstanceState)
     }
 
     override fun onResume() {
         super.onResume()
         presenter.init()
-    }
-
-    override fun onPause() {
-        super.onPause()
     }
 
     override fun onDestroy() {

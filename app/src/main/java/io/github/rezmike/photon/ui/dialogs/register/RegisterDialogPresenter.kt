@@ -1,31 +1,24 @@
 package io.github.rezmike.photon.ui.dialogs.register
 
 import io.github.rezmike.photon.R
-import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.data.storage.dto.RegisterInfoDto
 import io.github.rezmike.photon.ui.activities.root.AccountModel
+import io.github.rezmike.photon.ui.dialogs.AbstractDialogPresenter
 import io.github.rezmike.photon.ui.others.isEmailValid
 import io.github.rezmike.photon.ui.others.isLoginValid
 import io.github.rezmike.photon.ui.others.isNameValid
 import io.github.rezmike.photon.ui.others.isPasswordValid
-import mortar.PopupPresenter
 import rx.android.schedulers.AndroidSchedulers
 
-class RegisterPresenter(val model: AccountModel) : PopupPresenter<RegisterInfoDto, DialogResult>() {
-
-    private var onResult: (DialogResult) -> Unit = {}
+class RegisterDialogPresenter(val model: AccountModel) : AbstractDialogPresenter<RegisterInfoDto, RegisterDialog>() {
 
     private var login: String = ""
     private var email: String = ""
     private var name: String = ""
     private var password: String = ""
 
-    fun show() = show(RegisterInfoDto(login, email, name, password))
-
-    fun setOnResultListener(listener: (DialogResult) -> Unit) {
-        onResult = listener
-    }
+    override fun show() = show(RegisterInfoDto(login, email, name, password))
 
     fun checkLogin(login: String) {
         this.login = login
@@ -63,15 +56,15 @@ class RegisterPresenter(val model: AccountModel) : PopupPresenter<RegisterInfoDt
         }
     }
 
-    fun onClickOk() {
+    override fun onClickOk() {
         if (login.isEmpty() || email.isEmpty() || name.isEmpty() || password.isEmpty()) {
             if (login.isEmpty()) getDialog()?.accentLogin()
             if (email.isEmpty()) getDialog()?.accentEmail()
             if (name.isEmpty()) getDialog()?.accentName()
             if (password.isEmpty()) getDialog()?.accentPassword()
-            getDialog()?.showMessage(R.string.register_error_empty_fields)
+            getDialog()?.showMessage(R.string.register_dialog_error_empty_fields)
         } else if (login.isLoginValid() && email.isEmailValid() && name.isNameValid() && password.isPasswordValid()) {
-            model.register(RegisterReq(name, login, email, password))
+            model.register(name, login, email, password)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         getDialog()?.showMessage(R.string.auth_success)
@@ -83,7 +76,7 @@ class RegisterPresenter(val model: AccountModel) : PopupPresenter<RegisterInfoDt
                             getDialog()?.showMessage(R.string.login_error_incorrect_data)
                             getDialog()?.accentFields()
                         } else {*/
-                            getDialog()?.showError(it)
+                        getDialog()?.showError(it)
                         //}
                     })
         } else {
@@ -93,16 +86,4 @@ class RegisterPresenter(val model: AccountModel) : PopupPresenter<RegisterInfoDt
             if (!password.isPasswordValid()) getDialog()?.accentPassword()
         }
     }
-
-    fun onClickCancel() {
-        getDialog()?.dismiss()
-        onResult(DialogResult(false))
-    }
-
-    override fun onPopupResult(result: DialogResult) {
-        getDialog()?.dismiss()
-        onResult(result)
-    }
-
-    fun getDialog() = view as RegisterDialog?
 }

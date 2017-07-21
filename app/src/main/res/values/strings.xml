@@ -23,42 +23,6 @@
     <string name="main_repeate">Повтор</string>
     <string name="main_menu_connect_developers">Связаться с разработчиками</string>
 
-    <!--Auth Screen-->
-    <string name="auth_title">Профиль</string>
-    <string name="auth_menu_login">Войти</string>
-    <string name="auth_menu_register">Зарегистрироваться</string>
-    <string name="auth_description">Авторизуйтесь, чтобы посмотреть данные профиля</string>
-    <string name="auth_sign_up">Регистрация</string>
-    <string name="auth_sign_in">Вход</string>
-    <string name="auth_success">Вы успешно авторизованы</string>
-
-    <!--Login Dialog-->
-    <string name="login_title">Фотон</string>
-    <string name="login_header">Вход в аккаунт</string>
-    <string name="login_email">Email</string>
-    <string name="login_email_error">Email невалидный</string>
-    <string name="login_password">Пароль</string>
-    <string name="login_password_error">Длина пароля - не менее 8 символов, латиница, не может содержать спецзнаки и нижние подчеркивания (!@#$%^&amp;*()\|_=+-)</string>
-    <string name="login_error_incorrect_data">Неверный email или пароль</string>
-    <string name="login_error_empty_fields">Заполните все поля!</string>
-
-    <!--Register Dialog-->
-    <string name="register_title">Регистрация</string>
-    <string name="register_login">Логин</string>
-    <string name="register_login_error">Латиница и нижние подчеркивания, не может содержать спецзнаки (!@#$%^&amp;*()\|=+-)</string>
-    <string name="register_email">Email</string>
-    <string name="register_email_error">Email невалидный</string>
-    <string name="register_name">Имя</string>
-    <string name="register_name_error">Имя не должно быть короче 3 символов</string>
-    <string name="register_password">Пароль</string>
-    <string name="register_password_error">Длина пароля - не менее 8 символов, латиница, не может содержать спецзнаки и нижние подчеркивания (!@#$%^&amp;*()\|_=+-)</string>
-    <string name="register_error_empty_fields">Заполните все поля!</string>
-
-    <!--Exit dialog-->
-    <string name="exit_title">Вы действительно хотите выйти?</string>
-    <string name="exit_yes">Да</string>
-    <string name="exit_no">Нет</string>
-
     <!--Photocard Screen-->
     <string name="photocard_title">Фотокарточка</string>
     <string name="photocard_menu_in_favorites">В избранное</string>
@@ -68,26 +32,90 @@
     <string name="photocard_albums">Альбомы</string>
     <string name="photocard_saving_completed">Изображение загружено</string>
 
-    <!--Navigation Screen-->
-    <string name="navigation_main">Главная</string>
-    <string name="navigation_profile">Профиль</string>
-    <string name="navigation_upload">Загрузить</string>
-
-    <!--Items Info Photo Or Album-->
-    <string name="item_info_name_album">Фото</string>
-    <string name="item_info_count_empty">0</string>
-
-    <!--New album screen-->
-    <string name="new_album_title">Новый альбом</string>
-    <string name="new_album_name">Название</string>
-    <string name="new_album_description">Описание</string>
+    <!--Profile Screen-->
+    <string name="profile_title">Профиль</string>
+    <string name="profile_menu_create_album">Создать альбом</string>
+    <string name="profile_menu_edit_profile">Редактировать профиль</string>
+    <string name="profile_menu_change_avatar">Изменить аватар</string>
+    <string name="profile_menu_logout">Выйти</string>
+    <string name="profile_cards">Карты</string>
+    <string name="profile_albums">Альбомы</string>
 
     <!--Upload Screen-->
     <string name="upload_description">Выберите фотокарточку из галереи и добавьте к вашим альбомам</string>
     <string name="upload_choose_photo">Выбрать фото</string>
 
+    <!--Auth Screen-->
+    <string name="auth_title">Профиль</string>
+    <string name="auth_menu_login">Войти</string>
+    <string name="auth_menu_register">Зарегистрироваться</string>
+    <string name="auth_description">Авторизуйтесь, чтобы посмотреть данные профиля</string>
+    <string name="auth_register">Регистрация</string>
+    <string name="auth_login">Вход</string>
+    <string name="auth_success">Вы успешно авторизованы</string>
+
+    <!--Login Dialog-->
+    <string name="login_dialog_header">Вход в аккаунт</string>
+    <string name="login_dialog_email">Email</string>
+    <string name="login_dialog_email_error">Email невалидный</string>
+    <string name="login_dialog_password">Пароль</string>
+    <string name="login_dialog_password_error">Длина - не менее 8 символов, латиница, не может содержать спецсимволы и нижние подчеркивания (!@#$%^&amp;*()\/|_=+-)</string>
+    <string name="login_dialog_error_incorrect_data">Неверный email или пароль</string>
+    <string name="login_dialog_error_empty_fields">Заполните все поля!</string>
+
+    <!--Register Dialog-->
+    <string name="register_dialog_title">Регистрация</string>
+    <string name="register_dialog_login">Логин</string>
+    <string name="register_dialog_login_error">Латиница и нижние подчеркивания, не может содержать спецзнаки (!@#$%^&amp;*()\|=+-)</string>
+    <string name="register_dialog_email">Email</string>
+    <string name="register_dialog_email_error">Email невалидный</string>
+    <string name="register_dialog_name">Имя</string>
+    <string name="register_dialog_name_error">Имя не должно быть короче 3 символов</string>
+    <string name="register_dialog_password">Пароль</string>
+    <string name="register_dialog_password_error">Длина - не менее 8 символов, латиница, не может содержать спецсимволы и нижние подчеркивания (!@#$%^&amp;*()\|_=+-)</string>
+    <string name="register_dialog_error_empty_fields">Заполните все поля!</string>
+
+    <!--Album Dialog-->
+    <string name="album_dialog_header">Новый альбом</string>
+    <string name="album_dialog_title">Название</string>
+    <string name="album_dialog_description">Описание</string>
+    <string name="album_dialog_title_error">Длина - не менее 3 символов, не может содержать спецсимвоыл(!@#$%^&amp;*()\/|=+-)</string>
+    <string name="album_dialog_description_error">Длина - не менее 3 символов, не более 400 символов</string>
+    <string name="album_dialog_error_empty_fields">Заполните все поля!</string>
+    <string name="album_dialog_success">Альбом успешно создан</string>
+
+    <!--Edit Profile Dialog-->
+    <string name="edit_profile_dialog_header">Редактирование профиля</string>
+    <string name="edit_profile_dialog_name">Имя</string>
+    <string name="edit_profile_dialog_name_error">Имя не должно быть короче 3 символов</string>
+    <string name="edit_profile_dialog_login">Логин</string>
+    <string name="edit_profile_dialog_login_error">Латиница и нижние подчеркивания, не может содержать спецзнаки (!@#$%^&amp;*()\|=+-)</string>
+    <string name="edit_profile_dialog_login_taken">Данный логин уже зарегистрирован!</string>
+    <string name="edit_profile_dialog_error_empty_fields">Невозможно сохранить данные, если хоть одно поле пустое</string>
+    <string name="edit_profile_dialog_success">Данные успешно изменены</string>
+
+    <!--Avatar dialog-->
+    <string name="avatar_dialog_header">Изменить аватар</string>
+    <string name="avatar_dialog_choose_camera">Сделать фото</string>
+    <string name="avatar_dialog_choose_gallery">Выбрать из галереи</string>
+    <string name="avatar_dialog_file_not_created">Фото не может быть создано</string>
+
+    <!--Exit dialog-->
+    <string name="exit_dialog_title">Вы действительно хотите выйти?</string>
+    <string name="exit_dialog_yes">Да</string>
+    <string name="exit_dialog_no">Нет</string>
+
+    <!--Navigation Menu-->
+    <string name="menu_navigation_main">Главная</string>
+    <string name="menu_navigation_profile">Профиль</string>
+    <string name="menu_navigation_upload">Загрузить</string>
+
+    <!--Items Info Photo Or Album-->
+    <string name="item_info_name_album">Фото</string>
+    <string name="item_info_count_empty">0</string>
+
     <!--Dialog Footer-->
-    <string name="dialog_footer_ok">@android:string/ok</string>
+    <string name="dialog_footer_ok">ОК</string>
     <string name="dialog_footer_cancel">Отмена</string>
 
     <!--Filters-->

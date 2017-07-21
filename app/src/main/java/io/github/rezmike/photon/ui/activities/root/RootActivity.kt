@@ -20,15 +20,14 @@ import io.github.rezmike.photon.R
 import io.github.rezmike.photon.di.components.AppComponent
 import io.github.rezmike.photon.di.modules.PicassoCacheModule
 import io.github.rezmike.photon.di.scopes.RootScope
-import io.github.rezmike.photon.ui.abstracts.BaseActivity
-import io.github.rezmike.photon.ui.abstracts.IView
+import io.github.rezmike.photon.ui.activities.BaseActivity
 import io.github.rezmike.photon.ui.others.MenuItemHolder
+import io.github.rezmike.photon.ui.screens.IView
 import io.github.rezmike.photon.ui.screens.auth.AuthScreen
 import io.github.rezmike.photon.ui.screens.main.MainScreen
 import io.github.rezmike.photon.ui.screens.profile.ProfileScreen
 import io.github.rezmike.photon.ui.screens.upload.UploadScreen
 import io.github.rezmike.photon.utils.DaggerService
-import io.github.rezmike.photon.utils.TreeKeyDispatcher
 import kotlinx.android.synthetic.main.activity_root.*
 import mortar.MortarScope
 import mortar.bundler.BundleServiceRunner
@@ -117,9 +116,9 @@ class RootActivity : BaseActivity(), IActionBarView {
     override fun onBackPressed() {
         if (getCurrentScreen() == null || !getCurrentScreen()!!.onBackPressed() && !Flow.get(this).goBack()) {
             val alertDialog = AlertDialog.Builder(this)
-                    .setTitle(R.string.exit_title)
-                    .setPositiveButton(R.string.exit_yes) { _, _ -> finish() }
-                    .setNegativeButton(R.string.exit_no, null)
+                    .setTitle(R.string.exit_dialog_title)
+                    .setPositiveButton(R.string.exit_dialog_yes) { _, _ -> finish() }
+                    .setNegativeButton(R.string.exit_dialog_no, null)
                     .create()
             alertDialog.show()
         }

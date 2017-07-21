@@ -1,4 +1,4 @@
-package io.github.rezmike.photon.ui.abstracts
+package io.github.rezmike.photon.ui.screens
 
 import android.content.Context
 import android.util.AttributeSet

@@ -3,8 +3,9 @@ package io.github.rezmike.photon.data.storage.realm
 import io.github.rezmike.photon.data.network.res.Filters
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
+import java.io.Serializable
 
-open class FilterRealm() : RealmObject() {
+open class FilterRealm() : RealmObject(), Serializable {
 
     @PrimaryKey
     var id: String = ""
