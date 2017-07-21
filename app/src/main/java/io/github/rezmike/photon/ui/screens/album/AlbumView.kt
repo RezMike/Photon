@@ -1,10 +1,13 @@
 package io.github.rezmike.photon.ui.screens.album
 
 import android.content.Context
+import android.content.DialogInterface
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.GridLayoutManager
 import android.util.AttributeSet
 import android.view.View
 import com.squareup.picasso.Picasso
+import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.ui.screens.AbstractView
 import io.github.rezmike.photon.utils.DaggerService
@@ -48,5 +51,17 @@ class AlbumView(context: Context, attrs: AttributeSet?) : AbstractView<AlbumPres
     fun showListEmpty() {
         list_photocard.visibility = View.GONE
         album_is_empty_tv.visibility = View.VISIBLE
+    }
+
+    fun showDeleteDialog() {
+        val dialog = AlertDialog.Builder(context)
+                .setMessage(R.string.album_delete_question)
+                .setPositiveButton(R.string.dialog_yes, { dialog, i ->
+                    presenter.deleteAlbum()
+                    dialog.dismiss()
+                })
+                .setNegativeButton(R.string.dialog_no, { dialog, i -> dialog.dismiss() })
+                .create()
+        dialog.show()
     }
 }

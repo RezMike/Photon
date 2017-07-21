@@ -117,8 +117,8 @@ class RootActivity : BaseActivity(), IActionBarView {
         if (getCurrentScreen() == null || !getCurrentScreen()!!.onBackPressed() && !Flow.get(this).goBack()) {
             val alertDialog = AlertDialog.Builder(this)
                     .setTitle(R.string.exit_dialog_title)
-                    .setPositiveButton(R.string.exit_dialog_yes) { _, _ -> finish() }
-                    .setNegativeButton(R.string.exit_dialog_no, null)
+                    .setPositiveButton(R.string.dialog_yes) { _, _ -> finish() }
+                    .setNegativeButton(R.string.dialog_no, null)
                     .create()
             alertDialog.show()
         }

@@ -141,6 +141,17 @@ class DataManager private constructor() {
                 .toSingle()
     }
 
+    fun deleteAlbumOnServer(albumId: String): Completable {
+        return restService.deleteAlbum(preferencesManager.getAuthToken()!!, getUserId()!!, albumId)
+                .compose(AlbumCallTransformer())
+                .subscribeOn(Schedulers.newThread())
+                .toCompletable()
+    }
+
+    fun deleteAlbumFromRealm(albumId: String) {
+        realmManager.deleteAlbumFromRealm(albumId)
+    }
+
     //endregion
 
     //region ======================== User ========================

@@ -33,6 +33,7 @@
                     <TextView
                         android:id="@+id/album_title_tv"
                         style="@style/title_text_view"
+                        android:textSize="@dimen/font_size_normal_20"
                         android:layout_marginBottom="@dimen/spacing_very_small_8"
                         tools:text="Закуски"/>
 
@@ -52,6 +53,7 @@
                 <TextView
                     android:id="@+id/album_description_tv"
                     style="@style/text_view"
+                    android:textSize="@dimen/font_size_normal_16"
                     android:layout_toRightOf="@+id/wrap_album_info"
                     tools:text="Разные закуски(шпажки, сэндвичи, нарезки, фрукты, заготовки и тд.)"/>
 

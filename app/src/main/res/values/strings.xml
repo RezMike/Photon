@@ -35,6 +35,7 @@
     <!--Album Screen-->
     <string name="album_title">Альбом</string>
     <string name="album_is_empty">Альбом пуст</string>
+    <string name="album_delete_question">Вы уверены что хотите удалить альбом?</string>
 
     <!--Profile Screen-->
     <string name="profile_title">Профиль</string>
@@ -106,8 +107,8 @@
 
     <!--Exit dialog-->
     <string name="exit_dialog_title">Вы действительно хотите выйти?</string>
-    <string name="exit_dialog_yes">Да</string>
-    <string name="exit_dialog_no">Нет</string>
+    <string name="dialog_yes">Да</string>
+    <string name="dialog_no">Нет</string>
 
     <!--Navigation Menu-->
     <string name="menu_navigation_main">Главная</string>
