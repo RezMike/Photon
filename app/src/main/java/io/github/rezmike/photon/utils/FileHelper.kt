@@ -4,10 +4,13 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import com.commonsware.cwac.provider.StreamProvider
 import io.github.rezmike.photon.App
+import io.github.rezmike.photon.BuildConfig
 import okhttp3.ResponseBody
 import rx.Observable
 import java.io.*
@@ -95,4 +98,12 @@ fun getFileFromUri(uri: Uri, context: Context): File {
     }
     cursor.close()
     return File(filePath)
+}
+
+fun getUriFromFile(file: File): Uri {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        return StreamProvider.getUriForFile(BuildConfig.APPLICATION_ID + ".fileprovider", file)
+    } else {
+        return Uri.fromFile(file)
+    }
 }

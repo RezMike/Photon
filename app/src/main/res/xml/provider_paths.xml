@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
     <external-path
+        dir="Pictures"
         name="external_files"
-        path="Android/data/com.timofeev.skillbranch.mvpauth/files/Pictures"/>
+        path=""/>
 </paths>

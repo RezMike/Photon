@@ -10,7 +10,7 @@ class ProfileModel : AbstractModel() {
         val userId = dataManager.getUserId()!!
         return dataManager.getUserSinFromRealm(userId)
                 .onErrorResumeNext { dataManager.getUserSinFromNetwork(userId) }
-                .doOnSuccess { dataManager.getUserSinFromNetwork(userId) }
+                .doOnSuccess { dataManager.getUserSinFromNetwork(userId).subscribe({}, {}) }
     }
 
     fun logoutUser() = dataManager.logoutUser()

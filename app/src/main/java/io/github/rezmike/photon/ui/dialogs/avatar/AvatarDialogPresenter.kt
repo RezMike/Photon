@@ -10,13 +10,11 @@ import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.ui.activities.root.AccountModel
 import io.github.rezmike.photon.ui.activities.root.RootPresenter
 import io.github.rezmike.photon.ui.dialogs.AbstractDialogPresenter
-import io.github.rezmike.photon.utils.ActionHelper
+import io.github.rezmike.photon.utils.*
 import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PERMISSION_CAMERA
 import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PERMISSION_READ_EXTERNAL_STORAGE
 import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PROFILE_PHOTO_CAMERA
 import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PROFILE_PHOTO_GALLERY
-import io.github.rezmike.photon.utils.createFileForPhoto
-import io.github.rezmike.photon.utils.getFileFromUri
 import mortar.Popup
 import rx.Subscription
 import java.io.File
@@ -48,14 +46,14 @@ class AvatarDialogPresenter(val rootPresenter: RootPresenter, val model: Account
                 getDialog()?.showMessage(R.string.avatar_dialog_file_not_created)
                 return
             }
-            rootPresenter.getRootView()?.startActivityForResult(ActionHelper.getCameraIntent(photoFile!!), REQUEST_PROFILE_PHOTO_CAMERA)
+            rootPresenter.getRootView()?.startActivityForResult(getCameraIntent(photoFile!!), REQUEST_PROFILE_PHOTO_CAMERA)
         }
     }
 
     fun onClickGallery() {
         val permission = arrayOf(READ_EXTERNAL_STORAGE)
         if (rootPresenter.checkPermissionAndRequestIfNotGranted(permission, REQUEST_PERMISSION_READ_EXTERNAL_STORAGE)) {
-            rootPresenter.getRootView()?.startActivityForResult(ActionHelper.getGalleryIntent(), REQUEST_PROFILE_PHOTO_GALLERY)
+            rootPresenter.getRootView()?.startActivityForResult(getGalleryIntent(), REQUEST_PROFILE_PHOTO_GALLERY)
         }
     }
 
@@ -69,7 +67,7 @@ class AvatarDialogPresenter(val rootPresenter: RootPresenter, val model: Account
         if (activityResult.resultCode != Activity.RESULT_OK) return
         when (activityResult.requestCode) {
             REQUEST_PROFILE_PHOTO_CAMERA -> {
-                if (photoFile != null) photoUri = Uri.fromFile(photoFile)
+                if (photoFile != null) photoUri = getUriFromFile(photoFile!!)
             }
             REQUEST_PROFILE_PHOTO_GALLERY -> {
                 if (activityResult.intent != null) {

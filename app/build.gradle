@@ -69,6 +69,7 @@ dependencies {
     compile 'com.uphyca:stetho_realm:2.0.0'
 
     compile 'com.birbit:android-priority-jobqueue:2.0.1'
+    compile 'com.commonsware.cwac:provider:0.5.2'
 
     kapt 'com.google.dagger:dagger-compiler:2.11'
 }

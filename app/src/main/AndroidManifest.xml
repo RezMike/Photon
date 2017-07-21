@@ -27,13 +27,13 @@
         <activity android:name="io.github.rezmike.photon.ui.activities.root.RootActivity" />
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="com.commonsware.cwac.provider.StreamProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true"
             android:permission="android.permission.MANAGE_DOCUMENTS">
             <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:name="com.commonsware.cwac.provider.STREAM_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"/>
         </provider>
 
