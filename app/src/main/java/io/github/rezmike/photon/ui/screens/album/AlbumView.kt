@@ -20,7 +20,7 @@ class AlbumView(context: Context, attrs: AttributeSet?) : AbstractView<AlbumPres
     @Inject
     lateinit var picasso: Picasso
 
-    val adapter = AlbumPhotoAdapter(picasso, {})
+    val adapter = AlbumPhotoAdapter(picasso, {presenter.onClickOnPhoto(it)})
 
     override fun initDagger(context: Context) {
         DaggerService.getDaggerComponent<AlbumScreen.Component>(context).inject(this)

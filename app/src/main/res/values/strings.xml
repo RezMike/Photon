@@ -82,6 +82,7 @@
 
     <!--Album Dialog-->
     <string name="album_dialog_header">Новый альбом</string>
+    <string name="album_dialog_edit_header">Редактирование альбома</string>
     <string name="album_dialog_title">Название</string>
     <string name="album_dialog_description">Описание</string>
     <string name="album_dialog_title_error">Длина - не менее 3 символов, не может содержать спецсимвоыл(!@#$%^&amp;*()\/|=+-)</string>

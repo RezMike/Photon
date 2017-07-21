@@ -1,10 +1,10 @@
 package io.github.rezmike.photon.ui.screens.album
 
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.view.MenuItem
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
+import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.photon.ui.others.MenuItemHolder
 import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import io.github.rezmike.photon.utils.DaggerService
@@ -70,7 +70,7 @@ class AlbumPresenter(val albumRealm: AlbumRealm) : AbstractPresenter<AlbumView, 
     }
 
     private fun onClickEditAlbum(): Boolean {
-
+        rootPresenter.showAlbumDialog({}, albumRealm)
         return true
     }
 
@@ -82,5 +82,9 @@ class AlbumPresenter(val albumRealm: AlbumRealm) : AbstractPresenter<AlbumView, 
                 .subscribe({
                     getRootView()?.onBackPressed()
                 }, { getRootView()?.showError(it) })
+    }
+
+    fun onClickOnPhoto(photo: PhotoCardRealm) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

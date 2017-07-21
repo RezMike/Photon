@@ -152,6 +152,13 @@ class DataManager private constructor() {
         realmManager.deleteAlbumFromRealm(albumId)
     }
 
+    fun editAlbumOnServer(albumId: String, albumReq: AlbumReq): Single<AlbumRes> {
+        return restService.editAlbum(preferencesManager.getAuthToken()!!, getUserId()!!,
+                albumId, albumReq)
+                .compose(AlbumCallTransformer())
+                .toSingle()
+    }
+
     //endregion
 
     //region ======================== User ========================

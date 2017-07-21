@@ -51,6 +51,13 @@ interface RestService {
     fun deleteAlbum(@Header(AUTHORIZATION) authToken: String,
                     @Path("userId") userId: String,
                     @Path("id") albumId: String): Observable<Response<AlbumRes>>
+
+    @PUT("user/{userId}/album/{id}")
+    fun editAlbum(@Header(AUTHORIZATION) authToken: String,
+                  @Path("userId") userId: String,
+                  @Path("id") albumId: String,
+                  @Body albumReq: AlbumReq): Observable<Response<AlbumRes>>
+
     //endregion
 
     //region ======================== PhotoCard ========================

@@ -5,6 +5,7 @@ import android.text.Editable
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.AlbumInfoDto
 import io.github.rezmike.photon.data.storage.dto.DialogResult
@@ -14,8 +15,9 @@ import io.github.rezmike.photon.ui.others.CustomTextWatcher
 import io.github.rezmike.photon.ui.others.changeError
 import mortar.PopupPresenter
 
-class AlbumDialog(context: Context) : AbstractDialog<AlbumInfoDto>(context) {
+class AlbumDialog(context: Context, val edit: Boolean) : AbstractDialog<AlbumInfoDto>(context) {
 
+    private var header: TextView? = null
     private var title: EditText? = null
     private var description: EditText? = null
     private var okBtn: Button? = null
@@ -26,6 +28,11 @@ class AlbumDialog(context: Context) : AbstractDialog<AlbumInfoDto>(context) {
     override fun onFinishInflate(view: View, presenter: PopupPresenter<AlbumInfoDto, DialogResult>, info: AlbumInfoDto) {
         if (presenter !is AlbumDialogPresenter) {
             throw ClassCastException("Presenter must be AlbumDialogPresenter")
+        }
+
+        if (edit) {
+            header = view.findViewById(R.id.dialog_title_tv) as TextView
+            header?.text = view.resources.getString(R.string.album_dialog_edit_header)
         }
 
         title = view.findViewById(R.id.title_et) as EditText

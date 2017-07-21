@@ -3,17 +3,24 @@ package io.github.rezmike.photon.ui.dialogs.album
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.AlbumInfoDto
 import io.github.rezmike.photon.data.storage.dto.DialogResult
+import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.ui.activities.root.AccountModel
 import io.github.rezmike.photon.ui.dialogs.AbstractDialogPresenter
 import io.github.rezmike.photon.ui.others.isAlbumDescriptionValid
 import io.github.rezmike.photon.ui.others.isAlbumTitleValid
 
-class AlbumDialogPresenter(val model: AccountModel) : AbstractDialogPresenter<AlbumInfoDto, AlbumDialog>() {
+class AlbumDialogPresenter(val model: AccountModel, val album: AlbumRealm?) : AbstractDialogPresenter<AlbumInfoDto, AlbumDialog>() {
 
     private var title: String = ""
     private var description: String = ""
 
-    override fun show() = show(AlbumInfoDto(title, description))
+    override fun show() {
+        if (isEdit()) {
+            title = album!!.title
+            description = album.description
+        }
+        show(AlbumInfoDto(title, description))
+    }
 
     fun checkName(title: String) {
         this.title = title
@@ -39,8 +46,12 @@ class AlbumDialogPresenter(val model: AccountModel) : AbstractDialogPresenter<Al
             if (description.isEmpty()) getDialog()?.accentDescription()
             getDialog()?.showMessage(R.string.album_dialog_error_empty_fields)
         } else if (title.isAlbumTitleValid() && description.isAlbumDescriptionValid()) {
-            model.createAlbum(title, description)
-            getDialog()?.showMessage(R.string.album_dialog_success)
+            if (isEdit()) {
+                model.editAlbum(album!!.id,title, description)
+            } else {
+                model.createAlbum(title, description)
+                getDialog()?.showMessage(R.string.album_dialog_success)
+            }
             getDialog()?.dismiss()
             onResult(DialogResult(true))
         } else {
@@ -48,4 +59,6 @@ class AlbumDialogPresenter(val model: AccountModel) : AbstractDialogPresenter<Al
             if (!description.isAlbumDescriptionValid()) getDialog()?.accentDescription()
         }
     }
+
+    fun isEdit() = album != null
 }

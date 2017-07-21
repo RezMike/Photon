@@ -7,6 +7,7 @@ import android.os.Bundle
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.ActivityResultDto
 import io.github.rezmike.photon.data.storage.dto.DialogResult
+import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.ui.dialogs.DialogManager
 import io.github.rezmike.photon.ui.others.MenuItemHolder
 import io.github.rezmike.photon.utils.ConstantManager
@@ -89,8 +90,8 @@ class RootPresenter : Presenter<RootActivity>() {
         dialogManager.showRegisterDialog(view, onResult)
     }
 
-    fun showAlbumDialog(onResult: (DialogResult) -> Unit = {}) {
-        dialogManager.showAlbumDialog(view, onResult)
+    fun showAlbumDialog(onResult: (DialogResult) -> Unit = {}, album: AlbumRealm? = null) {
+        dialogManager.showAlbumDialog(view, onResult, album)
     }
 
     fun showEditProfileDialog(onResult: (DialogResult) -> Unit = {}) {

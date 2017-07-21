@@ -2,6 +2,7 @@ package io.github.rezmike.photon.ui.dialogs
 
 import android.content.Context
 import io.github.rezmike.photon.data.storage.dto.DialogResult
+import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.ui.activities.root.AccountModel
 import io.github.rezmike.photon.ui.activities.root.RootPresenter
 import io.github.rezmike.photon.ui.dialogs.album.AlbumDialog
@@ -56,14 +57,14 @@ class DialogManager(val rootPresenter: RootPresenter, val model: AccountModel) {
         registerDialogPresenter?.show()
     }
 
-    fun showAlbumDialog(context: Context, onResult: (DialogResult) -> Unit = {}) {
-        albumDialogPresenter = AlbumDialogPresenter(model)
+    fun showAlbumDialog(context: Context, onResult: (DialogResult) -> Unit = {}, album: AlbumRealm?) {
+        albumDialogPresenter = AlbumDialogPresenter(model, album)
         albumDialogPresenter?.setOnResultListener {
             albumDialogPresenter = null
             albumDialog = null
             onResult(it)
         }
-        albumDialog = AlbumDialog(context)
+        albumDialog = AlbumDialog(context, albumDialogPresenter!!.isEdit())
         albumDialogPresenter?.takeView(albumDialog)
         albumDialogPresenter?.show()
     }
@@ -127,7 +128,7 @@ class DialogManager(val rootPresenter: RootPresenter, val model: AccountModel) {
             registerDialogPresenter?.show()
         }
         if (albumDialogPresenter != null) {
-            albumDialog = AlbumDialog(context)
+            albumDialog = AlbumDialog(context, albumDialogPresenter!!.isEdit())
             albumDialogPresenter?.takeView(albumDialog)
             albumDialogPresenter?.show()
         }
