@@ -5,6 +5,7 @@ import com.birbit.android.jobqueue.Job
 import com.birbit.android.jobqueue.Params
 import com.birbit.android.jobqueue.RetryConstraint
 import io.github.rezmike.photon.data.managers.DataManager
+import io.github.rezmike.photon.data.network.req.EditProfileReq
 import io.github.rezmike.photon.data.storage.realm.UserRealm
 import io.github.rezmike.photon.utils.AppConfig
 import io.realm.Realm
@@ -13,35 +14,30 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 
-class UserAvatarJob(val avatarUrl: String) : Job(params) {
+class UserAvatarJob(val avatarFile: File) : Job(params) {
 
-    private val dataManager = DataManager.INSTANCE
-    private val userId = dataManager.getUserId()
+    private val userId = DataManager.INSTANCE.getUserId()!!
 
     override fun onAdded() {
+        val avatarUrl = Uri.fromFile(avatarFile).toString()
+
         val realm = Realm.getDefaultInstance()
 
         val userRealm = realm.where(UserRealm::class.java).equalTo("id", userId).findFirst()
         realm.executeTransaction { userRealm.avatar = avatarUrl }
 
         realm.close()
+
+        DataManager.INSTANCE.saveUserAvatar(avatarUrl)
     }
 
     override fun onRun() {
-        val photoFile = File(Uri.parse(avatarUrl).path)
-        val requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), photoFile)
-        val body = MultipartBody.Part.createFormData("avatar", photoFile.name, requestBody)
+        val requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), avatarFile)
+        val body = MultipartBody.Part.createFormData("image", avatarFile.name, requestBody)
 
-        dataManager.uploadUserAvatar(body)
-                .subscribe({
-                    val avatar = it.image
-                    val realm = Realm.getDefaultInstance()
-
-                    val userRealm = realm.where(UserRealm::class.java).equalTo("id", userId).findFirst()
-                    realm.executeTransaction { userRealm.avatar = avatar }
-
-                    realm.close()
-                })
+        DataManager.INSTANCE.uploadImageToServer(body)
+                .doOnSuccess { DataManager.INSTANCE.updateProfileInfo(EditProfileReq(avatar = it.image)).subscribe() }
+                .subscribe()
     }
 
     override fun shouldReRunOnThrowable(throwable: Throwable, runCount: Int, maxRunCount: Int): RetryConstraint {

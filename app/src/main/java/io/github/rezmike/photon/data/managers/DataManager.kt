@@ -7,7 +7,7 @@ import io.github.rezmike.photon.data.network.req.EditProfileReq
 import io.github.rezmike.photon.data.network.req.LoginReq
 import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.data.network.res.AlbumRes
-import io.github.rezmike.photon.data.network.res.AvatarUrlRes
+import io.github.rezmike.photon.data.network.res.ImageUrlRes
 import io.github.rezmike.photon.data.network.transformers.*
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
@@ -151,6 +151,12 @@ class DataManager private constructor() {
 
     fun getUserName() = preferencesManager.getUserName()
 
+    fun getUserAvatar() = preferencesManager.getUserAvatar()
+
+    fun saveUserAvatar(avatarUrl: String) {
+        preferencesManager.saveUserAvatar(avatarUrl)
+    }
+
     fun getUserSinFromRealm(userId: String) = realmManager.getUser(userId)
 
     fun getUserSinFromNetwork(userId: String): Single<UserRealm> {
@@ -162,9 +168,9 @@ class DataManager private constructor() {
                 .toSingle()
     }
 
-    fun uploadUserAvatar(file: MultipartBody.Part): Single<AvatarUrlRes> {
-        return restService.uploadUserAvatar(preferencesManager.getAuthToken()!!, getUserId()!!, file)
-                .compose(AvatarUrlCallTransformer())
+    fun uploadImageToServer(file: MultipartBody.Part): Single<ImageUrlRes> {
+        return restService.uploadImage(preferencesManager.getAuthToken()!!, getUserId()!!, file)
+                .compose(ImageUrlCallTransformer())
                 .toSingle()
     }
 

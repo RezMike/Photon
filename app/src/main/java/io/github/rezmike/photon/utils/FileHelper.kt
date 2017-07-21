@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Environment
+import android.provider.DocumentsContract
 import android.provider.MediaStore
 import io.github.rezmike.photon.App
 import okhttp3.ResponseBody
@@ -13,14 +14,15 @@ import java.io.*
 import java.text.DateFormat
 import java.util.*
 
-fun Context.createFileFromPhoto(): File? {
+fun createFileForPhoto(): File? {
     val dataTimeInstance = DateFormat.getDateInstance(DateFormat.MEDIUM)
     val timeStamp = dataTimeInstance.format(Date())
     val imageFileName = "IMG_" + timeStamp
     val storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-    val image: File
+    val imageFile: File
+
     try {
-        image = File.createTempFile(imageFileName, ".jpg", storageDir)
+        imageFile = File.createTempFile(imageFileName, ".jpg", storageDir)
     } catch (e: IOException) {
         e.printStackTrace()
         return null
@@ -29,9 +31,10 @@ fun Context.createFileFromPhoto(): File? {
     val values = ContentValues()
     values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis())
     values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-    values.put(MediaStore.MediaColumns.DATA, image.absolutePath)
+    values.put(MediaStore.MediaColumns.DATA, imageFile.absolutePath)
     App.context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
-    return image
+
+    return imageFile
 }
 
 fun writePhotoToDisk(body: ResponseBody): Observable<File> {
@@ -79,3 +82,17 @@ fun writePhotoToDisk(body: ResponseBody): Observable<File> {
     }
 }
 
+fun getFileFromUri(uri: Uri, context: Context): File {
+    var filePath = ""
+    val wholeID = DocumentsContract.getDocumentId(uri)
+    val id = wholeID.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+    val column = arrayOf(MediaStore.Images.Media.DATA)
+    val sel = MediaStore.Images.Media._ID + "=?"
+    val cursor = context.contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column, sel, arrayOf(id), null)
+    val columnIndex = cursor.getColumnIndex(column[0])
+    if (cursor.moveToFirst()) {
+        filePath = cursor.getString(columnIndex)
+    }
+    cursor.close()
+    return File(filePath)
+}

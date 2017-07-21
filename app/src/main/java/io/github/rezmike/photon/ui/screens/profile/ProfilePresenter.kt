@@ -64,7 +64,7 @@ class ProfilePresenter : AbstractPresenter<ProfileView, ProfileModel, ProfilePre
     }
 
     override fun dropView(view: ProfileView) {
-        userRealm?.removeChangeListener(listener)
+        if (listener != null) userRealm?.removeChangeListener(listener)
         super.dropView(view)
     }
 
@@ -81,7 +81,8 @@ class ProfilePresenter : AbstractPresenter<ProfileView, ProfileModel, ProfilePre
     }
 
     fun onClickChangeAvatar(): Boolean {
-        TODO("not implemented")
+        rootPresenter.showAvatarDialog()
+        return true
     }
 
     fun onClickLogout(): Boolean {

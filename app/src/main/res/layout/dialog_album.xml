@@ -18,7 +18,7 @@
             android:padding="@dimen/spacing_small_16">
 
             <TextView
-                style="@style/title_text_view"
+                style="@style/header_text_view"
                 android:text="@string/album_dialog_header"/>
 
             <TextView

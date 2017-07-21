@@ -23,6 +23,15 @@ class ProfileView(context: Context, attrs: AttributeSet) : AbstractView<ProfileP
         DaggerService.getDaggerComponent<ProfileScreen.Component>(context).inject(this)
     }
 
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+
+        profile_avatar_img.setOnClickListener { presenter.onClickChangeAvatar() }
+
+        list_albums.layoutManager = GridLayoutManager(context, 2)
+        list_albums.adapter = adapter
+    }
+
     fun showProfileInfo(user: UserRealm) {
         initUserData(user)
         initList(user)
@@ -33,6 +42,7 @@ class ProfileView(context: Context, attrs: AttributeSet) : AbstractView<ProfileP
         profile_name_tv.text = user.name
         album_count.text = user.albumCount.toString()
         photocard_count.text = user.photocardCount.toString()
+
         picasso.load(user.avatar)
                 .resize(80, 80)
                 .placeholder(R.drawable.default_avatar)
@@ -40,8 +50,6 @@ class ProfileView(context: Context, attrs: AttributeSet) : AbstractView<ProfileP
     }
 
     private fun initList(user: UserRealm) {
-        list_albums.layoutManager = GridLayoutManager(context, 2)
-        list_albums.adapter = adapter
         adapter.reloadAdapter(user.albums.toArrayList())
     }
 
