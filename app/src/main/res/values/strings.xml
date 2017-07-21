@@ -32,6 +32,10 @@
     <string name="photocard_albums">Альбомы</string>
     <string name="photocard_saving_completed">Изображение загружено</string>
 
+    <!--Album Screen-->
+    <string name="album_title">Альбом</string>
+    <string name="album_is_empty">Альбом пуст</string>
+
     <!--Profile Screen-->
     <string name="profile_title">Профиль</string>
     <string name="profile_menu_create_album">Создать альбом</string>
