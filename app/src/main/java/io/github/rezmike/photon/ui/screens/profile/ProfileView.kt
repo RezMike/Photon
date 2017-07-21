@@ -1,6 +1,7 @@
 package io.github.rezmike.photon.ui.screens.profile
 
 import android.content.Context
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.GridLayoutManager
 import android.util.AttributeSet
 import com.squareup.picasso.Picasso
@@ -28,6 +29,7 @@ class ProfileView(context: Context, attrs: AttributeSet) : AbstractView<ProfileP
 
         profile_avatar_img.setOnClickListener { presenter.onClickChangeAvatar() }
 
+        ViewCompat.setNestedScrollingEnabled(list_albums, false)
         list_albums.layoutManager = GridLayoutManager(context, 2)
         list_albums.adapter = adapter
     }
