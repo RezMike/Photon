@@ -1,15 +1,16 @@
 package io.github.rezmike.photon.ui.screens.album
 
 import android.content.Context
-import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.GridLayoutManager
 import android.util.AttributeSet
 import android.view.View
 import com.squareup.picasso.Picasso
+import flow.Flow
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.ui.screens.AbstractView
+import io.github.rezmike.photon.ui.screens.add_info.AddInfoScreen
 import io.github.rezmike.photon.utils.DaggerService
 import io.github.rezmike.photon.utils.toArrayList
 import kotlinx.android.synthetic.main.screen_album.view.*
@@ -63,5 +64,9 @@ class AlbumView(context: Context, attrs: AttributeSet?) : AbstractView<AlbumPres
                 .setNegativeButton(R.string.dialog_no, { dialog, i -> dialog.dismiss() })
                 .create()
         dialog.show()
+    }
+
+    fun showAddInfoScreen(photoUri: String) {
+        Flow.get(this).set(AddInfoScreen(photoUri))
     }
 }

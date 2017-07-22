@@ -47,7 +47,8 @@ class AlbumDialogPresenter(val model: AccountModel, val album: AlbumRealm?) : Ab
             getDialog()?.showMessage(R.string.album_dialog_error_empty_fields)
         } else if (title.isAlbumTitleValid() && description.isAlbumDescriptionValid()) {
             if (isEdit()) {
-                model.editAlbum(album!!.id,title, description)
+                if (title == album!!.title && description == album.description) onClickCancel()
+                else model.editAlbum(album!!.id, title, description)
             } else {
                 model.createAlbum(title, description)
                 getDialog()?.showMessage(R.string.album_dialog_success)
