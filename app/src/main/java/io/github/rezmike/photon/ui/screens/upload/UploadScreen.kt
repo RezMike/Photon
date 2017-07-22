@@ -7,12 +7,12 @@ import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.activities.root.RootActivity
 import io.github.rezmike.photon.ui.screens.AbstractScreen
 
-class UploadScreen : AbstractScreen<RootActivity.RootComponent>(BottomBarItems.UPLOAD) {
+class UploadScreen(val albumId: String? = null) : AbstractScreen<RootActivity.RootComponent>(BottomBarItems.UPLOAD) {
 
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
         return DaggerUploadScreen_Component.builder()
                 .rootComponent(parentComponent)
-                .module(Module())
+                .module(Module(albumId))
                 .build()
     }
 
@@ -29,10 +29,10 @@ class UploadScreen : AbstractScreen<RootActivity.RootComponent>(BottomBarItems.U
     }
 
     @dagger.Module
-    class Module {
+    class Module(val albumId: String?) {
         @Provides
         @DaggerScope(UploadScreen::class)
-        fun providePresenter() = UploadPresenter()
+        fun providePresenter() = UploadPresenter(albumId)
     }
 
     //endregion

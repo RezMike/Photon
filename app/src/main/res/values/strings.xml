@@ -34,7 +34,10 @@
 
     <!--Album Screen-->
     <string name="album_title">Альбом</string>
-    <string name="album_is_empty">Альбом пуст</string>
+    <string name="album_menu_add_photocard">Добавить фотокарточку</string>
+    <string name="album_menu_edit">Редактировать альбом</string>
+    <string name="album_menu_delete">Удалить альбом</string>
+    <string name="album_empty">Альбом пуст</string>
     <string name="album_delete_question">Вы уверены что хотите удалить альбом?</string>
 
     <!--Profile Screen-->

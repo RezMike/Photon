@@ -28,7 +28,6 @@
                     android:id="@+id/wrap_album_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_marginRight="@dimen/spacing_small_16"
                     android:orientation="vertical">
 
@@ -55,6 +54,7 @@
                 <TextView
                     android:id="@+id/album_description_tv"
                     style="@style/text_view"
+                    android:layout_marginTop="4dp"
                     android:layout_toRightOf="@+id/wrap_album_info"
                     android:textSize="@dimen/font_size_normal_16"
                     tools:text="Разные закуски(шпажки, сэндвичи, нарезки, фрукты, заготовки и тд.)"/>
@@ -74,5 +74,6 @@
         android:id="@+id/album_is_empty_tv"
         style="@style/text_view"
         android:layout_gravity="center"
-        android:text="@string/album_is_empty"/>
+        android:text="@string/album_empty"/>
+
 </io.github.rezmike.photon.ui.screens.album.AlbumView>

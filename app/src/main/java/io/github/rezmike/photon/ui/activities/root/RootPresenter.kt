@@ -86,7 +86,7 @@ class RootPresenter : Presenter<RootActivity>() {
         dialogManager.showLoginDialog(view, onResult)
     }
 
-    fun showRegisterDialog(onResult: (DialogResult) -> Unit) {
+    fun showRegisterDialog(onResult: (DialogResult) -> Unit = {}) {
         dialogManager.showRegisterDialog(view, onResult)
     }
 

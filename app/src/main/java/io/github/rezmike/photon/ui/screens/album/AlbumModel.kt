@@ -11,12 +11,4 @@ class AlbumModel : AbstractModel() {
         return dataManager.deleteAlbumOnServer(albumId)
                 .doOnCompleted { dataManager.deleteAlbumFromRealm(albumId) }
     }
-
-    fun editAlbum() {
-
-    }
-
-    fun addPhotocardToAlbum() {
-
-    }
 }

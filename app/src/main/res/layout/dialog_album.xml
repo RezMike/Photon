@@ -31,7 +31,7 @@
                 android:id="@+id/title_et"
                 style="@style/edit_text_borders"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="textCapSentences"
                 android:lines="1"/>
 
             <TextView
@@ -43,7 +43,7 @@
                 style="@style/edit_text_borders"
                 android:gravity="top"
                 android:imeOptions="actionDone"
-                android:inputType="text"
+                android:inputType="textCapSentences"
                 android:minHeight="@dimen/spacing_very_large_72"/>
 
             <include layout="@layout/layout_dialog_footer"/>

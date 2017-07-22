@@ -15,7 +15,7 @@ import io.github.rezmike.photon.ui.others.CustomTextWatcher
 import io.github.rezmike.photon.ui.others.changeError
 import mortar.PopupPresenter
 
-class AlbumDialog(context: Context, val edit: Boolean) : AbstractDialog<AlbumInfoDto>(context) {
+class AlbumDialog(context: Context, val isEditMode: Boolean) : AbstractDialog<AlbumInfoDto>(context) {
 
     private var header: TextView? = null
     private var title: EditText? = null
@@ -30,7 +30,7 @@ class AlbumDialog(context: Context, val edit: Boolean) : AbstractDialog<AlbumInf
             throw ClassCastException("Presenter must be AlbumDialogPresenter")
         }
 
-        if (edit) {
+        if (isEditMode) {
             header = view.findViewById(R.id.dialog_title_tv) as TextView
             header?.text = view.resources.getString(R.string.album_dialog_edit_header)
         }
@@ -94,11 +94,5 @@ class AlbumDialog(context: Context, val edit: Boolean) : AbstractDialog<AlbumInf
         AnimHelper.accentAnim(description!!)
     }
 
-    fun accentFields() {
-        accentTitle()
-        accentDescription()
-    }
-
     //endregion
-
 }

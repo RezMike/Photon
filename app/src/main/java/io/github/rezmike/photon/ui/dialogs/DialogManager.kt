@@ -35,112 +35,102 @@ class DialogManager(val rootPresenter: RootPresenter, val model: AccountModel) {
 
     fun showLoginDialog(context: Context, onResult: (DialogResult) -> Unit = {}) {
         loginDialogPresenter = LoginDialogPresenter(model)
-        loginDialogPresenter?.setOnResultListener {
+        loginDialogPresenter!!.setOnResultListener {
             loginDialogPresenter = null
             loginDialog = null
             onResult(it)
         }
         loginDialog = LoginDialog(context)
-        loginDialogPresenter?.takeView(loginDialog)
-        loginDialogPresenter?.show()
+        loginDialogPresenter!!.takeView(loginDialog)
+        loginDialogPresenter!!.show()
     }
 
     fun showRegisterDialog(context: Context, onResult: (DialogResult) -> Unit = {}) {
         registerDialogPresenter = RegisterDialogPresenter(model)
-        registerDialogPresenter?.setOnResultListener {
+        registerDialogPresenter!!.setOnResultListener {
             registerDialogPresenter = null
             registerDialog = null
             onResult(it)
         }
         registerDialog = RegisterDialog(context)
-        registerDialogPresenter?.takeView(registerDialog)
-        registerDialogPresenter?.show()
+        registerDialogPresenter!!.takeView(registerDialog)
+        registerDialogPresenter!!.show()
     }
 
     fun showAlbumDialog(context: Context, onResult: (DialogResult) -> Unit = {}, album: AlbumRealm?) {
         albumDialogPresenter = AlbumDialogPresenter(model, album)
-        albumDialogPresenter?.setOnResultListener {
+        albumDialogPresenter!!.setOnResultListener {
             albumDialogPresenter = null
             albumDialog = null
             onResult(it)
         }
-        albumDialog = AlbumDialog(context, albumDialogPresenter!!.isEdit())
-        albumDialogPresenter?.takeView(albumDialog)
-        albumDialogPresenter?.show()
+        albumDialog = AlbumDialog(context, albumDialogPresenter!!.isEditMode())
+        albumDialogPresenter!!.takeView(albumDialog)
+        albumDialogPresenter!!.show()
     }
 
     fun showEditProfileDialog(context: Context, onResult: (DialogResult) -> Unit) {
         editProfileDialogPresenter = EditProfileDialogPresenter(model)
-        editProfileDialogPresenter?.setOnResultListener {
+        editProfileDialogPresenter!!.setOnResultListener {
             editProfileDialogPresenter = null
             editProfileDialog = null
             onResult(it)
         }
         editProfileDialog = EditProfileDialog(context)
-        editProfileDialogPresenter?.takeView(editProfileDialog)
-        editProfileDialogPresenter?.show()
+        editProfileDialogPresenter!!.takeView(editProfileDialog)
+        editProfileDialogPresenter!!.show()
     }
 
     fun showAvatarDialog(context: Context, onResult: (DialogResult) -> Unit) {
         avatarDialogPresenter = AvatarDialogPresenter(rootPresenter, model)
-        avatarDialogPresenter?.setOnResultListener {
+        avatarDialogPresenter!!.setOnResultListener {
             avatarDialogPresenter = null
             avatarDialog = null
             onResult(it)
         }
         avatarDialog = AvatarDialog(context)
-        avatarDialogPresenter?.takeView(avatarDialog)
-        avatarDialogPresenter?.show()
+        avatarDialogPresenter!!.takeView(avatarDialog)
+        avatarDialogPresenter!!.show()
     }
 
     fun dismissDialogs() {
-        if (loginDialogPresenter != null) {
-            loginDialogPresenter?.dismiss()
-        }
+        loginDialogPresenter?.dismiss()
         loginDialog = null
-        if (registerDialogPresenter != null) {
-            registerDialogPresenter?.dismiss()
-        }
+        registerDialogPresenter?.dismiss()
         registerDialog = null
-        if (albumDialogPresenter != null) {
-            albumDialogPresenter?.dismiss()
-        }
+        albumDialogPresenter?.dismiss()
         albumDialog = null
-        if (editProfileDialogPresenter != null) {
-            editProfileDialogPresenter?.dismiss()
-        }
+        editProfileDialogPresenter?.dismiss()
         editProfileDialog = null
-        if (avatarDialogPresenter != null) {
-            avatarDialogPresenter?.dismiss()
-        }
+        avatarDialogPresenter?.dismiss()
         avatarDialog = null
     }
 
     fun showHiddenDialogs(context: Context) {
         if (loginDialogPresenter != null) {
             loginDialog = LoginDialog(context)
-            loginDialogPresenter?.takeView(loginDialog)
-            loginDialogPresenter?.show()
+            loginDialogPresenter!!.takeView(loginDialog)
+            loginDialogPresenter!!.show()
         }
         if (registerDialogPresenter != null) {
             registerDialog = RegisterDialog(context)
-            registerDialogPresenter?.takeView(registerDialog)
-            registerDialogPresenter?.show()
+            registerDialogPresenter!!.takeView(registerDialog)
+            registerDialogPresenter!!.show()
         }
         if (albumDialogPresenter != null) {
-            albumDialog = AlbumDialog(context, albumDialogPresenter!!.isEdit())
-            albumDialogPresenter?.takeView(albumDialog)
-            albumDialogPresenter?.show()
+            albumDialog = AlbumDialog(context, albumDialogPresenter!!.isEditMode())
+            albumDialogPresenter!!.takeView(albumDialog)
+            albumDialogPresenter!!.show()
         }
         if (editProfileDialogPresenter != null) {
             editProfileDialog = EditProfileDialog(context)
-            editProfileDialogPresenter?.takeView(editProfileDialog)
-            editProfileDialogPresenter?.show()
+            editProfileDialogPresenter!!.takeView(editProfileDialog)
+            editProfileDialogPresenter!!.show()
         }
         if (avatarDialogPresenter != null) {
             avatarDialog = AvatarDialog(context)
-            avatarDialogPresenter?.takeView(avatarDialog)
-            avatarDialogPresenter?.show()
+            avatarDialogPresenter!!.takeView(avatarDialog)
+            avatarDialogPresenter!!.show()
         }
     }
 }

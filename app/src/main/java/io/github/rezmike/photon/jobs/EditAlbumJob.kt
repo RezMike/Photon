@@ -24,8 +24,7 @@ class EditAlbumJob(val albumId: String, val albumReq: AlbumReq) : Job(params) {
     }
 
     override fun onRun() {
-        DataManager.INSTANCE.editAlbumOnServer(albumId, albumReq)
-                .subscribe({}, {})
+        DataManager.INSTANCE.editAlbumOnServer(albumId, albumReq).subscribe()
     }
 
     override fun shouldReRunOnThrowable(throwable: Throwable, runCount: Int, maxRunCount: Int): RetryConstraint {

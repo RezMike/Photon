@@ -13,14 +13,13 @@ class AlbumPhotoAdapter(val picasso: Picasso, val itemClick: (PhotoCardRealm) ->
 
     private var items: ArrayList<PhotoCardRealm> = ArrayList()
 
-    fun reloadAdapter(photo: ArrayList<PhotoCardRealm>) {
-        items.clear()
-        items = photo
+    fun reloadAdapter(photoList: ArrayList<PhotoCardRealm>) {
+        items = photoList
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: PhotoViewHolder?, position: Int) {
-        holder?.bind(items[position])
+    override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
+        holder.bind(items[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PhotoViewHolder {
@@ -36,7 +35,6 @@ class AlbumPhotoAdapter(val picasso: Picasso, val itemClick: (PhotoCardRealm) ->
             picasso.load(item.photo)
                     .resize(100, 100)
                     .into(view.food_img)
-
             view.setOnClickListener { itemClick(item) }
         }
     }

@@ -141,6 +141,12 @@ class DataManager private constructor() {
                 .toSingle()
     }
 
+    fun editAlbumOnServer(albumId: String, albumReq: AlbumReq): Single<AlbumRes> {
+        return restService.editAlbum(preferencesManager.getAuthToken()!!, getUserId()!!, albumId, albumReq)
+                .compose(AlbumCallTransformer())
+                .toSingle()
+    }
+
     fun deleteAlbumOnServer(albumId: String): Completable {
         return restService.deleteAlbum(preferencesManager.getAuthToken()!!, getUserId()!!, albumId)
                 .compose(AlbumCallTransformer())
@@ -150,13 +156,6 @@ class DataManager private constructor() {
 
     fun deleteAlbumFromRealm(albumId: String) {
         realmManager.deleteAlbumFromRealm(albumId)
-    }
-
-    fun editAlbumOnServer(albumId: String, albumReq: AlbumReq): Single<AlbumRes> {
-        return restService.editAlbum(preferencesManager.getAuthToken()!!, getUserId()!!,
-                albumId, albumReq)
-                .compose(AlbumCallTransformer())
-                .toSingle()
     }
 
     //endregion
