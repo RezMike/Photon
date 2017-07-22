@@ -1,5 +1,6 @@
 package io.github.rezmike.photon.ui.dialogs.album
 
+import android.text.TextUtils
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.AlbumInfoDto
 import io.github.rezmike.photon.data.storage.dto.DialogResult
@@ -23,7 +24,7 @@ class AlbumDialogPresenter(val model: AccountModel, val album: AlbumRealm?) : Ab
     }
 
     fun checkName(title: String) {
-        this.title = title
+        this.title = title.toUpperCaseFirstChar()
         if (title.isAlbumTitleValid()) {
             getDialog()?.hideTitleError()
         } else {
@@ -32,7 +33,7 @@ class AlbumDialogPresenter(val model: AccountModel, val album: AlbumRealm?) : Ab
     }
 
     fun checkDescription(description: String) {
-        this.description = description
+        this.description = description.toUpperCaseFirstChar()
         if (description.isAlbumDescriptionValid()) {
             getDialog()?.hideDescriptionError()
         } else {
@@ -48,7 +49,7 @@ class AlbumDialogPresenter(val model: AccountModel, val album: AlbumRealm?) : Ab
         } else if (title.isAlbumTitleValid() && description.isAlbumDescriptionValid()) {
             if (isEdit()) {
                 if (title == album!!.title && description == album.description) onClickCancel()
-                else model.editAlbum(album!!.id, title, description)
+                else model.editAlbum(album.id, title, description)
             } else {
                 model.createAlbum(title, description)
                 getDialog()?.showMessage(R.string.album_dialog_success)
@@ -59,6 +60,14 @@ class AlbumDialogPresenter(val model: AccountModel, val album: AlbumRealm?) : Ab
             if (!title.isAlbumTitleValid()) getDialog()?.accentTitle()
             if (!description.isAlbumDescriptionValid()) getDialog()?.accentDescription()
         }
+    }
+
+    private fun String.toUpperCaseFirstChar(): String {
+        if (TextUtils.isEmpty(this)) return this
+        if (this[0].isUpperCase()) return this
+        val builder = StringBuilder(this)
+        builder.setCharAt(0, Character.toUpperCase(this[0]))
+        return builder.toString()
     }
 
     fun isEdit() = album != null
