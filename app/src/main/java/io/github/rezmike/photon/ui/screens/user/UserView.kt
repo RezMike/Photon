@@ -32,7 +32,7 @@ class UserView(context: Context, attrs: AttributeSet?) : AbstractView<UserPresen
         list_albums.adapter = adapter
     }
 
-    fun showProfileInfo(user: UserRealm) {
+    fun showUserInfo(user: UserRealm) {
         initUserData(user)
         initList(user)
     }

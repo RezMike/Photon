@@ -6,6 +6,8 @@ import rx.Single
 
 class UserModel : AbstractModel(){
     fun getUserDate(userId: String): Single<UserRealm> {
-        TODO()
+        return dataManager.getUserSinFromRealm(userId)
+                .onErrorResumeNext { dataManager.getUserSinFromNetwork(userId) }
+                .doOnSuccess { dataManager.getUserSinFromNetwork(userId).subscribe({}, {}) }
     }
 }
