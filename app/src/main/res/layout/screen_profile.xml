@@ -23,7 +23,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_avatar_img"
                     style="@style/avatar_style"
-                    tools:background="@color/black"/>
+                    tools:background="@drawable/default_avatar"/>
 
                 <LinearLayout
                     android:id="@+id/name_wrap"
@@ -37,8 +37,8 @@
                     <TextView
                         android:id="@+id/profile_login_tv"
                         style="@style/title_text_view"
-                        android:textStyle="bold"
-                        tools:text="marchiano"/>
+                        android:text="Логин"
+                        android:textStyle="bold"/>
 
                     <TextView
                         style="@style/title_text_view"
@@ -47,7 +47,7 @@
                     <TextView
                         android:id="@+id/profile_name_tv"
                         style="@style/title_text_view"
-                        tools:text="Елена Марчиано"/>
+                        android:text="Имя"/>
 
                 </LinearLayout>
 

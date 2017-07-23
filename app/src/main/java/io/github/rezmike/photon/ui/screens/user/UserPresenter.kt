@@ -5,6 +5,7 @@ import flow.Flow
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.data.storage.realm.UserRealm
+import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import io.github.rezmike.photon.ui.screens.album.AlbumScreen
 import io.github.rezmike.photon.utils.DaggerService
@@ -13,7 +14,7 @@ import io.realm.RealmChangeListener
 import mortar.MortarScope
 import rx.android.schedulers.AndroidSchedulers
 
-class UserPresenter(val userId: String) : AbstractPresenter<UserView, UserModel, UserPresenter>() {
+class UserPresenter(val userId: String, val bottomBarItem: BottomBarItems) : AbstractPresenter<UserView, UserModel, UserPresenter>() {
 
     private var userRealm: UserRealm? = null
     private var listener: RealmChangeListener<UserRealm>? = null
@@ -25,7 +26,7 @@ class UserPresenter(val userId: String) : AbstractPresenter<UserView, UserModel,
     override fun initActionBar() {
         rootPresenter.ActionBarBuilder()
                 .setBackArrow(true)
-                .setTitle(view.context.resources.getString(R.string.user_title))
+                .setTitle(view.context.getString(R.string.user_title))
                 .build()
     }
 
@@ -34,9 +35,9 @@ class UserPresenter(val userId: String) : AbstractPresenter<UserView, UserModel,
         loadUserData(userId)
     }
 
-    fun loadUserData(userId: String){
+    fun loadUserData(userId: String) {
         getRootView()?.showLoad()
-        model.getUserDate(userId)
+        model.getUserData(userId)
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .doAfterTerminate { getRootView()?.hideLoad() }
                 .subscribe({
@@ -62,6 +63,6 @@ class UserPresenter(val userId: String) : AbstractPresenter<UserView, UserModel,
     }
 
     fun onClickItem(albumRealm: AlbumRealm) {
-        Flow.get(view).set(AlbumScreen(albumRealm))
+        Flow.get(view).set(AlbumScreen(albumRealm, bottomBarItem))
     }
 }

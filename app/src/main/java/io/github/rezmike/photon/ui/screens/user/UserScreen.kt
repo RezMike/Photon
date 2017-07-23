@@ -13,7 +13,7 @@ class UserScreen(val userId: String,
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
         return DaggerUserScreen_Component.builder()
                 .rootComponent(parentComponent)
-                .module(Module(userId))
+                .module(Module(userId, bottomBarItem))
                 .build()
     }
 
@@ -30,10 +30,10 @@ class UserScreen(val userId: String,
     }
 
     @dagger.Module
-    class Module(val userId: String) {
+    class Module(val userId: String, val bottomBarItem: BottomBarItems) {
         @Provides
         @DaggerScope(UserScreen::class)
-        fun providePresenter() = UserPresenter(userId)
+        fun providePresenter() = UserPresenter(userId, bottomBarItem)
 
         @Provides
         @DaggerScope(UserScreen::class)

@@ -25,11 +25,6 @@ class PhotocardView(context: Context, attrs: AttributeSet?) : AbstractView<Photo
         DaggerService.getDaggerComponent<PhotocardScreen.Component>(context).inject(this)
     }
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        author_avatar_img.setOnClickListener { presenter.onClickUser() }
-    }
-
     fun showPhotoCardInfo(photoCard: PhotoCardRealm, user: UserRealm) {
         initUserData(user)
         initPhotoCard(photoCard)

@@ -73,8 +73,4 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm, val bottomBarItem: Botto
     fun onClickUserInfo(userId: String) {
         Flow.get(view).set(UserScreen(userId, bottomBarItem))
     }
-
-    fun onClickUser() {
-        Flow.get(view).set(UserScreen(photoCard.owner))
-    }
 }
