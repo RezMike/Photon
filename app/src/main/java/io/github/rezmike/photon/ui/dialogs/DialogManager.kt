@@ -94,40 +94,40 @@ class DialogManager(val rootPresenter: RootPresenter, val model: AccountModel) {
     }
 
     fun dismissDialogs() {
-        loginDialogPresenter?.dismiss()
+        loginDialogPresenter?.dropView(loginDialog)
         loginDialog = null
-        registerDialogPresenter?.dismiss()
+        registerDialogPresenter?.dropView(registerDialog)
         registerDialog = null
-        albumDialogPresenter?.dismiss()
+        albumDialogPresenter?.dropView(albumDialog)
         albumDialog = null
-        editProfileDialogPresenter?.dismiss()
+        editProfileDialogPresenter?.dropView(editProfileDialog)
         editProfileDialog = null
-        avatarDialogPresenter?.dismiss()
+        avatarDialogPresenter?.dropView(avatarDialog)
         avatarDialog = null
     }
 
     fun showHiddenDialogs(context: Context) {
-        if (loginDialogPresenter != null && loginDialog == null) {
+        if (loginDialogPresenter != null) {
             loginDialog = LoginDialog(context)
             loginDialogPresenter!!.takeView(loginDialog)
             loginDialogPresenter!!.show()
         }
-        if (registerDialogPresenter != null && registerDialog == null) {
+        if (registerDialogPresenter != null) {
             registerDialog = RegisterDialog(context)
             registerDialogPresenter!!.takeView(registerDialog)
             registerDialogPresenter!!.show()
         }
-        if (albumDialogPresenter != null && albumDialog == null) {
+        if (albumDialogPresenter != null) {
             albumDialog = AlbumDialog(context, albumDialogPresenter!!.isEditMode())
             albumDialogPresenter!!.takeView(albumDialog)
             albumDialogPresenter!!.show()
         }
-        if (editProfileDialogPresenter != null && albumDialog == null) {
+        if (editProfileDialogPresenter != null) {
             editProfileDialog = EditProfileDialog(context)
             editProfileDialogPresenter!!.takeView(editProfileDialog)
             editProfileDialogPresenter!!.show()
         }
-        if (avatarDialogPresenter != null && albumDialog == null) {
+        if (avatarDialogPresenter != null) {
             avatarDialog = AvatarDialog(context)
             avatarDialogPresenter!!.takeView(avatarDialog)
             avatarDialogPresenter!!.show()

@@ -15,5 +15,8 @@ object ConstantManager {
     const val IF_MODIFIED_SINCE_HEADER = "If-Modified-Since"
     const val AUTHORIZATION = "Authorization"
 
+    const val JOB_GROUP_ALBUM = "Album"
+    const val JOB_GROUP_AVATAR = "Avatar"
+
     const val PUSH_REQ_CODE = 545
 }

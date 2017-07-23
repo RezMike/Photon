@@ -42,9 +42,8 @@
                 android:id="@+id/description_et"
                 style="@style/edit_text_borders"
                 android:gravity="top"
-                android:imeOptions="actionDone"
-                android:maxLines=""
-                android:inputType="textCapSentences"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines="4"
                 android:minHeight="@dimen/spacing_very_large_72"/>
 
             <include layout="@layout/layout_dialog_footer"/>

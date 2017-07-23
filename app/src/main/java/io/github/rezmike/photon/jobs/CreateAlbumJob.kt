@@ -7,6 +7,7 @@ import io.github.rezmike.photon.data.managers.DataManager
 import io.github.rezmike.photon.data.network.req.AlbumReq
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.data.storage.realm.UserRealm
+import io.github.rezmike.photon.utils.ConstantManager
 import io.realm.Realm
 import java.util.*
 
@@ -55,6 +56,6 @@ class CreateAlbumJob(val albumReq: AlbumReq) : Job(params) {
         private val params = Params(JobPriority.HIGH)
                 .requireNetwork()
                 .persist()
-                .singleInstanceBy("Album")
+                .groupBy(ConstantManager.JOB_GROUP_ALBUM)
     }
 }

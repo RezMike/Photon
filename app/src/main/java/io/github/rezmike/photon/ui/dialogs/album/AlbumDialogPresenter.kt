@@ -2,7 +2,6 @@ package io.github.rezmike.photon.ui.dialogs.album
 
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.AlbumInfoDto
-import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.ui.activities.root.AccountModel
 import io.github.rezmike.photon.ui.dialogs.AbstractDialogPresenter
@@ -41,7 +40,7 @@ class AlbumDialogPresenter(val model: AccountModel, val album: AlbumRealm?) : Ab
             getDialog()?.showMessage(R.string.album_dialog_error_empty_fields)
         } else if (title.isAlbumTitleValid() && description.isAlbumDescriptionValid()) {
             if (isEditMode()) {
-                if (title == album!!.title && description == album.description) onClickCancel() // TODO: 22.07.2017 change to onDialogResult(false)
+                if (title == album!!.title && description == album.description) onDialogResult(false)
                 else model.editAlbum(album.id, title, description)
             } else {
                 model.createAlbum(title, description)

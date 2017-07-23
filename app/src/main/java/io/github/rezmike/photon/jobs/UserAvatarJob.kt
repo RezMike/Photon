@@ -8,6 +8,7 @@ import io.github.rezmike.photon.data.managers.DataManager
 import io.github.rezmike.photon.data.network.req.EditProfileReq
 import io.github.rezmike.photon.data.storage.realm.UserRealm
 import io.github.rezmike.photon.utils.AppConfig
+import io.github.rezmike.photon.utils.ConstantManager
 import io.realm.Realm
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -50,6 +51,6 @@ class UserAvatarJob(val avatarFile: File) : Job(params) {
         private val params = Params(JobPriority.MID)
                 .requireNetwork()
                 .persist()
-                .singleInstanceBy("Avatar")
+                .singleInstanceBy(ConstantManager.JOB_GROUP_AVATAR)
     }
 }

@@ -20,6 +20,7 @@ abstract class AbstractDialog<D : Parcelable>(context: Context) : Popup<D, Dialo
     private var dialog: AlertDialog? = null
 
     override fun show(info: D, withFlourish: Boolean, presenter: PopupPresenter<D, DialogResult>) {
+        if (dialog != null) return
         val view = LayoutInflater.from(rootContext).inflate(getLayoutRes(), null, false)
         onFinishInflate(view, presenter, info)
         dialog = AlertDialog.Builder(rootContext)
