@@ -39,7 +39,7 @@ class ProfileAlbumsAdapter(val picasso: Picasso, val itemClick: (AlbumRealm) -> 
             view.favorites_tv.text = item.favorits.toString()
             view.watchers_tv.text = item.views.toString()
             if (item.photoCards.size > 0)
-                picasso.load(item.photoCards[1].photo)
+                picasso.load(item.photoCards[0].photo)
                         .resize(300, 200)
                         .into(view.food_img)
             view.setOnClickListener { itemClick(item) }

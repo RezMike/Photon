@@ -35,7 +35,7 @@ class UserAlbumAdapter(val picasso: Picasso, val itemClick: (AlbumRealm) -> Unit
             view.album_name.text = item.title
             view.count_photo_tx.text = item.photoCards.size.toString()
             if (item.photoCards.size > 0)
-                picasso.load(item.photoCards[1].photo)
+                picasso.load(item.photoCards[0].photo)
                         .resize(300, 200)
                         .into(view.food_img)
             view.setOnClickListener { itemClick(item) }
