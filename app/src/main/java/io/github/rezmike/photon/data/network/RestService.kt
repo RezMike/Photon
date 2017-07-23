@@ -5,9 +5,8 @@ import io.github.rezmike.photon.data.network.req.EditProfileReq
 import io.github.rezmike.photon.data.network.req.LoginReq
 import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.data.network.res.*
-import io.github.rezmike.photon.utils.ConstantManager
-import io.github.rezmike.photon.utils.ConstantManager.AUTHORIZATION
-import io.github.rezmike.photon.utils.ConstantManager.IF_MODIFIED_SINCE_HEADER
+import io.github.rezmike.photon.utils.AUTHORIZATION
+import io.github.rezmike.photon.utils.IF_MODIFIED_SINCE_HEADER
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -15,7 +14,6 @@ import retrofit2.http.*
 import rx.Observable
 
 interface RestService {
-
 
     //region ======================== User ========================
 

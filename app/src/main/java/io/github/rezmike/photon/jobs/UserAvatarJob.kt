@@ -7,8 +7,8 @@ import com.birbit.android.jobqueue.RetryConstraint
 import io.github.rezmike.photon.data.managers.DataManager
 import io.github.rezmike.photon.data.network.req.EditProfileReq
 import io.github.rezmike.photon.data.storage.realm.UserRealm
-import io.github.rezmike.photon.utils.AppConfig
-import io.github.rezmike.photon.utils.ConstantManager
+import io.github.rezmike.photon.utils.JOB_GROUP_AVATAR
+import io.github.rezmike.photon.utils.JOB_INITIAL_BACK_OFF_IN_MS
 import io.realm.Realm
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -42,7 +42,7 @@ class UserAvatarJob(val avatarFile: File) : Job(params) {
     }
 
     override fun shouldReRunOnThrowable(throwable: Throwable, runCount: Int, maxRunCount: Int): RetryConstraint {
-        return RetryConstraint.createExponentialBackoff(runCount, AppConfig.JOB_INITIAL_BACK_OFF_IN_MS)
+        return RetryConstraint.createExponentialBackoff(runCount, JOB_INITIAL_BACK_OFF_IN_MS)
     }
 
     override fun onCancel(cancelReason: Int, throwable: Throwable?) {}
@@ -51,6 +51,6 @@ class UserAvatarJob(val avatarFile: File) : Job(params) {
         private val params = Params(JobPriority.MID)
                 .requireNetwork()
                 .persist()
-                .singleInstanceBy(ConstantManager.JOB_GROUP_AVATAR)
+                .singleInstanceBy(JOB_GROUP_AVATAR)
     }
 }

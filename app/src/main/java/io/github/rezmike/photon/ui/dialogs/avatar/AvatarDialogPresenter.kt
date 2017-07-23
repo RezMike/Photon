@@ -11,10 +11,6 @@ import io.github.rezmike.photon.ui.activities.root.AccountModel
 import io.github.rezmike.photon.ui.activities.root.RootPresenter
 import io.github.rezmike.photon.ui.dialogs.AbstractDialogPresenter
 import io.github.rezmike.photon.utils.*
-import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PERMISSION_CAMERA
-import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PERMISSION_READ_EXTERNAL_STORAGE
-import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PROFILE_PHOTO_CAMERA
-import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PROFILE_PHOTO_GALLERY
 import mortar.Popup
 import rx.Subscription
 import java.io.File

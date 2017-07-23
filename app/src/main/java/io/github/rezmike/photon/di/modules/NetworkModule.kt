@@ -6,7 +6,10 @@ import dagger.Module
 import dagger.Provides
 import io.github.rezmike.photon.data.network.DateStringAdapter
 import io.github.rezmike.photon.data.network.RestService
-import io.github.rezmike.photon.utils.AppConfig
+import io.github.rezmike.photon.utils.BASE_URL
+import io.github.rezmike.photon.utils.MAX_CONNECTION_TIMEOUT
+import io.github.rezmike.photon.utils.MAX_READ_TIMEOUT
+import io.github.rezmike.photon.utils.MAX_WRITE_TIMEOUT
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
@@ -41,15 +44,15 @@ class NetworkModule {
         return OkHttpClient.Builder()
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addNetworkInterceptor(StethoInterceptor())
-                .connectTimeout(AppConfig.MAX_CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
-                .readTimeout(AppConfig.MAX_READ_TIMEOUT, TimeUnit.MILLISECONDS)
-                .writeTimeout(AppConfig.MAX_WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
+                .connectTimeout(MAX_CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
+                .readTimeout(MAX_READ_TIMEOUT, TimeUnit.MILLISECONDS)
+                .writeTimeout(MAX_WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
                 .build()
     }
 
     private fun createRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(AppConfig.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(createConvertFactory())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(okHttpClient)

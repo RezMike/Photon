@@ -10,8 +10,8 @@ import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.ui.dialogs.DialogManager
 import io.github.rezmike.photon.ui.others.MenuItemHolder
-import io.github.rezmike.photon.utils.ConstantManager
 import io.github.rezmike.photon.utils.DaggerService
+import io.github.rezmike.photon.utils.REQUEST_PERMISSION_CAMERA
 import mortar.MortarScope
 import mortar.Presenter
 import mortar.bundler.BundleService
@@ -64,7 +64,7 @@ class RootPresenter : Presenter<RootActivity>() {
     }
 
     fun onRequestPermissionResult(requestCode: Int, permissions: Array<String>, grantRes: IntArray) {
-        if (view != null && requestCode == ConstantManager.REQUEST_PERMISSION_CAMERA && grantRes.size == 2) {
+        if (view != null && requestCode == REQUEST_PERMISSION_CAMERA && grantRes.size == 2) {
             if (grantRes[0] == PackageManager.PERMISSION_DENIED) {
                 view.showMessage(R.string.photo_upload_need_camera_permission)
             }

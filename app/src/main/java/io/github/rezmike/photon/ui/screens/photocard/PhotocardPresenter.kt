@@ -10,8 +10,8 @@ import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.others.MenuItemHolder
 import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import io.github.rezmike.photon.ui.screens.user.UserScreen
-import io.github.rezmike.photon.utils.ConstantManager
 import io.github.rezmike.photon.utils.DaggerService
+import io.github.rezmike.photon.utils.REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE
 import mortar.MortarScope
 import rx.android.schedulers.AndroidSchedulers
 
@@ -62,7 +62,7 @@ class PhotocardPresenter(val photoCard: PhotoCardRealm, val bottomBarItem: Botto
 
     fun onClickSave(): Boolean {
         val permissions = arrayOf(WRITE_EXTERNAL_STORAGE)
-        if (rootPresenter.checkPermissionAndRequestIfNotGranted(permissions, ConstantManager.REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE)) {
+        if (rootPresenter.checkPermissionAndRequestIfNotGranted(permissions, REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE)) {
             model.downloadAndSavePhotoFile(photoCard.photo)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ getRootView()?.showMessage(R.string.photocard_saving_completed) }, { getRootView()?.showError(it) })

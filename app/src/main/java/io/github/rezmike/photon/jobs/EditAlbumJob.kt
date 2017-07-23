@@ -6,7 +6,7 @@ import com.birbit.android.jobqueue.RetryConstraint
 import io.github.rezmike.photon.data.managers.DataManager
 import io.github.rezmike.photon.data.network.req.AlbumReq
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
-import io.github.rezmike.photon.utils.ConstantManager
+import io.github.rezmike.photon.utils.JOB_GROUP_ALBUM
 import io.realm.Realm
 
 class EditAlbumJob(val albumId: String, val albumReq: AlbumReq) : Job(params) {
@@ -38,6 +38,6 @@ class EditAlbumJob(val albumId: String, val albumReq: AlbumReq) : Job(params) {
         private val params = Params(JobPriority.HIGH)
                 .requireNetwork()
                 .persist()
-                .groupBy(ConstantManager.JOB_GROUP_ALBUM)
+                .groupBy(JOB_GROUP_ALBUM)
     }
 }

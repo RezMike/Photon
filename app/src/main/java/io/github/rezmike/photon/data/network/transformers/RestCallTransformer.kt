@@ -7,7 +7,7 @@ import io.github.rezmike.photon.data.network.error.AccessError
 import io.github.rezmike.photon.data.network.error.ErrorUtils
 import io.github.rezmike.photon.data.network.error.NetworkAvailableError
 import io.github.rezmike.photon.data.network.error.NotFoundError
-import io.github.rezmike.photon.utils.ConstantManager
+import io.github.rezmike.photon.utils.LAST_MODIFIED_HEADER
 import io.github.rezmike.photon.utils.NetworkStatusChecker
 import retrofit2.Response
 import rx.Observable
@@ -29,7 +29,7 @@ abstract class RestCallTransformer<R> : Observable.Transformer<Response<R>, R> {
                 .flatMap { rResponse ->
                     when (rResponse.code()) {
                         200, 201, 202, 204 -> {
-                            val lastModified = rResponse.headers().get(ConstantManager.LAST_MODIFIED_HEADER)
+                            val lastModified = rResponse.headers().get(LAST_MODIFIED_HEADER)
                             if (lastModified != null) saveLastModify(lastModified)
                             Observable.just(rResponse.body())
                         }

@@ -8,9 +8,9 @@ import io.github.rezmike.photon.data.storage.dto.ActivityResultDto
 import io.github.rezmike.photon.ui.activities.root.AccountModel
 import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import io.github.rezmike.photon.ui.screens.add_info.AddInfoScreen
-import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PERMISSION_READ_EXTERNAL_STORAGE
-import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PHOTOCARD_PHOTO_GALLERY
 import io.github.rezmike.photon.utils.DaggerService
+import io.github.rezmike.photon.utils.REQUEST_PERMISSION_READ_EXTERNAL_STORAGE
+import io.github.rezmike.photon.utils.REQUEST_PHOTOCARD_PHOTO_GALLERY
 import io.github.rezmike.photon.utils.getGalleryIntent
 import mortar.MortarScope
 import rx.Subscription
