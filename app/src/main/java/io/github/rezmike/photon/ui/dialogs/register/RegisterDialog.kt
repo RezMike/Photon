@@ -1,7 +1,6 @@
 package io.github.rezmike.photon.ui.dialogs.register
 
 import android.content.Context
-import android.text.Editable
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -9,8 +8,8 @@ import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.data.storage.dto.RegisterInfoDto
 import io.github.rezmike.photon.ui.dialogs.AbstractDialog
-import io.github.rezmike.photon.ui.others.AnimHelper
-import io.github.rezmike.photon.ui.others.CustomTextWatcher
+import io.github.rezmike.photon.ui.others.accentAnim
+import io.github.rezmike.photon.ui.others.addAfterTextChangedListener
 import io.github.rezmike.photon.ui.others.changeError
 import mortar.PopupPresenter
 
@@ -36,26 +35,11 @@ class RegisterDialog(context: Context) : AbstractDialog<RegisterInfoDto>(context
         okBtn = view.findViewById(R.id.ok_btn) as Button
         cancelBtn = view.findViewById(R.id.cancel_btn) as Button
 
-        loginEt?.addTextChangedListener(object : CustomTextWatcher() {
-            override fun afterTextChanged(s: Editable) {
-                presenter.checkLogin(s.toString())
-            }
-        })
-        emailEt?.addTextChangedListener(object : CustomTextWatcher() {
-            override fun afterTextChanged(s: Editable) {
-                presenter.checkEmail(s.toString())
-            }
-        })
-        nameEt?.addTextChangedListener(object : CustomTextWatcher() {
-            override fun afterTextChanged(s: Editable) {
-                presenter.checkName(s.toString())
-            }
-        })
-        passwordEt?.addTextChangedListener(object : CustomTextWatcher() {
-            override fun afterTextChanged(s: Editable) {
-                presenter.checkPassword(s.toString())
-            }
-        })
+        loginEt?.addAfterTextChangedListener { presenter.checkLogin(it) }
+        emailEt?.addAfterTextChangedListener { presenter.checkEmail(it) }
+        nameEt?.addAfterTextChangedListener { presenter.checkName(it) }
+        passwordEt?.addAfterTextChangedListener { presenter.checkPassword(it) }
+
         loginEt?.setText(info.login)
         emailEt?.setText(info.email)
         nameEt?.setText(info.name)
@@ -107,18 +91,18 @@ class RegisterDialog(context: Context) : AbstractDialog<RegisterInfoDto>(context
     }
 
     fun accentLogin() {
-        AnimHelper.accentAnim(loginEt!!)
+        accentAnim(loginEt!!)
     }
 
     fun accentEmail() {
-        AnimHelper.accentAnim(emailEt!!)
+        accentAnim(emailEt!!)
     }
 
     fun accentName() {
-        AnimHelper.accentAnim(nameEt!!)
+        accentAnim(nameEt!!)
     }
 
     fun accentPassword() {
-        AnimHelper.accentAnim(passwordEt!!)
+        accentAnim(passwordEt!!)
     }
 }

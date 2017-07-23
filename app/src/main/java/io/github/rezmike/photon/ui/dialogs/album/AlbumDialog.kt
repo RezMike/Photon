@@ -1,7 +1,6 @@
 package io.github.rezmike.photon.ui.dialogs.album
 
 import android.content.Context
-import android.text.Editable
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -10,8 +9,8 @@ import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.AlbumInfoDto
 import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.ui.dialogs.AbstractDialog
-import io.github.rezmike.photon.ui.others.AnimHelper
-import io.github.rezmike.photon.ui.others.CustomTextWatcher
+import io.github.rezmike.photon.ui.others.accentAnim
+import io.github.rezmike.photon.ui.others.addAfterTextChangedListener
 import io.github.rezmike.photon.ui.others.changeError
 import mortar.PopupPresenter
 
@@ -40,16 +39,9 @@ class AlbumDialog(context: Context, val isEditMode: Boolean) : AbstractDialog<Al
         okBtn = view.findViewById(R.id.ok_btn) as Button
         cancelBtn = view.findViewById(R.id.cancel_btn) as Button
 
-        title?.addTextChangedListener(object : CustomTextWatcher() {
-            override fun afterTextChanged(s: Editable) {
-                presenter.checkName(s.toString())
-            }
-        })
-        description?.addTextChangedListener(object : CustomTextWatcher() {
-            override fun afterTextChanged(s: Editable) {
-                presenter.checkDescription(s.toString())
-            }
-        })
+        title?.addAfterTextChangedListener { presenter.checkName(it) }
+        description?.addAfterTextChangedListener { presenter.checkDescription(it) }
+
         title?.setText(info.title)
         description?.setText(info.description)
 
@@ -87,11 +79,11 @@ class AlbumDialog(context: Context, val isEditMode: Boolean) : AbstractDialog<Al
     //region ======================== Anim ========================
 
     fun accentTitle() {
-        AnimHelper.accentAnim(title!!)
+        accentAnim(title!!)
     }
 
     fun accentDescription() {
-        AnimHelper.accentAnim(description!!)
+        accentAnim(description!!)
     }
 
     //endregion

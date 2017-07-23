@@ -8,7 +8,7 @@ import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.data.storage.dto.EditProfileInfoDto
 import io.github.rezmike.photon.ui.dialogs.AbstractDialog
-import io.github.rezmike.photon.ui.others.AnimHelper
+import io.github.rezmike.photon.ui.others.accentAnim
 import io.github.rezmike.photon.ui.others.addAfterTextChangedListener
 import io.github.rezmike.photon.ui.others.changeError
 import mortar.PopupPresenter
@@ -65,10 +65,10 @@ class EditProfileDialog(context: Context) : AbstractDialog<EditProfileInfoDto>(c
     }
 
     fun accentName() {
-        AnimHelper.accentAnim(nameEt!!)
+        accentAnim(nameEt!!)
     }
 
     fun accentLogin() {
-        AnimHelper.accentAnim(loginEt!!)
+        accentAnim(loginEt!!)
     }
 }

@@ -1,7 +1,6 @@
 package io.github.rezmike.photon.ui.dialogs.login
 
 import android.content.Context
-import android.text.Editable
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -9,8 +8,8 @@ import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.DialogResult
 import io.github.rezmike.photon.data.storage.dto.LoginInfoDto
 import io.github.rezmike.photon.ui.dialogs.AbstractDialog
-import io.github.rezmike.photon.ui.others.AnimHelper
-import io.github.rezmike.photon.ui.others.CustomTextWatcher
+import io.github.rezmike.photon.ui.others.accentAnim
+import io.github.rezmike.photon.ui.others.addAfterTextChangedListener
 import io.github.rezmike.photon.ui.others.changeError
 import mortar.PopupPresenter
 
@@ -32,16 +31,8 @@ class LoginDialog(context: Context) : AbstractDialog<LoginInfoDto>(context) {
         okBtn = view.findViewById(R.id.ok_btn) as Button
         cancelBtn = view.findViewById(R.id.cancel_btn) as Button
 
-        emailEt?.addTextChangedListener(object : CustomTextWatcher() {
-            override fun afterTextChanged(s: Editable) {
-                presenter.checkEmail(s.toString())
-            }
-        })
-        passwordEt?.addTextChangedListener(object : CustomTextWatcher() {
-            override fun afterTextChanged(s: Editable) {
-                presenter.checkPassword(s.toString())
-            }
-        })
+        emailEt?.addAfterTextChangedListener { presenter.checkEmail(it) }
+        passwordEt?.addAfterTextChangedListener { presenter.checkPassword(it) }
         emailEt?.setText(info.email)
         passwordEt?.setText(info.password)
 
@@ -73,11 +64,11 @@ class LoginDialog(context: Context) : AbstractDialog<LoginInfoDto>(context) {
     }
 
     fun accentEmail() {
-        AnimHelper.accentAnim(emailEt!!)
+        accentAnim(emailEt!!)
     }
 
     fun accentPassword() {
-        AnimHelper.accentAnim(passwordEt!!)
+        accentAnim(passwordEt!!)
     }
 
     fun accentFields() {
