@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.squareup.picasso.Picasso
 import flow.Direction
 import flow.Flow
@@ -166,6 +167,14 @@ class RootActivity : BaseActivity(), IActionBarView {
 
     fun showMessage(stringResId: Int) {
         showMessage(getString(stringResId))
+    }
+
+    fun showToastMessage(stringResId: Int) {
+        showToastMessage(getString(stringResId))
+    }
+
+    fun showToastMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     fun showError(e: Throwable) {

@@ -14,7 +14,6 @@ import io.github.rezmike.photon.ui.screens.upload.UploadScreen
 import io.github.rezmike.photon.utils.DaggerService
 import io.realm.RealmChangeListener
 import mortar.MortarScope
-import rx.android.schedulers.AndroidSchedulers
 
 class AlbumPresenter(val albumRealm: AlbumRealm, val bottomBarItem: BottomBarItems) : AbstractPresenter<AlbumView, AlbumModel, AlbumPresenter>() {
 
@@ -84,8 +83,8 @@ class AlbumPresenter(val albumRealm: AlbumRealm, val bottomBarItem: BottomBarIte
     fun deleteAlbum() {
         getRootView()?.showLoad()
         model.deleteAlbum(albumRealm.id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .doAfterTerminate { getRootView()?.hideLoad() }
-                .subscribe({ getRootView()?.onBackPressed() }, { getRootView()?.showError(it) })
+        getRootView()?.hideLoad()
+        getRootView()?.showToastMessage(R.string.album_delete_success)
+        getRootView()?.onBackPressed()
     }
 }

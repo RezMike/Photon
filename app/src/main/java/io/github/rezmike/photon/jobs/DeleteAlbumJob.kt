@@ -4,11 +4,10 @@ import com.birbit.android.jobqueue.Job
 import com.birbit.android.jobqueue.Params
 import com.birbit.android.jobqueue.RetryConstraint
 import io.github.rezmike.photon.data.managers.DataManager
-import io.github.rezmike.photon.data.network.req.AlbumReq
 import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.realm.Realm
 
-class EditAlbumJob(val albumId: String, val albumReq: AlbumReq) : Job(params) {
+class DeleteAlbumJob(val albumId: String) : Job(params) {
 
     override fun onAdded() {
         val realm = Realm.getDefaultInstance()
@@ -16,15 +15,17 @@ class EditAlbumJob(val albumId: String, val albumReq: AlbumReq) : Job(params) {
         val albumRealm = realm.where(AlbumRealm::class.java).equalTo("id", albumId).findFirst()
 
         realm.executeTransaction {
-            albumRealm.title = albumReq.title
-            albumRealm.description = albumReq.description
+            if (!albumRealm.photoCards.isEmpty()) {
+                albumRealm.photoCards.forEach { it.deleteFromRealm() }
+            }
+            albumRealm.deleteFromRealm()
         }
 
         realm.close()
     }
 
     override fun onRun() {
-        DataManager.INSTANCE.editAlbumOnServer(albumId, albumReq).subscribe()
+        DataManager.INSTANCE.deleteAlbumOnServer(albumId).subscribe()
     }
 
     override fun shouldReRunOnThrowable(throwable: Throwable, runCount: Int, maxRunCount: Int): RetryConstraint {

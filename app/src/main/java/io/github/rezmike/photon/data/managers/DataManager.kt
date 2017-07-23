@@ -104,7 +104,7 @@ class DataManager private constructor() {
 
     fun savePhotoCardFavoriteComplToRealm(photoId: String): Completable {
         try {
-            realmManager.savePhotoCardFavorite(photoId, preferencesManager.getUserId()!!)
+            realmManager.savePhotoCardFavorite(photoId, getUserId()!!)
             return Completable.complete()
         } catch (e: Exception) {
             return Completable.error(e)
@@ -112,7 +112,7 @@ class DataManager private constructor() {
     }
 
     fun savePhotoCardFavoriteComplToNetwork(photoId: String): Completable {
-        return restService.savePhotoOnFavorite(preferencesManager.getAuthToken()!!, preferencesManager.getUserId()!!, photoId)
+        return restService.savePhotoOnFavorite(getAuthToken()!!, getUserId()!!, photoId)
                 .compose(SuccessCallTransformer())
                 .subscribeOn(Schedulers.io())
                 .toCompletable()
@@ -125,7 +125,7 @@ class DataManager private constructor() {
     fun getAlbumComplFromNetwork(): Completable {
         return Observable.just(preferencesManager.isUserAuth())
                 .filter { it }
-                .flatMap { restService.getAllAlbums(preferencesManager.getLastAlbumsUpdate(), preferencesManager.getUserId()!!) }
+                .flatMap { restService.getAllAlbums(preferencesManager.getLastAlbumsUpdate(), getUserId()!!) }
                 .compose(AlbumsCallTransformer())
                 .flatMap { Observable.from(it) }
                 .subscribeOn(Schedulers.io())
@@ -136,31 +136,29 @@ class DataManager private constructor() {
     }
 
     fun createAlbumOnServer(albumReq: AlbumReq): Single<AlbumRes> {
-        return restService.createAlbum(preferencesManager.getAuthToken()!!, getUserId()!!, albumReq)
+        return restService.createAlbum(getAuthToken()!!, getUserId()!!, albumReq)
                 .compose(AlbumCallTransformer())
                 .toSingle()
     }
 
     fun editAlbumOnServer(albumId: String, albumReq: AlbumReq): Single<AlbumRes> {
-        return restService.editAlbum(preferencesManager.getAuthToken()!!, getUserId()!!, albumId, albumReq)
+        return restService.editAlbum(getAuthToken()!!, getUserId()!!, albumId, albumReq)
                 .compose(AlbumCallTransformer())
                 .toSingle()
     }
 
     fun deleteAlbumOnServer(albumId: String): Completable {
-        return restService.deleteAlbum(preferencesManager.getAuthToken()!!, getUserId()!!, albumId)
+        return restService.deleteAlbum(getAuthToken()!!, getUserId()!!, albumId)
                 .compose(AlbumCallTransformer())
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .toCompletable()
-    }
-
-    fun deleteAlbumFromRealm(albumId: String) {
-        realmManager.deleteAlbumFromRealm(albumId)
     }
 
     //endregion
 
     //region ======================== User ========================
+
+    private fun getAuthToken() = preferencesManager.getAuthToken()
 
     fun getUserId() = preferencesManager.getUserId()
 

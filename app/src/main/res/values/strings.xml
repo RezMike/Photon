@@ -39,6 +39,7 @@
     <string name="album_menu_delete">Удалить альбом</string>
     <string name="album_empty">Альбом пуст</string>
     <string name="album_delete_question">Вы уверены что хотите удалить альбом?</string>
+    <string name="album_delete_success">Альбом успешно удален</string>
 
     <!--Profile Screen-->
     <string name="profile_title">Профиль</string>
