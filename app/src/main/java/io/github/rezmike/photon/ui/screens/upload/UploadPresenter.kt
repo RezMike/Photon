@@ -3,9 +3,12 @@ package io.github.rezmike.photon.ui.screens.upload
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.app.Activity
 import android.os.Bundle
+import flow.Flow
 import io.github.rezmike.photon.data.storage.dto.ActivityResultDto
 import io.github.rezmike.photon.ui.activities.root.AccountModel
 import io.github.rezmike.photon.ui.screens.AbstractPresenter
+import io.github.rezmike.photon.ui.screens.add_info.AddInfoScreen
+import io.github.rezmike.photon.utils.ActionHelper
 import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PERMISSION_READ_EXTERNAL_STORAGE
 import io.github.rezmike.photon.utils.ConstantManager.REQUEST_PHOTOCARD_PHOTO_GALLERY
 import io.github.rezmike.photon.utils.DaggerService
@@ -13,7 +16,7 @@ import io.github.rezmike.photon.utils.getGalleryIntent
 import mortar.MortarScope
 import rx.Subscription
 
-class UploadPresenter : AbstractPresenter<UploadView, AccountModel, UploadPresenter>() {
+class UploadPresenter(val albumId: String?) : AbstractPresenter<UploadView, AccountModel, UploadPresenter>() {
 
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<UploadScreen.Component>(scope).inject(this)
@@ -51,7 +54,7 @@ class UploadPresenter : AbstractPresenter<UploadView, AccountModel, UploadPresen
                 activityResult.requestCode == REQUEST_PHOTOCARD_PHOTO_GALLERY &&
                 activityResult.intent != null) {
             val photoUri = activityResult.intent.data.toString()
-            view?.showAddInfoScreen(photoUri)
+            Flow.get(view ?: return).set(AddInfoScreen(photoUri, albumId))
         }
     }
 }

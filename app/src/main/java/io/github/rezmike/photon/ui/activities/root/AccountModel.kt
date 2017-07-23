@@ -5,6 +5,7 @@ import io.github.rezmike.photon.data.network.req.EditProfileReq
 import io.github.rezmike.photon.data.network.req.LoginReq
 import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.jobs.CreateAlbumJob
+import io.github.rezmike.photon.jobs.EditAlbumJob
 import io.github.rezmike.photon.jobs.UserAvatarJob
 import io.github.rezmike.photon.ui.screens.AbstractModel
 import rx.Completable
@@ -30,6 +31,10 @@ class AccountModel : AbstractModel() {
 
     fun createAlbum(title: String, description: String) {
         jobManager.addJobInBackground(CreateAlbumJob(AlbumReq(dataManager.getUserId()!!, title, description)))
+    }
+
+    fun editAlbum(albumId: String, title: String, description: String) {
+        jobManager.addJobInBackground(EditAlbumJob(albumId, AlbumReq(dataManager.getUserId()!!, title, description)))
     }
 
     fun updateProfileInfo(name: String, login: String): Completable {

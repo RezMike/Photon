@@ -18,6 +18,7 @@
             android:padding="@dimen/spacing_small_16">
 
             <TextView
+                android:id="@+id/dialog_title_tv"
                 style="@style/header_text_view"
                 android:text="@string/album_dialog_header"/>
 
@@ -30,7 +31,7 @@
                 android:id="@+id/title_et"
                 style="@style/edit_text_borders"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="textCapSentences"
                 android:lines="1"/>
 
             <TextView
@@ -42,7 +43,8 @@
                 style="@style/edit_text_borders"
                 android:gravity="top"
                 android:imeOptions="actionDone"
-                android:inputType="textMultiLine"
+                android:maxLines=""
+                android:inputType="textCapSentences"
                 android:minHeight="@dimen/spacing_very_large_72"/>
 
             <include layout="@layout/layout_dialog_footer"/>

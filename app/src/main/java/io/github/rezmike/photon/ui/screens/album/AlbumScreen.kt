@@ -8,12 +8,13 @@ import io.github.rezmike.photon.ui.activities.root.BottomBarItems
 import io.github.rezmike.photon.ui.activities.root.RootActivity
 import io.github.rezmike.photon.ui.screens.AbstractScreen
 
-class AlbumScreen(album: AlbumRealm, profile: BottomBarItems) : AbstractScreen<RootActivity.RootComponent>(BottomBarItems.MAIN) {
+class AlbumScreen(val albumRealm: AlbumRealm,
+                  val bottomBarItem: BottomBarItems = BottomBarItems.MAIN) : AbstractScreen<RootActivity.RootComponent>(bottomBarItem) {
 
     override fun createScreenComponent(parentComponent: RootActivity.RootComponent): Any {
         return DaggerAlbumScreen_Component.builder()
                 .rootComponent(parentComponent)
-                .module(Module())
+                .module(Module(albumRealm, bottomBarItem))
                 .build()
     }
 
@@ -30,10 +31,10 @@ class AlbumScreen(album: AlbumRealm, profile: BottomBarItems) : AbstractScreen<R
     }
 
     @dagger.Module
-    class Module {
+    class Module(val albumRealm: AlbumRealm, val bottomBarItem: BottomBarItems) {
         @Provides
         @DaggerScope(AlbumScreen::class)
-        fun providePresenter() = AlbumPresenter()
+        fun providePresenter() = AlbumPresenter(albumRealm, bottomBarItem)
 
         @Provides
         @DaggerScope(AlbumScreen::class)

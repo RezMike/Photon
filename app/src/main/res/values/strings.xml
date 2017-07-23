@@ -32,6 +32,15 @@
     <string name="photocard_albums">Альбомы</string>
     <string name="photocard_saving_completed">Изображение загружено</string>
 
+    <!--Album Screen-->
+    <string name="album_title">Альбом</string>
+    <string name="album_menu_add_photocard">Добавить фотокарточку</string>
+    <string name="album_menu_edit">Редактировать альбом</string>
+    <string name="album_menu_delete">Удалить альбом</string>
+    <string name="album_empty">Альбом пуст</string>
+    <string name="album_delete_question">Вы уверены что хотите удалить альбом?</string>
+    <string name="album_delete_success">Альбом успешно удален</string>
+
     <!--Profile Screen-->
     <string name="profile_title">Профиль</string>
     <string name="profile_menu_create_album">Создать альбом</string>
@@ -77,6 +86,7 @@
 
     <!--Album Dialog-->
     <string name="album_dialog_header">Новый альбом</string>
+    <string name="album_dialog_edit_header">Редактирование альбома</string>
     <string name="album_dialog_title">Название</string>
     <string name="album_dialog_description">Описание</string>
     <string name="album_dialog_title_error">Длина - не менее 3 символов, не может содержать спецсимвоыл(!@#$%^&amp;*()\/|=+-)</string>
@@ -101,8 +111,8 @@
 
     <!--Exit dialog-->
     <string name="exit_dialog_title">Вы действительно хотите выйти?</string>
-    <string name="exit_dialog_yes">Да</string>
-    <string name="exit_dialog_no">Нет</string>
+    <string name="dialog_yes">Да</string>
+    <string name="dialog_no">Нет</string>
 
     <!--Navigation Menu-->
     <string name="menu_navigation_main">Главная</string>

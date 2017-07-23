@@ -2,9 +2,7 @@ package io.github.rezmike.photon.ui.screens.upload
 
 import android.content.Context
 import android.util.AttributeSet
-import flow.Flow
 import io.github.rezmike.photon.ui.screens.AbstractView
-import io.github.rezmike.photon.ui.screens.add_info.AddInfoScreen
 import io.github.rezmike.photon.utils.DaggerService
 import kotlinx.android.synthetic.main.screen_upload.view.*
 
@@ -17,10 +15,6 @@ class UploadView(context: Context, attrs: AttributeSet?) : AbstractView<UploadPr
     override fun onFinishInflate() {
         super.onFinishInflate()
         choose_photo_btn.setOnClickListener { presenter.clickOnChoosePhoto() }
-    }
-
-    fun showAddInfoScreen(photoUri: String) {
-        Flow.get(this).set(AddInfoScreen(photoUri))
     }
 
     override fun onBackPressed(): Boolean {

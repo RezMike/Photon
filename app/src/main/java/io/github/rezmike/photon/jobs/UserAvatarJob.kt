@@ -47,7 +47,7 @@ class UserAvatarJob(val avatarFile: File) : Job(params) {
     override fun onCancel(cancelReason: Int, throwable: Throwable?) {}
 
     companion object {
-        private val params = Params(JobPriority.HIGH)
+        private val params = Params(JobPriority.MID)
                 .requireNetwork()
                 .persist()
                 .singleInstanceBy("Avatar")

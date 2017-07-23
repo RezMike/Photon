@@ -37,7 +37,7 @@ class RealmManager {
 
         if (!user.albums.isEmpty()) {
             user.albums
-                    .onEach { if (!it.active) deleteAlbumFromRealm(it) }
+                    .onEach { if (!it.active) deleteAlbumFromRealm(it.id) }
                     .filter { it.active }
                     .map { createAlbumRealm(it) }
                     .forEach { userRealm.albums.add(it) }
@@ -55,7 +55,7 @@ class RealmManager {
 
         if (!user.albums.isEmpty()) {
             user.albums
-                    .onEach { if (!it.active) deleteAlbumFromRealm(it) }
+                    .onEach { if (!it.active) deleteAlbumFromRealm(it.id) }
                     .filter { it.active }
                     .map { createAlbumRealm(it) }
                     .forEach { userRealm.albums.add(it) }
@@ -95,10 +95,10 @@ class RealmManager {
         return albumRealm
     }
 
-    fun deleteAlbumFromRealm(albumRes: AlbumRes) {
+    fun deleteAlbumFromRealm(albumId: String) {
         val realm = Realm.getDefaultInstance()
 
-        val albumRealm = realm.where<AlbumRealm>(AlbumRealm::class.java).equalTo("id", albumRes.id).findFirst() ?: return
+        val albumRealm = realm.where<AlbumRealm>(AlbumRealm::class.java).equalTo("id", albumId).findFirst() ?: return
 
         realm.executeTransaction {
             if (!albumRealm.photoCards.isEmpty()) {

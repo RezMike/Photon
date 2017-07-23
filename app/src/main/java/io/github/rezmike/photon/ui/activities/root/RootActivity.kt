@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.squareup.picasso.Picasso
 import flow.Direction
 import flow.Flow
@@ -117,8 +118,8 @@ class RootActivity : BaseActivity(), IActionBarView {
         if (getCurrentScreen() == null || !getCurrentScreen()!!.onBackPressed() && !Flow.get(this).goBack()) {
             val alertDialog = AlertDialog.Builder(this)
                     .setTitle(R.string.exit_dialog_title)
-                    .setPositiveButton(R.string.exit_dialog_yes) { _, _ -> finish() }
-                    .setNegativeButton(R.string.exit_dialog_no, null)
+                    .setPositiveButton(R.string.dialog_yes) { _, _ -> finish() }
+                    .setNegativeButton(R.string.dialog_no, null)
                     .create()
             alertDialog.show()
         }
@@ -166,6 +167,14 @@ class RootActivity : BaseActivity(), IActionBarView {
 
     fun showMessage(stringResId: Int) {
         showMessage(getString(stringResId))
+    }
+
+    fun showToastMessage(stringResId: Int) {
+        showToastMessage(getString(stringResId))
+    }
+
+    fun showToastMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     fun showError(e: Throwable) {
