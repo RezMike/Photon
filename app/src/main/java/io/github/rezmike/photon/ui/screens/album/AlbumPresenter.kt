@@ -26,14 +26,12 @@ class AlbumPresenter(val albumRealm: AlbumRealm, val bottomBarItem: BottomBarIte
     override fun initActionBar() {
         val actionBar = rootPresenter.ActionBarBuilder()
                 .setBackArrow(true)
-                .setTitle(view?.context?.getString(R.string.album_title)!!)
-        if (albumRealm.owner == model.getUserId()) {
+                .setTitle(view.context.getString(R.string.album_title)!!)
+        if (albumRealm.owner == model.getUserId() && !albumRealm.isFavorite) {
             actionBar.setOverFlowIcon(R.drawable.ic_custom_menu_black_24dp)
-            actionBar.addAction(MenuItemHolder(view?.context?.getString(R.string.album_menu_add_photocard), 0, { onClickAddPhotoCard() }, MenuItem.SHOW_AS_ACTION_NEVER))
-            if (!albumRealm.isFavorite) {
-                actionBar.addAction(MenuItemHolder(view?.context?.getString(R.string.album_menu_edit), 0, { onClickEditAlbum() }, MenuItem.SHOW_AS_ACTION_NEVER))
-            }
-            actionBar.addAction(MenuItemHolder(view?.context?.getString(R.string.album_menu_delete), 0, { onClickDeleteAlbum() }, MenuItem.SHOW_AS_ACTION_NEVER))
+            actionBar.addAction(MenuItemHolder(view.context.getString(R.string.album_menu_add_photocard), 0, { onClickAddPhotoCard() }, MenuItem.SHOW_AS_ACTION_NEVER))
+            actionBar.addAction(MenuItemHolder(view.context.getString(R.string.album_menu_edit), 0, { onClickEditAlbum() }, MenuItem.SHOW_AS_ACTION_NEVER))
+            actionBar.addAction(MenuItemHolder(view.context.getString(R.string.album_menu_delete), 0, { onClickDeleteAlbum() }, MenuItem.SHOW_AS_ACTION_NEVER))
         }
         actionBar.build()
     }
