@@ -27,12 +27,12 @@ class ProfilePresenter : AbstractPresenter<ProfileView, ProfileModel, ProfilePre
 
     override fun initActionBar() {
         rootPresenter.ActionBarBuilder()
-                .setTitle(view?.context?.getString(R.string.profile_title)!!)
+                .setTitle(view.context.getString(R.string.profile_title))
                 .setOverFlowIcon(R.drawable.ic_custom_menu_black_24dp)
-                .addAction(MenuItemHolder(view?.context?.getString(R.string.profile_menu_create_album), 0, { onClickNewAlbum() }, MenuItem.SHOW_AS_ACTION_NEVER))
-                .addAction(MenuItemHolder(view?.context?.getString(R.string.profile_menu_edit_profile), 0, { onClickEditProfile() }, MenuItem.SHOW_AS_ACTION_NEVER))
-                .addAction(MenuItemHolder(view?.context?.getString(R.string.profile_menu_change_avatar), 0, { onClickChangeAvatar() }, MenuItem.SHOW_AS_ACTION_NEVER))
-                .addAction(MenuItemHolder(view?.context?.getString(R.string.profile_menu_logout), 0, { onClickLogout() }, MenuItem.SHOW_AS_ACTION_NEVER))
+                .addAction(MenuItemHolder(view.context.getString(R.string.profile_menu_create_album), 0, { onClickNewAlbum() }, MenuItem.SHOW_AS_ACTION_NEVER))
+                .addAction(MenuItemHolder(view.context.getString(R.string.profile_menu_edit_profile), 0, { onClickEditProfile() }, MenuItem.SHOW_AS_ACTION_NEVER))
+                .addAction(MenuItemHolder(view.context.getString(R.string.profile_menu_change_avatar), 0, { onClickChangeAvatar() }, MenuItem.SHOW_AS_ACTION_NEVER))
+                .addAction(MenuItemHolder(view.context.getString(R.string.profile_menu_logout), 0, { onClickLogout() }, MenuItem.SHOW_AS_ACTION_NEVER))
                 .build()
     }
 

@@ -50,6 +50,9 @@
     <string name="profile_cards">Карты</string>
     <string name="profile_albums">Альбомы</string>
 
+    <!--User Screen-->
+    <string name="user_title">Автор</string>
+
     <!--Upload Screen-->
     <string name="upload_description">Выберите фотокарточку из галереи и добавьте к вашим альбомам</string>
     <string name="upload_choose_photo">Выбрать фото</string>
