@@ -57,6 +57,17 @@
     <string name="upload_description">Выберите фотокарточку из галереи и добавьте к вашим альбомам</string>
     <string name="upload_choose_photo">Выбрать фото</string>
 
+    <!--AddInfo Screen-->
+    <string name="add_info_title">Добавление фото</string>
+    <string name="add_info_photocard_name_hint">Название карточки</string>
+    <string name="add_info_photocard_name_accent">Укажите название фотографии</string>
+    <string name="add_info_photocard_filters_accent">Укажите параметры фотографии</string>
+    <string name="add_info_photocard_tags_accent">Укажите теги</string>
+    <string name="add_info_photocard_tag_hint">Тег</string>
+    <string name="add_info_chose_album">Выберите альбом</string>
+    <string name="add_info_button_save">Сохранить</string>
+    <string name="add_info_button_cancel">Отмена</string>
+
     <!--Auth Screen-->
     <string name="auth_title">Профиль</string>
     <string name="auth_menu_login">Войти</string>

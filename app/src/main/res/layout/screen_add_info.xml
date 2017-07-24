@@ -4,11 +4,108 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/item_wall_food"/>
+        android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/text_view"
+                android:paddingBottom="@dimen/spacing_very_small_8"
+                android:paddingLeft="@dimen/spacing_small_16"
+                android:paddingRight="@dimen/spacing_small_16"
+                android:paddingTop="@dimen/spacing_normal_24"
+                android:text="@string/add_info_photocard_name_accent"/>
+
+            <EditText
+                android:id="@+id/photocard_name_et"
+                style="@style/edit_text_borders"
+                android:layout_marginLeft="-4dp"
+                android:layout_marginRight="-4dp"
+                android:hint="@string/add_info_photocard_name_hint"
+                android:padding="@dimen/spacing_small_16"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/text_view"
+                android:paddingBottom="@dimen/spacing_very_small_8"
+                android:paddingLeft="@dimen/spacing_small_16"
+                android:paddingRight="@dimen/spacing_small_16"
+                android:paddingTop="@dimen/spacing_normal_24"
+                android:text="@string/add_info_photocard_filters_accent"/>
+
+            <include layout="@layout/layout_filters"/>
+
+            <TextView
+                style="@style/text_view"
+                android:paddingBottom="@dimen/spacing_very_small_8"
+                android:paddingLeft="@dimen/spacing_small_16"
+                android:paddingRight="@dimen/spacing_small_16"
+                android:paddingTop="@dimen/spacing_normal_24"
+                android:text="@string/add_info_photocard_tags_accent"/>
+
+            <EditText
+                android:id="@+id/tag_name_et"
+                style="@style/edit_text_borders"
+                android:layout_marginLeft="-4dp"
+                android:layout_marginRight="-4dp"
+                android:hint="@string/add_info_photocard_tag_hint"
+                android:padding="@dimen/spacing_small_16"/>
+
+            <android.support.v7.widget.ListViewCompat
+                android:id="@+id/list_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <View style="@style/horizontal_line"/>
+
+            <TextView
+                style="@style/text_view"
+                android:paddingBottom="@dimen/spacing_small_16"
+                android:paddingLeft="@dimen/spacing_small_16"
+                android:paddingRight="@dimen/spacing_small_16"
+                android:paddingTop="@dimen/spacing_normal_24"
+                android:text="@string/add_info_chose_album"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_albums"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:id="@+id/wrap_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_normal_24"
+                android:layout_marginLeft="@dimen/spacing_medium_48"
+                android:layout_marginRight="@dimen/spacing_medium_48"
+                android:layout_marginTop="@dimen/spacing_normal_24"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/ok_btn"
+                    style="@style/CustomButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/add_info_button_save"
+                    android:theme="@style/PhotonBtn"/>
+
+                <Button
+                    android:id="@+id/cancel_btn"
+                    style="@style/CustomButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/add_info_button_cancel"
+                    android:theme="@style/PhotonBtn"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </io.github.rezmike.photon.ui.screens.add_info.AddInfoView>
