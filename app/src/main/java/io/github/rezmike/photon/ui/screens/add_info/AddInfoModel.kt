@@ -6,7 +6,7 @@ import io.github.rezmike.photon.utils.toArrayList
 import rx.Observable
 
 class AddInfoModel : AbstractModel() {
-    fun getAlbums(): Observable<ArrayList<AlbumRealm>> {
+    fun getAlbumList(): Observable<ArrayList<AlbumRealm>> {
         return dataManager.getUserSinFromRealm(dataManager.getUserId()!!)
                 .flatMapObservable { Observable.just(it.albums.toArrayList()) }
     }

@@ -25,6 +25,12 @@
         <item name="android:textColor">@color/color_description_text_view</item>
     </style>
 
+    <style name="rubric_text_view" parent="text_view">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@string/roboto_regular</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
     <style name="title_text_view" parent="text_view">
         <item name="android:textSize">@dimen/font_size_normal_16</item>
         <item name="android:fontFamily">@string/roboto_medium</item>

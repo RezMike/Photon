@@ -59,12 +59,12 @@
 
     <!--AddInfo Screen-->
     <string name="add_info_title">Добавление фото</string>
-    <string name="add_info_photocard_name_hint">Название карточки</string>
-    <string name="add_info_photocard_name_accent">Укажите название фотографии</string>
-    <string name="add_info_photocard_filters_accent">Укажите параметры фотографии</string>
-    <string name="add_info_photocard_tags_accent">Укажите теги</string>
-    <string name="add_info_photocard_tag_hint">Тег</string>
-    <string name="add_info_chose_album">Выберите альбом</string>
+    <string name="add_info_name_hint">Название карточки</string>
+    <string name="add_info_name_accent">Укажите название фотографии</string>
+    <string name="add_info_filters_accent">Укажите параметры фотографии</string>
+    <string name="add_info_tag_hint">Тег</string>
+    <string name="add_info_tags_accent">Укажите теги</string>
+    <string name="add_info_choose_album">Выберите альбом</string>
     <string name="add_info_button_save">Сохранить</string>
     <string name="add_info_button_cancel">Отмена</string>
 

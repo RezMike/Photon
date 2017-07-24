@@ -14,47 +14,51 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <include
+                android:id="@+id/food_img_wrap"
+                layout="@layout/ratio_image_16_9"/>
+
             <TextView
-                style="@style/text_view"
+                style="@style/rubric_text_view"
                 android:paddingBottom="@dimen/spacing_very_small_8"
                 android:paddingLeft="@dimen/spacing_small_16"
                 android:paddingRight="@dimen/spacing_small_16"
                 android:paddingTop="@dimen/spacing_normal_24"
-                android:text="@string/add_info_photocard_name_accent"/>
+                android:text="@string/add_info_name_accent"/>
 
             <EditText
                 android:id="@+id/photocard_name_et"
                 style="@style/edit_text_borders"
                 android:layout_marginLeft="-4dp"
                 android:layout_marginRight="-4dp"
-                android:hint="@string/add_info_photocard_name_hint"
+                android:hint="@string/add_info_name_hint"
                 android:padding="@dimen/spacing_small_16"/>
 
             <TextView
-                android:id="@+id/textView2"
-                style="@style/text_view"
+                style="@style/rubric_text_view"
                 android:paddingBottom="@dimen/spacing_very_small_8"
                 android:paddingLeft="@dimen/spacing_small_16"
                 android:paddingRight="@dimen/spacing_small_16"
                 android:paddingTop="@dimen/spacing_normal_24"
-                android:text="@string/add_info_photocard_filters_accent"/>
+                android:text="@string/add_info_filters_accent"
+                android:layout_height="wrap_content"/>
 
             <include layout="@layout/layout_filters"/>
 
             <TextView
-                style="@style/text_view"
+                style="@style/rubric_text_view"
                 android:paddingBottom="@dimen/spacing_very_small_8"
                 android:paddingLeft="@dimen/spacing_small_16"
                 android:paddingRight="@dimen/spacing_small_16"
                 android:paddingTop="@dimen/spacing_normal_24"
-                android:text="@string/add_info_photocard_tags_accent"/>
+                android:text="@string/add_info_tags_accent"/>
 
             <EditText
                 android:id="@+id/tag_name_et"
                 style="@style/edit_text_borders"
                 android:layout_marginLeft="-4dp"
                 android:layout_marginRight="-4dp"
-                android:hint="@string/add_info_photocard_tag_hint"
+                android:hint="@string/add_info_tag_hint"
                 android:padding="@dimen/spacing_small_16"/>
 
             <android.support.v7.widget.ListViewCompat
@@ -65,12 +69,12 @@
             <View style="@style/horizontal_line"/>
 
             <TextView
-                style="@style/text_view"
+                style="@style/rubric_text_view"
                 android:paddingBottom="@dimen/spacing_small_16"
                 android:paddingLeft="@dimen/spacing_small_16"
                 android:paddingRight="@dimen/spacing_small_16"
                 android:paddingTop="@dimen/spacing_normal_24"
-                android:text="@string/add_info_chose_album"/>
+                android:text="@string/add_info_choose_album"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_albums"

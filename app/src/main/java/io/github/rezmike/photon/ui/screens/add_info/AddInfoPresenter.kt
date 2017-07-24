@@ -6,9 +6,7 @@ import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import io.github.rezmike.photon.utils.DaggerService
 import mortar.MortarScope
 
-class AddInfoPresenter(val photoUri: String, val albumId: String?) : AbstractPresenter<AddInfoView, AddInfoModel, AddInfoPresenter>() {
-
-    private var albumIdSelected: String = ""
+class AddInfoPresenter(val photoUri: String, var albumIdSelected: String?) : AbstractPresenter<AddInfoView, AddInfoModel, AddInfoPresenter>() {
 
     override fun initDagger(scope: MortarScope) {
         DaggerService.getDaggerComponent<AddInfoScreen.Component>(scope).inject(this)
@@ -23,14 +21,15 @@ class AddInfoPresenter(val photoUri: String, val albumId: String?) : AbstractPre
 
     override fun onLoad(savedInstanceState: Bundle?) {
         super.onLoad(savedInstanceState)
-        model.getAlbums()
-                .subscribe({ view?.initListAlbum(it) }, { getRootView()?.showError(it) })
+        view?.setPhoto(photoUri)
+        model.getAlbumList()
+                .subscribe({ view?.initListAlbum(it, albumIdSelected) }, { getRootView()?.showError(it) })
     }
 
     fun onClickItem(albumId: String) {
-        if(albumIdSelected == albumId){
-            albumIdSelected = ""
-        }else{
+        if (albumIdSelected == albumId) {
+            albumIdSelected = null
+        } else {
             albumIdSelected = albumId
         }
         view.selectAlbum(albumIdSelected)

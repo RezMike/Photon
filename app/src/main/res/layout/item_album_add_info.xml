@@ -54,8 +54,8 @@
 
     <ImageView
         android:id="@+id/selected_img"
-        android:layout_width="@dimen/avatar_size"
-        android:layout_height="@dimen/avatar_size"
+        android:layout_width="@dimen/check_mark_image"
+        android:layout_height="@dimen/check_mark_image"
         app:srcCompat="@drawable/ic_done_white_24dp"
         android:layout_marginRight="@dimen/spacing_small_16"
         android:layout_alignParentRight="true"/>

@@ -24,4 +24,5 @@
     <!--element size-->
     <dimen name="avatar_size">60dp</dimen>
     <dimen name="avatar_preview_size">150dp</dimen>
+    <dimen name="check_mark_image">40dp</dimen>
 </resources>

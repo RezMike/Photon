@@ -13,14 +13,14 @@ import kotlinx.android.synthetic.main.ratio_image_1_1.view.*
 class AddInfoAlbumAdapter(val picasso: Picasso, val itemClick: (String) -> Unit) : RecyclerView.Adapter<AddInfoAlbumAdapter.AddInfoAlbumViewHolder>() {
 
     private var items: ArrayList<AlbumRealm> = ArrayList()
-    private var albumIdSelected = ""
+    private var albumIdSelected: String? = null
 
     fun reloadAdapter(albums: ArrayList<AlbumRealm>) {
         items = albums
         notifyDataSetChanged()
     }
 
-    fun selectAlbum(albumIdSelected: String) {
+    fun selectAlbum(albumIdSelected: String?) {
         this.albumIdSelected = albumIdSelected
         notifyDataSetChanged()
     }
@@ -54,5 +54,4 @@ class AddInfoAlbumAdapter(val picasso: Picasso, val itemClick: (String) -> Unit)
             else view.selected_img.visibility = View.GONE
         }
     }
-
 }
