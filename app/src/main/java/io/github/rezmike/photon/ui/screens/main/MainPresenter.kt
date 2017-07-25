@@ -8,7 +8,7 @@ import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.photon.ui.others.MenuItemHolder
 import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import io.github.rezmike.photon.ui.screens.photocard.PhotocardScreen
-import io.github.rezmike.photon.ui.screens.search.SearchScreen
+import io.github.rezmike.photon.ui.screens.selection.SelectionScreen
 import io.github.rezmike.photon.utils.DaggerService
 import mortar.MortarScope
 
@@ -40,7 +40,7 @@ class MainPresenter : AbstractPresenter<MainView, MainModel, MainPresenter>() {
     }
 
     fun onClickSearch(): Boolean {
-        Flow.get(view).set(SearchScreen())
+        Flow.get(view).set(SelectionScreen())
         return true
     }
 

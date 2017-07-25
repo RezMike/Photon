@@ -5,8 +5,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.design.widget.TabLayout
 import android.support.graphics.drawable.VectorDrawableCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
@@ -267,6 +269,20 @@ class RootActivity : BaseActivity(), IActionBarView {
     override fun setMenuItems(items: ArrayList<MenuItemHolder>) {
         actionBarMenuItems = items
         supportInvalidateOptionsMenu()
+    }
+
+    fun setTabLayout(pager: ViewPager) {
+        val tabView = TabLayout(this)
+        tabView.setupWithViewPager(pager)
+        appbar_layout.addView(tabView)
+        pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabView))
+    }
+
+    fun removeTabLayout() {
+        val tabView = appbar_layout.getChildAt(1)
+        if (tabView != null && tabView is TabLayout) {
+            appbar_layout.removeView(tabView)
+        }
     }
 
     //endregion

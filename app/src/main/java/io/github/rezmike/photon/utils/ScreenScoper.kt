@@ -52,4 +52,19 @@ object ScreenScoper {
         }
         MortarScope.getScope(context).findChild(screenIn.getScopeName()).destroy()
     }
+
+    @JvmStatic
+    fun <S> createScreenScopeFromContext(context: Context, screen: AbstractScreen<S>): MortarScope {
+        val parentScope = MortarScope.getScope(context)
+        var childScope = parentScope.findChild(screen.getScopeName())
+
+        if (childScope == null) {
+            val screenComponent = screen.createScreenComponent(parentScope.getService(DaggerService.SERVICE_NAME))
+            childScope = parentScope.buildChild()
+                    .withService(DaggerService.SERVICE_NAME, screenComponent)
+                    .build(screen.getScopeName())
+        }
+
+        return childScope
+    }
 }

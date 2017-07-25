@@ -1,4 +1,4 @@
-package io.github.rezmike.photon.ui.screens.search
+package io.github.rezmike.photon.ui.screens.selection.search
 
 import io.github.rezmike.photon.ui.screens.AbstractModel
 

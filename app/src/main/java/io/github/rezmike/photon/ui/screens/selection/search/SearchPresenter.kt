@@ -1,4 +1,4 @@
-package io.github.rezmike.photon.ui.screens.search
+package io.github.rezmike.photon.ui.screens.selection.search
 
 import io.github.rezmike.photon.ui.screens.AbstractPresenter
 import io.github.rezmike.photon.utils.DaggerService
@@ -11,6 +11,6 @@ class SearchPresenter : AbstractPresenter<SearchView, SearchModel, SearchPresent
     }
 
     override fun initActionBar() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // do nothing
     }
 }

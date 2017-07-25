@@ -53,6 +53,12 @@
     <!--User Screen-->
     <string name="user_title">Автор</string>
 
+    <!--Search Screen-->
+    <string name="search_title">Поиск</string>
+
+    <!--Filters Screen-->
+    <string name="filters_title">Фильтры</string>
+
     <!--Upload Screen-->
     <string name="upload_description">Выберите фотокарточку из галереи и добавьте к вашим альбомам</string>
     <string name="upload_choose_photo">Выбрать фото</string>

@@ -1,4 +1,4 @@
-package io.github.rezmike.photon.ui.screens.filters
+package io.github.rezmike.photon.ui.screens.selection.filters
 
 import android.content.Context
 import android.util.AttributeSet

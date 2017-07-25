@@ -1,4 +1,4 @@
-package io.github.rezmike.photon.ui.screens.filters
+package io.github.rezmike.photon.ui.screens.selection.filters
 
 import io.github.rezmike.photon.ui.screens.AbstractModel
 

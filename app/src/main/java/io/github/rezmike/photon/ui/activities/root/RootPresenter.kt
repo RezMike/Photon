@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.support.v4.view.ViewPager
 import io.github.rezmike.photon.R
 import io.github.rezmike.photon.data.storage.dto.ActivityResultDto
 import io.github.rezmike.photon.data.storage.dto.DialogResult
@@ -127,11 +128,16 @@ class RootPresenter : Presenter<RootActivity>() {
     fun getRootView(): RootActivity? = view
 
     inner class ActionBarBuilder {
+        private val DEFAULT_MODE = 0
+        private val TAB_MODE = 1
+
         private var isGoBack = false
         private var isVisible = true
         private var title: String = ""
         private var overFlowIconRes: Int? = null
         private var items: ArrayList<MenuItemHolder> = ArrayList()
+        private var pager: ViewPager? = null
+        private var toolbarMode = DEFAULT_MODE
 
         fun setBackArrow(enable: Boolean): ActionBarBuilder {
             isGoBack = enable
@@ -158,14 +164,24 @@ class RootPresenter : Presenter<RootActivity>() {
             return this
         }
 
+        fun setTab(pager: ViewPager): ActionBarBuilder {
+            this.toolbarMode = TAB_MODE
+            this.pager = pager
+            return this
+        }
+
         fun build() {
             val activity = view ?: return
+            activity.removeTabLayout()
             activity.setVisibleBar(isVisible)
             if (isVisible) {
                 activity.setTitleBar(title)
                 activity.setBackArrow(isGoBack)
                 activity.setMenuItems(items)
                 activity.setOverFlowIcon(overFlowIconRes)
+            }
+            if (toolbarMode == TAB_MODE) {
+                activity.setTabLayout(pager!!)
             }
         }
     }
