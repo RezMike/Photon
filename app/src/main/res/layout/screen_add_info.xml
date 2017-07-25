@@ -86,7 +86,6 @@
                     android:hint="@string/add_info_tag_hint"
                     android:maxLines="1"
                     android:background="@color/color_transparent"
-                    android:inputType="textCapWords"
                     android:textColorHighlight="@color/color_transparent"
                     android:padding="@dimen/spacing_small_16"/>
 

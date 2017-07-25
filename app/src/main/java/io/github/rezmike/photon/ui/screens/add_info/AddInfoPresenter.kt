@@ -46,16 +46,13 @@ class AddInfoPresenter(val photoUri: String, var albumIdSelected: String?) : Abs
         view.initFlexBox(tags)
     }
 
-    fun onClickAddTag() {
-        val tag = view.getTagOnEt()
+    fun onClickAddTag(tag: String) {
         if (!TextUtils.isEmpty(tag)) {
-
             val builder = StringBuilder(tag.replace(" ", "")).trim()
-
-
-            if (!tags.contains(builder.toString().toLowerCase())) {
-                tags.add(tag)
-                view.initFlexBox(tags)
+            val formatTag = builder.toString().toLowerCase()
+            if (!tags.contains(formatTag)) {
+                tags.add(formatTag)
+                view.addTagOnFlexBox(formatTag)
             }
             view.clearTagEditText()
         }
