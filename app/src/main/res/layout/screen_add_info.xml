@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <io.github.rezmike.photon.ui.screens.add_info.AddInfoView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -36,12 +38,12 @@
 
             <TextView
                 style="@style/rubric_text_view"
+                android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/spacing_very_small_8"
                 android:paddingLeft="@dimen/spacing_small_16"
                 android:paddingRight="@dimen/spacing_small_16"
                 android:paddingTop="@dimen/spacing_normal_24"
-                android:text="@string/add_info_filters_accent"
-                android:layout_height="wrap_content"/>
+                android:text="@string/add_info_filters_accent"/>
 
             <include layout="@layout/layout_filters"/>
 
@@ -53,13 +55,53 @@
                 android:paddingTop="@dimen/spacing_normal_24"
                 android:text="@string/add_info_tags_accent"/>
 
-            <EditText
-                android:id="@+id/tag_name_et"
-                style="@style/edit_text_borders"
+            <LinearLayout
+                android:id="@+id/wrap_flex_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    style="@style/horizontal_line"
+                    android:layout_marginBottom="@dimen/spacing_small_16"/>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flex_box"
+                    style="@style/flex_box"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="-4dp"
                 android:layout_marginRight="-4dp"
-                android:hint="@string/add_info_tag_hint"
-                android:padding="@dimen/spacing_small_16"/>
+                android:background="@drawable/borders_edit_text">
+
+                <EditText
+                    android:id="@+id/tag_name_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/add_tags_btn"
+                    android:hint="@string/add_info_tag_hint"
+                    android:maxLines="1"
+                    android:background="@color/color_transparent"
+                    android:inputType="textCapWords"
+                    android:textColorHighlight="@color/color_transparent"
+                    android:padding="@dimen/spacing_small_16"/>
+
+                <ImageButton
+                    android:id="@+id/add_tags_btn"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/spacing_small_16"
+                    android:layout_marginStart="@dimen/spacing_small_16"
+                    android:background="@color/color_transparent"
+                    app:srcCompat="@drawable/ic_custom_add_black_24dp"/>
+
+            </RelativeLayout>
 
             <android.support.v7.widget.ListViewCompat
                 android:id="@+id/list_tags"

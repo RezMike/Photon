@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/borders_tags"
+    android:orientation="horizontal"
+    android:padding="@dimen/spacing_small_16">
+
+    <TextView
+        android:id="@+id/tag_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_normal_16"
+        tools:text="tag"/>
+
+    <ImageButton
+        android:id="@+id/delete_btn"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/spacing_very_small_8"
+        android:background="@color/color_transparent"
+        app:srcCompat="@drawable/ic_custom_cancel_black_24dp"/>
+</LinearLayout>

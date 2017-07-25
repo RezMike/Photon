@@ -8,6 +8,9 @@ import rx.Observable
 class AddInfoModel : AbstractModel() {
     fun getAlbumList(): Observable<ArrayList<AlbumRealm>> {
         return dataManager.getUserSinFromRealm(dataManager.getUserId()!!)
-                .flatMapObservable { Observable.just(it.albums.toArrayList()) }
+                .flatMapObservable { Observable.from(it.albums) }
+                .filter { !it.isFavorite }
+                .toList()
+                .map { it.toCollection(ArrayList()) }
     }
 }
