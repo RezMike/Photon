@@ -27,12 +27,7 @@ class SplashPresenter : Presenter<SplashActivity>() {
         view?.showProgress()
         Completable.merge(model.updateLocalDataCompl(), Completable.timer(3, TimeUnit.SECONDS))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    view?.hideProgress()
-                    view?.showRootActivity()
-                }, {
-                    view?.hideProgress()
-                    view?.showError(it)
-                })
+                .doAfterTerminate { view?.hideProgress() }
+                .subscribe({ view?.showRootActivity() }, { view?.showError(it) })
     }
 }

@@ -9,7 +9,6 @@ import io.github.rezmike.photon.data.network.req.RegisterReq
 import io.github.rezmike.photon.data.network.res.AlbumRes
 import io.github.rezmike.photon.data.network.res.ImageUrlRes
 import io.github.rezmike.photon.data.network.transformers.*
-import io.github.rezmike.photon.data.storage.realm.AlbumRealm
 import io.github.rezmike.photon.data.storage.realm.PhotoCardRealm
 import io.github.rezmike.photon.data.storage.realm.UserRealm
 import io.github.rezmike.photon.di.components.DaggerDataManagerComponent
@@ -129,7 +128,7 @@ class DataManager private constructor() {
                 .compose(AlbumsCallTransformer())
                 .flatMap { Observable.from(it) }
                 .subscribeOn(Schedulers.io())
-                .doOnNext { if (!it.active) realmManager.deleteFromRealm(AlbumRealm::class.java, it.id) }
+                .doOnNext { if (!it.active) realmManager.deleteAlbumFromRealm(it.id) }
                 .filter { it.active }
                 .doOnNext { realmManager.saveAlbumResponseToRealm(it) }
                 .toCompletable()
