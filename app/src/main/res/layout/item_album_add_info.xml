@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -56,7 +56,7 @@
         android:id="@+id/selected_img"
         android:layout_width="@dimen/check_mark_image"
         android:layout_height="@dimen/check_mark_image"
-        app:srcCompat="@drawable/ic_done_white_24dp"
-        android:layout_marginRight="@dimen/spacing_small_16"
-        android:layout_alignParentRight="true"/>
+        android:layout_centerInParent="true"
+        app:srcCompat="@drawable/ic_done_white_24dp"/>
+
 </RelativeLayout>

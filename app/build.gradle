@@ -43,6 +43,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
     compile 'com.google.android:flexbox:0.2.7'
+    compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.wang.avi:library:2.1.3'
 
